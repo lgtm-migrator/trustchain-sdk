@@ -20,7 +20,7 @@ export class ClaimIssuerService {
   private didHashResolver = new DidHashResolver();
 
   /**
-   * create a claim.
+   * create a claim
    */
   async create(
     template: DidTemplate,
