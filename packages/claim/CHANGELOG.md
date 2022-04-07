@@ -2,6 +2,24 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## 0.0.1 (2022-04-07)
+
+
+### Bug Fixes
+
+* **claim:** just a typo ([0955a48](https://github.com/trustcerts/trustchain-sdk2/commit/0955a485f905ebbd24d3933f88c4b396a72ff39a))
+
+
+
+## 0.0.1 (2022-04-07)
+
+
+### Bug Fixes
+
+* **claim:** just a typo ([0955a48](https://github.com/trustcerts/trustchain-sdk2/commit/0955a485f905ebbd24d3933f88c4b396a72ff39a))
+
+
+
 ## [0.0.2](https://github.com/trustcerts/trustchain-sdk2/compare/v0.0.1...v0.0.2) (2022-04-07)
 
 
