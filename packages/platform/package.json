@@ -1,6 +1,6 @@
 {
   "name": "@trustcerts/platform",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "commonjs",
   "scripts": {
     "api": "rm -rf src/lib && mkdir src/lib && npx @openapitools/openapi-generator-cli generate -g typescript-axios -i https://platform.dev.trustcerts.de/api-json -o src/lib --additional-properties=supportsES6=true,enumPropertyNaming=original,enumNameSuffix="

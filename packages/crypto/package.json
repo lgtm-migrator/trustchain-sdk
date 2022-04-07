@@ -1,6 +1,6 @@
 {
   "name": "@trustcerts/crypto",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "commonjs",
   "dependencies": {
     "@mattrglobal/jsonld-signatures-bbs": "^1.0.1"

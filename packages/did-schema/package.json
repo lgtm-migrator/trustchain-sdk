@@ -1,6 +1,6 @@
 {
   "name": "@trustcerts/did-schema",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "commonjs",
   "dependencies": {
     "ajv": "^8.11.0"
