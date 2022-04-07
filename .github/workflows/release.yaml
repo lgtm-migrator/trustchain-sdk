@@ -22,7 +22,7 @@ jobs:
       - run: yarn nx affected --base=last-release --target=install
       - name: Version
         shell: bash
-        run: yarn nx affected --base=last-release --target=version --parallel --max-parallel=1
+        run: yarn nx affected --base=last-release --target=version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Tag last-release
