@@ -1,6 +1,6 @@
 {
   "name": "@trustcerts/did-hash",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "commonjs",
   "devDependencies": {
     "@types/node": "^17.0.23"
