@@ -1,0 +1,41 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "types": ["node"],
+    "paths": {
+      "@trustcerts/claim": ["packages/claim/src/index.ts"],
+      "@trustcerts/config": ["packages/config/src/index.ts"],
+      "@trustcerts/config-cloud": ["packages/config-cloud/src/index.ts"],
+      "@trustcerts/config-local": ["packages/config-local/src/index.ts"],
+      "@trustcerts/crypto": ["packages/crypto/src/index.ts"],
+      "@trustcerts/did": ["packages/did/src/index.ts"],
+      "@trustcerts/did-hash": ["packages/did-hash/src/index.ts"],
+      "@trustcerts/did-schema": ["packages/did-schema/src/index.ts"],
+      "@trustcerts/did-template": ["packages/did-template/src/index.ts"],
+      "@trustcerts/gateway": ["packages/gateway/src/index.ts"],
+      "@trustcerts/helpers": ["packages/helpers/src/index.ts"],
+      "@trustcerts/logger": ["packages/logger/src/index.ts"],
+      "@trustcerts/observer": ["packages/observer/src/index.ts"],
+      "@trustcerts/platform": ["packages/platform/src/index.ts"],
+      "@trustcerts/vc": ["packages/vc/src/index.ts"],
+      "@trustcerts/vc-bbs": ["packages/vc-bbs/src/index.ts"],
+      "@trustcerts/vc-jwt": ["packages/vc-jwt/src/index.ts"],
+      "@trustcerts/vc-revocation": ["packages/vc-revocation/src/index.ts"],
+      "@trustcerts/wallet": ["packages/wallet/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

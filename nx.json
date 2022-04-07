@@ -1,0 +1,33 @@
+{
+  "extends": "@nrwl/workspace/presets/core.json",
+  "npmScope": "trustcerts",
+  "affected": {
+    "defaultBase": "main"
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/js"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "YTIwMWUyOGQtYTY2My00YmVhLWI2ZTUtNmM3MWNhOGEwMGE4fHJlYWQtd3JpdGU="
+      }
+    }
+  },
+  "targetDependencies": {
+    "version": [
+      {
+        "target": "version",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "generators": {
+    "@nrwl/js:library": {
+      "buildable": true,
+      "compiler": "tsc"
+    }
+  }
+}

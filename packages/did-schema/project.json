@@ -1,0 +1,64 @@
+{
+  "root": "packages/did-schema",
+  "sourceRoot": "packages/did-schema/src",
+  "targets": {
+    "install": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm install --prefix packages/did-schema"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/did-schema",
+        "main": "packages/did-schema/src/index.ts",
+        "tsConfig": "packages/did-schema/tsconfig.lib.json",
+        "assets": [
+          "packages/did-schema/*.md"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/did-schema/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/packages/did-schema"
+      ],
+      "options": {
+        "jestConfig": "packages/did-schema/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "angular",
+        "commitMessageFormat": "fix(${projectName}): release version ${version}",
+        "postTargets": [
+          "did-schema:deploy"
+        ]
+      }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "access": "public"
+      }
+    }
+  },
+  "tags": []
+}

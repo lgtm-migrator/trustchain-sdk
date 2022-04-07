@@ -1,0 +1,11 @@
+{
+  "name": "@trustcerts/vc-revocation",
+  "version": "0.0.2",
+  "type": "commonjs",
+  "dependencies": {
+    "@transmute/vc-status-rl-2020": "^0.7.0-unstable.58"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.23"
+  }
+}

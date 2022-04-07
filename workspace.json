@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "projects": {
+    "claim": "packages/claim",
+    "config": "packages/config",
+    "config-cloud": "packages/config-cloud",
+    "config-local": "packages/config-local",
+    "crypto": "packages/crypto",
+    "did": "packages/did",
+    "did-hash": "packages/did-hash",
+    "did-schema": "packages/did-schema",
+    "did-template": "packages/did-template",
+    "gateway": "packages/gateway",
+    "helpers": "packages/helpers",
+    "logger": "packages/logger",
+    "observer": "packages/observer",
+    "platform": "packages/platform",
+    "vc": "packages/vc",
+    "vc-bbs": "packages/vc-bbs",
+    "vc-jwt": "packages/vc-jwt",
+    "vc-revocation": "packages/vc-revocation",
+    "wallet": "packages/wallet"
+  }
+}

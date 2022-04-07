@@ -1,0 +1,9 @@
+{
+    "invite": {
+        "id": "did:trust:tc:dev:id:XLzBJd69tqEgq7oqqdEsHW",
+        "secret": "client",
+        "endpoint": "https://api.gateway1.dev.trustcerts.de"
+    },
+    "name": "client",
+    "keyPairs": []
+}

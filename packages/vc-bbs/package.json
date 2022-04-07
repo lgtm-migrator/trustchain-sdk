@@ -1,0 +1,8 @@
+{
+  "name": "@trustcerts/vc-bbs",
+  "version": "0.0.2",
+  "type": "commonjs",
+  "dependencies": {
+    "@mattrglobal/jsonld-signatures-bbs": "^1.0.1"
+  }
+}
