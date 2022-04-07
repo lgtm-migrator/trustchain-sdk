@@ -18,11 +18,11 @@ jobs:
         run: |
           git config user.name "GitHub Bot"
           git config user.email "gituser@example.com"
-      - run: yarn install --frozen-lockfile --prefer-offline
-      - run: yarn nx affected --base=last-release --target=install
+      - run: npx install --frozen-lockfile --prefer-offline
+      - run: npx nx affected --base=last-release --target=install
       - name: Version
         shell: bash
-        run: yarn nx affected --base=last-release --target=version
+        run: npx nx affected --base=last-release --target=version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Tag last-release
