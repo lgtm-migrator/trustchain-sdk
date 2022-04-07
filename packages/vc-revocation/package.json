@@ -1,6 +1,6 @@
 {
   "name": "@trustcerts/vc-revocation",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "type": "commonjs",
   "dependencies": {
     "@transmute/vc-status-rl-2020": "^0.7.0-unstable.58"
