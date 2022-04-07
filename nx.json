@@ -22,6 +22,12 @@
         "target": "version",
         "projects": "dependencies"
       }
+    ],
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
     ]
   },
   "generators": {
