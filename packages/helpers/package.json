@@ -1,7 +1,8 @@
 {
   "name": "@trustcerts/helpers",
-  "version": "0.0.1",
-  "type": "commonjs",
+  "version": "0.0.0",
+  "type": "module",
+  "repository": "https://github.com/trustcerts/trustchain-sdk2",
   "dependencies": {
     "bs58": "^5.0.0"
   },

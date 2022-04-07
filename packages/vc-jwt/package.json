@@ -1,7 +1,8 @@
 {
   "name": "@trustcerts/vc-jwt",
-  "version": "4.0.0",
-  "type": "commonjs",
+  "version": "0.0.0",
+  "type": "module",
+  "repository": "https://github.com/trustcerts/trustchain-sdk2",
   "dependencies": {
     "base64url": "^3.0.1",
     "jose": "^4.6.0"
