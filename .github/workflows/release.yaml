@@ -19,7 +19,7 @@ jobs:
           git config user.name "GitHub Bot"
           git config user.email "gituser@example.com"
       - run: npm ci
-      - run: npm run nx affected --base=last-release --target=install
+      - run: npm run install:ci
       - name: Version
         shell: bash
         run: npm run release:ci

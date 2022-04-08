@@ -5,7 +5,8 @@
   "scripts": {
     "prepare": "husky install",
     "nx": "nx",
-    "release:ci": "nx affected --base=last-release --target=version --parallel=1"
+    "release:ci": "nx affected --base=last-release --target=version --parallel=1",
+    "install:ci": "nx affected --base=last-release --target=install"
   },
   "dependencies": {
     "tslib": "^2.0.0"
