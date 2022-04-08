@@ -2,6 +2,34 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## 0.0.1 (2022-04-08)
+
+### Dependency Updates
+
+* `crypto` updated to version `0.0.1`
+* `did` updated to version `0.0.1`
+* `gateway` updated to version `0.0.1`
+* `observer` updated to version `0.0.1`
+* `logger` updated to version `0.0.1`
+
+### Bug Fixes
+
+* add install script ([c2a3944](https://github.com/trustcerts/trustchain-sdk2/commit/c2a39446372734508a742acdf0a0826a61594583))
+* add module ([842e4c4](https://github.com/trustcerts/trustchain-sdk2/commit/842e4c4780e3b499893ed5ea3dac8e00cabbf396))
+* **did-hash:** release version 0.0.1 ([03b72e7](https://github.com/trustcerts/trustchain-sdk2/commit/03b72e7fd0da5d7acd0c9567f6aa6755edebe929))
+* **did-hash:** release version 0.0.2 ([039a4ed](https://github.com/trustcerts/trustchain-sdk2/commit/039a4eda0e9ca81e1ee8b7b9fff8fc3a06e3db6f))
+* **did-hash:** release version 0.0.3 ([c6a596a](https://github.com/trustcerts/trustchain-sdk2/commit/c6a596a462fe01f354cb5c047f43c989c8c19dbd))
+* **gateway:** release version 0.0.1 ([da41e37](https://github.com/trustcerts/trustchain-sdk2/commit/da41e37a6ae7c14b801f5317d576952c89902b4c))
+* **gateway:** release version 0.0.2 ([71993f2](https://github.com/trustcerts/trustchain-sdk2/commit/71993f24441145a663ff11d102e8481eb39d6c85))
+* **logger:** release version 0.0.3 ([93b3981](https://github.com/trustcerts/trustchain-sdk2/commit/93b398113eb64f64e5b6fd7c156efd14ab672f4a))
+* **logger:** release version 2.0.0 ([8f4ab55](https://github.com/trustcerts/trustchain-sdk2/commit/8f4ab5518897a2c97590121fc538da042dcbc680))
+* **logger:** release version 4.0.0 ([8b28dd0](https://github.com/trustcerts/trustchain-sdk2/commit/8b28dd058ed3c0b86b04d092464b0957088b5eed))
+* **observer:** release version 1.0.0 ([2573054](https://github.com/trustcerts/trustchain-sdk2/commit/25730545fa5b43ee2beee02d7ca1a5eb42ac672a))
+* **observer:** release version 3.0.0 ([9a4cb9f](https://github.com/trustcerts/trustchain-sdk2/commit/9a4cb9f31103e1a8b0f6b6077a34ca6296dd2bb9))
+* reset ([a67973d](https://github.com/trustcerts/trustchain-sdk2/commit/a67973d59665be43bee691925d40fe3fc2c35d25))
+
+
+
 ## [0.0.3](https://github.com/trustcerts/trustchain-sdk2/compare/did-hash-0.0.2...did-hash-0.0.3) (2022-04-08)
 
 ### Dependency Updates
