@@ -1,6 +1,6 @@
 {
   "name": "@trustcerts/gateway",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "type": "module",
   "repository": "https://github.com/trustcerts/trustchain-sdk2",
   "scripts": {
