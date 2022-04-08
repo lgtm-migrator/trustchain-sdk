@@ -14,6 +14,9 @@ function isBrowser(): boolean {
   );
 }
 
+/**
+ * Encodes an input in a string via base58
+ */
 function base58Encode(buffer: Buffer | number[] | Uint8Array): string {
   return encode(buffer);
 }
