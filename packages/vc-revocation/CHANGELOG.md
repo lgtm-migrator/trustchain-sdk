@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.2](https://github.com/trustcerts/trustchain-sdk2/compare/vc-revocation-0.0.1...vc-revocation-0.0.2) (2022-04-08)
+
+### Dependency Updates
+
+* `helpers` updated to version `0.0.2`
+
+
 ## 0.0.1 (2022-04-08)
 
 ### Dependency Updates
