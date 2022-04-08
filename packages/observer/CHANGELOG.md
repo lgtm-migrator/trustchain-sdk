@@ -2,6 +2,29 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## 0.0.1 (2022-04-08)
+
+
+### Bug Fixes
+
+* add install script ([c2a3944](https://github.com/trustcerts/trustchain-sdk2/commit/c2a39446372734508a742acdf0a0826a61594583))
+* add module ([842e4c4](https://github.com/trustcerts/trustchain-sdk2/commit/842e4c4780e3b499893ed5ea3dac8e00cabbf396))
+* **gateway:** release version 0.0.1 ([da41e37](https://github.com/trustcerts/trustchain-sdk2/commit/da41e37a6ae7c14b801f5317d576952c89902b4c))
+* **gateway:** release version 0.0.2 ([71993f2](https://github.com/trustcerts/trustchain-sdk2/commit/71993f24441145a663ff11d102e8481eb39d6c85))
+* **logger:** release version 0.0.3 ([93b3981](https://github.com/trustcerts/trustchain-sdk2/commit/93b398113eb64f64e5b6fd7c156efd14ab672f4a))
+* **logger:** release version 2.0.0 ([8f4ab55](https://github.com/trustcerts/trustchain-sdk2/commit/8f4ab5518897a2c97590121fc538da042dcbc680))
+* **logger:** release version 4.0.0 ([8b28dd0](https://github.com/trustcerts/trustchain-sdk2/commit/8b28dd058ed3c0b86b04d092464b0957088b5eed))
+* **observer:** release version 0.0.1 ([4fb73c5](https://github.com/trustcerts/trustchain-sdk2/commit/4fb73c51959662159b559d2f9f1e938a5ea7fed1))
+* **observer:** release version 0.0.1 ([608d795](https://github.com/trustcerts/trustchain-sdk2/commit/608d7956011e0c4ca7ce54cb0da067543afedbee))
+* **observer:** release version 0.0.2 ([e9805b5](https://github.com/trustcerts/trustchain-sdk2/commit/e9805b5bedcb9819e79f09e29791df46b0d9569b))
+* **observer:** release version 0.0.2 ([a14dc83](https://github.com/trustcerts/trustchain-sdk2/commit/a14dc83cc8922cb2de851503bcbc5aee9c19ee0e))
+* **observer:** release version 0.0.3 ([0c1523b](https://github.com/trustcerts/trustchain-sdk2/commit/0c1523bfaa130cd10d396890ed4b2b83ab067963))
+* **observer:** release version 1.0.0 ([2573054](https://github.com/trustcerts/trustchain-sdk2/commit/25730545fa5b43ee2beee02d7ca1a5eb42ac672a))
+* **observer:** release version 3.0.0 ([9a4cb9f](https://github.com/trustcerts/trustchain-sdk2/commit/9a4cb9f31103e1a8b0f6b6077a34ca6296dd2bb9))
+* reset ([a67973d](https://github.com/trustcerts/trustchain-sdk2/commit/a67973d59665be43bee691925d40fe3fc2c35d25))
+
+
+
 ## [0.0.3](https://github.com/trustcerts/trustchain-sdk2/compare/observer-0.0.2...observer-0.0.3) (2022-04-08)
 
 
