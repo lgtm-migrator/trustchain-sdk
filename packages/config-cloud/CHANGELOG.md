@@ -2,6 +2,34 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## 0.0.1 (2022-04-08)
+
+### Dependency Updates
+
+* `config` updated to version `0.0.1`
+* `crypto` updated to version `0.0.1`
+* `helpers` updated to version `0.0.1`
+* `platform` updated to version `0.0.1`
+
+### Bug Fixes
+
+* add install script ([c2a3944](https://github.com/trustcerts/trustchain-sdk2/commit/c2a39446372734508a742acdf0a0826a61594583))
+* add module ([842e4c4](https://github.com/trustcerts/trustchain-sdk2/commit/842e4c4780e3b499893ed5ea3dac8e00cabbf396))
+* **config-cloud:** release version 0.0.1 ([91aff21](https://github.com/trustcerts/trustchain-sdk2/commit/91aff21820fb4f29df116da8340b6ab5b8dc4a5b))
+* **config-cloud:** release version 0.0.2 ([9351d6f](https://github.com/trustcerts/trustchain-sdk2/commit/9351d6f15848dd6ba2eb8767c2b8b2610b148618))
+* **config-cloud:** release version 0.0.3 ([94fd749](https://github.com/trustcerts/trustchain-sdk2/commit/94fd749eb1860e78b3d3b6fd02ad72f932b4a35c))
+* **gateway:** release version 0.0.1 ([da41e37](https://github.com/trustcerts/trustchain-sdk2/commit/da41e37a6ae7c14b801f5317d576952c89902b4c))
+* **gateway:** release version 0.0.2 ([71993f2](https://github.com/trustcerts/trustchain-sdk2/commit/71993f24441145a663ff11d102e8481eb39d6c85))
+* **logger:** release version 0.0.3 ([93b3981](https://github.com/trustcerts/trustchain-sdk2/commit/93b398113eb64f64e5b6fd7c156efd14ab672f4a))
+* **logger:** release version 2.0.0 ([8f4ab55](https://github.com/trustcerts/trustchain-sdk2/commit/8f4ab5518897a2c97590121fc538da042dcbc680))
+* **logger:** release version 4.0.0 ([8b28dd0](https://github.com/trustcerts/trustchain-sdk2/commit/8b28dd058ed3c0b86b04d092464b0957088b5eed))
+* **observer:** release version 1.0.0 ([2573054](https://github.com/trustcerts/trustchain-sdk2/commit/25730545fa5b43ee2beee02d7ca1a5eb42ac672a))
+* **observer:** release version 3.0.0 ([9a4cb9f](https://github.com/trustcerts/trustchain-sdk2/commit/9a4cb9f31103e1a8b0f6b6077a34ca6296dd2bb9))
+* reset ([a67973d](https://github.com/trustcerts/trustchain-sdk2/commit/a67973d59665be43bee691925d40fe3fc2c35d25))
+* **wallet:** release version 0.0.1 ([910ae9a](https://github.com/trustcerts/trustchain-sdk2/commit/910ae9ab2db7c89549e0d927502c6332b42ed1d5))
+
+
+
 ## [0.0.3](https://github.com/trustcerts/trustchain-sdk2/compare/config-cloud-0.0.2...config-cloud-0.0.3) (2022-04-08)
 
 ### Dependency Updates
