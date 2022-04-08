@@ -2,6 +2,22 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.6](https://github.com/trustcerts/trustchain-sdk2/compare/vc-jwt-0.0.5...vc-jwt-0.0.6) (2022-04-08)
+
+### Dependency Updates
+
+* `vc` updated to version `0.0.6`
+* `vc-revocation` updated to version `0.0.6`
+* `crypto` updated to version `0.0.6`
+* `did` updated to version `0.0.6`
+* `logger` updated to version `0.0.5`
+
+### Bug Fixes
+
+* add commonjs ([5240528](https://github.com/trustcerts/trustchain-sdk2/commit/524052843f65dfe479612e94c61b18881d5d00c6))
+
+
+
 ## [0.0.5](https://github.com/trustcerts/trustchain-sdk2/compare/vc-jwt-0.0.4...vc-jwt-0.0.5) (2022-04-08)
 
 ### Dependency Updates
