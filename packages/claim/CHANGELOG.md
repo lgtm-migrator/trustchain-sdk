@@ -2,6 +2,25 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.2](https://github.com/trustcerts/trustchain-sdk2/compare/claim-0.0.1...claim-0.0.2) (2022-04-08)
+
+### Dependency Updates
+
+* `did-hash` updated to version `0.0.2`
+* `did-template` updated to version `0.0.2`
+* `did-schema` updated to version `0.0.2`
+* `did` updated to version `0.0.2`
+* `observer` updated to version `0.0.2`
+* `crypto` updated to version `0.0.3`
+* `helpers` updated to version `0.0.4`
+
+### Bug Fixes
+
+* add install script ([c2a3944](https://github.com/trustcerts/trustchain-sdk2/commit/c2a39446372734508a742acdf0a0826a61594583))
+* **claim:** add dot ([f3d2edd](https://github.com/trustcerts/trustchain-sdk2/commit/f3d2edd9974482bb4b78c0806c41bdfe890c9a22))
+
+
+
 ## 0.0.1 (2022-04-07)
 
 
