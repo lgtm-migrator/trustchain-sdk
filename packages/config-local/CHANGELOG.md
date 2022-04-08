@@ -2,6 +2,19 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.2](https://github.com/trustcerts/trustchain-sdk2/compare/config-local-0.0.1...config-local-0.0.2) (2022-04-08)
+
+### Dependency Updates
+
+* `config` updated to version `0.0.3`
+* `helpers` updated to version `0.0.4`
+
+### Bug Fixes
+
+* add install script ([c2a3944](https://github.com/trustcerts/trustchain-sdk2/commit/c2a39446372734508a742acdf0a0826a61594583))
+
+
+
 ## 0.0.1 (2022-04-07)
 
 
