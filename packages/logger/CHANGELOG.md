@@ -8,6 +8,16 @@ This file was generated using [@jscutlery/semver](https://github.com/jscutlery/s
 ### Bug Fixes
 
 * add module ([842e4c4](https://github.com/trustcerts/trustchain-sdk2/commit/842e4c4780e3b499893ed5ea3dac8e00cabbf396))
+* **observer:** release version 0.0.3 ([0c1523b](https://github.com/trustcerts/trustchain-sdk2/commit/0c1523bfaa130cd10d396890ed4b2b83ab067963))
+
+
+
+## [0.0.3](https://github.com/trustcerts/trustchain-sdk2/compare/logger-0.0.2...logger-0.0.3) (2022-04-08)
+
+
+### Bug Fixes
+
+* add module ([842e4c4](https://github.com/trustcerts/trustchain-sdk2/commit/842e4c4780e3b499893ed5ea3dac8e00cabbf396))
 
 
 
