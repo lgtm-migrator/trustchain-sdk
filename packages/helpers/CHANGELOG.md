@@ -2,6 +2,16 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.4](https://github.com/trustcerts/trustchain-sdk2/compare/helpers-0.0.3...helpers-0.0.4) (2022-04-08)
+
+
+### Bug Fixes
+
+* add install script ([c2a3944](https://github.com/trustcerts/trustchain-sdk2/commit/c2a39446372734508a742acdf0a0826a61594583))
+* go ([86af525](https://github.com/trustcerts/trustchain-sdk2/commit/86af52520b25f4db93465da19a3fb8105384f4d2))
+
+
+
 ## [0.0.3](https://github.com/trustcerts/trustchain-sdk2/compare/helpers-0.0.2...helpers-0.0.3) (2022-04-07)
 
 
