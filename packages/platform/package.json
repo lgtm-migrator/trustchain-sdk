@@ -1,6 +1,6 @@
 {
   "name": "@trustcerts/platform",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "commonjs",
   "repository": "https://github.com/trustcerts/trustchain-sdk2",
   "scripts": {
