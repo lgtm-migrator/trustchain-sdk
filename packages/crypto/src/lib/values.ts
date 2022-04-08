@@ -1,4 +1,13 @@
 import { isBrowser } from '@trustcerts/helpers';
+import { webcrypto } from 'crypto';
+
+declare module 'crypto' {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace webcrypto {
+    const subtle: SubtleCrypto;
+    function getRandomValues(array: Uint8Array): Uint8Array;
+  }
+}
 
 /**
  * Define the required objects based on the environment (if browser or nodejs)
@@ -7,18 +16,9 @@ let subtle: SubtleCrypto;
 let getRandomValues: (array?: Uint8Array) => Uint8Array;
 
 if (!isBrowser()) {
-  // TODO use import to remove require
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-var-requires
-  const { subtle: crypto, getRandomValues: random } =
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    require('crypto').webcrypto;
-  if (crypto) {
-    subtle = crypto as SubtleCrypto;
-  }
-  getRandomValues = (array: Uint8Array = new Uint8Array(32)): Uint8Array => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
-    return random(array);
-  };
+  subtle = webcrypto.subtle;
+  getRandomValues = (array: Uint8Array = new Uint8Array(32)): Uint8Array =>
+    webcrypto.getRandomValues(array);
 } else {
   subtle = window.crypto.subtle;
   getRandomValues = (array: Uint8Array = new Uint8Array(32)): Uint8Array => {
