@@ -10,34 +10,24 @@
     },
     "build": {
       "executor": "@nrwl/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/wallet",
         "main": "packages/wallet/src/index.ts",
         "tsConfig": "packages/wallet/tsconfig.lib.json",
-        "assets": [
-          "packages/wallet/*.md"
-        ]
+        "assets": ["packages/wallet/*.md"]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/wallet/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/wallet/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/packages/wallet"
-      ],
+      "outputs": ["coverage/packages/wallet"],
       "options": {
         "jestConfig": "packages/wallet/jest.config.js",
         "passWithNoTests": true
@@ -47,10 +37,9 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "preset": "angular",
+        "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": [
-          "wallet:deploy"
-        ]
+        "postTargets": ["wallet:deploy"]
       }
     },
     "deploy": {

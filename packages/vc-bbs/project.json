@@ -10,34 +10,24 @@
     },
     "build": {
       "executor": "@nrwl/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/vc-bbs",
         "main": "packages/vc-bbs/src/index.ts",
         "tsConfig": "packages/vc-bbs/tsconfig.lib.json",
-        "assets": [
-          "packages/vc-bbs/*.md"
-        ]
+        "assets": ["packages/vc-bbs/*.md"]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/vc-bbs/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/vc-bbs/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/packages/vc-bbs"
-      ],
+      "outputs": ["coverage/packages/vc-bbs"],
       "options": {
         "jestConfig": "packages/vc-bbs/jest.config.js",
         "passWithNoTests": true
@@ -47,10 +37,9 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "preset": "angular",
+        "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": [
-          "vc-bbs:deploy"
-        ]
+        "postTargets": ["vc-bbs:deploy"]
       }
     },
     "deploy": {

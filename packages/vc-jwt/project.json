@@ -10,34 +10,24 @@
     },
     "build": {
       "executor": "@nrwl/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/vc-jwt",
         "main": "packages/vc-jwt/src/index.ts",
         "tsConfig": "packages/vc-jwt/tsconfig.lib.json",
-        "assets": [
-          "packages/vc-jwt/*.md"
-        ]
+        "assets": ["packages/vc-jwt/*.md"]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/vc-jwt/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/vc-jwt/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/packages/vc-jwt"
-      ],
+      "outputs": ["coverage/packages/vc-jwt"],
       "options": {
         "jestConfig": "packages/vc-jwt/jest.config.js",
         "passWithNoTests": true
@@ -47,10 +37,9 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "preset": "angular",
+        "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": [
-          "vc-jwt:deploy"
-        ]
+        "postTargets": ["vc-jwt:deploy"]
       }
     },
     "deploy": {

@@ -10,34 +10,24 @@
     },
     "build": {
       "executor": "@nrwl/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/did",
         "main": "packages/did/src/index.ts",
         "tsConfig": "packages/did/tsconfig.lib.json",
-        "assets": [
-          "packages/did/*.md"
-        ]
+        "assets": ["packages/did/*.md"]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/did/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/did/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/packages/did"
-      ],
+      "outputs": ["coverage/packages/did"],
       "options": {
         "jestConfig": "packages/did/jest.config.js",
         "passWithNoTests": true
@@ -47,7 +37,9 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "preset": "angular",
-        "commitMessageFormat": "fix(${projectName}): release version ${version}"
+        "trackDeps": true,
+        "commitMessageFormat": "fix(${projectName}): release version ${version}",
+        "postTargets": ["did:deploy"]
       }
     },
     "deploy": {

@@ -10,34 +10,24 @@
     },
     "build": {
       "executor": "@nrwl/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/config-cloud",
         "main": "packages/config-cloud/src/index.ts",
         "tsConfig": "packages/config-cloud/tsconfig.lib.json",
-        "assets": [
-          "packages/config-cloud/*.md"
-        ]
+        "assets": ["packages/config-cloud/*.md"]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/config-cloud/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/config-cloud/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/packages/config-cloud"
-      ],
+      "outputs": ["coverage/packages/config-cloud"],
       "options": {
         "jestConfig": "packages/config-cloud/jest.config.js",
         "passWithNoTests": true
@@ -47,10 +37,9 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "preset": "angular",
+        "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": [
-          "config-cloud:deploy"
-        ]
+        "postTargets": ["config-cloud:deploy"]
       }
     },
     "deploy": {

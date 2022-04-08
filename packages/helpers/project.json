@@ -37,6 +37,7 @@
       "executor": "@jscutlery/semver:version",
       "options": {
         "preset": "angular",
+        "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
         "postTargets": ["helpers:deploy"]
       }
