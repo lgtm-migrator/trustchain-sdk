@@ -1,6 +1,6 @@
 {
   "name": "@trustcerts/did-template",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "commonjs",
   "repository": "https://github.com/trustcerts/trustchain-sdk2"
 }
