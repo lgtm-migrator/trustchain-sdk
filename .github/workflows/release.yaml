@@ -22,7 +22,7 @@ jobs:
       - run: npm run nx affected --base=last-release --target=install
       - name: Version
         shell: bash
-        run: npm nx affected --base=last-release --target=version --parallel=1
+        run: npm run nx affected --base=last-release --target=version --parallel=1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Tag last-release
