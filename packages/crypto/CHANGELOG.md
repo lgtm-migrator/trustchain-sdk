@@ -2,6 +2,33 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## 0.0.1 (2022-04-08)
+
+### Dependency Updates
+
+* `helpers` updated to version `0.0.1`
+
+### Bug Fixes
+
+* add install script ([c2a3944](https://github.com/trustcerts/trustchain-sdk2/commit/c2a39446372734508a742acdf0a0826a61594583))
+* add module ([842e4c4](https://github.com/trustcerts/trustchain-sdk2/commit/842e4c4780e3b499893ed5ea3dac8e00cabbf396))
+* **crypto:** release version 0.0.1 ([47b999a](https://github.com/trustcerts/trustchain-sdk2/commit/47b999ac28fa559cc8bab2190498958ab38a094b))
+* **crypto:** release version 0.0.1 ([741425f](https://github.com/trustcerts/trustchain-sdk2/commit/741425fa9c7ba91029b16e76ab109b360f7e38c0))
+* **crypto:** release version 0.0.2 ([9abde01](https://github.com/trustcerts/trustchain-sdk2/commit/9abde01eec7dbb9af787be2334bd3538bca70163))
+* **crypto:** release version 0.0.3 ([bfef353](https://github.com/trustcerts/trustchain-sdk2/commit/bfef353b417f0539d2bbb67adff77729fd761f37))
+* **crypto:** release version 0.0.4 ([c068315](https://github.com/trustcerts/trustchain-sdk2/commit/c068315f5e2996d6541ff19ff9c14638dc496bcf))
+* **crypto:** set correct node types ([37d1a45](https://github.com/trustcerts/trustchain-sdk2/commit/37d1a45f2ab50e82179ed6d9d5574a214542a5d3))
+* **gateway:** release version 0.0.1 ([da41e37](https://github.com/trustcerts/trustchain-sdk2/commit/da41e37a6ae7c14b801f5317d576952c89902b4c))
+* **gateway:** release version 0.0.2 ([71993f2](https://github.com/trustcerts/trustchain-sdk2/commit/71993f24441145a663ff11d102e8481eb39d6c85))
+* **logger:** release version 0.0.3 ([93b3981](https://github.com/trustcerts/trustchain-sdk2/commit/93b398113eb64f64e5b6fd7c156efd14ab672f4a))
+* **logger:** release version 2.0.0 ([8f4ab55](https://github.com/trustcerts/trustchain-sdk2/commit/8f4ab5518897a2c97590121fc538da042dcbc680))
+* **logger:** release version 4.0.0 ([8b28dd0](https://github.com/trustcerts/trustchain-sdk2/commit/8b28dd058ed3c0b86b04d092464b0957088b5eed))
+* **observer:** release version 1.0.0 ([2573054](https://github.com/trustcerts/trustchain-sdk2/commit/25730545fa5b43ee2beee02d7ca1a5eb42ac672a))
+* **observer:** release version 3.0.0 ([9a4cb9f](https://github.com/trustcerts/trustchain-sdk2/commit/9a4cb9f31103e1a8b0f6b6077a34ca6296dd2bb9))
+* reset ([a67973d](https://github.com/trustcerts/trustchain-sdk2/commit/a67973d59665be43bee691925d40fe3fc2c35d25))
+
+
+
 ## [0.0.4](https://github.com/trustcerts/trustchain-sdk2/compare/crypto-0.0.3...crypto-0.0.4) (2022-04-08)
 
 ### Dependency Updates
