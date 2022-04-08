@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
-    "nx": "nx"
+    "nx": "nx",
+    "release:ci": "nx affected --base=last-release --target=version --parallel=1"
   },
   "dependencies": {
     "tslib": "^2.0.0"
