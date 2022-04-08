@@ -1,7 +1,7 @@
 {
   "name": "@trustcerts/did-hash",
   "version": "0.0.3",
-  "type": "commonjs",
+  "type": "module",
   "repository": "https://github.com/trustcerts/trustchain-sdk2",
   "devDependencies": {
     "@types/node": "^17.0.23"

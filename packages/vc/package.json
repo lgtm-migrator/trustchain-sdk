@@ -1,7 +1,7 @@
 {
   "name": "@trustcerts/vc",
   "version": "0.0.3",
-  "type": "commonjs",
+  "type": "module",
   "repository": "https://github.com/trustcerts/trustchain-sdk2",
   "dependencies": {
     "base64url": "^3.0.1"

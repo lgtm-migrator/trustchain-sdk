@@ -1,6 +1,6 @@
 {
   "name": "@trustcerts/config-cloud",
   "version": "0.0.3",
-  "type": "commonjs",
+  "type": "module",
   "repository": "https://github.com/trustcerts/trustchain-sdk2"
 }
