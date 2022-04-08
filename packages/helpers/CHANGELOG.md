@@ -2,6 +2,38 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## 0.0.1 (2022-04-08)
+
+
+### Bug Fixes
+
+* add install script ([c2a3944](https://github.com/trustcerts/trustchain-sdk2/commit/c2a39446372734508a742acdf0a0826a61594583))
+* add module ([842e4c4](https://github.com/trustcerts/trustchain-sdk2/commit/842e4c4780e3b499893ed5ea3dac8e00cabbf396))
+* **crypto:** set correct node types ([37d1a45](https://github.com/trustcerts/trustchain-sdk2/commit/37d1a45f2ab50e82179ed6d9d5574a214542a5d3))
+* **did-hash:** release version 0.0.3 ([c6a596a](https://github.com/trustcerts/trustchain-sdk2/commit/c6a596a462fe01f354cb5c047f43c989c8c19dbd))
+* **gateway:** release version 0.0.1 ([da41e37](https://github.com/trustcerts/trustchain-sdk2/commit/da41e37a6ae7c14b801f5317d576952c89902b4c))
+* **gateway:** release version 0.0.2 ([8b66501](https://github.com/trustcerts/trustchain-sdk2/commit/8b665018fc7370e35509d7b50dcf643f764b8143))
+* **gateway:** release version 0.0.2 ([71993f2](https://github.com/trustcerts/trustchain-sdk2/commit/71993f24441145a663ff11d102e8481eb39d6c85))
+* go ([86af525](https://github.com/trustcerts/trustchain-sdk2/commit/86af52520b25f4db93465da19a3fb8105384f4d2))
+* **helpers:** git tag ([d9370e0](https://github.com/trustcerts/trustchain-sdk2/commit/d9370e0a0b248ff08418bf7cd05e8a8c570c22c5))
+* **helpers:** release version 0.0.1 ([9fe6c71](https://github.com/trustcerts/trustchain-sdk2/commit/9fe6c71a7f03ed1f069fb8e412b6cbab30da94ad))
+* **helpers:** release version 0.0.1 ([b236173](https://github.com/trustcerts/trustchain-sdk2/commit/b236173f4593e09b2801993256203cb2ad773ecf))
+* **helpers:** release version 0.0.2 ([652ad85](https://github.com/trustcerts/trustchain-sdk2/commit/652ad8590b51ce4aaa8d3c5636ef2834f18e3390))
+* **helpers:** release version 0.0.2 ([26c65ae](https://github.com/trustcerts/trustchain-sdk2/commit/26c65ae6908ac2d1ee47d9791fb0cb3e6fe29267))
+* **helpers:** release version 0.0.3 ([0a1d668](https://github.com/trustcerts/trustchain-sdk2/commit/0a1d6688b06f12c2862d7b579c529fe7745a057e))
+* **helpers:** release version 0.0.4 ([b4b4cf8](https://github.com/trustcerts/trustchain-sdk2/commit/b4b4cf89cfc13aa85063a2ef6c53431b1189a377))
+* **helpers:** release version 0.0.5 ([2e18fc2](https://github.com/trustcerts/trustchain-sdk2/commit/2e18fc2640705d243e7bf71b4d28d412f2675dc6))
+* **helpers:** release version 1.0.0 ([22c74f5](https://github.com/trustcerts/trustchain-sdk2/commit/22c74f57dfc915870e249979c1b329847139c96d))
+* **helpers:** release version 3.0.0 ([c36fca0](https://github.com/trustcerts/trustchain-sdk2/commit/c36fca09e0553b0d8f366c74a39f0e0210f9a9ca))
+* **logger:** release version 0.0.3 ([93b3981](https://github.com/trustcerts/trustchain-sdk2/commit/93b398113eb64f64e5b6fd7c156efd14ab672f4a))
+* **logger:** release version 2.0.0 ([8f4ab55](https://github.com/trustcerts/trustchain-sdk2/commit/8f4ab5518897a2c97590121fc538da042dcbc680))
+* **logger:** release version 4.0.0 ([8b28dd0](https://github.com/trustcerts/trustchain-sdk2/commit/8b28dd058ed3c0b86b04d092464b0957088b5eed))
+* **observer:** release version 1.0.0 ([2573054](https://github.com/trustcerts/trustchain-sdk2/commit/25730545fa5b43ee2beee02d7ca1a5eb42ac672a))
+* **observer:** release version 3.0.0 ([9a4cb9f](https://github.com/trustcerts/trustchain-sdk2/commit/9a4cb9f31103e1a8b0f6b6077a34ca6296dd2bb9))
+* reset ([a67973d](https://github.com/trustcerts/trustchain-sdk2/commit/a67973d59665be43bee691925d40fe3fc2c35d25))
+
+
+
 ## [0.0.5](https://github.com/trustcerts/trustchain-sdk2/compare/helpers-0.0.4...helpers-0.0.5) (2022-04-08)
 
 
