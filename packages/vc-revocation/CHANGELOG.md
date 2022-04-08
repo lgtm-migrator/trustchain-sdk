@@ -2,6 +2,18 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.5](https://github.com/trustcerts/trustchain-sdk2/compare/vc-revocation-0.0.4...vc-revocation-0.0.5) (2022-04-08)
+
+### Dependency Updates
+
+* `helpers` updated to version `0.0.5`
+
+### Bug Fixes
+
+* set commonjs in tsconfig ([566d23f](https://github.com/trustcerts/trustchain-sdk2/commit/566d23f6496a08b935fef0e89558b4497d435626))
+
+
+
 ## [0.0.4](https://github.com/trustcerts/trustchain-sdk2/compare/vc-revocation-0.0.3...vc-revocation-0.0.4) (2022-04-08)
 
 ### Dependency Updates
