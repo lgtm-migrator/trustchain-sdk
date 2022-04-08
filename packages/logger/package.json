@@ -1,6 +1,6 @@
 {
   "name": "@trustcerts/logger",
   "version": "0.0.1",
-  "type": "module",
+  "type": "commonjs",
   "repository": "https://github.com/trustcerts/trustchain-sdk2"
 }

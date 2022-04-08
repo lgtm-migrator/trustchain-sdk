@@ -1,7 +1,7 @@
 {
   "name": "@trustcerts/gateway",
   "version": "0.0.1",
-  "type": "module",
+  "type": "commonjs",
   "repository": "https://github.com/trustcerts/trustchain-sdk2",
   "scripts": {
     "api": "rm -rf src/lib && mkdir src/lib && npx @openapitools/openapi-generator-cli generate -g typescript-axios -i https://api.gateway1.dev.trustcerts.de/api-json -o src/lib --api-name-suffix=GatewayApi --additional-properties=supportsES6=true,enumPropertyNaming=original,enumNameSuffix="
