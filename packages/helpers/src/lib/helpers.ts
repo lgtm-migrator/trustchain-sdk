@@ -1,4 +1,12 @@
 import { encode, decode } from 'bs58';
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  unlinkSync,
+  writeFileSync,
+} from 'fs';
+import { dirname } from 'path';
 
 let write: (path: string, value: string) => void;
 let exists: (path: string) => boolean;
@@ -26,23 +34,16 @@ function base58Decode(string: string): Uint8Array {
 }
 
 if (!isBrowser()) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-var-requires
-  const fs = require('fs');
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const getDirName = require('path').dirname;
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+  const getDirName = dirname;
   // TODO: writeFileSync is bad practive (synchronous): https://www.geeksforgeeks.org/node-js-fs-writefilesync-method/
   write = (path, contents) => {
-    fs.mkdirSync(getDirName(path), { recursive: true });
-    fs.writeFileSync(path, contents);
+    mkdirSync(getDirName(path), { recursive: true });
+    writeFileSync(path, contents);
   };
-  //write = fs.writeFileSync;
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  exists = fs.existsSync;
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-  read = (path: string): string => fs.readFileSync(path, 'utf-8');
+  exists = existsSync;
+  read = (path: string): string => readFileSync(path, 'utf-8');
 
-  remove = fs.unlinkSync;
+  remove = unlinkSync;
 } else {
   write = (path: string, value: string): void => {
     window.localStorage.setItem(path, value);
