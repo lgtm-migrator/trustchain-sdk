@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.8](https://github.com/trustcerts/trustchain-sdk2/compare/observer-0.0.7...observer-0.0.8) (2022-04-09)
+
+
+### Bug Fixes
+
+* change build ([946c102](https://github.com/trustcerts/trustchain-sdk2/commit/946c10276013e3bc9b4896710c743cddbd5f1216))
+
+
+
 ## [0.0.7](https://github.com/trustcerts/trustchain-sdk2/compare/observer-0.0.6...observer-0.0.7) (2022-04-09)
 
 
