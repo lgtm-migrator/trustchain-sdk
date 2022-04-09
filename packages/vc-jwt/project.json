@@ -9,13 +9,14 @@
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/vc-jwt",
         "main": "packages/vc-jwt/src/index.ts",
         "tsConfig": "packages/vc-jwt/tsconfig.lib.json",
-        "assets": ["packages/vc-jwt/*.md"]
+        "project": "packages/vc-jwt/package.json",
+        "entryFile": "packages/vc-jwt/src/index.ts"
       }
     },
     "lint": {

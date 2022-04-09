@@ -9,13 +9,14 @@
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/wallet",
         "main": "packages/wallet/src/index.ts",
         "tsConfig": "packages/wallet/tsconfig.lib.json",
-        "assets": ["packages/wallet/*.md"]
+        "project": "packages/wallet/package.json",
+        "entryFile": "packages/wallet/src/index.ts"
       }
     },
     "lint": {

@@ -9,13 +9,14 @@
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/observer",
         "main": "packages/observer/src/index.ts",
         "tsConfig": "packages/observer/tsconfig.lib.json",
-        "assets": ["packages/observer/*.md"]
+        "project": "packages/observer/package.json",
+        "entryFile": "packages/observer/src/index.ts"
       }
     },
     "lint": {

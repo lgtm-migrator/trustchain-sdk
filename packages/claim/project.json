@@ -9,13 +9,14 @@
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/claim",
         "main": "packages/claim/src/index.ts",
         "tsConfig": "packages/claim/tsconfig.lib.json",
-        "assets": ["packages/claim/*.md"]
+        "project": "packages/claim/package.json",
+        "entryFile": "packages/claim/src/index.ts"
       }
     },
     "lint": {

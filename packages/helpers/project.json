@@ -9,13 +9,14 @@
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/helpers",
         "main": "packages/helpers/src/index.ts",
         "tsConfig": "packages/helpers/tsconfig.lib.json",
-        "assets": ["packages/helpers/*.md"]
+        "project": "packages/helpers/package.json",
+        "entryFile": "packages/helpers/src/index.ts"
       }
     },
     "lint": {

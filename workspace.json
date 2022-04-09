@@ -3,7 +3,6 @@
   "projects": {
     "claim": "packages/claim",
     "config": "packages/config",
-    "config-cloud": "packages/config-cloud",
     "config-local": "packages/config-local",
     "crypto": "packages/crypto",
     "did": "packages/did",
@@ -14,7 +13,6 @@
     "helpers": "packages/helpers",
     "logger": "packages/logger",
     "observer": "packages/observer",
-    "platform": "packages/platform",
     "vc": "packages/vc",
     "vc-bbs": "packages/vc-bbs",
     "vc-jwt": "packages/vc-jwt",

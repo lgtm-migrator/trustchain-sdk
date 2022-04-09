@@ -9,13 +9,14 @@
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/did-hash",
         "main": "packages/did-hash/src/index.ts",
         "tsConfig": "packages/did-hash/tsconfig.lib.json",
-        "assets": ["packages/did-hash/*.md"]
+        "project": "packages/did-hash/package.json",
+        "entryFile": "packages/did-hash/src/index.ts"
       }
     },
     "lint": {

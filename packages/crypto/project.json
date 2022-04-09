@@ -9,13 +9,14 @@
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/crypto",
         "main": "packages/crypto/src/index.ts",
         "tsConfig": "packages/crypto/tsconfig.lib.json",
-        "assets": ["packages/crypto/*.md"]
+        "project": "packages/crypto/package.json",
+        "entryFile": "packages/crypto/src/index.ts"
       }
     },
     "lint": {

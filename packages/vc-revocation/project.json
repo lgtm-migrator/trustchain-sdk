@@ -9,13 +9,14 @@
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/vc-revocation",
         "main": "packages/vc-revocation/src/index.ts",
         "tsConfig": "packages/vc-revocation/tsconfig.lib.json",
-        "assets": ["packages/vc-revocation/*.md"]
+        "project": "packages/vc-revocation/package.json",
+        "entryFile": "packages/vc-revocation/src/index.ts"
       }
     },
     "lint": {

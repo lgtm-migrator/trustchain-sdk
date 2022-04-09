@@ -9,13 +9,14 @@
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/vc-bbs",
         "main": "packages/vc-bbs/src/index.ts",
         "tsConfig": "packages/vc-bbs/tsconfig.lib.json",
-        "assets": ["packages/vc-bbs/*.md"]
+        "project": "packages/vc-bbs/package.json",
+        "entryFile": "packages/vc-bbs/src/index.ts"
       }
     },
     "lint": {
