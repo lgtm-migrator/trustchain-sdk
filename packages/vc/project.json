@@ -16,7 +16,8 @@
         "main": "packages/vc/src/index.ts",
         "tsConfig": "packages/vc/tsconfig.lib.json",
         "project": "packages/vc/package.json",
-        "entryFile": "packages/vc/src/index.ts"
+        "entryFile": "packages/vc/src/index.ts",
+        "format": ["esm", "cjs"]
       }
     },
     "lint": {

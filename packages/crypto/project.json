@@ -16,7 +16,8 @@
         "main": "packages/crypto/src/index.ts",
         "tsConfig": "packages/crypto/tsconfig.lib.json",
         "project": "packages/crypto/package.json",
-        "entryFile": "packages/crypto/src/index.ts"
+        "entryFile": "packages/crypto/src/index.ts",
+        "format": ["esm", "cjs"]
       }
     },
     "lint": {

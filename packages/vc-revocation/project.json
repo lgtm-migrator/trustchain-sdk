@@ -16,7 +16,8 @@
         "main": "packages/vc-revocation/src/index.ts",
         "tsConfig": "packages/vc-revocation/tsconfig.lib.json",
         "project": "packages/vc-revocation/package.json",
-        "entryFile": "packages/vc-revocation/src/index.ts"
+        "entryFile": "packages/vc-revocation/src/index.ts",
+        "format": ["esm", "cjs"]
       }
     },
     "lint": {

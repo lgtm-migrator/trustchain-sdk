@@ -16,7 +16,8 @@
         "main": "packages/helpers/src/index.ts",
         "tsConfig": "packages/helpers/tsconfig.lib.json",
         "project": "packages/helpers/package.json",
-        "entryFile": "packages/helpers/src/index.ts"
+        "entryFile": "packages/helpers/src/index.ts",
+        "format": ["esm", "cjs"]
       }
     },
     "lint": {

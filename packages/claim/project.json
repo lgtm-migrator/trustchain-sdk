@@ -16,7 +16,8 @@
         "main": "packages/claim/src/index.ts",
         "tsConfig": "packages/claim/tsconfig.lib.json",
         "project": "packages/claim/package.json",
-        "entryFile": "packages/claim/src/index.ts"
+        "entryFile": "packages/claim/src/index.ts",
+        "format": ["esm", "cjs"]
       }
     },
     "lint": {

@@ -16,7 +16,8 @@
         "main": "packages/logger/src/index.ts",
         "tsConfig": "packages/logger/tsconfig.lib.json",
         "project": "packages/logger/package.json",
-        "entryFile": "packages/logger/src/index.ts"
+        "entryFile": "packages/logger/src/index.ts",
+        "format": ["esm", "cjs"]
       }
     },
     "lint": {
