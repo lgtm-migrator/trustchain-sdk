@@ -1,6 +1,5 @@
 {
   "name": "@trustcerts/config-local",
   "version": "0.0.9",
-  "type": "commonjs",
   "repository": "https://github.com/trustcerts/trustchain-sdk2"
 }
