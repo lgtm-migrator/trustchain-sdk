@@ -2,6 +2,19 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.7](https://github.com/trustcerts/trustchain-sdk2/compare/config-local-0.0.6...config-local-0.0.7) (2022-04-09)
+
+### Dependency Updates
+
+* `config` updated to version `0.0.7`
+* `helpers` updated to version `0.0.7`
+
+### Bug Fixes
+
+* add rollup as builder ([3036e48](https://github.com/trustcerts/trustchain-sdk2/commit/3036e48dd882262ec6ba6eae5e7f9e4f75b0d347))
+
+
+
 ## [0.0.6](https://github.com/trustcerts/trustchain-sdk2/compare/config-local-0.0.5...config-local-0.0.6) (2022-04-08)
 
 ### Dependency Updates
