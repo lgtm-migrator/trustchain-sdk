@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.9](https://github.com/trustcerts/trustchain-sdk2/compare/logger-0.0.8...logger-0.0.9) (2022-04-09)
+
+
+### Bug Fixes
+
+* remove type in package.json ([1875178](https://github.com/trustcerts/trustchain-sdk2/commit/1875178e69aadeaaf085065f9915d6286c233f20))
+
+
+
 ## [0.0.8](https://github.com/trustcerts/trustchain-sdk2/compare/logger-0.0.7...logger-0.0.8) (2022-04-09)
 
 
