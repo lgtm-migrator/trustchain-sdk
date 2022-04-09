@@ -3,11 +3,11 @@ import {
   DidPublicKeyType,
   DidService,
   DidIdStructure,
-  RoleManageType,
   IdDocResponse,
   DidIdDocument,
 } from '@trustcerts/observer';
 import { Did } from '../did';
+import { DidRoles } from '../did-roles.dto';
 import { Management } from '../management';
 
 export enum VerificationRelationshipType {
@@ -33,7 +33,7 @@ export class DidId extends Did {
 
   private service = new Management<DidService>();
 
-  private role = new Management<RoleManageType>();
+  private role = new Management<DidRoles>();
 
   constructor(public override id: string) {
     super(id);
@@ -120,7 +120,7 @@ export class DidId extends Did {
     return this.role.current.has(value);
   }
 
-  addRole(value: RoleManageType): void {
+  addRole(value: DidRoles): void {
     if (this.hasRole(value)) {
       throw Error('role already set');
     }
@@ -323,7 +323,8 @@ export class DidId extends Did {
     });
 
     docResponse.document.role.forEach((role) =>
-      this.addRole(role as unknown as RoleManageType)
+      // TODO fix this cast to unknown
+      this.addRole(role as unknown as DidRoles)
     );
     // required since the this.add... calls will fill the add fields.
     this.resetChanges();
@@ -377,7 +378,8 @@ export class DidId extends Did {
       }
       if (transaction.role?.add) {
         transaction.role.add.forEach((role) =>
-          this.role.current.set(role, role)
+          // TODO fix this unknown transformation
+          this.role.current.set(role, role as unknown as DidRoles)
         );
       }
     }
