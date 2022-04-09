@@ -2,6 +2,22 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.10](https://github.com/trustcerts/trustchain-sdk2/compare/vc-jwt-0.0.9...vc-jwt-0.0.10) (2022-04-09)
+
+### Dependency Updates
+
+* `vc` updated to version `0.0.10`
+* `vc-revocation` updated to version `0.0.10`
+* `crypto` updated to version `0.0.10`
+* `did` updated to version `0.0.10`
+* `logger` updated to version `0.0.9`
+
+### Bug Fixes
+
+* remove type in package.json ([1875178](https://github.com/trustcerts/trustchain-sdk2/commit/1875178e69aadeaaf085065f9915d6286c233f20))
+
+
+
 ## [0.0.9](https://github.com/trustcerts/trustchain-sdk2/compare/vc-jwt-0.0.8...vc-jwt-0.0.9) (2022-04-09)
 
 ### Dependency Updates
