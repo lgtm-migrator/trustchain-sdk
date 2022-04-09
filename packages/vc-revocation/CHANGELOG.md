@@ -2,6 +2,18 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.10](https://github.com/trustcerts/trustchain-sdk2/compare/vc-revocation-0.0.9...vc-revocation-0.0.10) (2022-04-09)
+
+### Dependency Updates
+
+* `helpers` updated to version `0.0.10`
+
+### Bug Fixes
+
+* remove type in package.json ([1875178](https://github.com/trustcerts/trustchain-sdk2/commit/1875178e69aadeaaf085065f9915d6286c233f20))
+
+
+
 ## [0.0.9](https://github.com/trustcerts/trustchain-sdk2/compare/vc-revocation-0.0.8...vc-revocation-0.0.9) (2022-04-09)
 
 ### Dependency Updates
