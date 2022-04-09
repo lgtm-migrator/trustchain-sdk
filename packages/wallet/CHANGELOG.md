@@ -2,6 +2,21 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.8](https://github.com/trustcerts/trustchain-sdk2/compare/wallet-0.0.7...wallet-0.0.8) (2022-04-09)
+
+### Dependency Updates
+
+* `config` updated to version `0.0.8`
+* `crypto` updated to version `0.0.8`
+* `did` updated to version `0.0.8`
+* `logger` updated to version `0.0.7`
+
+### Bug Fixes
+
+* add build format ([91c74b4](https://github.com/trustcerts/trustchain-sdk2/commit/91c74b4babf9eccb84d1cb8cfc34e5f3b66161d0))
+
+
+
 ## [0.0.7](https://github.com/trustcerts/trustchain-sdk2/compare/wallet-0.0.6...wallet-0.0.7) (2022-04-09)
 
 ### Dependency Updates
