@@ -17,7 +17,7 @@
         "tsConfig": "packages/vc-bbs/tsconfig.lib.json",
         "project": "packages/vc-bbs/package.json",
         "entryFile": "packages/vc-bbs/src/index.ts",
-        "format": ["esm", "cjs"]
+        "format": ["esm", "umd"]
       }
     },
     "lint": {

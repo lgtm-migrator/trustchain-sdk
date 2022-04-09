@@ -17,7 +17,7 @@
         "tsConfig": "packages/vc-jwt/tsconfig.lib.json",
         "project": "packages/vc-jwt/package.json",
         "entryFile": "packages/vc-jwt/src/index.ts",
-        "format": ["esm", "cjs"]
+        "format": ["esm", "umd"]
       }
     },
     "lint": {

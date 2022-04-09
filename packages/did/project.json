@@ -17,7 +17,7 @@
         "tsConfig": "packages/did/tsconfig.lib.json",
         "project": "packages/did/package.json",
         "entryFile": "packages/did/src/index.ts",
-        "format": ["esm", "cjs"]
+        "format": ["esm", "umd"]
       }
     },
     "lint": {
