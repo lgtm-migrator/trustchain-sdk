@@ -15,3 +15,4 @@ export * from './lib/did-issuer-service';
 export * from './lib/did-id-register';
 export * from './lib/verifier-service';
 export * from './lib/issuer-service';
+export * from './lib/did-roles.dto';
