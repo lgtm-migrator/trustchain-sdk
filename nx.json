@@ -29,6 +29,10 @@
     ],
     "build": [
       {
+        "target": "install",
+        "projects": "dependencies"
+      },
+      {
         "target": "build",
         "projects": "dependencies"
       }
