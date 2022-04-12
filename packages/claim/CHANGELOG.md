@@ -2,6 +2,24 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.12](https://github.com/trustcerts/trustchain-sdk2/compare/claim-0.0.11...claim-0.0.12) (2022-04-12)
+
+### Dependency Updates
+
+* `did-hash` updated to version `0.0.11`
+* `did-template` updated to version `0.0.11`
+* `did-schema` updated to version `0.0.11`
+* `did` updated to version `0.0.11`
+* `observer` updated to version `0.0.10`
+* `crypto` updated to version `0.0.11`
+* `helpers` updated to version `0.0.11`
+
+### Bug Fixes
+
+* **claim:** set fixxed version ([63af8ac](https://github.com/trustcerts/trustchain-sdk2/commit/63af8acac5bb7ad91590ba00a85fcfa99f51e45d))
+
+
+
 ## [0.0.11](https://github.com/trustcerts/trustchain-sdk2/compare/claim-0.0.10...claim-0.0.11) (2022-04-12)
 
 
