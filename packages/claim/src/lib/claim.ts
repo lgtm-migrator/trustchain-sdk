@@ -1,5 +1,5 @@
 import { toDataURL } from 'qrcode';
-import * as mustache from 'mustache';
+import { render } from 'mustache';
 import { ClaimValues } from './claim-values';
 import { Compress, JsonCompressor, Proto } from './compress';
 import { CompressionType } from '@trustcerts/observer';
@@ -99,7 +99,7 @@ export class Claim {
    */
   public async getHtml(): Promise<string> {
     const qrCode = await this.getQRCode(this.url);
-    return mustache.render(this.template.template, {
+    return render(this.template.template, {
       ...this.values,
       qrCode,
     });
