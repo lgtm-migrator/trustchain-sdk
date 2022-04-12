@@ -2,6 +2,17 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.11](https://github.com/trustcerts/trustchain-sdk2/compare/did-hash-0.0.10...did-hash-0.0.11) (2022-04-12)
+
+### Dependency Updates
+
+* `crypto` updated to version `0.0.11`
+* `did` updated to version `0.0.11`
+* `gateway` updated to version `0.0.10`
+* `observer` updated to version `0.0.10`
+* `logger` updated to version `0.0.10`
+
+
 ## [0.0.10](https://github.com/trustcerts/trustchain-sdk2/compare/did-hash-0.0.9...did-hash-0.0.10) (2022-04-09)
 
 ### Dependency Updates
