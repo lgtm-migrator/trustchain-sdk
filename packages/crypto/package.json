@@ -1,6 +1,6 @@
 {
   "name": "@trustcerts/crypto",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "repository": "https://github.com/trustcerts/trustchain-sdk2",
   "dependencies": {
     "@mattrglobal/jsonld-signatures-bbs": "^1.0.1"
