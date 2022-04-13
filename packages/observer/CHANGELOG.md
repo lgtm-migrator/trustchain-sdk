@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.11](https://github.com/trustcerts/trustchain-sdk2/compare/observer-0.0.10...observer-0.0.11) (2022-04-13)
+
+
+### Bug Fixes
+
+* add axios as dep ([4a1aad2](https://github.com/trustcerts/trustchain-sdk2/commit/4a1aad23160d9d4bcc532887ddca2213091b0da8))
+
+
+
 ## [0.0.10](https://github.com/trustcerts/trustchain-sdk2/compare/observer-0.0.9...observer-0.0.10) (2022-04-12)
 
 
