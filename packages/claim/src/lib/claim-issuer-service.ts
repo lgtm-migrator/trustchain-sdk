@@ -18,7 +18,7 @@ export class ClaimIssuerService {
   private didSchemaResolver = new DidSchemaResolver();
   private didHashRegister = new DidHashRegister();
   private didHashResolver = new DidHashResolver();
-
+  public ajv = new Ajv();
   /**
    * create a claim.
    */
@@ -29,9 +29,8 @@ export class ClaimIssuerService {
     signatureIssuer: SignatureIssuerService,
     controllers: string[]
   ): Promise<Claim> {
-    const ajv = new Ajv();
     const schema = await this.didSchemaResolver.load(template.schemaId);
-    if (!ajv.validate(JSON.parse(schema.getSchema()), values)) {
+    if (!this.ajv.validate(JSON.parse(schema.getSchema()), values)) {
       throw Error('input does not match with schema');
     }
     const hash = await ClaimVerifierService.getHash(values, template.id);

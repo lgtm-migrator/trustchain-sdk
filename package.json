@@ -9,6 +9,7 @@
     "install:ci": "nx affected --base=last-release --target=install"
   },
   "dependencies": {
+    "ajv": "^8.11.0",
     "axios": "^0.26.1",
     "tslib": "^2.3.1"
   },

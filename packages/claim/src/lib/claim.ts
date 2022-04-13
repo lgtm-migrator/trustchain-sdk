@@ -45,6 +45,14 @@ export class Claim {
   }
 
   /**
+   * returns the template id of the claim.
+   * @returns
+   */
+  public getTemplateId(): string {
+    return this.template.id;
+  }
+
+  /**
    * Generates the qr code of a url.
    * @param url
    */
@@ -67,14 +75,6 @@ export class Claim {
         }
       );
     });
-  }
-
-  /**
-   * returns the template id of the claim.
-   * @returns
-   */
-  public getTemplateId(): string {
-    return this.template.id;
   }
 
   /**
