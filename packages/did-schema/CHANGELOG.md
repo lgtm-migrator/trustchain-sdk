@@ -2,6 +2,22 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.12](https://github.com/trustcerts/trustchain-sdk2/compare/did-schema-0.0.11...did-schema-0.0.12) (2022-04-13)
+
+### Dependency Updates
+
+* `gateway` updated to version `0.0.11`
+* `did` updated to version `0.0.12`
+* `observer` updated to version `0.0.11`
+* `crypto` updated to version `0.0.12`
+* `logger` updated to version `0.0.11`
+
+### Bug Fixes
+
+* add axios as dep ([4a1aad2](https://github.com/trustcerts/trustchain-sdk2/commit/4a1aad23160d9d4bcc532887ddca2213091b0da8))
+
+
+
 ## [0.0.11](https://github.com/trustcerts/trustchain-sdk2/compare/did-schema-0.0.10...did-schema-0.0.11) (2022-04-12)
 
 ### Dependency Updates
