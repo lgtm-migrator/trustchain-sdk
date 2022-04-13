@@ -4,5 +4,8 @@
   "repository": "https://github.com/trustcerts/trustchain-sdk2",
   "scripts": {
     "api": "rm -rf src/lib && mkdir src/lib && npx @openapitools/openapi-generator-cli generate -g typescript-axios -i https://api.observer1.dev.trustcerts.de/api-json -o src/lib --api-name-suffix=ObserverApi --additional-properties=supportsES6=true,enumPropertyNaming=original,enumNameSuffix="
+  },
+  "dependencies": {
+    "axios": "^0.26.1"
   }
 }
