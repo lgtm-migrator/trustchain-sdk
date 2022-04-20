@@ -2,6 +2,18 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.14](https://github.com/trustcerts/trustchain-sdk2/compare/claim-0.0.13...claim-0.0.14) (2022-04-20)
+
+### Dependency Updates
+
+* `did-schema` updated to version `0.0.13`
+
+### Bug Fixes
+
+* publish ajv instance ([b462950](https://github.com/trustcerts/trustchain-sdk2/commit/b462950d197b01481d31c714cfeac4e1a4ec9750))
+
+
+
 ## [0.0.13](https://github.com/trustcerts/trustchain-sdk2/compare/claim-0.0.12...claim-0.0.13) (2022-04-13)
 
 ### Dependency Updates
