@@ -47,7 +47,7 @@ export class DidSchema extends Did {
   }
 
   setSchema(schema: any) {
-    if (this.ajv.validateSchema(schema)) {
+    if (!this.ajv.validateSchema(schema, true)) {
       throw Error('schema not valid');
     }
     this.schema = JSON.stringify(schema);
