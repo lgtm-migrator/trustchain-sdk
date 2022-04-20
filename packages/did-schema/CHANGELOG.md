@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.13](https://github.com/trustcerts/trustchain-sdk2/compare/did-schema-0.0.12...did-schema-0.0.13) (2022-04-20)
+
+
+### Bug Fixes
+
+* set correct error handling ([690d078](https://github.com/trustcerts/trustchain-sdk2/commit/690d078e3a031322b3b687457a57f0027d8f9365))
+
+
+
 ## [0.0.12](https://github.com/trustcerts/trustchain-sdk2/compare/did-schema-0.0.11...did-schema-0.0.12) (2022-04-13)
 
 ### Dependency Updates
