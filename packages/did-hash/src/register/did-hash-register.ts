@@ -31,12 +31,13 @@ export class DidHashRegister {
 
   public save(
     did: DidHash,
-    client: SignatureIssuerService
+    client: SignatureIssuerService,
+    date?: string
   ): Promise<SchemaResponse> {
     const value = did.getChanges();
     did.version++;
     did.resetChanges();
-    return client.persistSchema(value);
+    return client.persistHash(value, date);
   }
 
   /**

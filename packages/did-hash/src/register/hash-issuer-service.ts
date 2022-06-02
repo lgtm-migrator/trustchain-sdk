@@ -20,12 +20,15 @@ export class SignatureIssuerService extends IssuerService {
     this.api = new HashGatewayApi(this.apiConfiguration);
   }
 
-  async persistSchema(value: DidHashStructure): Promise<HashResponse> {
+  async persistHash(
+    value: DidHashStructure,
+    date = new Date().toISOString()
+  ): Promise<HashResponse> {
     // TODO outsource this to the issuer service since the transaction schema of dids are equal
     const transaction: HashDidTransactionDto = {
       version: 1,
       body: {
-        date: new Date().toISOString(),
+        date,
         value,
         type: TransactionType.Hash,
         version: 1,
