@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.13](https://github.com/trustcerts/trustchain-sdk2/compare/did-hash-0.0.12...did-hash-0.0.13) (2022-06-03)
+
+
+### Bug Fixes
+
+* add custom date to did hash ([e786bee](https://github.com/trustcerts/trustchain-sdk2/commit/e786bee84cad3529b0667cda4eceb4d05fb3915f))
+
+
+
 ## [0.0.12](https://github.com/trustcerts/trustchain-sdk2/compare/did-hash-0.0.11...did-hash-0.0.12) (2022-04-13)
 
 ### Dependency Updates
