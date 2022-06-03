@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.15](https://github.com/trustcerts/trustchain-sdk2/compare/claim-0.0.14...claim-0.0.15) (2022-06-03)
+
+### Dependency Updates
+
+* `did-hash` updated to version `0.0.13`
+
+
 ## [0.0.14](https://github.com/trustcerts/trustchain-sdk2/compare/claim-0.0.13...claim-0.0.14) (2022-04-20)
 
 ### Dependency Updates
