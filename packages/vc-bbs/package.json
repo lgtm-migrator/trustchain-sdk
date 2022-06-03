@@ -1,7 +1,7 @@
 {
   "name": "@trustcerts/vc-bbs",
   "version": "0.0.12",
-  "repository": "https://github.com/trustcerts/trustchain-sdk2",
+  "repository": "https://github.com/trustcerts/trustchain-sdk",
   "dependencies": {
     "@mattrglobal/jsonld-signatures-bbs": "^1.0.1"
   }

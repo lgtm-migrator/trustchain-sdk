@@ -1,7 +1,7 @@
 {
   "name": "@trustcerts/vc",
   "version": "0.0.12",
-  "repository": "https://github.com/trustcerts/trustchain-sdk2",
+  "repository": "https://github.com/trustcerts/trustchain-sdk",
   "dependencies": {
     "base64url": "^3.0.1"
   }

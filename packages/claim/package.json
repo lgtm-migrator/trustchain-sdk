@@ -1,7 +1,7 @@
 {
   "name": "@trustcerts/claim",
   "version": "0.0.15",
-  "repository": "https://github.com/trustcerts/trustchain-sdk2",
+  "repository": "https://github.com/trustcerts/trustchain-sdk",
   "dependencies": {
     "ajv": "^8.11.0",
     "mustache": "4.1.0",

@@ -1,7 +1,7 @@
 {
   "name": "@trustcerts/vc-revocation",
   "version": "0.0.12",
-  "repository": "https://github.com/trustcerts/trustchain-sdk2",
+  "repository": "https://github.com/trustcerts/trustchain-sdk",
   "dependencies": {
     "@transmute/vc-status-rl-2020": "^0.7.0-unstable.58"
   },
