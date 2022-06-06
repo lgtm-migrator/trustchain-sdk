@@ -2,6 +2,28 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/vc-jwt-0.0.12...vc-jwt-0.1.0) (2022-06-06)
+
+### Dependency Updates
+
+* `vc` updated to version `0.1.0`
+* `vc-revocation` updated to version `0.1.0`
+* `crypto` updated to version `0.1.0`
+* `did` updated to version `0.1.0`
+* `logger` updated to version `0.1.0`
+
+### Bug Fixes
+
+* set correct repo url ([6742f9d](https://github.com/trustcerts/trustchain-sdk/commit/6742f9dcc6001f417f65e95345b6ac60da958b4f))
+
+
+### Features
+
+* set correct repo ([1d13e6a](https://github.com/trustcerts/trustchain-sdk/commit/1d13e6ac920de9d8e5053b2cc9bde3559821b957))
+* update nx ([e1da525](https://github.com/trustcerts/trustchain-sdk/commit/e1da525ef3f9dfddffb35511e1e36badae30ab72))
+
+
+
 ## [0.0.12](https://github.com/trustcerts/trustchain-sdk/compare/vc-jwt-0.0.11...vc-jwt-0.0.12) (2022-04-13)
 
 ### Dependency Updates

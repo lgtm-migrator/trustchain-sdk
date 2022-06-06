@@ -1,6 +1,6 @@
 {
   "name": "@trustcerts/vc-jwt",
-  "version": "0.0.12",
+  "version": "0.1.0",
   "repository": "https://github.com/trustcerts/trustchain-sdk",
   "dependencies": {
     "base64url": "^3.0.1",
