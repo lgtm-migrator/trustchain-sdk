@@ -2,6 +2,31 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/did-hash-0.0.12...did-hash-0.1.0) (2022-06-06)
+
+### Dependency Updates
+
+* `crypto` updated to version `0.1.0`
+* `did` updated to version `0.1.0`
+* `gateway` updated to version `0.1.0`
+* `observer` updated to version `0.1.0`
+* `logger` updated to version `0.1.0`
+
+### Bug Fixes
+
+* add custom date to did hash ([e786bee](https://github.com/trustcerts/trustchain-sdk/commit/e786bee84cad3529b0667cda4eceb4d05fb3915f))
+* **did-hash:** release version 0.0.13 ([b3626ba](https://github.com/trustcerts/trustchain-sdk/commit/b3626ba171f637d5947f5ba2415b568d62e0b5ad))
+* set correct repo url ([6742f9d](https://github.com/trustcerts/trustchain-sdk/commit/6742f9dcc6001f417f65e95345b6ac60da958b4f))
+
+
+### Features
+
+* set correct repo ([1d13e6a](https://github.com/trustcerts/trustchain-sdk/commit/1d13e6ac920de9d8e5053b2cc9bde3559821b957))
+* update nx ([e1da525](https://github.com/trustcerts/trustchain-sdk/commit/e1da525ef3f9dfddffb35511e1e36badae30ab72))
+* update packages ([71df0e7](https://github.com/trustcerts/trustchain-sdk/commit/71df0e7490b68ff30fbe4c583d1c39b0eeaf06f1))
+
+
+
 ## [0.0.13](https://github.com/trustcerts/trustchain-sdk/compare/did-hash-0.0.12...did-hash-0.0.13) (2022-06-03)
 
 
