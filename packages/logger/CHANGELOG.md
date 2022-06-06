@@ -2,6 +2,24 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/logger-0.0.11...logger-0.1.0) (2022-06-06)
+
+
+### Bug Fixes
+
+* **logger:** release version 0.0.12 ([b792391](https://github.com/trustcerts/trustchain-sdk/commit/b792391eeddbcc1c454f0b4f2d863e033c5f2dd1))
+* **logger:** release version 0.1.0 ([af1fd82](https://github.com/trustcerts/trustchain-sdk/commit/af1fd82e2eace1da3109601e7612a277977fbb60))
+* remove npmrc ([488cc3b](https://github.com/trustcerts/trustchain-sdk/commit/488cc3b3eab51a6aec7c9a877adac6cf1f8f3fcd))
+* set correct repo url ([6742f9d](https://github.com/trustcerts/trustchain-sdk/commit/6742f9dcc6001f417f65e95345b6ac60da958b4f))
+
+
+### Features
+
+* set correct repo ([1d13e6a](https://github.com/trustcerts/trustchain-sdk/commit/1d13e6ac920de9d8e5053b2cc9bde3559821b957))
+* update nx ([e1da525](https://github.com/trustcerts/trustchain-sdk/commit/e1da525ef3f9dfddffb35511e1e36badae30ab72))
+
+
+
 # [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/logger-0.0.12...logger-0.1.0) (2022-06-06)
 
 
