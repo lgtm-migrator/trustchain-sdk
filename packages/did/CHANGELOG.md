@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.15](https://github.com/trustcerts/trustchain-sdk2/compare/did-0.0.14...did-0.0.15) (2022-06-06)
+
+
+### Bug Fixes
+
+* comment ([1a93a29](https://github.com/trustcerts/trustchain-sdk2/commit/1a93a29f1a54ab514bd047eff248b2caf40fdd7b))
+
+
+
 ## [0.0.14](https://github.com/trustcerts/trustchain-sdk2/compare/did-0.0.13...did-0.0.14) (2022-06-06)
 
 ### Dependency Updates
