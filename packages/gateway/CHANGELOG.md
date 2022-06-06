@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.1.0](https://github.com/trustcerts/trustchain-sdk2/compare/gateway-0.0.12...gateway-0.1.0) (2022-06-06)
+
+
+### Bug Fixes
+
+* remove npmrc ([488cc3b](https://github.com/trustcerts/trustchain-sdk2/commit/488cc3b3eab51a6aec7c9a877adac6cf1f8f3fcd))
+
+
+### Features
+
+* update nx ([e1da525](https://github.com/trustcerts/trustchain-sdk2/commit/e1da525ef3f9dfddffb35511e1e36badae30ab72))
+
+
+
 ## [0.0.12](https://github.com/trustcerts/trustchain-sdk2/compare/gateway-0.0.11...gateway-0.0.12) (2022-06-06)
 
 
