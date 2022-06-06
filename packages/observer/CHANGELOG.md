@@ -2,6 +2,26 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/observer-0.0.11...observer-0.1.0) (2022-06-06)
+
+
+### Bug Fixes
+
+* **helpers:** release version 0.0.13 ([ce9a9b7](https://github.com/trustcerts/trustchain-sdk/commit/ce9a9b7a938658dea7ff98fa937946a7003384be))
+* **observer:** release version 0.1.0 ([07d415e](https://github.com/trustcerts/trustchain-sdk/commit/07d415e890e16c40d72c0a36c869a613986f346d))
+* **observer:** release version 0.2.0 ([498a94a](https://github.com/trustcerts/trustchain-sdk/commit/498a94a83d07fac13bd509ed13225354b7eb789f))
+* remove npmrc ([488cc3b](https://github.com/trustcerts/trustchain-sdk/commit/488cc3b3eab51a6aec7c9a877adac6cf1f8f3fcd))
+* set correct repo url ([6742f9d](https://github.com/trustcerts/trustchain-sdk/commit/6742f9dcc6001f417f65e95345b6ac60da958b4f))
+
+
+### Features
+
+* add ([8c63956](https://github.com/trustcerts/trustchain-sdk/commit/8c6395616d2bb632c3d610f767d5eb84b5f85ec9))
+* set correct repo ([1d13e6a](https://github.com/trustcerts/trustchain-sdk/commit/1d13e6ac920de9d8e5053b2cc9bde3559821b957))
+* update nx ([e1da525](https://github.com/trustcerts/trustchain-sdk/commit/e1da525ef3f9dfddffb35511e1e36badae30ab72))
+
+
+
 # [0.2.0](https://github.com/trustcerts/trustchain-sdk/compare/observer-0.1.0...observer-0.2.0) (2022-06-06)
 
 
