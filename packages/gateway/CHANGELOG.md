@@ -2,6 +2,26 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/gateway-0.0.11...gateway-0.1.0) (2022-06-06)
+
+
+### Bug Fixes
+
+* **gateway:** release version 0.1.0 ([d35f93b](https://github.com/trustcerts/trustchain-sdk/commit/d35f93b62c7026136cba5175175a19fe0124373a))
+* **gateway:** release version 0.2.0 ([8c93a69](https://github.com/trustcerts/trustchain-sdk/commit/8c93a699a31b11a7ab770e30bf42f6558c870786))
+* **helpers:** release version 0.0.13 ([8b1522f](https://github.com/trustcerts/trustchain-sdk/commit/8b1522f3781a0df68d6fd7724a55b4a89a1bc3f9))
+* remove npmrc ([488cc3b](https://github.com/trustcerts/trustchain-sdk/commit/488cc3b3eab51a6aec7c9a877adac6cf1f8f3fcd))
+* set correct repo url ([6742f9d](https://github.com/trustcerts/trustchain-sdk/commit/6742f9dcc6001f417f65e95345b6ac60da958b4f))
+
+
+### Features
+
+* add ([8c63956](https://github.com/trustcerts/trustchain-sdk/commit/8c6395616d2bb632c3d610f767d5eb84b5f85ec9))
+* set correct repo ([1d13e6a](https://github.com/trustcerts/trustchain-sdk/commit/1d13e6ac920de9d8e5053b2cc9bde3559821b957))
+* update nx ([e1da525](https://github.com/trustcerts/trustchain-sdk/commit/e1da525ef3f9dfddffb35511e1e36badae30ab72))
+
+
+
 # [0.2.0](https://github.com/trustcerts/trustchain-sdk/compare/gateway-0.1.0...gateway-0.2.0) (2022-06-06)
 
 
