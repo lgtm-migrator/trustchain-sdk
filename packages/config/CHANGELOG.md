@@ -6,6 +6,25 @@ This file was generated using [@jscutlery/semver](https://github.com/jscutlery/s
 
 ### Dependency Updates
 
+* `crypto` updated to version `0.1.0`
+
+### Bug Fixes
+
+* **config:** release version 0.1.0 ([9a9144a](https://github.com/trustcerts/trustchain-sdk/commit/9a9144a96eea27a56eedca608ca89e01d02a8706))
+* set correct repo url ([6742f9d](https://github.com/trustcerts/trustchain-sdk/commit/6742f9dcc6001f417f65e95345b6ac60da958b4f))
+
+
+### Features
+
+* set correct repo ([1d13e6a](https://github.com/trustcerts/trustchain-sdk/commit/1d13e6ac920de9d8e5053b2cc9bde3559821b957))
+* update nx ([e1da525](https://github.com/trustcerts/trustchain-sdk/commit/e1da525ef3f9dfddffb35511e1e36badae30ab72))
+
+
+
+# [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/config-0.0.12...config-0.1.0) (2022-06-06)
+
+### Dependency Updates
+
 * `crypto` updated to version `0.1.1`
 
 ### Bug Fixes
