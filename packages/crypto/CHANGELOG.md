@@ -2,6 +2,26 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/crypto-0.0.12...crypto-0.1.0) (2022-06-06)
+
+### Dependency Updates
+
+* `helpers` updated to version `0.1.0`
+
+### Bug Fixes
+
+* **crypto:** release version 0.1.0 ([63056e1](https://github.com/trustcerts/trustchain-sdk/commit/63056e1026a0952ef62f143fe45852285455be3f))
+* **crypto:** release version 0.1.1 ([0300ef7](https://github.com/trustcerts/trustchain-sdk/commit/0300ef7b694a6dcc206b77f8fdcf8c45c2b92c84))
+* set correct repo url ([6742f9d](https://github.com/trustcerts/trustchain-sdk/commit/6742f9dcc6001f417f65e95345b6ac60da958b4f))
+
+
+### Features
+
+* set correct repo ([1d13e6a](https://github.com/trustcerts/trustchain-sdk/commit/1d13e6ac920de9d8e5053b2cc9bde3559821b957))
+* update nx ([e1da525](https://github.com/trustcerts/trustchain-sdk/commit/e1da525ef3f9dfddffb35511e1e36badae30ab72))
+
+
+
 ## [0.1.1](https://github.com/trustcerts/trustchain-sdk/compare/crypto-0.1.0...crypto-0.1.1) (2022-06-06)
 
 ### Dependency Updates
