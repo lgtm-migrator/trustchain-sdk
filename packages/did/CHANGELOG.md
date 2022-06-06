@@ -2,6 +2,35 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/did-0.0.12...did-0.1.0) (2022-06-06)
+
+### Dependency Updates
+
+* `helpers` updated to version `0.1.0`
+* `gateway` updated to version `0.1.0`
+* `config` updated to version `0.1.0`
+* `crypto` updated to version `0.1.0`
+* `observer` updated to version `0.1.0`
+* `logger` updated to version `0.1.0`
+
+### Bug Fixes
+
+* add comment ([dedeb15](https://github.com/trustcerts/trustchain-sdk/commit/dedeb152fbde8c1443de792ab4e80352d72d10f1))
+* comment ([1a93a29](https://github.com/trustcerts/trustchain-sdk/commit/1a93a29f1a54ab514bd047eff248b2caf40fdd7b))
+* **did:** release version 0.0.13 ([4064e25](https://github.com/trustcerts/trustchain-sdk/commit/4064e2550b45b39c73df0bbbd0a51fb1e019c8be))
+* **did:** release version 0.0.14 ([83ea7ba](https://github.com/trustcerts/trustchain-sdk/commit/83ea7baf8789e785ee70352c62380a01e1b4723f))
+* **did:** release version 0.0.15 ([69e43ef](https://github.com/trustcerts/trustchain-sdk/commit/69e43ef9309fcef9f917ff15cb6774c6dae22874))
+* enum export ([5ec366f](https://github.com/trustcerts/trustchain-sdk/commit/5ec366f463106120a3da6d90091b6905823638cb))
+
+
+### Features
+
+* set correct repo ([1d13e6a](https://github.com/trustcerts/trustchain-sdk/commit/1d13e6ac920de9d8e5053b2cc9bde3559821b957))
+* update nx ([e1da525](https://github.com/trustcerts/trustchain-sdk/commit/e1da525ef3f9dfddffb35511e1e36badae30ab72))
+* update packages ([71df0e7](https://github.com/trustcerts/trustchain-sdk/commit/71df0e7490b68ff30fbe4c583d1c39b0eeaf06f1))
+
+
+
 ## [0.0.15](https://github.com/trustcerts/trustchain-sdk/compare/did-0.0.14...did-0.0.15) (2022-06-06)
 
 
