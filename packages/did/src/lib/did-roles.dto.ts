@@ -1,5 +1,5 @@
 /**
- * Roles a did can have in a trustchain eco system.
+ * Roles a did can have in a trustchain.
  */
 export enum DidRoles {
   Validator = 'Validator',
