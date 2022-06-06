@@ -2,6 +2,23 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.13](https://github.com/trustcerts/trustchain-sdk2/compare/did-0.0.12...did-0.0.13) (2022-06-06)
+
+### Dependency Updates
+
+* `helpers` updated to version `0.0.13`
+* `gateway` updated to version `0.0.12`
+* `config` updated to version `0.0.12`
+* `crypto` updated to version `0.0.12`
+* `observer` updated to version `0.0.12`
+* `logger` updated to version `0.0.12`
+
+### Bug Fixes
+
+* enum export ([5ec366f](https://github.com/trustcerts/trustchain-sdk2/commit/5ec366f463106120a3da6d90091b6905823638cb))
+
+
+
 ## [0.0.12](https://github.com/trustcerts/trustchain-sdk2/compare/did-0.0.11...did-0.0.12) (2022-04-13)
 
 ### Dependency Updates
