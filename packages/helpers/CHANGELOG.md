@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.2.0](https://github.com/trustcerts/trustchain-sdk2/compare/helpers-0.1.0...helpers-0.2.0) (2022-06-06)
+
+
+### Features
+
+* add ([8c63956](https://github.com/trustcerts/trustchain-sdk2/commit/8c6395616d2bb632c3d610f767d5eb84b5f85ec9))
+
+
+
 # [0.1.0](https://github.com/trustcerts/trustchain-sdk2/compare/helpers-0.0.13...helpers-0.1.0) (2022-06-06)
 
 
