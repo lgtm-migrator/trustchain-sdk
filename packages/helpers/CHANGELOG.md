@@ -7,6 +7,26 @@ This file was generated using [@jscutlery/semver](https://github.com/jscutlery/s
 
 ### Bug Fixes
 
+* **logger:** release version 0.0.12 ([b792391](https://github.com/trustcerts/trustchain-sdk2/commit/b792391eeddbcc1c454f0b4f2d863e033c5f2dd1))
+* set correct repo url ([6742f9d](https://github.com/trustcerts/trustchain-sdk2/commit/6742f9dcc6001f417f65e95345b6ac60da958b4f))
+
+
+
+## [0.0.13](https://github.com/trustcerts/trustchain-sdk2/compare/helpers-0.0.12...helpers-0.0.13) (2022-06-06)
+
+
+### Bug Fixes
+
+* **logger:** release version 0.0.12 ([b792391](https://github.com/trustcerts/trustchain-sdk2/commit/b792391eeddbcc1c454f0b4f2d863e033c5f2dd1))
+* set correct repo url ([6742f9d](https://github.com/trustcerts/trustchain-sdk2/commit/6742f9dcc6001f417f65e95345b6ac60da958b4f))
+
+
+
+## [0.0.13](https://github.com/trustcerts/trustchain-sdk2/compare/helpers-0.0.12...helpers-0.0.13) (2022-06-06)
+
+
+### Bug Fixes
+
 * set correct repo url ([6742f9d](https://github.com/trustcerts/trustchain-sdk2/commit/6742f9dcc6001f417f65e95345b6ac60da958b4f))
 
 
