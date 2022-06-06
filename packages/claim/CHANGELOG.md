@@ -2,6 +2,31 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/claim-0.0.14...claim-0.1.0) (2022-06-06)
+
+### Dependency Updates
+
+* `did-hash` updated to version `0.1.0`
+* `did-template` updated to version `0.1.0`
+* `did-schema` updated to version `0.1.0`
+* `did` updated to version `0.1.0`
+* `observer` updated to version `0.1.0`
+* `crypto` updated to version `0.1.0`
+* `helpers` updated to version `0.1.0`
+
+### Bug Fixes
+
+* **claim:** release version 0.0.15 ([a946c31](https://github.com/trustcerts/trustchain-sdk/commit/a946c3189e0d4b3475ac6cd81fd45c64a0fabf2f))
+* set correct repo url ([6742f9d](https://github.com/trustcerts/trustchain-sdk/commit/6742f9dcc6001f417f65e95345b6ac60da958b4f))
+
+
+### Features
+
+* set correct repo ([1d13e6a](https://github.com/trustcerts/trustchain-sdk/commit/1d13e6ac920de9d8e5053b2cc9bde3559821b957))
+* update nx ([e1da525](https://github.com/trustcerts/trustchain-sdk/commit/e1da525ef3f9dfddffb35511e1e36badae30ab72))
+
+
+
 ## [0.0.15](https://github.com/trustcerts/trustchain-sdk/compare/claim-0.0.14...claim-0.0.15) (2022-06-03)
 
 ### Dependency Updates
