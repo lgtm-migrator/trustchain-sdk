@@ -8,6 +8,7 @@
     "**/*.test.ts",
     "**/*.spec.ts",
     "**/*.d.ts",
-    "test/wallet.test.ts"
+    "test/wallet.test.ts",
+    "jest.config.ts"
   ]
 }

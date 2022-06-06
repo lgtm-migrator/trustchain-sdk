@@ -1,5 +1,4 @@
 {
-  "root": "packages/vc",
   "sourceRoot": "packages/vc/src",
   "targets": {
     "install": {
@@ -31,7 +30,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/vc"],
       "options": {
-        "jestConfig": "packages/vc/jest.config.js",
+        "jestConfig": "packages/vc/jest.config.ts",
         "passWithNoTests": true
       }
     },

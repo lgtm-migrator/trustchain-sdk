@@ -1,5 +1,4 @@
 {
-  "root": "packages/crypto",
   "sourceRoot": "packages/crypto/src",
   "targets": {
     "install": {
@@ -31,7 +30,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/crypto"],
       "options": {
-        "jestConfig": "packages/crypto/jest.config.js",
+        "jestConfig": "packages/crypto/jest.config.ts",
         "passWithNoTests": true
       }
     },

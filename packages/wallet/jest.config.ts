@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'did-schema',
+/* eslint-disable */
+export default {
+  displayName: 'wallet',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -10,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/packages/did-schema',
+  coverageDirectory: '../../coverage/packages/wallet',
 };

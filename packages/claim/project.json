@@ -1,5 +1,4 @@
 {
-  "root": "packages/claim",
   "sourceRoot": "packages/claim/src",
   "targets": {
     "install": {
@@ -31,7 +30,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/claim"],
       "options": {
-        "jestConfig": "packages/claim/jest.config.js",
+        "jestConfig": "packages/claim/jest.config.ts",
         "passWithNoTests": true
       }
     },

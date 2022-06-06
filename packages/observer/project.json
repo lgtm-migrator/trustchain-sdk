@@ -1,5 +1,4 @@
 {
-  "root": "packages/observer",
   "sourceRoot": "packages/observer/src",
   "targets": {
     "install": {
@@ -31,7 +30,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/observer"],
       "options": {
-        "jestConfig": "packages/observer/jest.config.js",
+        "jestConfig": "packages/observer/jest.config.ts",
         "passWithNoTests": true
       }
     },

@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'gateway',
+/* eslint-disable */
+export default {
+  displayName: 'config-local',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -10,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/packages/gateway',
+  coverageDirectory: '../../coverage/packages/config-local',
 };

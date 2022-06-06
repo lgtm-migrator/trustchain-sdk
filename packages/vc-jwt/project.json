@@ -1,5 +1,4 @@
 {
-  "root": "packages/vc-jwt",
   "sourceRoot": "packages/vc-jwt/src",
   "targets": {
     "install": {
@@ -31,7 +30,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/vc-jwt"],
       "options": {
-        "jestConfig": "packages/vc-jwt/jest.config.js",
+        "jestConfig": "packages/vc-jwt/jest.config.ts",
         "passWithNoTests": true
       }
     },

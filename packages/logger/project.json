@@ -1,5 +1,4 @@
 {
-  "root": "packages/logger",
   "sourceRoot": "packages/logger/src",
   "targets": {
     "install": {
@@ -31,7 +30,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/logger"],
       "options": {
-        "jestConfig": "packages/logger/jest.config.js",
+        "jestConfig": "packages/logger/jest.config.ts",
         "passWithNoTests": true
       }
     },

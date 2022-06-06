@@ -1,5 +1,4 @@
 {
-  "root": "packages/did-hash",
   "sourceRoot": "packages/did-hash/src",
   "targets": {
     "install": {
@@ -31,7 +30,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/did-hash"],
       "options": {
-        "jestConfig": "packages/did-hash/jest.config.js",
+        "jestConfig": "packages/did-hash/jest.config.ts",
         "passWithNoTests": true
       }
     },

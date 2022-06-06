@@ -1,5 +1,4 @@
 {
-  "root": "packages/wallet",
   "sourceRoot": "packages/wallet/src",
   "targets": {
     "install": {
@@ -31,7 +30,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/wallet"],
       "options": {
-        "jestConfig": "packages/wallet/jest.config.js",
+        "jestConfig": "packages/wallet/jest.config.ts",
         "passWithNoTests": true
       }
     },

@@ -1,5 +1,4 @@
 {
-  "root": "packages/gateway",
   "sourceRoot": "packages/gateway/src",
   "targets": {
     "install": {
@@ -31,7 +30,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/gateway"],
       "options": {
-        "jestConfig": "packages/gateway/jest.config.js",
+        "jestConfig": "packages/gateway/jest.config.ts",
         "passWithNoTests": true
       }
     },

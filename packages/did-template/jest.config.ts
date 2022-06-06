@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'vc-bbs',
+/* eslint-disable */
+export default {
+  displayName: 'did-template',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -10,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/packages/vc-bbs',
+  coverageDirectory: '../../coverage/packages/did-template',
 };

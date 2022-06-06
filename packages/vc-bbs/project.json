@@ -1,5 +1,4 @@
 {
-  "root": "packages/vc-bbs",
   "sourceRoot": "packages/vc-bbs/src",
   "targets": {
     "install": {
@@ -31,7 +30,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/vc-bbs"],
       "options": {
-        "jestConfig": "packages/vc-bbs/jest.config.js",
+        "jestConfig": "packages/vc-bbs/jest.config.ts",
         "passWithNoTests": true
       }
     },

@@ -1,5 +1,4 @@
 {
-  "root": "packages/helpers",
   "sourceRoot": "packages/helpers/src",
   "targets": {
     "install": {
@@ -31,7 +30,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/helpers"],
       "options": {
-        "jestConfig": "packages/helpers/jest.config.js",
+        "jestConfig": "packages/helpers/jest.config.ts",
         "passWithNoTests": true
       }
     },

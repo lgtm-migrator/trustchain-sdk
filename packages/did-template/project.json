@@ -1,5 +1,4 @@
 {
-  "root": "packages/did-template",
   "sourceRoot": "packages/did-template/src",
   "targets": {
     "install": {
@@ -31,7 +30,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/did-template"],
       "options": {
-        "jestConfig": "packages/did-template/jest.config.js",
+        "jestConfig": "packages/did-template/jest.config.ts",
         "passWithNoTests": true
       }
     },

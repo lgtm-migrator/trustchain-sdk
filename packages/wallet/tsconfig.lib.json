@@ -6,5 +6,5 @@
     "types": []
   },
   "include": ["**/*.ts", "test/wallet.test.ts"],
-  "exclude": ["**/*.spec.ts", "**/*.test.ts"]
+  "exclude": ["**/*.spec.ts", "**/*.test.ts", "jest.config.ts"]
 }

@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'claim',
+/* eslint-disable */
+export default {
+  displayName: 'did-hash',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -10,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/packages/claim',
+  coverageDirectory: '../../coverage/packages/did-hash',
 };

@@ -1,5 +1,4 @@
 {
-  "root": "packages/vc-revocation",
   "sourceRoot": "packages/vc-revocation/src",
   "targets": {
     "install": {
@@ -31,7 +30,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/packages/vc-revocation"],
       "options": {
-        "jestConfig": "packages/vc-revocation/jest.config.js",
+        "jestConfig": "packages/vc-revocation/jest.config.ts",
         "passWithNoTests": true
       }
     },
