@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.0.14](https://github.com/trustcerts/trustchain-sdk2/compare/did-0.0.13...did-0.0.14) (2022-06-06)
+
+### Dependency Updates
+
+* `gateway` updated to version `0.0.12`
+* `observer` updated to version `0.0.12`
+* `logger` updated to version `0.0.12`
+
+### Bug Fixes
+
+* add comment ([dedeb15](https://github.com/trustcerts/trustchain-sdk2/commit/dedeb152fbde8c1443de792ab4e80352d72d10f1))
+
+
+
 ## [0.0.13](https://github.com/trustcerts/trustchain-sdk2/compare/did-0.0.12...did-0.0.13) (2022-06-06)
 
 ### Dependency Updates
