@@ -2,6 +2,17 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.1.1](https://github.com/trustcerts/trustchain-sdk2/compare/did-template-0.1.0...did-template-0.1.1) (2022-06-07)
+
+### Dependency Updates
+
+* `did` updated to version `0.1.1`
+* `gateway` updated to version `0.3.0`
+* `crypto` updated to version `0.2.0`
+* `observer` updated to version `0.3.0`
+* `logger` updated to version `0.2.0`
+
+
 # [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/did-template-0.0.12...did-template-0.1.0) (2022-06-06)
 
 ### Dependency Updates
