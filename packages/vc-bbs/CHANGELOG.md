@@ -2,6 +2,16 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.1.1](https://github.com/trustcerts/trustchain-sdk2/compare/vc-bbs-0.1.0...vc-bbs-0.1.1) (2022-06-07)
+
+### Dependency Updates
+
+* `vc` updated to version `0.1.1`
+* `vc-revocation` updated to version `0.2.0`
+* `crypto` updated to version `0.2.0`
+* `logger` updated to version `0.2.0`
+
+
 # [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/vc-bbs-0.0.12...vc-bbs-0.1.0) (2022-06-06)
 
 ### Dependency Updates
