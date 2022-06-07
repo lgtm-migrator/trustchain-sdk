@@ -16,7 +16,8 @@
         "tsConfig": "packages/vc-revocation/tsconfig.lib.json",
         "project": "packages/vc-revocation/package.json",
         "entryFile": "packages/vc-revocation/src/index.ts",
-        "format": ["esm", "umd"]
+        "format": ["esm", "umd"],
+        "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {

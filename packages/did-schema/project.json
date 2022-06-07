@@ -16,7 +16,8 @@
         "tsConfig": "packages/did-schema/tsconfig.lib.json",
         "project": "packages/did-schema/package.json",
         "entryFile": "packages/did-schema/src/index.ts",
-        "format": ["esm", "umd"]
+        "format": ["esm", "umd"],
+        "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {

@@ -16,7 +16,8 @@
         "tsConfig": "packages/helpers/tsconfig.lib.json",
         "project": "packages/helpers/package.json",
         "entryFile": "packages/helpers/src/index.ts",
-        "format": ["esm", "umd"]
+        "format": ["esm", "umd"],
+        "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
