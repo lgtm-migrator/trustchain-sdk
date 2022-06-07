@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.3.0](https://github.com/trustcerts/trustchain-sdk2/compare/helpers-0.2.0...helpers-0.3.0) (2022-06-07)
+
+
+### Bug Fixes
+
+* **helpers:** release version 0.1.0 ([5ce904a](https://github.com/trustcerts/trustchain-sdk2/commit/5ce904a733ccbb34e08b39c25cf5ced58bc7125f))
+
+
+### Features
+
+* set correct repo ([1d13e6a](https://github.com/trustcerts/trustchain-sdk2/commit/1d13e6ac920de9d8e5053b2cc9bde3559821b957))
+
+
+
 # [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/helpers-0.0.12...helpers-0.1.0) (2022-06-06)
 
 
