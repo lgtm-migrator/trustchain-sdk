@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.3.0](https://github.com/trustcerts/trustchain-sdk2/compare/gateway-0.2.0...gateway-0.3.0) (2022-06-07)
+
+
+### Bug Fixes
+
+* **gateway:** release version 0.1.0 ([fe4b29a](https://github.com/trustcerts/trustchain-sdk2/commit/fe4b29ace8fda152fe09ec5badbc3a78e66a7860))
+
+
+### Features
+
+* set correct repo ([1d13e6a](https://github.com/trustcerts/trustchain-sdk2/commit/1d13e6ac920de9d8e5053b2cc9bde3559821b957))
+
+
+
 # [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/gateway-0.0.11...gateway-0.1.0) (2022-06-06)
 
 
