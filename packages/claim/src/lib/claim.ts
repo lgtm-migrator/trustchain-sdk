@@ -1,12 +1,11 @@
-import { toDataURL } from 'qrcode';
-import { render } from 'mustache';
-import { ClaimValues } from './claim-values';
-import { Compress, JsonCompressor, Proto } from './compress';
-import { CompressionType } from '@trustcerts/observer';
 import { DidHash } from '@trustcerts/did-hash';
 import { DidTemplate } from '@trustcerts/did-template';
+import { CompressionType } from '@trustcerts/observer';
+import { render } from 'mustache';
 import { PDFButton, PDFDocument, PDFFont, PDFTextField } from 'pdf-lib';
-import { base58Decode } from '@trustcerts/helpers';
+import { toDataURL } from 'qrcode';
+import { ClaimValues } from './claim-values';
+import { Compress, JsonCompressor, Proto } from './compress';
 
 /**
  * Class object to handle a claim
@@ -15,7 +14,7 @@ export class Claim {
   /**
    * Url of the claim.
    */
-  private url: any;
+  private url: string;
 
   /**
    * Information about the validation.
@@ -119,7 +118,7 @@ export class Claim {
             const width = field.acroField.getWidgets()[0].getRectangle().width;
             // TODO set correct font size
             let formatted = this.fillParagraph(
-              this.values[key],
+              this.values[key] as string,
               font,
               12,
               width
@@ -129,7 +128,7 @@ export class Claim {
             }
             field.setText(formatted);
           } else {
-            field.setText(this.values[key]);
+            field.setText(this.values[key] as string);
           }
         } else if (field instanceof PDFButton) {
           let imgInput;

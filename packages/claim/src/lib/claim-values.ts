@@ -10,5 +10,5 @@ export interface ClaimValues {
   /**
    * Allow for further custom properties.
    */
-  [key: string]: any;
+  [key: string]: unknown;
 }

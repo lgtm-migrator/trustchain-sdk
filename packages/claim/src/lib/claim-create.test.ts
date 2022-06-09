@@ -1,10 +1,11 @@
-import { randomBytes } from 'crypto';
-import { LocalConfigService } from '@trustcerts/config-local';
-import { WalletService } from '@trustcerts/wallet';
-import { readFileSync } from 'fs';
-import { CompressionType } from '@trustcerts/gateway';
-import { promisify } from 'util';
+import {
+  Claim,
+  ClaimIssuerService,
+  ClaimValues,
+  ClaimVerifierService,
+} from '@trustcerts/claim';
 import { ConfigService } from '@trustcerts/config';
+import { LocalConfigService } from '@trustcerts/config-local';
 import { CryptoService, SignatureType } from '@trustcerts/crypto';
 import {
   DidNetworks,
@@ -12,17 +13,16 @@ import {
   VerificationRelationshipType,
 } from '@trustcerts/did';
 import { SignatureIssuerService } from '@trustcerts/did-hash';
-import { SchemaIssuerService, DidSchemaRegister } from '@trustcerts/did-schema';
+import { DidSchemaRegister, SchemaIssuerService } from '@trustcerts/did-schema';
 import {
-  TemplateIssuerService,
   DidTemplateRegister,
+  TemplateIssuerService,
 } from '@trustcerts/did-template';
-import {
-  ClaimValues,
-  ClaimIssuerService,
-  ClaimVerifierService,
-  Claim,
-} from '@trustcerts/claim';
+import { CompressionType } from '@trustcerts/gateway';
+import { WalletService } from '@trustcerts/wallet';
+import { randomBytes } from 'crypto';
+import { readFileSync } from 'fs';
+import { promisify } from 'util';
 
 /**
  * Test claim class.
@@ -67,6 +67,7 @@ describe('claim', () => {
   }, 10000);
 
   async function createClaim(val: ClaimValues): Promise<Claim> {
+    if (!config.config.invite) throw new Error();
     const template = '<h1>hello</h1>';
     const host = 'localhost';
 
@@ -75,7 +76,7 @@ describe('claim', () => {
       cryptoService
     );
     const schemaDid = DidSchemaRegister.create({
-      controllers: [config.config.invite!.id],
+      controllers: [config.config.invite.id],
     });
     schemaDid.setSchema(schema);
     await DidSchemaRegister.save(schemaDid, clientSchema);
@@ -84,7 +85,7 @@ describe('claim', () => {
       cryptoService
     );
     const templateDid = DidTemplateRegister.create({
-      controllers: [config.config.invite!.id],
+      controllers: [config.config.invite.id],
     });
     templateDid.schemaId = schemaDid.id;
     templateDid.template = template;
@@ -99,7 +100,7 @@ describe('claim', () => {
       cryptoService
     );
     return claimIssuer.create(templateDid, val, host, signatureIssuer, [
-      config.config.invite!.id,
+      config.config.invite.id,
     ]);
   }
 
@@ -116,7 +117,8 @@ describe('claim', () => {
       claim.getUrl().split('/').slice(1).join('/')
     );
     const validation = claimLoaded.getValidation();
-    expect(validation!.revoked).toBeUndefined();
+    if (!validation) throw new Error();
+    expect(validation.revoked).toBeUndefined();
   }, 15000);
 
   it('revoke a claim', async () => {
@@ -138,6 +140,7 @@ describe('claim', () => {
       claim.getUrl().split('/').slice(1).join('/')
     );
     const validation = claimLoaded.getValidation();
-    expect(validation!.revoked).toBeDefined();
+    if (!validation) throw new Error();
+    expect(validation.revoked).toBeDefined();
   }, 15000);
 });

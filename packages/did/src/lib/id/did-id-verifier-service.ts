@@ -1,16 +1,16 @@
-import { DidManagerConfigValues } from '../DidManagerConfigValues';
+import { DidIdStructure } from '@trustcerts/gateway';
+import { logger } from '@trustcerts/logger';
 import {
-  DidObserverApi,
-  DidIdTransaction,
-  IdDocResponse,
   AxiosError,
   Configuration,
+  DidIdTransaction,
+  DidObserverApi,
+  IdDocResponse,
 } from '@trustcerts/observer';
-import { DidIdStructure } from '@trustcerts/gateway';
-import { Network } from '../network/network';
+import { DidManagerConfigValues } from '../DidManagerConfigValues';
 import { DidNetworks } from '../network/did-networks';
+import { Network } from '../network/network';
 import { VerifierService } from '../verifier-service';
-import { logger } from '@trustcerts/logger';
 
 export class DidIdVerifierService extends VerifierService {
   protected override apis!: DidObserverApi[];
@@ -38,24 +38,24 @@ export class DidIdVerifierService extends VerifierService {
     config: DidManagerConfigValues<DidIdStructure>
   ): Promise<IdDocResponse> {
     this.setEndpoints(id);
-    return new Promise(async (resolve, reject) => {
-      for (const api of this.apis) {
-        await api
-          .observerDidControllerGetDoc(id, config.time, undefined, {
-            timeout: this.timeout,
-          })
-          .then(
-            async (res) =>
-              this.validateDoc(res.data, config).then(
-                () => resolve(res.data),
-                (err) => logger.warn(err)
-              ),
-            (err: AxiosError) =>
-              err.response ? logger.warn(err.response.data) : logger.warn(err)
-          );
-      }
-      reject('no did doc found');
-    });
+    for (const api of this.apis) {
+      const res = await api
+        .observerDidControllerGetDoc(id, config.time, undefined, {
+          timeout: this.timeout,
+        })
+        .then(
+          async (res) =>
+            this.validateDoc(res.data, config).then(
+              // TODO check if this works
+              () => res.data,
+              (err) => logger.warn(err)
+            ),
+          (err: AxiosError) =>
+            err.response ? logger.warn(err.response.data) : logger.warn(err)
+        );
+      if (res) return Promise.resolve(res);
+    }
+    return Promise.reject('no did doc found');
   }
 
   /**
@@ -72,23 +72,24 @@ export class DidIdVerifierService extends VerifierService {
     time: string
   ): Promise<DidIdTransaction[]> {
     this.setEndpoints(id);
-    return new Promise(async (resolve, reject) => {
-      for (const api of this.apis) {
-        await api
-          .observerDidControllerGetTransactions(id, time, undefined, {
-            timeout: this.timeout,
-          })
-          .then(async (res) => {
-            if (validate) {
-              for (const transaction of res.data) {
-                await this.validateTransaction(transaction);
-              }
-              resolve(res.data);
+    for (const api of this.apis) {
+      const res = await api
+        .observerDidControllerGetTransactions(id, time, undefined, {
+          timeout: this.timeout,
+        })
+        .then(async (res) => {
+          if (validate) {
+            for (const transaction of res.data) {
+              await this.validateTransaction(transaction);
             }
-          })
-          .catch(logger.warn);
+          }
+          return Promise.resolve(res.data);
+        })
+        .catch(logger.warn);
+      if (res) {
+        return Promise.resolve(res);
       }
-      reject('no transactions founds');
-    });
+    }
+    return Promise.reject('no transactions founds');
   }
 }

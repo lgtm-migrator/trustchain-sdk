@@ -1,29 +1,26 @@
+import { ConfigService } from '@trustcerts/config';
+import { LocalConfigService } from '@trustcerts/config-local';
+import { CryptoService, SignatureType } from '@trustcerts/crypto';
 import {
   DidNetworks,
   Identifier,
   VerificationRelationshipType,
 } from '@trustcerts/did';
-import { LocalConfigService } from '@trustcerts/config-local';
-import { JSONSchemaType } from 'ajv';
-import { WalletService } from '@trustcerts/wallet';
-import { readFileSync } from 'fs';
 import { DidSchemaRegister, SchemaIssuerService } from '@trustcerts/did-schema';
-import { CompressionType } from '@trustcerts/gateway';
-import { ConfigService } from '@trustcerts/config';
-import { CryptoService, SignatureType } from '@trustcerts/crypto';
 import {
   DidTemplateRegister,
   TemplateIssuerService,
 } from '@trustcerts/did-template';
+import { CompressionType } from '@trustcerts/gateway';
+import { WalletService } from '@trustcerts/wallet';
+import { JSONSchemaType } from 'ajv';
+import { readFileSync } from 'fs';
 
 interface Name {
   name: string;
 }
 
 describe('test template service', () => {
-  it('should be edited', () => {
-    expect(true).toBeTruthy();
-  });
   let config: ConfigService;
 
   let cryptoService: CryptoService;
@@ -60,12 +57,13 @@ describe('test template service', () => {
   }, 10000);
 
   it('create', async () => {
+    if (!config.config.invite) throw new Error();
     const clientSchema = new SchemaIssuerService(
       testValues.network.gateways,
       cryptoService
     );
     const schemaDid = DidSchemaRegister.create({
-      controllers: [config.config.invite!.id],
+      controllers: [config.config.invite.id],
     });
     schemaDid.setSchema(schema);
     await DidSchemaRegister.save(schemaDid, clientSchema);
@@ -74,7 +72,7 @@ describe('test template service', () => {
       cryptoService
     );
     const templateDid = DidTemplateRegister.create({
-      controllers: [config.config.invite!.id],
+      controllers: [config.config.invite.id],
     });
     templateDid.schemaId = schemaDid.id;
     templateDid.template = template;

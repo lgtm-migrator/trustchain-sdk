@@ -6,9 +6,9 @@ import {
   Identifier,
   VerificationRelationshipType,
 } from '@trustcerts/did';
+import { DidSchemaRegister, SchemaIssuerService } from '@trustcerts/did-schema';
 import { WalletService } from '@trustcerts/wallet';
 import { readFileSync } from 'fs';
-import { DidSchemaRegister, SchemaIssuerService } from '@trustcerts/did-schema';
 
 describe('test schema issuer service', () => {
   let config: ConfigService;
@@ -66,12 +66,13 @@ describe('test schema issuer service', () => {
   });
 
   it('create schema', async () => {
+    if (!config.config.invite) throw new Error();
     const client = new SchemaIssuerService(
       testValues.network.gateways,
       cryptoService
     );
     const did = DidSchemaRegister.create({
-      controllers: [config.config.invite!.id],
+      controllers: [config.config.invite.id],
     });
     did.setSchema({ foo: 'bar' });
     const res = await DidSchemaRegister.save(did, client);

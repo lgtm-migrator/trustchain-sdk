@@ -1,19 +1,19 @@
 import {
-  AxiosError,
-  DidHashDocument,
-  HashDocResponse,
-  HashObserverApi,
-  DidHashStructure,
-  DidSchemaTransaction,
-  Configuration,
-} from '@trustcerts/observer';
-import {
-  VerifierService,
-  Network,
-  DidNetworks,
   DidManagerConfigValues,
+  DidNetworks,
+  Network,
+  VerifierService,
 } from '@trustcerts/did';
 import { logger } from '@trustcerts/logger';
+import {
+  AxiosError,
+  Configuration,
+  DidHashDocument,
+  DidHashStructure,
+  DidSchemaTransaction,
+  HashDocResponse,
+  HashObserverApi,
+} from '@trustcerts/observer';
 
 export class DidHashVerifierService extends VerifierService {
   protected override apis!: HashObserverApi[];
@@ -58,24 +58,23 @@ export class DidHashVerifierService extends VerifierService {
     config: DidManagerConfigValues<DidHashStructure>
   ): Promise<HashDocResponse> {
     this.setEndpoints(id);
-    return new Promise(async (resolve, reject) => {
-      for (const api of this.apis) {
-        await api
-          .observerHashControllerGetDoc(id, config.time, undefined, {
-            timeout: this.timeout,
-          })
-          .then(
-            async (res) =>
-              this.validateDoc(res.data, config).then(
-                () => resolve(res.data),
-                (err) => logger.warn(err)
-              ),
-            (err: AxiosError) =>
-              err.response ? logger.warn(err.response.data) : logger.warn(err)
-          );
-      }
-      reject('no did doc found');
-    });
+    for (const api of this.apis) {
+      const res = await api
+        .observerHashControllerGetDoc(id, config.time, undefined, {
+          timeout: this.timeout,
+        })
+        .then(
+          async (res) =>
+            this.validateDoc(res.data, config).then(
+              () => res.data,
+              (err) => logger.warn(err)
+            ),
+          (err: AxiosError) =>
+            err.response ? logger.warn(err.response.data) : logger.warn(err)
+        );
+      if (res) return Promise.resolve(res);
+    }
+    return Promise.reject('no did doc found');
   }
   /**
    * Resolve a DID document's transactions by returning the first valid response of a observer of the network
@@ -91,23 +90,22 @@ export class DidHashVerifierService extends VerifierService {
     time: string
   ): Promise<DidSchemaTransaction[]> {
     this.setEndpoints(id);
-    return new Promise(async (resolve, reject) => {
-      for (const api of this.apis) {
-        await api
-          .observerHashControllerGetTransactions(id, time, undefined, {
-            timeout: this.timeout,
-          })
-          .then(async (res) => {
-            if (validate) {
-              for (const transaction of res.data) {
-                await this.validateTransaction(transaction);
-              }
-              resolve(res.data);
+    for (const api of this.apis) {
+      const res = await api
+        .observerHashControllerGetTransactions(id, time, undefined, {
+          timeout: this.timeout,
+        })
+        .then(async (res) => {
+          if (validate) {
+            for (const transaction of res.data) {
+              await this.validateTransaction(transaction);
             }
-          })
-          .catch(logger.warn);
-      }
-      reject('no transactions founds');
-    });
+          }
+          return res.data;
+        })
+        .catch(logger.warn);
+      if (res) return Promise.resolve(res);
+    }
+    return Promise.reject('no transactions founds');
   }
 }

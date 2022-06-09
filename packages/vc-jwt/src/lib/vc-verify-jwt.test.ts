@@ -20,9 +20,6 @@ import { JWTPayloadVC, JWTPayloadVP } from '@trustcerts/vc';
  * Test vc class.
  */
 describe('vc', () => {
-  it('should be edited', () => {
-    expect(true).toBeTruthy();
-  });
   let config: ConfigService;
 
   let cryptoServiceRSA: CryptoService;

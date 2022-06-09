@@ -6,14 +6,13 @@ import {
   Identifier,
   VerificationRelationshipType,
 } from '@trustcerts/did';
-import { logger } from '@trustcerts/logger';
-import { WalletService } from '@trustcerts/wallet';
-import { readFileSync } from 'fs';
 import {
   DidSchemaRegister,
-  SchemaIssuerService,
   DidSchemaResolver,
+  SchemaIssuerService,
 } from '@trustcerts/did-schema';
+import { WalletService } from '@trustcerts/wallet';
+import { readFileSync } from 'fs';
 
 describe('test schema verifier service', () => {
   let config: ConfigService;
@@ -43,12 +42,13 @@ describe('test schema verifier service', () => {
   }, 10000);
 
   it('verify schema', async () => {
+    if (!config.config.invite) throw new Error();
     const client = new SchemaIssuerService(
       testValues.network.gateways,
       cryptoService
     );
     const did = DidSchemaRegister.create({
-      controllers: [config.config.invite!.id],
+      controllers: [config.config.invite.id],
     });
     const schema = { foo: 'bar' };
     did.setSchema(schema);

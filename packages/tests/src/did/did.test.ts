@@ -10,7 +10,6 @@ import {
 import { LocalConfigService } from '@trustcerts/config-local';
 import { WalletService } from '@trustcerts/wallet';
 import { readFileSync } from 'fs';
-import { RoleManageType } from '@trustcerts/observer';
 import { ConfigService } from '@trustcerts/config';
 import { CryptoService, SignatureType } from '@trustcerts/crypto';
 

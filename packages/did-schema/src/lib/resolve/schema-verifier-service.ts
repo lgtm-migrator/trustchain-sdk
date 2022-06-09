@@ -1,16 +1,16 @@
 import {
-  VerifierService,
-  Network,
-  DidNetworks,
   DidManagerConfigValues,
+  DidNetworks,
+  Network,
+  VerifierService,
 } from '@trustcerts/did';
 import { logger } from '@trustcerts/logger';
 import {
   AxiosError,
+  Configuration,
+  DidSchemaTransaction,
   SchemaDocResponse,
   SchemaObserverApi,
-  DidSchemaTransaction,
-  Configuration,
 } from '@trustcerts/observer';
 
 export class SchemaVerifierService extends VerifierService {
@@ -32,24 +32,23 @@ export class SchemaVerifierService extends VerifierService {
     config: DidManagerConfigValues<DidSchemaTransaction>
   ): Promise<SchemaDocResponse> {
     this.setEndpoints(id);
-    return new Promise(async (resolve, reject) => {
-      for (const api of this.apis) {
-        await api
-          .observerSchemaControllerGetDoc(id, config.time, undefined, {
-            timeout: this.timeout,
-          })
-          .then(
-            async (res) =>
-              this.validateDoc(res.data, config).then(
-                () => resolve(res.data),
-                (err) => logger.warn(err)
-              ),
-            (err: AxiosError) =>
-              err.response ? logger.warn(err.response.data) : logger.warn(err)
-          );
-      }
-      reject('no did doc found');
-    });
+    for (const api of this.apis) {
+      const res = await api
+        .observerSchemaControllerGetDoc(id, config.time, undefined, {
+          timeout: this.timeout,
+        })
+        .then(
+          async (res) =>
+            this.validateDoc(res.data, config).then(
+              () => res.data,
+              (err) => logger.warn(err)
+            ),
+          (err: AxiosError) =>
+            err.response ? logger.warn(err.response.data) : logger.warn(err)
+        );
+      if (res) return Promise.resolve(res);
+    }
+    return Promise.reject('no did doc found');
   }
 
   /**
@@ -66,23 +65,22 @@ export class SchemaVerifierService extends VerifierService {
     time: string
   ): Promise<DidSchemaTransaction[]> {
     this.setEndpoints(id);
-    return new Promise(async (resolve, reject) => {
-      for (const api of this.apis) {
-        await api
-          .observerSchemaControllerGetTransactions(id, time, undefined, {
-            timeout: this.timeout,
-          })
-          .then(async (res) => {
-            if (validate) {
-              for (const transaction of res.data) {
-                await this.validateTransaction(transaction);
-              }
-              resolve(res.data);
+    for (const api of this.apis) {
+      const res = await api
+        .observerSchemaControllerGetTransactions(id, time, undefined, {
+          timeout: this.timeout,
+        })
+        .then(async (res) => {
+          if (validate) {
+            for (const transaction of res.data) {
+              await this.validateTransaction(transaction);
             }
-          })
-          .catch(logger.warn);
-      }
-      reject('no transactions founds');
-    });
+          }
+          return Promise.resolve(res.data);
+        })
+        .catch(logger.warn);
+      if (res) return Promise.resolve(res);
+    }
+    return Promise.reject('no transactions founds');
   }
 }

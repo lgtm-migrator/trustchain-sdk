@@ -4,7 +4,7 @@ import {
   DidSchemaStructure,
   SchemaDocResponse,
 } from '@trustcerts/observer';
-import Ajv from 'ajv';
+import Ajv, { AnySchema } from 'ajv';
 
 export class DidSchema extends Did {
   private schema!: string;
@@ -46,7 +46,7 @@ export class DidSchema extends Did {
     };
   }
 
-  setSchema(schema: any) {
+  setSchema(schema: AnySchema) {
     if (!this.ajv.validateSchema(schema, true)) {
       throw Error('schema not valid');
     }

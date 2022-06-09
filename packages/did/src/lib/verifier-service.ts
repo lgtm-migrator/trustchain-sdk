@@ -1,10 +1,10 @@
 import { importKey, sortKeys, verifySignature } from '@trustcerts/crypto';
 import {
   BaseAPI,
-  DocResponse,
+  DidIdTransaction,
   DidStructure,
   DidTransaction,
-  DidIdTransaction,
+  DocResponse,
 } from '@trustcerts/observer';
 import { DidManagerConfigValues } from './DidManagerConfigValues';
 import { DidIdResolver } from './id/did-id-resolver';
@@ -76,16 +76,17 @@ export abstract class VerifierService {
     });
   }
 
-  private async getKey(transaction: DidTransaction): Promise<JsonWebKey> {
+  private async getKey(transaction: DidIdTransaction): Promise<JsonWebKey> {
     if (
       transaction.signature.values[0].identifier.split('#')[0] ===
       transaction.values.id
     ) {
       // TODO instead of searching for self certified, use the genesis block.
-      if ((transaction as DidIdTransaction).values.verificationMethod?.add) {
-        const element = (
-          transaction as DidIdTransaction
-        ).values.verificationMethod!.add!.find(
+      if (
+        transaction.values.verificationMethod &&
+        transaction.values.verificationMethod.add
+      ) {
+        const element = transaction.values.verificationMethod.add.find(
           (value) => value.id === transaction.signature.values[0].identifier
         );
         if (element) {
@@ -122,6 +123,6 @@ export abstract class VerifierService {
 
 export interface SignatureContent {
   date: string;
-  value: any;
+  value: unknown;
   type: string;
 }

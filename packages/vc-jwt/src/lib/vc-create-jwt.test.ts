@@ -6,23 +6,15 @@ import {
   Identifier,
   VerificationRelationshipType,
 } from '@trustcerts/did';
-import { JWTPayloadVC } from '@trustcerts/vc';
-import { RevocationService } from '@trustcerts/vc-revocation';
+import { logger } from '@trustcerts/logger';
+import { VerifiableCredentialIssuerService } from '@trustcerts/vc-jwt';
 import { WalletService } from '@trustcerts/wallet';
 import { readFileSync } from 'fs';
-import {
-  JWT,
-  VerifiableCredentialIssuerService,
-  JWTVerifiableCredentialVerifierService,
-} from '@trustcerts/vc-jwt';
 
 /**
  * Test vc class.
  */
 describe('vc', () => {
-  it('should be edited', () => {
-    expect(true).toBeTruthy();
-  });
   let config: ConfigService;
 
   let cryptoServiceRSA: CryptoService;
@@ -73,39 +65,37 @@ describe('vc', () => {
     );
   }
 
-  it('verify revocation JWT', async () => {
+  /**
+   * Creates an example JWT-encoded verifiable presentation for testing
+   * @returns A JWT-encoded verifiable presentation with example data
+   */
+  async function createVp(): Promise<string> {
+    const vcIssuerService = new VerifiableCredentialIssuerService();
+    const vc1 = await createVc();
+    const vc2 = await createVc();
+    return await vcIssuerService.createVerifiablePresentation(
+      {
+        '@context': [],
+        type: ['TestPresentation'],
+        verifiableCredentials: [vc1, vc2],
+        domain: 'domain',
+        challenge: 'challenge',
+        holder: 'did:max:mustermann',
+        nonce: 'randomVP',
+      },
+      cryptoServiceRSA
+    );
+  }
+
+  it('create vc', async () => {
     const vc = await createVc();
-    const vcJWT = new JWT(vc);
-    const vcJWTPayload = vcJWT.getPayload() as JWTPayloadVC;
-    const vcVerifierService = new JWTVerifiableCredentialVerifierService();
-    const revocationService = new RevocationService();
-    await revocationService.init();
+    logger.debug(vc);
+    expect(vc).toBeDefined();
+  }, 15000);
 
-    // Expect credential to be valid
-    expect(await vcVerifierService.verifyCredential(vc)).toBe(true);
-    // Expect credential to be not revoked
-    expect(
-      await revocationService.isRevoked(vcJWTPayload.vc.credentialStatus!)
-    ).toBe(false);
-
-    // Revoke credential
-    await revocationService.setRevoked(vcJWTPayload.vc.credentialStatus!, true);
-
-    // Expect credential to be invalid
-    expect(await vcVerifierService.verifyCredential(vc)).toBe(false);
-    // Expect credential to be revoked
-    expect(
-      await revocationService.isRevoked(vcJWTPayload.vc.credentialStatus!)
-    ).toBe(true);
-
-    // Un-revoke credential
-    revocationService.setRevoked(vcJWTPayload.vc.credentialStatus!, false);
-
-    // Expect credential to be valid again
-    expect(await vcVerifierService.verifyCredential(vc)).toBe(true);
-    // Expect credential to be not revoked again
-    expect(
-      await revocationService.isRevoked(vcJWTPayload.vc.credentialStatus!)
-    ).toBe(false);
+  it('create vp', async () => {
+    const vp = await createVp();
+    logger.debug(JSON.stringify(vp, null, 4));
+    expect(vp).toBeDefined();
   }, 15000);
 });

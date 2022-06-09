@@ -1,10 +1,11 @@
-import { Root } from 'protobufjs';
 import { base58Decode, base58Encode } from '@trustcerts/helpers';
+import { INamespace, Root } from 'protobufjs';
 
 /**
  * Information about the proto file
  */
 interface ProtoFile {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   nested: any;
 }
 
@@ -43,7 +44,7 @@ export class Proto implements Compress {
    * @param structure
    */
   constructor(private structure: ProtoFile) {
-    this.root = Root.fromJSON(this.structure);
+    this.root = Root.fromJSON(this.structure as INamespace);
     this.setType();
   }
 
@@ -52,7 +53,6 @@ export class Proto implements Compress {
    */
   setType(): void {
     const namespaces = Object.keys(this.structure.nested);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     const messages = Object.keys(this.structure.nested[namespaces[0]].nested);
     this.type = `${namespaces[0]}.${messages[0]}`;
   }
