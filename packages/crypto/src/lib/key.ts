@@ -1,9 +1,9 @@
-import { SignatureType } from './signature-type';
-import { defaultAlgorithm } from './sign';
-import { hashAlgorithm, subtle } from './values';
 import { Bls12381G2KeyPair } from '@mattrglobal/jsonld-signatures-bbs';
 import { base58Encode } from '@trustcerts/helpers';
 import { DecryptedKeyPair } from './decrypted-key-pair';
+import { defaultAlgorithm } from './sign';
+import { SignatureType } from './signature-type';
+import { hashAlgorithm, subtle } from './values';
 
 /**
  * Type of a key.
@@ -147,7 +147,7 @@ export async function getFingerPrint(
   const jwk: JsonWebKey = (key as JsonWebKey).kty
     ? (key as JsonWebKey)
     : await subtle.exportKey('jwk', key as CryptoKey);
-  let values: any;
+  let values: unknown;
   switch (jwk.kty) {
     case 'EC':
       // check if curve is bls since it has no y value: https://w3c-ccg.github.io/ldp-bbs2020/#bls-12-381-g2-public-key

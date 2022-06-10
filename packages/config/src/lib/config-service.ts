@@ -9,7 +9,7 @@ import { Config } from './config.dto';
 export abstract class ConfigService {
   public config!: Config;
 
-  abstract init(values: any): Promise<void>;
+  abstract init(values: Config): Promise<void>;
 
   abstract loadConfig(): Promise<void>;
 

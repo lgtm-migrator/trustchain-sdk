@@ -1,12 +1,12 @@
-import { SignJWT } from 'jose';
+import { CryptoService } from '@trustcerts/crypto';
 import {
-  IVerifiableCredentialPayload,
-  IVerifiablePresentationPayload,
   IVerifiableCredentialArguments,
+  IVerifiableCredentialPayload,
   IVerifiablePresentationArguments,
+  IVerifiablePresentationPayload,
 } from '@trustcerts/vc';
 import { RevocationService } from '@trustcerts/vc-revocation';
-import { CryptoService } from '@trustcerts/crypto';
+import { SignJWT } from 'jose';
 
 export class VerifiableCredentialIssuerService {
   /**
@@ -85,10 +85,11 @@ export class VerifiableCredentialIssuerService {
 
         */
 
+    if (!cryptoService.keyPair.privateKey.algorithm) throw new Error();
     const jwt = new SignJWT({ vc: vcPayload, nonce: nonce })
       // map to https://datatracker.ietf.org/doc/html/rfc7518#section-3.1
       .setProtectedHeader({
-        alg: this.getJWTAlgorithm(cryptoService.keyPair.privateKey!.algorithm),
+        alg: this.getJWTAlgorithm(cryptoService.keyPair.privateKey.algorithm),
         kid: cryptoService.fingerPrint,
       })
       .setIssuedAt(Math.floor(issuanceDate.getTime() / 1000))
@@ -100,7 +101,7 @@ export class VerifiableCredentialIssuerService {
       jwt.setExpirationTime(vcArguments.expirationDate);
     }
 
-    return await jwt.sign(cryptoService.keyPair.privateKey!);
+    return await jwt.sign(cryptoService.keyPair.privateKey);
   }
 
   /**
@@ -152,11 +153,11 @@ export class VerifiableCredentialIssuerService {
             https://w3c-ccg.github.io/security-vocab/#challenge
             https://github.com/hyperledger/aries-rfcs/blob/master/features/0510-dif-pres-exch-attach/README.md#the-options-object
         */
-
+    if (!cryptoService.keyPair.privateKey.algorithm) throw new Error();
     const jwt = new SignJWT({ vp: vpPayload, nonce: nonce })
       // map to https://datatracker.ietf.org/doc/html/rfc7518#section-3.1
       .setProtectedHeader({
-        alg: this.getJWTAlgorithm(cryptoService.keyPair.privateKey!.algorithm),
+        alg: this.getJWTAlgorithm(cryptoService.keyPair.privateKey.algorithm),
         kid: cryptoService.fingerPrint,
       })
       .setJti(vpArguments.challenge)
@@ -169,7 +170,7 @@ export class VerifiableCredentialIssuerService {
       jwt.setExpirationTime(vpArguments.expirationDate);
     }
 
-    return await jwt.sign(cryptoService.keyPair.privateKey!);
+    return await jwt.sign(cryptoService.keyPair.privateKey);
   }
 
   /**

@@ -1,5 +1,5 @@
-import { existsSync, readFileSync } from 'fs';
 import { base58Encode, isBrowser } from '@trustcerts/helpers';
+import { existsSync, readFileSync } from 'fs';
 import { hashAlgorithm, subtle } from './values';
 
 /**
@@ -42,9 +42,8 @@ function getFileContent(file: string | File): Promise<ArrayBuffer> {
   return new Promise((resolve, reject) => {
     if (isBrowser()) {
       const reader = new FileReader();
-      reader.onload = (e: any) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        resolve(e.target.result);
+      reader.onload = () => {
+        resolve(reader.result as ArrayBuffer);
       };
       reader.readAsArrayBuffer(file as File);
     } else {
@@ -61,19 +60,14 @@ function getFileContent(file: string | File): Promise<ArrayBuffer> {
  * Sorts the keys of an object
  * @param x
  */
-export function sortKeys(x: any): any {
+export function sortKeys(x: unknown[]): unknown {
   if (typeof x !== 'object' || !x) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return x;
   }
   if (Array.isArray(x)) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return x.map(sortKeys);
   }
-  return (
-    Object.keys(x)
-      .sort()
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-      .reduce((o, k) => ({ ...o, [k]: sortKeys(x[k]) }), {})
-  );
+  return Object.keys(x)
+    .sort()
+    .reduce((o, k) => ({ ...o, [k]: sortKeys(x[k]) }), {});
 }

@@ -34,24 +34,15 @@ export class CryptoService {
    * @param value
    */
   public async sign(value: string): Promise<string> {
-    return signInput(value, this.keyPair.privateKey!);
+    if (!this.keyPair.privateKey) throw Error('no key to sign input');
+    return signInput(value, this.keyPair.privateKey);
   }
 
   /**
    * Returns the public key as an json web token.
    */
   getPublicKey(): Promise<JsonWebKey> {
-    return exportKey(this.keyPair.publicKey!);
+    if (!this.keyPair.publicKey) throw Error('no public key generated');
+    return exportKey(this.keyPair.publicKey);
   }
-
-  /**
-   * Saved the keys in the config service.
-   */
-  // async save(): Promise<DecryptedKeyPair> {
-  //     return {
-  //         publicKey: await exportKey(this.keyPair.publicKey),
-  //         privateKey: await exportKey(this.keyPair.privateKey),
-  //         identifier: this.fingerPrint,
-  //     };
-  // }
 }
