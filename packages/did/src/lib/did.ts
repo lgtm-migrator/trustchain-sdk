@@ -1,4 +1,3 @@
-import { Management } from './management';
 import {
   ControllerManage,
   DidDocument,
@@ -7,6 +6,7 @@ import {
   DocResponse,
   SignatureInfo,
 } from '@trustcerts/observer';
+import { Management } from './management';
 
 export abstract class Did {
   public version = 0;
@@ -85,10 +85,12 @@ export abstract class Did {
 
   // TODO instead of any pass the didtransaction attribte. Has to be imported in another way since it is an extended class from the open-api spec
   abstract parseTransactions(transactions: DidStructure[]): void;
-  abstract parseDocument(document: any): void;
+  // TODO set DocResponse as a parent class
+  abstract parseDocument(document: unknown): void;
   abstract getDocument(): DidDocument;
   abstract resetChanges(): void;
-  abstract getChanges(): any;
+  // TODO set parent class for changes
+  abstract getChanges(): unknown;
 
   protected parseDocumentSuper(docResponse: DocResponse) {
     this.version = docResponse.metaData.versionId;
@@ -99,9 +101,9 @@ export abstract class Did {
     this.signatures = docResponse.signatures;
   }
 
-  protected getBasicChanges<T>(): T {
+  protected getBasicChanges<T extends DidStructure>(): T {
     // TODO set DIDStrucutre
-    const changes: any = {
+    const changes: DidStructure = {
       id: this.id,
     };
 
@@ -117,7 +119,7 @@ export abstract class Did {
       changes.controller.remove = Array.from(this.controller.remove.values());
     }
 
-    return changes;
+    return changes as T;
   }
 
   /**

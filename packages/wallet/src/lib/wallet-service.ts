@@ -1,17 +1,17 @@
 import { ConfigService } from '@trustcerts/config';
 import {
-  DecryptedKeyPair,
-  SignatureType,
   CryptoService,
+  DecryptedKeyPair,
   generateKeyPair,
+  SignatureType,
 } from '@trustcerts/crypto';
 import {
-  DidIdResolver,
-  DidIdRegister,
-  VerificationRelationshipType,
-  DidIdIssuerService,
-  DidNetworks,
   DidId,
+  DidIdIssuerService,
+  DidIdRegister,
+  DidIdResolver,
+  DidNetworks,
+  VerificationRelationshipType,
 } from '@trustcerts/did';
 import { logger } from '@trustcerts/logger';
 
@@ -28,15 +28,13 @@ export class WalletService {
    * Loads own did. If it does not exist, it is created using the invite.
    */
   public async init(): Promise<void> {
-    if (!this.configService.config.invite) {
-      throw new Error('no id found');
-    }
+    if (!this.configService.config.invite) throw Error('no id found');
     this.did = await this.resolver
       .load(this.configService.config.invite.id)
       .catch(async () => {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        if (!this.configService.config.invite) throw Error('no id found');
         return DidIdRegister.createByInvite(
-          this.configService.config.invite!
+          this.configService.config.invite
         ).then(
           async (values) => {
             // save the key that way used.

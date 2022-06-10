@@ -1,17 +1,17 @@
+import { ConfigService } from '@trustcerts/config';
+import { LocalConfigService } from '@trustcerts/config-local';
+import { CryptoService, SignatureType } from '@trustcerts/crypto';
 import {
   DidIdIssuerService,
   DidIdRegister,
   DidIdResolver,
   DidNetworks,
+  DidRoles,
   Identifier,
   VerificationRelationshipType,
-  DidRoles,
 } from '@trustcerts/did';
-import { LocalConfigService } from '@trustcerts/config-local';
 import { WalletService } from '@trustcerts/wallet';
 import { readFileSync } from 'fs';
-import { ConfigService } from '@trustcerts/config';
-import { CryptoService, SignatureType } from '@trustcerts/crypto';
 
 describe('test did', () => {
   let config: ConfigService;
@@ -42,8 +42,9 @@ describe('test did', () => {
   }, 10000);
 
   it('verify did chain of trust temporary test case', async () => {
+    if (!config.config.invite) throw Error();
     const did = DidIdRegister.create({
-      controllers: [config.config.invite!.id],
+      controllers: [config.config.invite.id],
     });
     did.addRole(DidRoles.Client);
     const client = new DidIdIssuerService(
@@ -62,8 +63,9 @@ describe('test did', () => {
   }, 7000);
 
   it('read did', async () => {
+    if (!config.config.invite) throw Error();
     const did = DidIdRegister.create({
-      controllers: [config.config.invite!.id],
+      controllers: [config.config.invite.id],
     });
     did.addRole(DidRoles.Client);
     const client = new DidIdIssuerService(

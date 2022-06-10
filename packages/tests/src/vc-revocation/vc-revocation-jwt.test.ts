@@ -56,14 +56,14 @@ describe('vc', () => {
    */
   async function createVc(): Promise<string> {
     const vcIssuerService = new VerifiableCredentialIssuerService();
-
+    if (!config.config.invite) throw Error();
     return await vcIssuerService.createVerifiableCredential(
       {
         '@context': [],
         type: ['TestCredential'],
         credentialSubject: { id: 'did:max:mustermann' },
         id: 'unique_id',
-        issuer: config.config.invite!.id,
+        issuer: config.config.invite.id,
         // nonce: 'randomVC',
       },
       cryptoServiceRSA
@@ -80,29 +80,30 @@ describe('vc', () => {
 
     // Expect credential to be valid
     expect(await vcVerifierService.verifyCredential(vc)).toBe(true);
+    if (!vcJWTPayload.vc.credentialStatus) throw Error();
     // Expect credential to be not revoked
     expect(
-      await revocationService.isRevoked(vcJWTPayload.vc.credentialStatus!)
+      await revocationService.isRevoked(vcJWTPayload.vc.credentialStatus)
     ).toBe(false);
 
     // Revoke credential
-    await revocationService.setRevoked(vcJWTPayload.vc.credentialStatus!, true);
+    await revocationService.setRevoked(vcJWTPayload.vc.credentialStatus, true);
 
     // Expect credential to be invalid
     expect(await vcVerifierService.verifyCredential(vc)).toBe(false);
     // Expect credential to be revoked
     expect(
-      await revocationService.isRevoked(vcJWTPayload.vc.credentialStatus!)
+      await revocationService.isRevoked(vcJWTPayload.vc.credentialStatus)
     ).toBe(true);
 
     // Un-revoke credential
-    revocationService.setRevoked(vcJWTPayload.vc.credentialStatus!, false);
+    revocationService.setRevoked(vcJWTPayload.vc.credentialStatus, false);
 
     // Expect credential to be valid again
     expect(await vcVerifierService.verifyCredential(vc)).toBe(true);
     // Expect credential to be not revoked again
     expect(
-      await revocationService.isRevoked(vcJWTPayload.vc.credentialStatus!)
+      await revocationService.isRevoked(vcJWTPayload.vc.credentialStatus)
     ).toBe(false);
   }, 15000);
 });

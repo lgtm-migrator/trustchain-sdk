@@ -94,7 +94,7 @@ export class VerifiableCredentialIssuerService {
       })
       .setIssuedAt(Math.floor(issuanceDate.getTime() / 1000))
       .setIssuer(String(vcArguments.issuer))
-      .setSubject(vcArguments.credentialSubject['id'])
+      .setSubject(vcArguments.credentialSubject['id'] as string)
       .setJti(vcArguments.id);
 
     if (vcArguments.expirationDate !== undefined) {

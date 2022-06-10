@@ -1,12 +1,12 @@
+import { DidStructure } from '@trustcerts/observer';
 import { DidCachedService } from './cache/did-cached-service';
 import { Did } from './did';
 import { DidManagerConfigValues } from './DidManagerConfigValues';
 import { InitDidManagerConfigValues } from './InitDidManagerConfigValues';
-import { DidStructure } from '@trustcerts/observer';
 import { VerifierService } from './verifier-service';
 
-export abstract class DidResolver {
-  protected verifier!: VerifierService;
+export abstract class DidResolver<T extends VerifierService> {
+  protected verifier!: T;
 
   protected async loadDid(
     did: Did,
@@ -52,6 +52,6 @@ export abstract class DidResolver {
 
   abstract load(
     id: string,
-    values?: InitDidManagerConfigValues<any>
+    values?: InitDidManagerConfigValues<unknown>
   ): Promise<Did>;
 }

@@ -1,7 +1,6 @@
 import { base58Encode, isBrowser } from '@trustcerts/helpers';
 import { existsSync, readFileSync } from 'fs';
 import { hashAlgorithm, subtle } from './values';
-
 /**
  * Returns the hash of a string as hex encoded string.
  * @param value
