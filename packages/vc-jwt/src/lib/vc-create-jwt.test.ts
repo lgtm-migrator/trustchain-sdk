@@ -50,6 +50,7 @@ describe('vc', () => {
    * @returns A JWT-encoded verifiable credential with example data
    */
   async function createVc(): Promise<string> {
+    if (!config.config.invite) throw Error();
     const vcIssuerService = new VerifiableCredentialIssuerService();
 
     return await vcIssuerService.createVerifiableCredential(
@@ -58,7 +59,7 @@ describe('vc', () => {
         type: ['TestCredential'],
         credentialSubject: { id: 'did:max:mustermann' },
         id: 'unique_id',
-        issuer: config.config.invite!.id,
+        issuer: config.config.invite.id,
         // nonce: 'randomVC',
       },
       cryptoServiceRSA
