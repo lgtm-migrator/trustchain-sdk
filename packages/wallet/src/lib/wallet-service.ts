@@ -43,6 +43,7 @@ export class WalletService {
             return values.did;
           },
           (err: Error) => {
+            console.log(err);
             throw new Error(`Could not create DID by invite: ${err.message}`);
           }
         );
