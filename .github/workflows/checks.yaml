@@ -26,9 +26,16 @@ jobs:
 
       - name: Install dependencies
         run: npm ci --force
-
+      # use variable to set correct config for bc and test
       - name: prepare for test
         run: mv values.ci.json values.json
+
+      - name: TrustCerts Custom Blockchain
+        uses: trustcerts/blockchain-custom-action@main
+        with:
+          did_id: did:trust:tc:test:id:XLzBJd69tqEgq7oqqdEsHW
+          client_name: client
+          client_secret: client
 
       - uses: mansagroup/nrwl-nx-action@v2
         with:

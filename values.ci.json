@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-06/schema#",
   "configValues": {
     "invite": {
-      "id": "did:trust:tc:dev:id:XLzBJ69tqEgq7oqqCLiEnT",
+      "id": "did:trust:tc:test:id:XLzBJd69tqEgq7oqqdEsHW",
       "secret": "client",
       "endpoint": "http://localhost:3520"
     },
