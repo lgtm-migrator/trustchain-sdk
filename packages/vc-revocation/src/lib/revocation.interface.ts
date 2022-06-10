@@ -12,7 +12,7 @@ export interface IRevocationListCredential {
   credentialSubject: {
     id: string;
     type: string;
-    encodedList: unknown;
+    encodedList: string;
   };
 }
 

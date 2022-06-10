@@ -60,7 +60,8 @@ function getFileContent(file: string | File): Promise<ArrayBuffer> {
  * Sorts the keys of an object
  * @param x
  */
-export function sortKeys(x: unknown[]): unknown {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function sortKeys(x: any): unknown {
   if (typeof x !== 'object' || !x) {
     return x;
   }
