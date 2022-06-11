@@ -40,6 +40,11 @@ jobs:
 
       - uses: mansagroup/nrwl-nx-action@v2
         with:
-          targets: install,build,lint,test
-          # targets: install,build
+          targets: install,build,lint
           all: 'true'
+
+      - uses: mansagroup/nrwl-nx-action@v2
+        with:
+          targets: test
+          all: 'true'
+          parallel: false
