@@ -9,7 +9,7 @@
     "name": "client",
     "keyPairs": []
   },
-  "filePath": "../../tmp/testFile.json",
+  "filePath": "./tmp/testFile.json",
   "creator": "http://localhost:3222",
   "network": {
     "gateways": ["http://localhost:4541"],
