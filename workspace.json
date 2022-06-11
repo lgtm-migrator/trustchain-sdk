@@ -13,6 +13,7 @@
     "helpers": "packages/helpers",
     "logger": "packages/logger",
     "observer": "packages/observer",
+    "tests": "packages/tests",
     "vc": "packages/vc",
     "vc-bbs": "packages/vc-bbs",
     "vc-jwt": "packages/vc-jwt",

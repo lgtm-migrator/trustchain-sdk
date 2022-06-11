@@ -1,16 +1,18 @@
-import { DidIdIssuerService } from '../src/lib/did-issuer-service';
-import { DidIdRegister } from '../src/lib/did-id-register';
-import { DidIdResolver } from '../src/lib/id/did-id-resolver';
-import { DidNetworks } from '../src/lib/network/did-networks';
-import { Identifier } from '../src/lib/identity';
-import { VerificationRelationshipType } from '../src/lib/id/did-id';
+import {
+  DidIdIssuerService,
+  DidIdRegister,
+  DidIdResolver,
+  DidNetworks,
+  Identifier,
+  VerificationRelationshipType,
+  DidRoles,
+} from '@trustcerts/did';
 import { LocalConfigService } from '@trustcerts/config-local';
 import { WalletService } from '@trustcerts/wallet';
 import { readFileSync } from 'fs';
 import { RoleManageType } from '@trustcerts/observer';
 import { ConfigService } from '@trustcerts/config';
 import { CryptoService, SignatureType } from '@trustcerts/crypto';
-import { DidRoles } from '../src/lib/did-roles.dto';
 
 describe('test did', () => {
   let config: ConfigService;

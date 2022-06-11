@@ -28,6 +28,7 @@
       "@trustcerts/helpers": ["packages/helpers/src/index.ts"],
       "@trustcerts/logger": ["packages/logger/src/index.ts"],
       "@trustcerts/observer": ["packages/observer/src/index.ts"],
+      "@trustcerts/tests": ["packages/tests/src/index.ts"],
       "@trustcerts/vc": ["packages/vc/src/index.ts"],
       "@trustcerts/vc-bbs": ["packages/vc-bbs/src/index.ts"],
       "@trustcerts/vc-jwt": ["packages/vc-jwt/src/index.ts"],
