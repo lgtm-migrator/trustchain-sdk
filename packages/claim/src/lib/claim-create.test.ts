@@ -1,7 +1,7 @@
 import { randomBytes } from 'crypto';
 import { LocalConfigService } from '@trustcerts/config-local';
 import { WalletService } from '@trustcerts/wallet';
-import { readFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { CompressionType } from '@trustcerts/gateway';
 import { promisify } from 'util';
 import { ConfigService } from '@trustcerts/config';
@@ -21,6 +21,7 @@ import { ClaimValues } from './claim-values';
 import { ClaimIssuerService } from './claim-issuer-service';
 import { ClaimVerifierService } from './claim-verifier-service';
 import { Claim } from './claim';
+import { base58Encode } from '@trustcerts/helpers';
 
 /**
  * Test claim class.
@@ -34,16 +35,110 @@ describe('claim', () => {
   let cryptoService: CryptoService;
 
   const schema = {
-    type: 'object',
-    properties: {
-      name: { type: 'string' },
-      random: { type: 'string' },
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    $ref: '#/definitions/wittekfz',
+    definitions: {
+      wittekfz: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          a: {
+            type: 'string',
+          },
+          b: {
+            type: 'string',
+          },
+          c: {
+            type: 'string',
+          },
+          d: {
+            type: 'string',
+          },
+          e: {
+            type: 'string',
+          },
+          f: {
+            type: 'string',
+          },
+          g: {
+            type: 'string',
+          },
+          h: {
+            type: 'string',
+          },
+          i: {
+            type: 'string',
+          },
+          j: {
+            type: 'string',
+          },
+          k: {
+            type: 'string',
+          },
+          l: {
+            type: 'string',
+          },
+          m: {
+            type: 'string',
+          },
+          n: {
+            type: 'string',
+          },
+          o: {
+            type: 'string',
+          },
+          p: {
+            type: 'string',
+          },
+          q: {
+            type: 'string',
+          },
+          r: {
+            type: 'string',
+          },
+          s: {
+            type: 'string',
+          },
+          t: {
+            type: 'string',
+          },
+          u: {
+            type: 'string',
+          },
+          v: {
+            type: 'string',
+          },
+        },
+        required: [
+          'a',
+          'b',
+          'c',
+          'd',
+          'e',
+          'f',
+          'g',
+          'h',
+          'i',
+          'j',
+          'k',
+          'l',
+          'm',
+          'n',
+          'o',
+          'p',
+          'q',
+          'r',
+          's',
+          't',
+          'u',
+          'v',
+        ],
+        title: 'wittekfz',
+      },
     },
-    required: ['name', 'random'],
-    additionalProperties: false,
   };
 
-  const testValues = JSON.parse(readFileSync('../../values.json', 'utf-8'));
+  const testValues = JSON.parse(readFileSync('./values.json', 'utf-8'));
 
   beforeAll(async () => {
     DidNetworks.add(testValues.network.namespace, testValues.network);
@@ -68,8 +163,12 @@ describe('claim', () => {
   }, 10000);
 
   async function createClaim(val: ClaimValues): Promise<Claim> {
+    // TODO upload the file to an s3 or ipfs node so a huge file must not be encoded
+    // const template = base58Encode(
+    // readFileSync('./packages/claim/src/lib/test.pdf')
+    // );
     const template = '<h1>hello</h1>';
-    const host = 'localhost';
+    const host = 'https://verifier.witte.trustcerts.de';
 
     const clientSchema = new SchemaIssuerService(
       testValues.network.gateways,
@@ -105,16 +204,47 @@ describe('claim', () => {
   }
 
   it('create claim', async () => {
+    // const val = {
+    //   random: randomBytes(16).toString('hex'),
+    //   prename: 'Max',
+    //   surname: 'Mustermann',
+    // };
     const val = {
-      random: randomBytes(16).toString('hex'),
-      name: 'Max Mustermann',
+      a: 'AG-1527-02',
+      b: 'CG00124056',
+      c: '01.01.2022',
+      d: '30.05.2022',
+      e: 'DIALLO MAMADOU YERO',
+      f: 'O00562791',
+      g: 'Dump Truck',
+      h: 'Camions',
+      i: 'CAMION',
+      j: 'Rouge',
+      k: 'Gazoil',
+      l: 'LZZ5EXSD5NW962945',
+      m: 'BENNE',
+      n: 'Usage personnel',
+      o: '2',
+      p: '3',
+      q: '24',
+      r: '6',
+      s: '40000',
+      t: '3',
+      u: '12000',
+      v: '30.05.2027',
     };
     const claim = await createClaim(val);
+    writeFileSync(
+      'created.pdf',
+      await claim.getPdf(readFileSync('./packages/claim/src/lib/test.pdf'))
+    );
     expect(claim.values).toEqual(val);
     await promisify(setTimeout)(2000);
-    const service = new ClaimVerifierService('localhost');
+    const service = new ClaimVerifierService(
+      'https://verifier.witte.trustcerts.de'
+    );
     const claimLoaded = await service.get(
-      claim.getUrl().split('/').slice(1).join('/')
+      claim.getUrl().replace('https://', '').split('/').slice(1).join('/')
     );
     const validation = claimLoaded.getValidation();
     expect(validation!.revoked).toBeUndefined();
@@ -123,7 +253,8 @@ describe('claim', () => {
   it('revoke a claim', async () => {
     const value = {
       random: randomBytes(16).toString('hex'),
-      name: 'Max Mustermann',
+      prename: 'Max',
+      surname: 'Mustermann',
     };
     const claim = await createClaim(value);
     await promisify(setTimeout)(2000);

@@ -5,8 +5,8 @@ export interface ClaimValues {
   /**
    * Random value to make input more dynamic.
    */
-  random: Buffer | string;
-  
+  random?: Buffer | string;
+
   /**
    * Allow for further custom properties.
    */

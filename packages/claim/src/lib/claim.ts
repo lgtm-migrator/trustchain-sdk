@@ -107,8 +107,8 @@ export class Claim {
     });
   }
 
-  public async getPdf() {
-    const doc = await PDFDocument.load(base58Decode(this.template.template));
+  public async getPdf(template: ArrayBuffer) {
+    const doc = await PDFDocument.load(template);
     const form = doc.getForm();
     for (const field of form.getFields()) {
       const key = field.getName();
