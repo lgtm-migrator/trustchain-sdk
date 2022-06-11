@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "configValues": {
+    "invite": {
+      "id": "did:trust:tc:dev:id:XLzBJd69tqEgq7oqqdEsHW",
+      "secret": "client",
+      "endpoint": "https://api.gateway1.dev.trustcerts.de"
+    },
+    "name": "client",
+    "keyPairs": []
+  },
+  "filePath": "./tmp/testFile.json",
+  "cloud": "http://localhost:3223",
+  "creator": "http://localhost:3222",
+  "network": {
+    "gateways": ["https://api.gateway1.dev.trustcerts.de"],
+    "observers": ["https://api.observer1.dev.trustcerts.de"],
+    "namespace": "tc:dev"
+  }
+}
