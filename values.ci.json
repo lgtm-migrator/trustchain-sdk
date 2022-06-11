@@ -4,17 +4,16 @@
     "invite": {
       "id": "did:trust:tc:test:id:XLzBJd69tqEgq7oqqdEsHW",
       "secret": "client",
-      "endpoint": "http://localhost:3520"
+      "endpoint": "http://localhost:4541"
     },
     "name": "client",
     "keyPairs": []
   },
   "filePath": "../../tmp/testFile.json",
-  "cloud": "http://localhost:3223",
   "creator": "http://localhost:3222",
   "network": {
-    "gateways": ["http://localhost:3520"],
-    "observers": ["http://localhost:3530"],
+    "gateways": ["http://localhost:4541"],
+    "observers": ["http://localhost:4561"],
     "namespace": "tc:test"
   }
 }
