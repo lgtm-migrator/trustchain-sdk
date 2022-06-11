@@ -36,6 +36,7 @@ jobs:
           did_id: did:trust:tc:test:id:XLzBJd69tqEgq7oqqdEsHW
           client_name: client
           client_secret: client
+          network_size: normal
 
       - uses: mansagroup/nrwl-nx-action@v2
         with:
