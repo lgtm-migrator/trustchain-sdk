@@ -32,7 +32,8 @@
       "outputs": ["coverage/packages/vc-revocation"],
       "options": {
         "jestConfig": "packages/vc-revocation/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "runInBand": true
       }
     },
     "version": {

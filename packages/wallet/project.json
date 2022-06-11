@@ -32,7 +32,8 @@
       "outputs": ["coverage/packages/wallet"],
       "options": {
         "jestConfig": "packages/wallet/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "runInBand": true
       }
     },
     "version": {

@@ -32,7 +32,8 @@
       "outputs": ["coverage/packages/vc-bbs"],
       "options": {
         "jestConfig": "packages/vc-bbs/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "runInBand": true
       }
     },
     "version": {

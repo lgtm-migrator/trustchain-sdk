@@ -20,7 +20,7 @@ import { WalletService } from '@trustcerts/wallet';
 import { randomBytes } from 'crypto';
 import { existsSync, readFileSync, rmSync } from 'fs';
 
-describe('test signature service', () => {
+describe('test signature verify service', () => {
   let config: ConfigService;
 
   let cryptoService: CryptoService;
@@ -34,7 +34,6 @@ describe('test signature service', () => {
     Identifier.setNetwork(testValues.network.namespace);
     config = new LocalConfigService(testValues.filePath);
     await config.init(testValues.configValues);
-
     const wallet = new WalletService(config);
     await wallet.init();
 
@@ -46,7 +45,9 @@ describe('test signature service', () => {
         SignatureType.Rsa
       )
     )[0];
+    console.timeEnd('s');
     await cryptoService.init(key);
+    console.log('crypto inited');
   }, 10000);
 
   it('verify file', async () => {

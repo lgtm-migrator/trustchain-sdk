@@ -32,7 +32,8 @@
       "outputs": ["coverage/packages/gateway"],
       "options": {
         "jestConfig": "packages/gateway/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "runInBand": true
       }
     },
     "version": {

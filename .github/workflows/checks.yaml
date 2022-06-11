@@ -42,6 +42,7 @@ jobs:
         with:
           targets: install,build,lint
           all: 'true'
+          nxCloud: true
 
       - uses: mansagroup/nrwl-nx-action@v2
         with:

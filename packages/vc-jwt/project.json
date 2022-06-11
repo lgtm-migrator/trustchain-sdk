@@ -32,7 +32,8 @@
       "outputs": ["coverage/packages/vc-jwt"],
       "options": {
         "jestConfig": "packages/vc-jwt/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "runInBand": true
       }
     },
     "version": {

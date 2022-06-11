@@ -32,7 +32,8 @@
       "outputs": ["coverage/packages/config-local"],
       "options": {
         "jestConfig": "packages/config-local/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "runInBand": true
       }
     },
     "version": {

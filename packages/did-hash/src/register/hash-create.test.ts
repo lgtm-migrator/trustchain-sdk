@@ -34,7 +34,6 @@ describe('test signature service', () => {
     Identifier.setNetwork(testValues.network.namespace);
     config = new LocalConfigService(testValues.filePath);
     await config.init(testValues.configValues);
-
     const wallet = new WalletService(config);
     await wallet.init();
 
