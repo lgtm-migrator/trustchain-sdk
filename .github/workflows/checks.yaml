@@ -48,4 +48,4 @@ jobs:
         with:
           targets: test
           all: 'true'
-          parallel: false
+          parallel: 'false'
