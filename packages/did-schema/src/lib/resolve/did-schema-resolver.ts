@@ -3,8 +3,11 @@ import { DidSchemaStructure } from '@trustcerts/observer';
 import { DidSchema } from './did-schema';
 import { SchemaVerifierService } from './schema-verifier-service';
 
-export class DidSchemaResolver extends DidResolver {
-  protected override verifier = new SchemaVerifierService();
+export class DidSchemaResolver extends DidResolver<SchemaVerifierService> {
+  constructor() {
+    super();
+    this.verifier = new SchemaVerifierService();
+  }
 
   public async load(
     id: string,

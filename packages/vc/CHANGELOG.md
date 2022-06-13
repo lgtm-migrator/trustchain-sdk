@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.1.1](https://github.com/trustcerts/trustchain-sdk2/compare/vc-0.1.0...vc-0.1.1) (2022-06-07)
+
+### Dependency Updates
+
+* `logger` updated to version `0.2.0`
+* `helpers` updated to version `0.3.0`
+* `did` updated to version `0.1.1`
+
+
 # [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/vc-0.0.12...vc-0.1.0) (2022-06-06)
 
 ### Dependency Updates

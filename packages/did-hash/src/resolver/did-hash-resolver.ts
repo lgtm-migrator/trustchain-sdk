@@ -1,4 +1,3 @@
-import { DidHashStructure } from '@trustcerts/observer';
 import {
   getHash,
   getHashFromArrayBuffer,
@@ -6,14 +5,18 @@ import {
 } from '@trustcerts/crypto';
 import {
   DidResolver,
-  InitDidManagerConfigValues,
   Identifier,
+  InitDidManagerConfigValues,
 } from '@trustcerts/did';
+import { DidHashStructure } from '@trustcerts/observer';
 import { DidHash } from './did-hash';
 import { DidHashVerifierService } from './hash-verifier-service';
 
-export class DidHashResolver extends DidResolver {
-  protected override verifier = new DidHashVerifierService();
+export class DidHashResolver extends DidResolver<DidHashVerifierService> {
+  constructor() {
+    super();
+    this.verifier = new DidHashVerifierService();
+  }
 
   public async load(
     id: string,

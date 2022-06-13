@@ -3,10 +3,12 @@ import {
   HashDocResponse,
   DidHashStructure,
   DidHashDocument,
+  DidHashStructureAlgorithm,
 } from '@trustcerts/observer';
 
 export class DidHash extends Did {
-  algorithm!: string;
+  // TODO use one type
+  algorithm!: DidHashStructureAlgorithm | string;
   revoked?: string | undefined;
 
   constructor(public override id: string) {
@@ -53,7 +55,7 @@ export class DidHash extends Did {
 
   getChanges(): DidHashStructure {
     const changes = this.getBasicChanges<DidHashStructure>();
-    changes.algorithm = this.algorithm;
+    changes.algorithm = this.algorithm as DidHashStructureAlgorithm;
     changes.revoked = this.revoked;
     return changes;
   }

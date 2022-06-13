@@ -16,7 +16,8 @@
         "tsConfig": "packages/logger/tsconfig.lib.json",
         "project": "packages/logger/package.json",
         "entryFile": "packages/logger/src/index.ts",
-        "format": ["esm", "umd"]
+        "format": ["esm", "umd"],
+        "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
@@ -31,7 +32,8 @@
       "outputs": ["coverage/packages/logger"],
       "options": {
         "jestConfig": "packages/logger/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "runInBand": true
       }
     },
     "version": {

@@ -3,8 +3,11 @@ import { DidTemplateStructure } from '@trustcerts/observer';
 import { DidTemplate } from './did-template';
 import { TemplateVerifierService } from './template-verifier-service';
 
-export class DidTemplateResolver extends DidResolver {
-  protected override verifier = new TemplateVerifierService();
+export class DidTemplateResolver extends DidResolver<TemplateVerifierService> {
+  constructor() {
+    super();
+    this.verifier = new TemplateVerifierService();
+  }
 
   public async load(
     id: string,

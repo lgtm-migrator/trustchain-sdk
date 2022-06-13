@@ -11,5 +11,6 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
+  roots: ['./', '../tests/src/did'],
   coverageDirectory: '../../coverage/packages/did',
 };

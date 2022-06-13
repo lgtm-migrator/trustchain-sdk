@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.2.0](https://github.com/trustcerts/trustchain-sdk2/compare/logger-0.1.0...logger-0.2.0) (2022-06-07)
+
+
+### Bug Fixes
+
+* **logger:** release version 0.1.0 ([308982e](https://github.com/trustcerts/trustchain-sdk2/commit/308982e923cd2a7a4816f9a0048e7048a1514b34))
+
+
+### Features
+
+* set correct repo ([1d13e6a](https://github.com/trustcerts/trustchain-sdk2/commit/1d13e6ac920de9d8e5053b2cc9bde3559821b957))
+
+
+
 # [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/logger-0.0.11...logger-0.1.0) (2022-06-06)
 
 

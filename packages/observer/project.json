@@ -16,7 +16,8 @@
         "tsConfig": "packages/observer/tsconfig.lib.json",
         "project": "packages/observer/package.json",
         "entryFile": "packages/observer/src/index.ts",
-        "format": ["esm", "umd"]
+        "format": ["esm", "umd"],
+        "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
@@ -31,7 +32,8 @@
       "outputs": ["coverage/packages/observer"],
       "options": {
         "jestConfig": "packages/observer/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "runInBand": true
       }
     },
     "version": {

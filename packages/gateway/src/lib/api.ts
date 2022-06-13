@@ -121,7 +121,7 @@ export interface DidHashStructure {
      * @type {string}
      * @memberof DidHashStructure
      */
-    'algorithm'?: string;
+    'algorithm'?: DidHashStructureAlgorithm;
     /**
      * if set to a date it will revoke the hash
      * @type {string}
@@ -129,6 +129,13 @@ export interface DidHashStructure {
      */
     'revoked'?: string;
 }
+
+export const DidHashStructureAlgorithm = {
+    sha256: 'sha256'
+} as const;
+
+export type DidHashStructureAlgorithm = typeof DidHashStructureAlgorithm[keyof typeof DidHashStructureAlgorithm];
+
 /**
  * 
  * @export
@@ -315,6 +322,22 @@ export interface DidResponse {
      */
     'transaction': DidIdTransactionDto;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const DidRoles = {
+    Validator: 'Validator',
+    Gateway: 'Gateway',
+    Observer: 'Observer',
+    Client: 'Client'
+} as const;
+
+export type DidRoles = typeof DidRoles[keyof typeof DidRoles];
+
+
 /**
  * 
  * @export
@@ -625,35 +648,89 @@ export interface PersistedTransactionMetaData {
  */
 export interface PublicKeyJwkDto {
     /**
-     * How the key was meant to be used
-     * @type {Array<string>}
-     * @memberof PublicKeyJwkDto
-     */
-    'key_ops'?: Array<string>;
-    /**
-     * The family of cryptographic algorithms used with the key.
+     * 
      * @type {string}
      * @memberof PublicKeyJwkDto
      */
     'kty'?: string;
     /**
-     * The modulus for the RSA public key.
+     * 
      * @type {string}
      * @memberof PublicKeyJwkDto
      */
     'n'?: string;
     /**
-     * The exponent for the RSA public key.
+     * 
      * @type {string}
      * @memberof PublicKeyJwkDto
      */
     'e'?: string;
     /**
-     * The specific cryptographic algorithm used with the key.
+     * 
      * @type {string}
      * @memberof PublicKeyJwkDto
      */
     'alg'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PublicKeyJwkDto
+     */
+    'crv'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PublicKeyJwkDto
+     */
+    'd'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PublicKeyJwkDto
+     */
+    'dp'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PublicKeyJwkDto
+     */
+    'dq'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PublicKeyJwkDto
+     */
+    'k'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PublicKeyJwkDto
+     */
+    'p'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PublicKeyJwkDto
+     */
+    'q'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PublicKeyJwkDto
+     */
+    'qi'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PublicKeyJwkDto
+     */
+    'x'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PublicKeyJwkDto
+     */
+    'y'?: string;
 }
 /**
  * 
@@ -663,10 +740,10 @@ export interface PublicKeyJwkDto {
 export interface RoleManage {
     /**
      * roles that should be added to the did
-     * @type {Array<RoleManageType>}
+     * @type {Array<DidRoles>}
      * @memberof RoleManage
      */
-    'add'?: Array<RoleManageType>;
+    'add'?: Array<DidRoles>;
     /**
      * 
      * @type {Array<string>}
@@ -674,22 +751,6 @@ export interface RoleManage {
      */
     'remove'?: Array<string>;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const RoleManageType = {
-    Validator: 'Validator',
-    Gateway: 'Gateway',
-    Observer: 'Observer',
-    Client: 'Client'
-} as const;
-
-export type RoleManageType = typeof RoleManageType[keyof typeof RoleManageType];
-
-
 /**
  * 
  * @export

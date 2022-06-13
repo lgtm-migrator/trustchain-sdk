@@ -1,17 +1,17 @@
-import globalAxios from 'axios';
-import { extendContextLoader } from 'jsonld-signatures';
-import { logger } from '@trustcerts/logger';
-import { exists, read, write, base58Encode } from '@trustcerts/helpers';
-import base64url from 'base64url';
 import { DidIdResolver } from '@trustcerts/did';
+import { base58Encode, exists, read, write } from '@trustcerts/helpers';
+import { logger } from '@trustcerts/logger';
+import globalAxios from 'axios';
+import base64url from 'base64url';
+import { extendContextLoader } from 'jsonld-signatures';
 
 export interface LoaderResponse {
   contextUrl: string | null;
-  document: any;
+  document: unknown;
   documentUrl: string;
 }
 export class DocumentLoader {
-  private cache: any;
+  private cache: Map<string, LoaderResponse>;
   private cachePath = './tmp/docLoader.json';
   private MAX_LOADING_TIME = 5000;
 
@@ -51,20 +51,21 @@ export class DocumentLoader {
     this.cache = JSON.parse(read(this.cachePath));
   }
 
-  public resolveDocumentFromCache(url: string): any {
-    if (this.cache[url]) {
+  public resolveDocumentFromCache(url: string): LoaderResponse | undefined {
+    if (this.cache.has(url)) {
       logger.debug('Returned cached ' + url);
-      return this.cache[url];
+      return this.cache.get(url);
     }
+    return undefined;
   }
 
-  public saveDocumentToCache(url: string, doc: any): void {
-    this.cache[url] = doc;
+  public saveDocumentToCache(url: string, doc: LoaderResponse): void {
+    this.cache.set(url, doc);
     write(this.cachePath, JSON.stringify(this.cache, null, 4));
   }
 
   // TODO: is not async, but uses await. Problem?
-  getLoader(): (url: string) => any {
+  getLoader(): (url: string) => unknown {
     const docLoader = async (url: string): Promise<LoaderResponse> => {
       const resolver = new DidIdResolver();
       if (url.startsWith('did:')) {
@@ -82,9 +83,10 @@ export class DocumentLoader {
         // is key? (Can you reference other parts via #?)
         if (url.indexOf('#') !== -1) {
           const did = await resolver.load(url.split('#')[0]);
-          const doc = did.getKey(url) as any;
-
-          if (!doc.publicKeyJwk.x) {
+          const doc = did.getKey(url);
+          // TODO remove this line
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          if (!(doc.publicKeyJwk as any).x) {
             // TODO: implement RSA key? (but not needed yet since documentLoader is only used by BBS library)
             throw new Error(
               `${url} does not contain a Bls12381G2KeyPair: ${doc.publicKeyJwk}`
@@ -94,7 +96,9 @@ export class DocumentLoader {
             contextUrl: null,
             document: {
               publicKeyBase58: base58Encode(
-                base64url.toBuffer(doc.publicKeyJwk.x)
+                // TODO remove
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                base64url.toBuffer((doc.publicKeyJwk as any).x)
               ),
               id: url,
               controller: did,
@@ -131,6 +135,6 @@ export class DocumentLoader {
     };
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    return extendContextLoader(docLoader) as (url: string) => any;
+    return extendContextLoader(docLoader) as (url: string) => unknown;
   }
 }

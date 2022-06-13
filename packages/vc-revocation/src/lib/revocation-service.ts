@@ -1,9 +1,9 @@
-import { read, write } from '@trustcerts/helpers';
 import {
   createCredential,
   createList,
   decodeList,
 } from '@transmute/vc-status-rl-2020';
+import { read, write } from '@trustcerts/helpers';
 import {
   ICredentialStatus,
   IRevocationListConfig,

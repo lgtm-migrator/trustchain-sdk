@@ -1,0 +1,14 @@
+{
+  "root": "packages/tests",
+  "sourceRoot": "packages/tests/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/tests/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

@@ -16,7 +16,8 @@
         "tsConfig": "packages/claim/tsconfig.lib.json",
         "project": "packages/claim/package.json",
         "entryFile": "packages/claim/src/index.ts",
-        "format": ["esm", "umd"]
+        "format": ["esm", "umd"],
+        "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
@@ -31,7 +32,8 @@
       "outputs": ["coverage/packages/claim"],
       "options": {
         "jestConfig": "packages/claim/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "runInBand": true
       }
     },
     "version": {

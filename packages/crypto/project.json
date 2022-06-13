@@ -16,7 +16,8 @@
         "tsConfig": "packages/crypto/tsconfig.lib.json",
         "project": "packages/crypto/package.json",
         "entryFile": "packages/crypto/src/index.ts",
-        "format": ["esm", "umd"]
+        "format": ["esm", "umd"],
+        "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
@@ -31,7 +32,8 @@
       "outputs": ["coverage/packages/crypto"],
       "options": {
         "jestConfig": "packages/crypto/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "runInBand": true
       }
     },
     "version": {

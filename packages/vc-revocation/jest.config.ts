@@ -10,6 +10,7 @@ export default {
   transform: {
     '^.+\\.[tj]s$': 'ts-jest',
   },
+  roots: ['./', '../tests/src/vc-revocation'],
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/packages/vc-revocation',
 };

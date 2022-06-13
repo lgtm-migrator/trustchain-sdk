@@ -40,7 +40,7 @@ export class DidNetworks {
         observers: [],
       };
     }
-    values.gateways.forEach(gateway => {
+    values.gateways.forEach((gateway) => {
       if (
         this.nameSpaceNetworks[network][subNetwork].gateways.indexOf(
           gateway
@@ -49,7 +49,7 @@ export class DidNetworks {
         this.nameSpaceNetworks[network][subNetwork].gateways.push(gateway);
       }
     });
-    values.observers.forEach(observer => {
+    values.observers.forEach((observer) => {
       if (
         this.nameSpaceNetworks[network][subNetwork].observers.indexOf(
           observer

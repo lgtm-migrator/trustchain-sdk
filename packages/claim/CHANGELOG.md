@@ -2,6 +2,25 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.1.1](https://github.com/trustcerts/trustchain-sdk2/compare/claim-0.1.0...claim-0.1.1) (2022-06-07)
+
+### Dependency Updates
+
+* `did-hash` updated to version `0.1.1`
+* `did-template` updated to version `0.1.1`
+* `did-schema` updated to version `0.1.1`
+* `did` updated to version `0.1.1`
+* `observer` updated to version `0.3.0`
+* `crypto` updated to version `0.2.0`
+* `helpers` updated to version `0.3.0`
+
+### Bug Fixes
+
+* add pdf ([1e9a9bf](https://github.com/trustcerts/trustchain-sdk2/commit/1e9a9bf1165e282470c6ba3ea089a209e51b0ad6))
+* remove github npm reg ([4bc01e7](https://github.com/trustcerts/trustchain-sdk2/commit/4bc01e7fb0e0702aa2490ba0b6d8bcfc0ac1a671))
+
+
+
 # [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/claim-0.0.14...claim-0.1.0) (2022-06-06)
 
 ### Dependency Updates

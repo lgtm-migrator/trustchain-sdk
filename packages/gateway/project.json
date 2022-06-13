@@ -16,7 +16,8 @@
         "tsConfig": "packages/gateway/tsconfig.lib.json",
         "project": "packages/gateway/package.json",
         "entryFile": "packages/gateway/src/index.ts",
-        "format": ["esm", "umd"]
+        "format": ["esm", "umd"],
+        "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
@@ -31,7 +32,8 @@
       "outputs": ["coverage/packages/gateway"],
       "options": {
         "jestConfig": "packages/gateway/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "runInBand": true
       }
     },
     "version": {

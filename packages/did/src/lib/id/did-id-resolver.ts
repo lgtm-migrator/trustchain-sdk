@@ -1,12 +1,15 @@
+import { DidIdStructure } from '@trustcerts/gateway';
+import { DidStructure } from '@trustcerts/observer';
+import { DidResolver } from '../did-resolver';
 import { InitDidManagerConfigValues } from '../InitDidManagerConfigValues';
 import { DidId } from './did-id';
-import { DidResolver } from '../did-resolver';
-import { DidStructure } from '@trustcerts/observer';
-import { DidIdStructure } from '@trustcerts/gateway';
 import { DidIdVerifierService } from './did-id-verifier-service';
 
-export class DidIdResolver extends DidResolver {
-  protected override verifier = new DidIdVerifierService();
+export class DidIdResolver extends DidResolver<DidIdVerifierService> {
+  constructor() {
+    super();
+    this.verifier = new DidIdVerifierService();
+  }
 
   public async load(
     id: string,

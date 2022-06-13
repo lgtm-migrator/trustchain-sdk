@@ -16,7 +16,8 @@
         "tsConfig": "packages/config-local/tsconfig.lib.json",
         "project": "packages/config-local/package.json",
         "entryFile": "packages/config-local/src/index.ts",
-        "format": ["esm", "umd"]
+        "format": ["esm", "umd"],
+        "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
@@ -31,7 +32,8 @@
       "outputs": ["coverage/packages/config-local"],
       "options": {
         "jestConfig": "packages/config-local/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "runInBand": true
       }
     },
     "version": {

@@ -2,6 +2,23 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [0.2.0](https://github.com/trustcerts/trustchain-sdk2/compare/config-0.1.0...config-0.2.0) (2022-06-07)
+
+### Dependency Updates
+
+* `crypto` updated to version `0.2.0`
+
+### Bug Fixes
+
+* **config:** release version 0.1.0 ([746e12e](https://github.com/trustcerts/trustchain-sdk2/commit/746e12e3a0caed182b385f96f804f42ecb97ce10))
+
+
+### Features
+
+* set correct repo ([1d13e6a](https://github.com/trustcerts/trustchain-sdk2/commit/1d13e6ac920de9d8e5053b2cc9bde3559821b957))
+
+
+
 # [0.1.0](https://github.com/trustcerts/trustchain-sdk/compare/config-0.0.12...config-0.1.0) (2022-06-06)
 
 ### Dependency Updates

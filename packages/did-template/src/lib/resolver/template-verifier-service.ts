@@ -6,11 +6,11 @@ import {
 } from '@trustcerts/did';
 import { logger } from '@trustcerts/logger';
 import {
-  TemplateObserverApi,
-  TemplateDocResponse,
-  DidTemplateTransaction,
   AxiosError,
   Configuration,
+  DidTemplateTransaction,
+  TemplateDocResponse,
+  TemplateObserverApi,
 } from '@trustcerts/observer';
 
 export class TemplateVerifierService extends VerifierService {
@@ -39,31 +39,24 @@ export class TemplateVerifierService extends VerifierService {
     config: DidManagerConfigValues<DidTemplateTransaction>
   ): Promise<TemplateDocResponse> {
     this.setEndpoints(id);
-    return new Promise(async (resolve, reject) => {
-      for (const api of this.apis) {
-        await api
-          .observerTemplateControllerGetDoc(id, config.time, undefined, {
-            timeout: this.timeout,
-          })
-          .then(
-            async (res) =>
-              await this.validateDoc(res.data, config).then(
-                () => resolve(res.data),
-                (err) => logger.warn(err)
-              ),
-            (err: AxiosError) => {
-              logger.log(err);
-              // TODO evaluate the error
-              // got a response, validate it
-              if (err.response) {
-              } else {
-                // got no response maybe a timeout
-              }
-            }
-          );
-      }
-      reject('no did doc found');
-    });
+    for (const api of this.apis) {
+      const res = await api
+        .observerTemplateControllerGetDoc(id, config.time, undefined, {
+          timeout: this.timeout,
+        })
+        .then(
+          async (res) =>
+            await this.validateDoc(res.data, config).then(
+              () => res.data,
+              (err) => logger.warn(err)
+            ),
+          (err: AxiosError) => {
+            logger.log(err);
+          }
+        );
+      if (res) return Promise.resolve(res);
+    }
+    return Promise.reject('no did doc found');
   }
 
   /**
@@ -80,23 +73,22 @@ export class TemplateVerifierService extends VerifierService {
     time: string
   ): Promise<DidTemplateTransaction[]> {
     this.setEndpoints(id);
-    return new Promise(async (resolve, reject) => {
-      for (const api of this.apis) {
-        await api
-          .observerTemplateControllerGetTransactions(id, time, undefined, {
-            timeout: this.timeout,
-          })
-          .then(async (res) => {
-            if (validate) {
-              for (const transaction of res.data) {
-                await this.validateTransaction(transaction);
-              }
-              resolve(res.data);
+    for (const api of this.apis) {
+      const res = await api
+        .observerTemplateControllerGetTransactions(id, time, undefined, {
+          timeout: this.timeout,
+        })
+        .then(async (res) => {
+          if (validate) {
+            for (const transaction of res.data) {
+              await this.validateTransaction(transaction);
             }
-          })
-          .catch(logger.warn);
-      }
-      reject('no transactions founds');
-    });
+          }
+          return res.data;
+        })
+        .catch(logger.warn);
+      if (res) return Promise.resolve(res);
+    }
+    return Promise.reject('no transactions founds');
   }
 }

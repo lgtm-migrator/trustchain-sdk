@@ -1,27 +1,28 @@
-// import { BbsVerifiableCredentialIssuerService } from './bbs-verifiable-credential-issuer-service';
-
-// import { WalletService } from '@trustcerts/wallet';
-// import { LocalConfigService } from '@trustcerts/config-local';
-
-// import { readFileSync } from 'fs';
 // import { ConfigService } from '@trustcerts/config';
-// import { DecryptedKeyPair, CryptoService } from '@trustcerts/crypto';
+// import { LocalConfigService } from '@trustcerts/config-local';
+// import {
+//   CryptoService,
+//   DecryptedKeyPair,
+//   SignatureType,
+// } from '@trustcerts/crypto';
 // import {
 //   DidNetworks,
 //   Identifier,
 //   VerificationRelationshipType,
 // } from '@trustcerts/did';
 // import { logger } from '@trustcerts/logger';
-// import { SignatureType } from '@trustcerts/crypto';
 // import { VerifiableCredentialBBS } from '@trustcerts/vc';
+// import { BbsVerifiableCredentialIssuerService } from '@trustcerts/vc-bbs';
+// import { WalletService } from '@trustcerts/wallet';
+// import { readFileSync } from 'fs';
 
 /**
  * Test vc class.
  */
-describe('vc', () => {
-  it("should be edited" , ()=> {
-    expect(true).toBeTruthy()
-})
+describe('vc-bbs', () => {
+  it('should be edited', () => {
+    expect(true).toBeTruthy();
+  });
   // let config: ConfigService;
 
   // let bbsAssertionKey: DecryptedKeyPair;
@@ -32,7 +33,7 @@ describe('vc', () => {
   // let walletService: WalletService;
 
   // beforeAll(async () => {
-  //   const testValues = JSON.parse(readFileSync('../../values.json', 'utf-8'));
+  //   const testValues = JSON.parse(readFileSync('./values.json', 'utf-8'));
 
   //   DidNetworks.add(testValues.network.namespace, testValues.network);
   //   Identifier.setNetwork(testValues.network.namespace);
@@ -73,6 +74,7 @@ describe('vc', () => {
   //  * @returns A BBS+ signed verifiable credential with example data
   //  */
   // async function createVcBbs(): Promise<VerifiableCredentialBBS> {
+  //   if (!config.config.invite) throw new Error();
   //   const bbsVcIssuerService = new BbsVerifiableCredentialIssuerService();
 
   //   return await bbsVcIssuerService.createBBSVerifiableCredential(
@@ -86,7 +88,7 @@ describe('vc', () => {
   //         familyName: 'Mustermann',
   //       },
   //       id: 'unique_id',
-  //       issuer: config.config.invite!.id,
+  //       issuer: config.config.invite.id,
   //       nonce: 'randomVC',
   //     },
   //     bbsAssertionKey

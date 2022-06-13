@@ -55,6 +55,7 @@ export class DidIdRegister {
         if (err.response) {
           throw Error(JSON.stringify(err.response.data));
         } else {
+          console.log(err);
           throw Error('error');
         }
       });
