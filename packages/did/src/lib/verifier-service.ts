@@ -25,7 +25,7 @@ export abstract class VerifierService {
       // TODO instead of self certified use the genesis block to build the chain of trust
     } else {
       if (document.metaData) {
-        config.time = document.metaData.updated ?? document.metaData.created;
+        config.time = document.metaData.imported ?? document.metaData.created;
       }
       const did = await new DidIdResolver().load(issuer, config);
       const key = did.getKey(issuer).publicKeyJwk;
