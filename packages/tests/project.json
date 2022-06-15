@@ -1,12 +1,16 @@
 {
-  "root": "packages/tests",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/tests/src",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["packages/tests/**/*.ts"]
+        "lintFilePatterns": [
+          "packages/tests/**/*.ts"
+        ]
       }
     }
   },

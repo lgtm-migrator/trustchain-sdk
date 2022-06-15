@@ -1,4 +1,5 @@
 {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/vc-jwt/src",
   "targets": {
     "install": {
@@ -9,27 +10,38 @@
     },
     "build": {
       "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/packages/vc-jwt",
         "main": "packages/vc-jwt/src/index.ts",
         "tsConfig": "packages/vc-jwt/tsconfig.lib.json",
         "project": "packages/vc-jwt/package.json",
         "entryFile": "packages/vc-jwt/src/index.ts",
-        "format": ["esm", "umd"],
+        "format": [
+          "esm",
+          "umd"
+        ],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["packages/vc-jwt/**/*.ts"]
+        "lintFilePatterns": [
+          "packages/vc-jwt/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/vc-jwt"],
+      "outputs": [
+        "coverage/packages/vc-jwt"
+      ],
       "options": {
         "jestConfig": "packages/vc-jwt/jest.config.ts",
         "passWithNoTests": true,
@@ -42,7 +54,9 @@
         "preset": "angular",
         "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": ["vc-jwt:deploy"]
+        "postTargets": [
+          "vc-jwt:deploy"
+        ]
       }
     },
     "deploy": {
