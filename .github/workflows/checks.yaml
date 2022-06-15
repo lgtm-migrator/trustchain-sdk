@@ -49,3 +49,4 @@ jobs:
           targets: test
           all: 'true'
           parallel: 'false'
+          maxParallel: 1
