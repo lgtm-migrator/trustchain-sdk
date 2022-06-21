@@ -14,6 +14,7 @@ import {
 } from '@trustcerts/crypto';
 import { exists, read, write, remove } from '@trustcerts/helpers';
 import { exportKey } from './key';
+import { signInput } from './sign';
 
 describe('test crypto', () => {
   let cryptoService: CryptoService;
@@ -56,7 +57,7 @@ describe('test crypto', () => {
   const hashContent = 'Content to be hashed';
   const hashContentHash = '9ZmsGxYnoHgZsaHhGeusbhkR6YjMeYRk2HN2NZUM28DX';
 
-  it('test init', async () => {
+  it('test cryptoService.init', async () => {
     cryptoService = new CryptoService();
     await cryptoService.init(testKey);
 
@@ -65,7 +66,7 @@ describe('test crypto', () => {
     expect(cryptoService.fingerPrint).toEqual(testKey.identifier);
   }, 7000);
 
-  describe('test crypto', () => {
+  describe('test crypto package', () => {
     beforeAll(async () => {
       // const testKey = await generateKeyPair('testKey', SignatureType.Rsa);
       // console.log(JSON.stringify(testKey, null, 4));
@@ -179,42 +180,52 @@ describe('test crypto', () => {
       }, 7000);
     });
 
-    it('test verify', async () => {
-      const key = await importKey(await cryptoService.getPublicKey(), 'jwk', [
-        'verify',
-      ]);
+    describe('test sign.ts', () => {
+      it('test verifySignature', async () => {
+        const key = await importKey(await cryptoService.getPublicKey(), 'jwk', [
+          'verify',
+        ]);
 
-      // Expect content to succeed verification
-      const verificationResult = await verifySignature(
-        content,
-        contentSignature,
-        key
-      );
-      expect(verificationResult).toBe(true);
+        // Expect content to succeed verification
+        const verificationResult = await verifySignature(
+          content,
+          contentSignature,
+          key
+        );
+        expect(verificationResult).toBe(true);
 
-      // Expect different content to fail verification
-      const failedContentVerificationResult = await verifySignature(
-        differentContent,
-        contentSignature,
-        key
-      );
-      expect(failedContentVerificationResult).toBe(false);
+        // Expect different content to fail verification
+        const failedContentVerificationResult = await verifySignature(
+          differentContent,
+          contentSignature,
+          key
+        );
+        expect(failedContentVerificationResult).toBe(false);
 
-      // Expect different signature to fail verification
-      const failedSignatureVerificationResult = await verifySignature(
-        content,
-        differentContentSignature,
-        key
-      );
-      expect(failedSignatureVerificationResult).toBe(false);
+        // Expect different signature to fail verification
+        const failedSignatureVerificationResult = await verifySignature(
+          content,
+          differentContentSignature,
+          key
+        );
+        expect(failedSignatureVerificationResult).toBe(false);
 
-      // Expect different content & different signature to succeed verification
-      const differentVerificationResult = await verifySignature(
-        differentContent,
-        differentContentSignature,
-        key
-      );
-      expect(differentVerificationResult).toBe(true);
-    }, 7000);
+        // Expect different content & different signature to succeed verification
+        const differentVerificationResult = await verifySignature(
+          differentContent,
+          differentContentSignature,
+          key
+        );
+        expect(differentVerificationResult).toBe(true);
+      }, 7000);
+
+      it('test signInput', async () => {
+        const contentSigned = await signInput(
+          content,
+          cryptoService.keyPair.privateKey
+        );
+        expect(contentSigned).toEqual(contentSignature);
+      }, 7000);
+    });
   });
 });
