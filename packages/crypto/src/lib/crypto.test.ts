@@ -5,9 +5,15 @@ import {
   importKey,
   getHash,
   getHashFromFile,
+  getHashFromArrayBuffer,
+  generateCryptoKeyPair,
   generateKeyPair,
+  getFingerPrint,
+  sortKeys,
+  getBitsFromPassphrase,
 } from '@trustcerts/crypto';
 import { exists, read, write, remove } from '@trustcerts/helpers';
+import { exportKey } from './key';
 
 describe('test crypto', () => {
   let cryptoService: CryptoService;
@@ -38,6 +44,8 @@ describe('test crypto', () => {
       alg: 'RS256',
     },
   };
+  const testKeyFingerprint = '8aDvMauyyNgUz8TySdYc7xMUQromMHsRjZRRVSbt64AX';
+
   const content = 'Content to be signed';
   const differentContent = 'Different content';
   const contentSignature =
@@ -48,83 +56,165 @@ describe('test crypto', () => {
   const hashContent = 'Content to be hashed';
   const hashContentHash = '9ZmsGxYnoHgZsaHhGeusbhkR6YjMeYRk2HN2NZUM28DX';
 
-  beforeAll(async () => {
-    // const testKey = await generateKeyPair('testKey', SignatureType.Rsa);
-    // console.log(JSON.stringify(testKey, null, 4));
-
+  it('test init', async () => {
     cryptoService = new CryptoService();
     await cryptoService.init(testKey);
-  }, 10000);
 
-  it('test sign', async () => {
-    const contentSigned = await cryptoService.sign(content);
-    expect(contentSigned).toEqual(contentSignature);
-
-    const differentContentSigned = await cryptoService.sign(differentContent);
-    expect(differentContentSigned).toEqual(differentContentSignature);
+    expect(cryptoService.keyPair.privateKey).toBeDefined();
+    expect(cryptoService.keyPair.publicKey).toBeDefined();
+    expect(cryptoService.fingerPrint).toEqual(testKey.identifier);
   }, 7000);
 
-  it('test verify', async () => {
-    const key = await importKey(await cryptoService.getPublicKey(), 'jwk', [
-      'verify',
-    ]);
+  describe('test crypto', () => {
+    beforeAll(async () => {
+      // const testKey = await generateKeyPair('testKey', SignatureType.Rsa);
+      // console.log(JSON.stringify(testKey, null, 4));
 
-    // Expect content to succeed verification
-    const verificationResult = await verifySignature(
-      content,
-      contentSignature,
-      key
-    );
-    expect(verificationResult).toBe(true);
+      cryptoService = new CryptoService();
+      await cryptoService.init(testKey);
+    }, 10000);
 
-    // Expect different content to fail verification
-    const failedContentVerificationResult = await verifySignature(
-      differentContent,
-      contentSignature,
-      key
-    );
-    expect(failedContentVerificationResult).toBe(false);
+    describe('test crypto-service.ts', () => {
+      it('test sign', async () => {
+        const contentSigned = await cryptoService.sign(content);
+        expect(contentSigned).toEqual(contentSignature);
 
-    // Expect different signature to fail verification
-    const failedSignatureVerificationResult = await verifySignature(
-      content,
-      differentContentSignature,
-      key
-    );
-    expect(failedSignatureVerificationResult).toBe(false);
+        const differentContentSigned = await cryptoService.sign(
+          differentContent
+        );
+        expect(differentContentSigned).toEqual(differentContentSignature);
+      }, 7000);
 
-    // Expect different content & different signature to succeed verification
-    const differentVerificationResult = await verifySignature(
-      differentContent,
-      differentContentSignature,
-      key
-    );
-    expect(differentVerificationResult).toBe(true);
-  }, 7000);
+      it('test getPublicKey', async () => {
+        expect(await cryptoService.getPublicKey()).toEqual(testKey.publicKey);
+      }, 7000);
+    });
 
-  it('test get hash', async () => {
-    const hashed = await getHash(hashContent);
+    describe('test hash.ts', () => {
+      it('test get hash', async () => {
+        const hashed = await getHash(hashContent);
 
-    expect(hashed).toEqual(hashContentHash);
-  }, 7000);
+        expect(hashed).toEqual(hashContentHash);
+      }, 7000);
 
-  it('test get hash from file', async () => {
-    const temporaryFilePath = './tmp/cryptoTestFile';
-    write(temporaryFilePath, hashContent);
-    const hashed = await getHashFromFile(temporaryFilePath);
+      it('test get hash from file', async () => {
+        const temporaryFilePath = './tmp/cryptoTestFile';
+        write(temporaryFilePath, hashContent);
+        const hashed = await getHashFromFile(temporaryFilePath);
 
-    expect(hashed).toEqual(hashContentHash);
+        expect(hashed).toEqual(hashContentHash);
 
-    if (exists(temporaryFilePath)) {
-      remove(temporaryFilePath);
-    }
-  }, 7000);
+        if (exists(temporaryFilePath)) {
+          remove(temporaryFilePath);
+        }
+      }, 7000);
 
-  it('test generateKeyPair', async () => {
-    for (const signatureType of Object.values(SignatureType)) {
-      const testKey = await generateKeyPair('testKey', signatureType);
-      expect(testKey.privateKey).toBeDefined();
-      expect(testKey.publicKey).toBeDefined();
-    }
-  }, 7000);
+      it('test get hash from array buffer', async () => {
+        const enc = new TextEncoder();
+        const buffer = enc.encode(hashContent).buffer;
+
+        const hashed = await getHashFromArrayBuffer(buffer);
+
+        expect(hashed).toEqual(hashContentHash);
+      }, 7000);
+
+      it('test sortKeys', async () => {
+        // TODO: insert more edge cases / more complicated example?
+        const unsortedJSON = '{"Z":"last","A":"first"}';
+        const sortedJSON = '{"A":"first","Z":"last"}';
+
+        const testObj = JSON.parse(unsortedJSON);
+        expect(JSON.stringify(testObj)).not.toEqual(sortedJSON);
+        expect(JSON.stringify(testObj)).toEqual(unsortedJSON);
+
+        const sortedObj = sortKeys(testObj);
+        expect(JSON.stringify(sortedObj)).not.toEqual(unsortedJSON);
+        expect(JSON.stringify(sortedObj)).toEqual(sortedJSON);
+      }, 7000);
+    });
+    describe('test key.ts', () => {
+      it('test importKey', async () => {
+        const key = await importKey(testKey.publicKey, 'jwk', ['verify']);
+        expect(key).toBeDefined();
+      }, 7000);
+
+      it('test generateCryptoKeyPair', async () => {
+        const cryptoKeyPair = await generateCryptoKeyPair();
+        expect(cryptoKeyPair.privateKey).toBeDefined();
+        expect(cryptoKeyPair.publicKey).toBeDefined();
+      }, 7000);
+
+      it('test generateKeyPair', async () => {
+        for (const signatureType of Object.values(SignatureType)) {
+          const testKey = await generateKeyPair('testKey', signatureType);
+          expect(testKey.privateKey).toBeDefined();
+          expect(testKey.publicKey).toBeDefined();
+        }
+      }, 7000);
+
+      it('test getBitsFromPassphrase', async () => {
+        const passphrase = 'passphrase';
+        const salt = 'salt';
+        const passphraseBits = new Uint8Array([
+          199, 108, 22, 203, 167, 110, 102, 26, 50, 180, 118, 116, 52, 92, 32,
+          167, 11, 78, 255, 1, 163, 167, 19, 214, 16, 167, 88, 249, 242, 227,
+          59, 97,
+        ]);
+        const bits = await getBitsFromPassphrase(passphrase, salt);
+
+        expect(new Uint8Array(bits)).toEqual(passphraseBits);
+      }, 7000);
+
+      it('test getFingerPrint', async () => {
+        const fingerPrint = await getFingerPrint(
+          await cryptoService.getPublicKey()
+        );
+        console.log(fingerPrint);
+        expect(fingerPrint).toEqual(testKeyFingerprint);
+      }, 7000);
+
+      it('test exportKey', async () => {
+        const exportedKey = await exportKey(cryptoService.keyPair.publicKey);
+        expect(exportedKey).toEqual(testKey.publicKey);
+      }, 7000);
+    });
+
+    it('test verify', async () => {
+      const key = await importKey(await cryptoService.getPublicKey(), 'jwk', [
+        'verify',
+      ]);
+
+      // Expect content to succeed verification
+      const verificationResult = await verifySignature(
+        content,
+        contentSignature,
+        key
+      );
+      expect(verificationResult).toBe(true);
+
+      // Expect different content to fail verification
+      const failedContentVerificationResult = await verifySignature(
+        differentContent,
+        contentSignature,
+        key
+      );
+      expect(failedContentVerificationResult).toBe(false);
+
+      // Expect different signature to fail verification
+      const failedSignatureVerificationResult = await verifySignature(
+        content,
+        differentContentSignature,
+        key
+      );
+      expect(failedSignatureVerificationResult).toBe(false);
+
+      // Expect different content & different signature to succeed verification
+      const differentVerificationResult = await verifySignature(
+        differentContent,
+        differentContentSignature,
+        key
+      );
+      expect(differentVerificationResult).toBe(true);
+    }, 7000);
+  });
 });
