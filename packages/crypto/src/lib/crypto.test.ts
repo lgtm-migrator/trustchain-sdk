@@ -170,7 +170,7 @@ describe('test crypto', () => {
         const fingerPrint = await getFingerPrint(
           await cryptoService.getPublicKey()
         );
-        console.log(fingerPrint);
+
         expect(fingerPrint).toEqual(testKeyFingerprint);
       }, 7000);
 
