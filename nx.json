@@ -7,6 +7,11 @@
   "cli": {
     "defaultCollection": "@nrwl/js"
   },
+  "pluginsConfig": {
+    "@nrwl/js": {
+      "analyzeSourceFiles": true
+    }
+  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
@@ -42,6 +47,15 @@
     "@nrwl/js:library": {
       "buildable": true,
       "compiler": "tsc"
+    }
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "version": {
+      "dependsOn": ["^build", "^version"]
+    },
+    "build": {
+      "dependsOn": ["^install", "^build"]
     }
   }
 }

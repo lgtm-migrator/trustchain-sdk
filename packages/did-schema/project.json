@@ -1,4 +1,5 @@
 {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/did-schema/src",
   "targets": {
     "install": {
@@ -9,27 +10,38 @@
     },
     "build": {
       "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/packages/did-schema",
         "main": "packages/did-schema/src/index.ts",
         "tsConfig": "packages/did-schema/tsconfig.lib.json",
         "project": "packages/did-schema/package.json",
         "entryFile": "packages/did-schema/src/index.ts",
-        "format": ["esm", "umd"],
+        "format": [
+          "esm",
+          "umd"
+        ],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["packages/did-schema/**/*.ts"]
+        "lintFilePatterns": [
+          "packages/did-schema/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/did-schema"],
+      "outputs": [
+        "coverage/packages/did-schema"
+      ],
       "options": {
         "jestConfig": "packages/did-schema/jest.config.ts",
         "passWithNoTests": true,
@@ -42,7 +54,9 @@
         "preset": "angular",
         "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": ["did-schema:deploy"]
+        "postTargets": [
+          "did-schema:deploy"
+        ]
       }
     },
     "deploy": {

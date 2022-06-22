@@ -1,4 +1,5 @@
 {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/gateway/src",
   "targets": {
     "install": {
@@ -9,27 +10,38 @@
     },
     "build": {
       "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/packages/gateway",
         "main": "packages/gateway/src/index.ts",
         "tsConfig": "packages/gateway/tsconfig.lib.json",
         "project": "packages/gateway/package.json",
         "entryFile": "packages/gateway/src/index.ts",
-        "format": ["esm", "umd"],
+        "format": [
+          "esm",
+          "umd"
+        ],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["packages/gateway/**/*.ts"]
+        "lintFilePatterns": [
+          "packages/gateway/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/gateway"],
+      "outputs": [
+        "coverage/packages/gateway"
+      ],
       "options": {
         "jestConfig": "packages/gateway/jest.config.ts",
         "passWithNoTests": true,
@@ -42,7 +54,9 @@
         "preset": "angular",
         "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": ["gateway:deploy"]
+        "postTargets": [
+          "gateway:deploy"
+        ]
       }
     },
     "deploy": {

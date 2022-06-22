@@ -1,4 +1,5 @@
 {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/wallet/src",
   "targets": {
     "install": {
@@ -9,27 +10,38 @@
     },
     "build": {
       "executor": "@nrwl/web:rollup",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/packages/wallet",
         "main": "packages/wallet/src/index.ts",
         "tsConfig": "packages/wallet/tsconfig.lib.json",
         "project": "packages/wallet/package.json",
         "entryFile": "packages/wallet/src/index.ts",
-        "format": ["esm", "umd"],
+        "format": [
+          "esm",
+          "umd"
+        ],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["packages/wallet/**/*.ts"]
+        "lintFilePatterns": [
+          "packages/wallet/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/wallet"],
+      "outputs": [
+        "coverage/packages/wallet"
+      ],
       "options": {
         "jestConfig": "packages/wallet/jest.config.ts",
         "passWithNoTests": true,
@@ -42,7 +54,9 @@
         "preset": "angular",
         "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": ["wallet:deploy"]
+        "postTargets": [
+          "wallet:deploy"
+        ]
       }
     },
     "deploy": {
