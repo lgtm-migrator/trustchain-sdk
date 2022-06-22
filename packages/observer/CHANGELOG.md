@@ -2,6 +2,16 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [11.0.5](https://github.com/trustcerts/trustchain-sdk/compare/observer-11.0.4...observer-11.0.5) (2022-06-22)
+
+
+### Bug Fixes
+
+* add import flag ([f4fb56b](https://github.com/trustcerts/trustchain-sdk/commit/f4fb56b09edc6285df928a5a88ee6e7eaaaee558))
+* update nx ([39451f4](https://github.com/trustcerts/trustchain-sdk/commit/39451f49a7522c82b731e1f4dff124847c95e911))
+
+
+
 # [0.3.0](https://github.com/trustcerts/trustchain-sdk2/compare/observer-0.2.0...observer-0.3.0) (2022-06-07)
 
 
