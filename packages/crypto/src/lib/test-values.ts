@@ -1,4 +1,4 @@
-import { defaultCryptoKeyService } from '@trustcerts/crypto';
+import { defaultCryptoKeyService } from '..';
 import { DecryptedKeyPair } from './decrypted-key-pair';
 
 export const testKey: DecryptedKeyPair = {
