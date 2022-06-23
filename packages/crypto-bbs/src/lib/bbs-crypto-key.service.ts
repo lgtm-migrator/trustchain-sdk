@@ -23,7 +23,8 @@ export class BbsCryptoKeyService extends CryptoKeyService {
 
   async getFingerPrint(key: JsonWebKey | CryptoKey): Promise<string> {
     const jwk = await this.getJwk(key);
-    if (await !this.isCorrectKeyType(jwk)) throw new Error('key not supported');
+    if (!(await this.isCorrectKeyType(jwk)))
+      throw new Error('key not supported');
     const values = {
       crv: jwk.crv,
       kty: jwk.kty,
