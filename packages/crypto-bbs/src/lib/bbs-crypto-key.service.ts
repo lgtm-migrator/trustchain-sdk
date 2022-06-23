@@ -6,7 +6,6 @@ import {
   CryptoKeyService,
 } from '@trustcerts/crypto';
 import { base58Encode } from '@trustcerts/helpers';
-import { timingSafeEqual } from 'crypto';
 
 export class BbsCryptoKeyService extends CryptoKeyService {
   keyType = 'BBS';

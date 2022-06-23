@@ -10,4 +10,4 @@ export * from './lib/crypto-key.service';
 export * from './lib/ec-crypto-key.service';
 export * from './lib/rsa-crypto-key.service';
 
-export let defaultCryptoKeyService = new RSACryptoKeyService();
+export const defaultCryptoKeyService = new RSACryptoKeyService();
