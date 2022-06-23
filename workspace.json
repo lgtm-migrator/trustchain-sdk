@@ -5,6 +5,7 @@
     "config": "packages/config",
     "config-local": "packages/config-local",
     "crypto": "packages/crypto",
+    "crypto-bbs": "packages/crypto-bbs",
     "did": "packages/did",
     "did-hash": "packages/did-hash",
     "did-schema": "packages/did-schema",

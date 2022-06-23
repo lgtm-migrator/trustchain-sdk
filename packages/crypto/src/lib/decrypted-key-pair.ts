@@ -1,5 +1,3 @@
-import { SignatureType } from './signature-type';
-
 export class DecryptedKeyPair {
   privateKey!: JsonWebKey;
 
@@ -10,5 +8,6 @@ export class DecryptedKeyPair {
    */
   identifier!: string;
 
-  signatureType!: SignatureType;
+  // TODO check if this param is required since the keytype is defined in the publickey
+  keyType!: string;
 }

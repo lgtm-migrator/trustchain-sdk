@@ -61,7 +61,7 @@ describe('vc-bbs', () => {
   //   const rsaKey = (
   //     await walletService.findOrCreate(
   //       VerificationRelationshipType.assertionMethod,
-  //       SignatureType.Rsa
+  //       defaultCryptoKeyService.keyType
   //     )
   //   )[0];
   //   if (rsaKey !== undefined) {

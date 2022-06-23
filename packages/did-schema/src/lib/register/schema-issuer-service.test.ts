@@ -1,6 +1,6 @@
 import { ConfigService } from '@trustcerts/config';
 import { LocalConfigService } from '@trustcerts/config-local';
-import { CryptoService, SignatureType } from '@trustcerts/crypto';
+import { CryptoService, defaultCryptoKeyService } from '@trustcerts/crypto';
 import {
   DidNetworks,
   Identifier,
@@ -31,7 +31,7 @@ describe('test schema issuer service', () => {
     const key = (
       await wallet.findOrCreate(
         VerificationRelationshipType.assertionMethod,
-        SignatureType.Rsa
+        defaultCryptoKeyService.keyType
       )
     )[0];
     await cryptoService.init(key);

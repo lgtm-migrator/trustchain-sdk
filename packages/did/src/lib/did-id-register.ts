@@ -5,20 +5,15 @@ import {
   AxiosError,
 } from '@trustcerts/gateway';
 import { Invite } from '@trustcerts/config';
-import {
-  DecryptedKeyPair,
-  generateKeyPair,
-  SignatureType,
-} from '@trustcerts/crypto';
+import { CryptoKeyService, DecryptedKeyPair } from '@trustcerts/crypto';
 import { DidCreation } from './did-creation';
 import { DidIdIssuerService } from './did-issuer-service';
 import { DidId } from './id/did-id';
 import { DidIdResolver } from './id/did-id-resolver';
 import { Identifier } from './identity';
+import { promisify } from 'util';
 
 export class DidIdRegister {
-  private static defaultSignatureType = SignatureType.Rsa;
-
   /**
    * creates a fresh did with a unique identifier. Add controller when they are passed.
    */
@@ -31,13 +26,14 @@ export class DidIdRegister {
   }
 
   public static async createByInvite(
-    invite: Invite
+    invite: Invite,
+    cryptoKeyService: CryptoKeyService
   ): Promise<{ did: DidId; keyPair: DecryptedKeyPair }> {
     if (!invite.secret) {
       throw new Error('no invite secret found');
     }
     // generate first key pair
-    const newKey = await generateKeyPair(invite.id, this.defaultSignatureType);
+    const newKey = await cryptoKeyService.generateKeyPair(invite.id);
     // set first keypair to manipularte did
     const inviteValues: CreateDidIdDto = {
       identifier: invite.id,
@@ -55,10 +51,11 @@ export class DidIdRegister {
         if (err.response) {
           throw Error(JSON.stringify(err.response.data));
         } else {
-          console.log(err);
           throw Error('error');
         }
       });
+    // wait a bit so the observers have time to sync. Otherwhise only the gateway has the new transaction already passed
+    await promisify(setTimeout)(1500);
     // load own did document.
     const resolver = new DidIdResolver();
     return {

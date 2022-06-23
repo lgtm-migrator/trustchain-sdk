@@ -1,0 +1,60 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/crypto-bbs/src",
+  "projectType": "library",
+  "targets": {
+    "install": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npm install --prefix packages/crypto-bbs"
+      }
+    },
+    "build": {
+      "executor": "@nrwl/web:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/crypto-bbs",
+        "main": "packages/crypto-bbs/src/index.ts",
+        "tsConfig": "packages/crypto-bbs/tsconfig.lib.json",
+        "project": "packages/crypto-bbs/package.json",
+        "entryFile": "packages/crypto-bbs/src/index.ts",
+        "format": ["esm", "umd"],
+        "buildableProjectDepsInPackageJsonType": "dependencies"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/crypto-bbs/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/crypto-bbs"],
+      "options": {
+        "jestConfig": "packages/crypto-bbs/jest.config.ts",
+        "passWithNoTests": true,
+        "runInBand": true,
+        "codeCoverage": true,
+        "coverageReporters": ["lcov"]
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "angular",
+        "trackDeps": true,
+        "commitMessageFormat": "fix(${projectName}): release version ${version}",
+        "postTargets": ["crypto-bbs:deploy"]
+      }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "access": "public"
+      }
+    }
+  },
+  "tags": []
+}

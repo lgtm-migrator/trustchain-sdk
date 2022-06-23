@@ -44,17 +44,21 @@ export class DidIdVerifierService extends VerifierService {
           timeout: this.timeout,
         })
         .then(
-          async (res) =>
+          (res) =>
             this.validateDoc(res.data, config).then(
               // TODO check if this works
               () => res.data,
               (err) => logger.warn(err)
             ),
           (err: AxiosError) =>
-            err.response ? logger.warn(err.response.data) : logger.warn(err)
+            err.response
+              ? logger.warn(`${id}: ${JSON.stringify(err.response.data)}`)
+              : logger.warn(err)
         );
+      console.log(res);
       if (res) return Promise.resolve(res);
     }
+    console.log(id, 'not found');
     return Promise.reject('no did doc found');
   }
 
