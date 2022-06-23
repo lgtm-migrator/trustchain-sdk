@@ -41,10 +41,10 @@ jobs:
       - uses: mansagroup/nrwl-nx-action@v2
         with:
           targets: install,build,lint
-          all: 'true'
           nxCloud: true
       - name: Run tests
-        run: npx nx run-many --target=test --all=true --parallel=false --skip-nx-cache=true
+        run: npx nx affected --base=last-release --target=test --parallel=false
+        # run: npx nx run-many --target=test --parallel=false --skip-nx-cache=true
       # - uses: mansagroup/nrwl-nx-action@v2
       #   with:
       #     targets: test
