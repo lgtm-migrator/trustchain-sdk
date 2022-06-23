@@ -1,17 +1,5 @@
-import { Bls12381G2KeyPair } from '@mattrglobal/jsonld-signatures-bbs';
-import { base58Encode } from '@trustcerts/helpers';
-import { DecryptedKeyPair } from './decrypted-key-pair';
 import { defaultAlgorithm } from './sign';
-import { SignatureType } from './signature-type';
-import { hashAlgorithm, subtle } from './values';
-
-/**
- * Type of a key.
- */
-export const enum KeyType {
-  RSA = 'RSA',
-  EC = 'EC',
-}
+import { subtle } from './values';
 
 /**
  * Imports the crypto key object from a json web key.
@@ -28,22 +16,6 @@ export function importKey(
   algorithm = defaultAlgorithm
 ): Promise<CryptoKey> {
   // TODO map keyValue field to find out the correct algorithm
-  /*
-    let algorithm: RsaHashedImportParams | EcKeyImportParams;
-    switch(keyValue.kty) {
-        case 'EC':
-            algorithm = {
-                name: "BBS+", //"BBS+" korrekt?
-                namedCurve: keyValue.crv!
-            };
-            break;
-        case 'RSA':
-            algorithm = defaultAlgorithmRSA;
-            break;
-        default:
-            throw new Error('key type not supported');
-    }
-    */
   return subtle.importKey(
     format,
     keyValue,
@@ -51,55 +23,6 @@ export function importKey(
     true,
     keyUsages
   ) as Promise<CryptoKey>;
-}
-
-/**
- * Generates a new asymmetric key pair.
- * @param algorithm
- */
-export function generateCryptoKeyPair(
-  algorithm = defaultAlgorithm
-): Promise<CryptoKeyPair> {
-  return subtle.generateKey(algorithm, true, [
-    'sign',
-    'verify',
-  ]) as Promise<CryptoKeyPair>;
-}
-
-/**
- * generates a new key pair
- * @param id
- * @param signatureType
- * @returns
- */
-export async function generateKeyPair(
-  id: string,
-  signatureType: SignatureType = SignatureType.Rsa
-): Promise<DecryptedKeyPair> {
-  if (signatureType === SignatureType.Rsa) {
-    const keys = await generateCryptoKeyPair(defaultAlgorithm);
-    if (keys.privateKey && keys.publicKey) {
-      return {
-        privateKey: await exportKey(keys.privateKey),
-        publicKey: await exportKey(keys.publicKey),
-        identifier: `${id}#${await getFingerPrint(keys.publicKey)}`,
-        signatureType,
-      };
-    } else {
-      throw Error('faild to generate keys');
-    }
-  } else if (signatureType === SignatureType.Bbs) {
-    const bbsKeyPair = await Bls12381G2KeyPair.generate();
-    return {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      privateKey: bbsKeyPair.privateKeyJwk!,
-      publicKey: bbsKeyPair.publicKeyJwk,
-      identifier: `${id}#${await getFingerPrint(bbsKeyPair.publicKeyJwk)}`,
-      signatureType,
-    };
-  } else {
-    throw new Error('unknown key algorithm');
-  }
 }
 
 /**
@@ -134,55 +57,6 @@ export async function getBitsFromPassphrase(
     passwordKey,
     length
   );
-}
-
-/**
- * Get the fingerprint according to JSON Web Key (JWK) Thumbprint (https://tools.ietf.org/html/rfc7638), but id is encoded as hex
- * @private
- * @param key
- */
-export async function getFingerPrint(
-  key: JsonWebKey | CryptoKey
-): Promise<string> {
-  const jwk: JsonWebKey = (key as JsonWebKey).kty
-    ? (key as JsonWebKey)
-    : await subtle.exportKey('jwk', key as CryptoKey);
-  let values: unknown;
-  switch (jwk.kty) {
-    case 'EC':
-      // check if curve is bls since it has no y value: https://w3c-ccg.github.io/ldp-bbs2020/#bls-12-381-g2-public-key
-      switch (jwk.crv) {
-        case 'BLS12381_G1':
-        case 'BLS12381_G2':
-          values = {
-            crv: jwk.crv,
-            kty: jwk.kty,
-            x: jwk.x,
-          };
-          break;
-        default:
-          values = {
-            crv: jwk.crv,
-            kty: jwk.kty,
-            x: jwk.x,
-            y: jwk.y,
-          };
-          break;
-      }
-      break;
-    case 'RSA':
-      values = {
-        e: jwk.e,
-        kty: jwk.kty,
-        n: jwk.n,
-      };
-      break;
-    default:
-      throw new Error('key type not supported');
-  }
-  const message = new TextEncoder().encode(JSON.stringify(values));
-  const hash = new Uint8Array(await subtle.digest(hashAlgorithm, message));
-  return base58Encode(new Uint8Array(hash));
 }
 
 /**

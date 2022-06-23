@@ -1,5 +1,5 @@
 describe('test did', () => {
   it('foo', () => {
-    console.log('bar');
+    // TODO needs implementation
   });
 });

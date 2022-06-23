@@ -1,6 +1,11 @@
 import { ConfigService } from '@trustcerts/config';
 import { LocalConfigService } from '@trustcerts/config-local';
-import { generateKeyPair, SignatureType } from '@trustcerts/crypto';
+import {
+  defaultCryptoKeyService,
+  ECCryptoKeyService,
+  RSACryptoKeyService,
+} from '@trustcerts/crypto';
+import { BbsCryptoKeyService } from '@trustcerts/crypto-bbs';
 import {
   DidNetworks,
   Identifier,
@@ -27,14 +32,19 @@ describe('wallet', () => {
   });
 
   it('add key', async () => {
-    const walletService = new WalletService(config);
+    const cryptoKeyServices = [
+      new RSACryptoKeyService(),
+      new ECCryptoKeyService(),
+      new BbsCryptoKeyService(),
+    ];
+    const walletService = new WalletService(config, cryptoKeyServices);
     await walletService.init();
     // Add a key for each SignatureType
-    for (const signatureType of Object.values(SignatureType)) {
+    for (const cryptoKeyService of cryptoKeyServices) {
       // Add a key for each verification relationship
       const key = await walletService.addKey(
         Object.values(VerificationRelationshipType),
-        signatureType
+        cryptoKeyService.keyType
       );
 
       // Check if the key is found by its identifier
@@ -42,7 +52,9 @@ describe('wallet', () => {
 
       // Check if the key is found by vrType and signatureType
       Object.values(VerificationRelationshipType).forEach((vrType) => {
-        expect(walletService.find(vrType, signatureType)).toContain(key);
+        expect(walletService.find(vrType, cryptoKeyService.keyType)).toContain(
+          key
+        );
       });
 
       // Remove the key
@@ -58,9 +70,8 @@ describe('wallet', () => {
     await walletService.init();
 
     // Push new key to local configService of wallet, but don't add it to the DID document
-    const invalidKey = await generateKeyPair(
-      walletService.did.id,
-      SignatureType.Bbs
+    const invalidKey = await defaultCryptoKeyService.generateKeyPair(
+      walletService.did.id
     );
     walletService.configService.config.keyPairs.push(invalidKey);
 

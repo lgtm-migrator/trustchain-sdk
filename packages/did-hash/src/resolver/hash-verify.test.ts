@@ -2,8 +2,8 @@ import { ConfigService } from '@trustcerts/config';
 import { LocalConfigService } from '@trustcerts/config-local';
 import {
   CryptoService,
+  defaultCryptoKeyService,
   getRandomValues,
-  SignatureType,
 } from '@trustcerts/crypto';
 import {
   DidNetworks,
@@ -42,7 +42,7 @@ describe('test signature verify service', () => {
     const key = (
       await wallet.findOrCreate(
         VerificationRelationshipType.assertionMethod,
-        SignatureType.Rsa
+        defaultCryptoKeyService.keyType
       )
     )[0];
     console.timeEnd('s');

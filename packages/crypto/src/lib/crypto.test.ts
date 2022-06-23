@@ -1,27 +1,24 @@
 import {
   CryptoService,
-  SignatureType,
   verifySignature,
   importKey,
   getHash,
   getHashFromFile,
   getHashFromArrayBuffer,
-  generateCryptoKeyPair,
-  generateKeyPair,
-  getFingerPrint,
   sortKeys,
   getBitsFromPassphrase,
+  defaultCryptoKeyService,
+  DecryptedKeyPair,
 } from '@trustcerts/crypto';
-import { exists, read, write, remove } from '@trustcerts/helpers';
+import { exists, write, remove } from '@trustcerts/helpers';
 import { exportKey } from './key';
 import { signInput } from './sign';
 
 describe('test crypto', () => {
   let cryptoService: CryptoService;
-
-  const testKey = {
+  const testKey: DecryptedKeyPair = {
     identifier: 'testKey',
-    signatureType: SignatureType.Rsa,
+    keyType: defaultCryptoKeyService.keyType,
     privateKey: {
       key_ops: ['sign'],
       ext: true,
@@ -45,89 +42,68 @@ describe('test crypto', () => {
       alg: 'RS256',
     },
   };
-  const testKeyFingerprint = '8aDvMauyyNgUz8TySdYc7xMUQromMHsRjZRRVSbt64AX';
-
   const content = 'Content to be signed';
   const differentContent = 'Different content';
   const contentSignature =
     '5WxXWt5En68FuQ24fPd14kzJmft4pjVDwMijZYpUeJTQh56mWjoWfyuFghhkQUL3u1qUZRxT62H93ipy4Fx5NUSx5fdUfdcRExdFNsngL9zG9xHo52EeBDQf87iiPUa4zvBLraRNt4jcRnuEphbZQhm58gNbgFckUivW8wyX2wvza5M9v16XVSvH5kMT1ULBxu6qhFdzaGRyVCnPeqYGgTdFFHryKX8wsgzoz8Q5K9VXV6kHRHepu7h5ZUZhZJHK6T5LSTBvKuWZzAZaaFXmq7BT3kq4SqGNyPN633CgGEec6YKaqYCFvHuFeV7SKvHrVYgyQJKCsZx22uipnP4E3n5bN2j6wT';
   const differentContentSignature =
     'B7Nmy9KSw4dPWgUAdXumuRRUkYzzwzPFYh4L59EuTueZFLayg4ZG9g2tSRaJUEPQ6QP5h9WgdhKRVBSumnrXii5QvX3tGmUXLw4dEPDT4m1399HNdphzUHY2LQm3FVnCpA34schmsiSkSbTiy1objQjpWjdVLiiPyLkqtWG23RM7ENbwV6vUjSN3JBejgi8VKTdsVpZuB73LZ1UtMWcZQSgECDNoQSULtugfjGamiUP6prpe5RdTLcaCavgcbzwTtSJ4iABENpcvE8B3QrWJQQyg4KJniQsHVVNfjHPQiCiiXwnXoyAu3YRAhexcnNCBcqL4zhjpE9ubfEaHPKQhimJxpTUhtR';
-
   const hashContent = 'Content to be hashed';
   const hashContentHash = '9ZmsGxYnoHgZsaHhGeusbhkR6YjMeYRk2HN2NZUM28DX';
-
   it('test cryptoService.init', async () => {
     cryptoService = new CryptoService();
     await cryptoService.init(testKey);
-
     expect(cryptoService.keyPair.privateKey).toBeDefined();
     expect(cryptoService.keyPair.publicKey).toBeDefined();
     expect(cryptoService.fingerPrint).toEqual(testKey.identifier);
   }, 7000);
-
   describe('test crypto package', () => {
     beforeAll(async () => {
-      // const testKey = await generateKeyPair('testKey', SignatureType.Rsa);
+      // const testKey = await generateKeyPair('testKey', defaultCryptoKeyService.keyType);
       // console.log(JSON.stringify(testKey, null, 4));
-
       cryptoService = new CryptoService();
       await cryptoService.init(testKey);
     }, 10000);
-
     describe('test crypto-service.ts', () => {
       it('test sign', async () => {
         const contentSigned = await cryptoService.sign(content);
         expect(contentSigned).toEqual(contentSignature);
-
         const differentContentSigned = await cryptoService.sign(
           differentContent
         );
         expect(differentContentSigned).toEqual(differentContentSignature);
       }, 7000);
-
       it('test getPublicKey', async () => {
         expect(await cryptoService.getPublicKey()).toEqual(testKey.publicKey);
       }, 7000);
     });
-
     describe('test hash.ts', () => {
       it('test get hash', async () => {
         const hashed = await getHash(hashContent);
-
         expect(hashed).toEqual(hashContentHash);
       }, 7000);
-
       it('test get hash from file', async () => {
         const temporaryFilePath = './tmp/cryptoTestFile';
         write(temporaryFilePath, hashContent);
         const hashed = await getHashFromFile(temporaryFilePath);
-
         expect(hashed).toEqual(hashContentHash);
-
         if (exists(temporaryFilePath)) {
           remove(temporaryFilePath);
         }
       }, 7000);
-
       it('test get hash from array buffer', async () => {
         const enc = new TextEncoder();
         const buffer = enc.encode(hashContent).buffer;
-
         const hashed = await getHashFromArrayBuffer(buffer);
-
         expect(hashed).toEqual(hashContentHash);
       }, 7000);
-
       it('test sortKeys', async () => {
         // TODO: insert more edge cases / more complicated example?
         const unsortedJSON = '{"Z":"last","A":"first"}';
         const sortedJSON = '{"A":"first","Z":"last"}';
-
         const testObj = JSON.parse(unsortedJSON);
         expect(JSON.stringify(testObj)).not.toEqual(sortedJSON);
         expect(JSON.stringify(testObj)).toEqual(unsortedJSON);
-
         const sortedObj = sortKeys(testObj);
         expect(JSON.stringify(sortedObj)).not.toEqual(unsortedJSON);
         expect(JSON.stringify(sortedObj)).toEqual(sortedJSON);
@@ -138,21 +114,6 @@ describe('test crypto', () => {
         const key = await importKey(testKey.publicKey, 'jwk', ['verify']);
         expect(key).toBeDefined();
       }, 7000);
-
-      it('test generateCryptoKeyPair', async () => {
-        const cryptoKeyPair = await generateCryptoKeyPair();
-        expect(cryptoKeyPair.privateKey).toBeDefined();
-        expect(cryptoKeyPair.publicKey).toBeDefined();
-      }, 7000);
-
-      it('test generateKeyPair', async () => {
-        for (const signatureType of Object.values(SignatureType)) {
-          const testKey = await generateKeyPair('testKey', signatureType);
-          expect(testKey.privateKey).toBeDefined();
-          expect(testKey.publicKey).toBeDefined();
-        }
-      }, 7000);
-
       it('test getBitsFromPassphrase', async () => {
         const passphrase = 'passphrase';
         const salt = 'salt';
@@ -162,30 +123,18 @@ describe('test crypto', () => {
           59, 97,
         ]);
         const bits = await getBitsFromPassphrase(passphrase, salt);
-
         expect(new Uint8Array(bits)).toEqual(passphraseBits);
       }, 7000);
-
-      it('test getFingerPrint', async () => {
-        const fingerPrint = await getFingerPrint(
-          await cryptoService.getPublicKey()
-        );
-
-        expect(fingerPrint).toEqual(testKeyFingerprint);
-      }, 7000);
-
       it('test exportKey', async () => {
         const exportedKey = await exportKey(cryptoService.keyPair.publicKey);
         expect(exportedKey).toEqual(testKey.publicKey);
       }, 7000);
     });
-
     describe('test sign.ts', () => {
       it('test verifySignature', async () => {
         const key = await importKey(await cryptoService.getPublicKey(), 'jwk', [
           'verify',
         ]);
-
         // Expect content to succeed verification
         const verificationResult = await verifySignature(
           content,
@@ -193,7 +142,6 @@ describe('test crypto', () => {
           key
         );
         expect(verificationResult).toBe(true);
-
         // Expect different content to fail verification
         const failedContentVerificationResult = await verifySignature(
           differentContent,
@@ -201,7 +149,6 @@ describe('test crypto', () => {
           key
         );
         expect(failedContentVerificationResult).toBe(false);
-
         // Expect different signature to fail verification
         const failedSignatureVerificationResult = await verifySignature(
           content,
@@ -209,7 +156,6 @@ describe('test crypto', () => {
           key
         );
         expect(failedSignatureVerificationResult).toBe(false);
-
         // Expect different content & different signature to succeed verification
         const differentVerificationResult = await verifySignature(
           differentContent,
@@ -218,7 +164,6 @@ describe('test crypto', () => {
         );
         expect(differentVerificationResult).toBe(true);
       }, 7000);
-
       it('test signInput', async () => {
         const contentSigned = await signInput(
           content,
