@@ -10,42 +10,33 @@
     },
     "build": {
       "executor": "@nrwl/web:rollup",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/config-local",
         "main": "packages/config-local/src/index.ts",
         "tsConfig": "packages/config-local/tsconfig.lib.json",
         "project": "packages/config-local/package.json",
         "entryFile": "packages/config-local/src/index.ts",
-        "format": [
-          "esm",
-          "umd"
-        ],
+        "format": ["esm", "umd"],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/config-local/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/config-local/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/packages/config-local"
-      ],
+      "outputs": ["coverage/packages/config-local"],
       "options": {
         "jestConfig": "packages/config-local/jest.config.ts",
         "passWithNoTests": true,
-        "runInBand": true
+        "runInBand": true,
+        "codeCoverage": true,
+        "coverageReporters": ["lcov"]
       }
     },
     "version": {
@@ -54,9 +45,7 @@
         "preset": "angular",
         "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": [
-          "config-local:deploy"
-        ]
+        "postTargets": ["config-local:deploy"]
       }
     },
     "deploy": {

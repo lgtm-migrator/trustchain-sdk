@@ -35,7 +35,9 @@
       "options": {
         "jestConfig": "packages/crypto-bbs/jest.config.ts",
         "passWithNoTests": true,
-        "runInBand": true
+        "runInBand": true,
+        "codeCoverage": true,
+        "coverageReporters": ["lcov"]
       }
     },
     "version": {

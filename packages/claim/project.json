@@ -10,42 +10,35 @@
     },
     "build": {
       "executor": "@nrwl/web:rollup",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/claim",
         "main": "packages/claim/src/index.ts",
         "tsConfig": "packages/claim/tsconfig.lib.json",
         "project": "packages/claim/package.json",
         "entryFile": "packages/claim/src/index.ts",
-        "format": [
-          "esm",
-          "umd"
-        ],
+        "format": ["esm", "umd"],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/claim/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/claim/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/packages/claim"
-      ],
+      "outputs": ["coverage/packages/claim"],
       "options": {
         "jestConfig": "packages/claim/jest.config.ts",
         "passWithNoTests": true,
-        "runInBand": true
+        "runInBand": true,
+        "codeCoverage": true,
+        "coverageReporters": ["lcov"],
+        "codeCoverage": true,
+        "coverageReporters": ["lcov"]
       }
     },
     "version": {
@@ -54,9 +47,7 @@
         "preset": "angular",
         "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": [
-          "claim:deploy"
-        ]
+        "postTargets": ["claim:deploy"]
       }
     },
     "deploy": {
