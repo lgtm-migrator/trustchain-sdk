@@ -36,8 +36,6 @@
         "passWithNoTests": true,
         "runInBand": true,
         "codeCoverage": true,
-        "coverageReporters": ["lcov"],
-        "codeCoverage": true,
         "coverageReporters": ["lcov"]
       }
     },

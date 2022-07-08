@@ -45,7 +45,7 @@ export abstract class Did {
     return this.metadata;
   }
 
-  public getSigntures() {
+  public getSignatures() {
     if (!this.signatures) {
       throw Error(
         'no signatures found, perhaps document was loaded via transactions'
