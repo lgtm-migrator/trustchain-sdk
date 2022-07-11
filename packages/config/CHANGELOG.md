@@ -2,6 +2,19 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [11.0.6](https://github.com/trustcerts/trustchain-sdk/compare/config-11.0.5...config-11.0.6) (2022-07-11)
+
+### Dependency Updates
+
+* `crypto` updated to version `11.0.7`
+
+### Bug Fixes
+
+* add code-coverage ([c09ac50](https://github.com/trustcerts/trustchain-sdk/commit/c09ac504a72a364455819ac738e6ebe994e417e4))
+* move bbs to own package ([156a036](https://github.com/trustcerts/trustchain-sdk/commit/156a036802da502e3ba0bdb65c8056ce69e5b1ea))
+
+
+
 ## [11.0.5](https://github.com/trustcerts/trustchain-sdk/compare/config-11.0.4...config-11.0.5) (2022-06-22)
 
 ### Dependency Updates
