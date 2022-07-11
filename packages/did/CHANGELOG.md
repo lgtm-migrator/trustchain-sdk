@@ -2,6 +2,27 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [11.0.6](https://github.com/trustcerts/trustchain-sdk/compare/did-11.0.5...did-11.0.6) (2022-07-11)
+
+### Dependency Updates
+
+* `helpers` updated to version `11.0.7`
+* `gateway` updated to version `11.0.7`
+* `config` updated to version `11.0.6`
+* `crypto` updated to version `11.0.7`
+* `observer` updated to version `11.0.7`
+* `logger` updated to version `11.0.7`
+
+### Bug Fixes
+
+* add code-coverage ([c09ac50](https://github.com/trustcerts/trustchain-sdk/commit/c09ac504a72a364455819ac738e6ebe994e417e4))
+* add debug information ([2540348](https://github.com/trustcerts/trustchain-sdk/commit/2540348305ac180f2322cafb6be2785008cd47d4))
+* add some time before loading own did ([bbf88f0](https://github.com/trustcerts/trustchain-sdk/commit/bbf88f0cd0f5a96ba232e4c6b08616e5c295e90f))
+* move bbs to own package ([156a036](https://github.com/trustcerts/trustchain-sdk/commit/156a036802da502e3ba0bdb65c8056ce69e5b1ea))
+* project json ([45a9abf](https://github.com/trustcerts/trustchain-sdk/commit/45a9abf8f476c02e27d38ac5cecd24f92b774759))
+
+
+
 ## [11.0.5](https://github.com/trustcerts/trustchain-sdk/compare/did-11.0.4...did-11.0.5) (2022-06-22)
 
 ### Dependency Updates
