@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [11.0.7](https://github.com/trustcerts/trustchain-sdk/compare/crypto-11.0.6...crypto-11.0.7) (2022-07-11)
+
+### Dependency Updates
+
+* `helpers` updated to version `11.0.7`
+
+
 ## [11.0.6](https://github.com/trustcerts/trustchain-sdk/compare/crypto-11.0.5...crypto-11.0.6) (2022-07-11)
 
 ### Dependency Updates
