@@ -7,6 +7,16 @@ This file was generated using [@jscutlery/semver](https://github.com/jscutlery/s
 
 ### Bug Fixes
 
+* **crypto:** release version 11.0.7 ([b35f69d](https://github.com/trustcerts/trustchain-sdk/commit/b35f69d0ed43c0e1c98681969691378b4186f205))
+* update locks ([794319a](https://github.com/trustcerts/trustchain-sdk/commit/794319a8a9a9cbea351c066345ea6b987d7a90b2))
+
+
+
+## [11.0.7](https://github.com/trustcerts/trustchain-sdk/compare/logger-11.0.6...logger-11.0.7) (2022-07-11)
+
+
+### Bug Fixes
+
 * update locks ([794319a](https://github.com/trustcerts/trustchain-sdk/commit/794319a8a9a9cbea351c066345ea6b987d7a90b2))
 
 
