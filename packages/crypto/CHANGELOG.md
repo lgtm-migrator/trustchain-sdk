@@ -2,6 +2,23 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [11.0.6](https://github.com/trustcerts/trustchain-sdk/compare/crypto-11.0.5...crypto-11.0.6) (2022-07-11)
+
+### Dependency Updates
+
+* `helpers` updated to version `11.0.6`
+
+### Bug Fixes
+
+* add code-coverage ([c09ac50](https://github.com/trustcerts/trustchain-sdk/commit/c09ac504a72a364455819ac738e6ebe994e417e4))
+* crypto tests ([be0e665](https://github.com/trustcerts/trustchain-sdk/commit/be0e66558bb2fd43ad18adb62f300a256d6e1c11))
+* fix await error ([f345bf3](https://github.com/trustcerts/trustchain-sdk/commit/f345bf383ac097451ff1bf8d36f112c632c704b8))
+* import ([14cf6c7](https://github.com/trustcerts/trustchain-sdk/commit/14cf6c7656a9152debcbd555b39b0c3104973368))
+* linting ([6448ca1](https://github.com/trustcerts/trustchain-sdk/commit/6448ca1da9a142e53207ef44c61d45d035e0effb))
+* move bbs to own package ([156a036](https://github.com/trustcerts/trustchain-sdk/commit/156a036802da502e3ba0bdb65c8056ce69e5b1ea))
+
+
+
 ## [11.0.5](https://github.com/trustcerts/trustchain-sdk/compare/crypto-11.0.4...crypto-11.0.5) (2022-06-22)
 
 ### Dependency Updates
