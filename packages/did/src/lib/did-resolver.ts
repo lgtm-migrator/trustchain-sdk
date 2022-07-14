@@ -16,6 +16,7 @@ export abstract class DidResolver<T extends VerifierService> {
     if (config.transactions?.length > 0) {
       did.parseTransactions(config.transactions);
     } else {
+      console.log(config.doc);
       if (config.doc) {
         const document = await this.verifier
           .getDidDocument(did.id, config)

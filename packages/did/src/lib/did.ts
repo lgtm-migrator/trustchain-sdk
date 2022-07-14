@@ -22,8 +22,9 @@ export abstract class Did {
   constructor(public id: string) {
     const result = new RegExp(this.getExp()).test(id);
     if (!result) {
-      console.log(this.getExp());
-      throw Error('wrong format for did: ' + id);
+      throw Error(
+        `wrong format for did: ${id}, does not match with ${this.getExp()}`
+      );
     }
   }
 
