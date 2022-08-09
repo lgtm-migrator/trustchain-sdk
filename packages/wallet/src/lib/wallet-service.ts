@@ -42,7 +42,7 @@ export class WalletService {
           this.cryptoKeyServices[0]
         ).then(
           async (values) => {
-            // save the key that way used.
+            // save the key that was used.
             this.configService.config.keyPairs.push(values.keyPair);
             await this.configService.saveConfig();
             return values.did;
@@ -91,7 +91,7 @@ export class WalletService {
     this.did.removeAllVerificationRelationships(keyId);
   }
 
-  find(
+  findKeys(
     verificationRelationshipType: VerificationRelationshipType,
     algorithm: Algorithm
   ): DecryptedKeyPair[] {
@@ -100,7 +100,8 @@ export class WalletService {
     );
     const foundKeys = this.configService.config.keyPairs.filter((keyPair) => {
       return (
-        keyPair.algorithm === algorithm &&
+        JSON.stringify(sortKeys(keyPair.algorithm)) ===
+          JSON.stringify(sortKeys(algorithm)) &&
         allowedIds.includes(keyPair.identifier)
       );
     });
@@ -111,15 +112,7 @@ export class WalletService {
     verificationRelationshipType: VerificationRelationshipType,
     algorithm: Algorithm
   ): Promise<DecryptedKeyPair[]> {
-    const allowedIds = this.did.findByVerificationRelationship(
-      verificationRelationshipType
-    );
-    const keys = this.configService.config.keyPairs.filter((keyPair) => {
-      return (
-        keyPair.algorithm === algorithm &&
-        allowedIds.includes(keyPair.identifier)
-      );
-    });
+    const keys = this.findKeys(verificationRelationshipType, algorithm);
     if (keys.length === 0) {
       if (
         verificationRelationshipType ===
@@ -198,7 +191,7 @@ export class WalletService {
    * @returns The newly generated key pair
    */
   async addKey(
-    verificationRelationships: VerificationRelationshipType[] = [],
+    verificationRelationships: VerificationRelationshipType[],
     algorithm: Algorithm
   ): Promise<DecryptedKeyPair> {
     const newKey = await this.getCryptoServiceByType(algorithm).generateKeyPair(

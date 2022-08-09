@@ -53,7 +53,7 @@ describe('wallet', () => {
       // Check if the key is found by vrType and signatureType
       Object.values(VerificationRelationshipType).forEach((vrType) => {
         expect(
-          walletService.find(vrType, cryptoKeyService.algorithm)
+          walletService.findKeys(vrType, cryptoKeyService.algorithm)
         ).toContain(key);
       });
 
@@ -63,6 +63,69 @@ describe('wallet', () => {
       // Verify that the key is removed
       expect(walletService.findKeyByID(key.identifier)).toBeUndefined();
     }
+  }, 10000);
+  it('test findOrCreate', async () => {
+    const walletService = new WalletService(config);
+    await walletService.init();
+
+    const testKeyType = VerificationRelationshipType.assertionMethod;
+    const testKeyAlgorithm = defaultCryptoKeyService.algorithm;
+
+    // first make sure there are no keys yet, so findOrCreate has to create the key
+    let keys = walletService.findKeys(testKeyType, testKeyAlgorithm);
+    for (const key of keys) {
+      walletService.removeKeyByID(key.identifier);
+    }
+
+    // expect no key to be found
+    expect(walletService.findKeys(testKeyType, testKeyAlgorithm)).toHaveLength(
+      0
+    );
+
+    await walletService.findOrCreate(testKeyType, testKeyAlgorithm);
+
+    // expect that exactly one key was found (because it was created)
+    expect(walletService.findKeys(testKeyType, testKeyAlgorithm)).toHaveLength(
+      1
+    );
+
+    // call findOrCreate again and expect that still exactly one key was found (because it was found and not created again)
+    await walletService.findOrCreate(testKeyType, testKeyAlgorithm);
+    expect(walletService.findKeys(testKeyType, testKeyAlgorithm)).toHaveLength(
+      1
+    );
+  }, 10000);
+
+  it('test findOrCreate', async () => {
+    const walletService = new WalletService(config);
+    await walletService.init();
+
+    const testKeyType = VerificationRelationshipType.assertionMethod;
+    const testKeyAlgorithm = defaultCryptoKeyService.algorithm;
+
+    // first make sure there are no keys yet, so findOrCreate has to create the key
+    let keys = walletService.findKeys(testKeyType, testKeyAlgorithm);
+    for (const key of keys) {
+      walletService.removeKeyByID(key.identifier);
+    }
+
+    // expect no key to be found
+    expect(walletService.findKeys(testKeyType, testKeyAlgorithm)).toHaveLength(
+      0
+    );
+
+    await walletService.findOrCreate(testKeyType, testKeyAlgorithm);
+
+    // expect that exactly one key was found (because it was created)
+    expect(walletService.findKeys(testKeyType, testKeyAlgorithm)).toHaveLength(
+      1
+    );
+
+    // call findOrCreate again and expect that still exactly one key was found (because it was found and not created again)
+    await walletService.findOrCreate(testKeyType, testKeyAlgorithm);
+    expect(walletService.findKeys(testKeyType, testKeyAlgorithm)).toHaveLength(
+      1
+    );
   }, 10000);
 
   it('tidy up', async () => {
