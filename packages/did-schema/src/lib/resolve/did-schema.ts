@@ -2,7 +2,6 @@ import { Did } from '@trustcerts/did';
 import {
   DidSchemaDocument,
   DidSchemaStructure,
-  DidSchemaTransaction,
   SchemaDocResponse,
 } from '@trustcerts/observer';
 import Ajv, { AnySchema } from 'ajv';
@@ -19,14 +18,14 @@ export class DidSchema extends Did {
     this.ajv = new Ajv({ allErrors: true });
   }
 
-  parseTransactions(transactions: DidSchemaTransaction[]): void {
+  parseTransactions(transactions: DidSchemaStructure[]): void {
     for (const transaction of transactions) {
       this.version++;
       // validate signature of transaction
       // parse it into the existing document
       this.parseTransactionControllers(transaction);
 
-      this.schema = transaction.values.schema ?? this.schema;
+      this.schema = transaction.schema ?? this.schema;
     }
   }
   parseDocument(docResponse: SchemaDocResponse): void {

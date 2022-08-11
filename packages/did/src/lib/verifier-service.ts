@@ -1,7 +1,9 @@
 import { importKey, sortKeys, verifySignature } from '@trustcerts/crypto';
+import { DidIdStructure } from '@trustcerts/gateway';
 import {
   BaseAPI,
   DidIdTransaction,
+  DidStructure,
   DidTransaction,
   DocResponse,
 } from '@trustcerts/observer';
@@ -20,7 +22,7 @@ export abstract class VerifierService {
    */
   protected async validateDoc(
     document: DocResponse,
-    config: DidManagerConfigValues<DidIdTransaction>
+    config: DidManagerConfigValues<DidIdStructure>
   ) {
     //TODO implement validation of a document with recursive approach
     // TODO validate if signatureinfo is better than signaturedto to store more information
@@ -62,7 +64,7 @@ export abstract class VerifierService {
   ): Promise<void> {
     const key = await this.getKey(transaction);
     const content: SignatureContent = {
-      value: transaction.values,
+      value: transaction,
       date: transaction.createdAt,
       type: transaction.type,
     };
@@ -80,7 +82,7 @@ export abstract class VerifierService {
   private async getKey(transaction: DidIdTransaction): Promise<JsonWebKey> {
     if (
       transaction.signature.values[0].identifier.split('#')[0] ===
-      transaction.values.id
+      transaction.id
     ) {
       // TODO instead of searching for self certified, use the genesis block.
       if (
@@ -112,7 +114,7 @@ export abstract class VerifierService {
 
   abstract getDidDocument(
     id: string,
-    config: DidManagerConfigValues<DidTransaction>
+    config: DidManagerConfigValues<DidStructure>
   ): Promise<DocResponse>;
 
   abstract getDidTransactions(

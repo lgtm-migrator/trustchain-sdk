@@ -3,7 +3,6 @@ import {
   DidDocument,
   DidDocumentMetaData,
   DidStructure,
-  DidTransaction,
   DocResponse,
   SignatureInfo,
 } from '@trustcerts/observer';
@@ -86,7 +85,7 @@ export abstract class Did {
   }
 
   // TODO instead of any pass the didtransaction attribte. Has to be imported in another way since it is an extended class from the open-api spec
-  abstract parseTransactions(transactions: DidTransaction[]): void;
+  abstract parseTransactions(transactions: DidStructure[]): void;
   // TODO set DocResponse as a parent class
   abstract parseDocument(document: unknown): void;
   abstract getDocument(): DidDocument;
@@ -125,23 +124,26 @@ export abstract class Did {
   }
 
   /**
-   * parse the controllers
+   * parse the controllers of a structure
+   *
+   * @param structure structure of the element
    */
-  protected parseTransactionControllers(transaction: DidTransaction) {
-    if (transaction.values.controller?.remove) {
-      transaction.values.controller.remove.forEach((id) =>
+  protected parseTransactionControllers(structure: DidStructure) {
+    if (structure.controller?.remove) {
+      structure.controller.remove.forEach((id) =>
         this.controller.current.delete(id)
       );
     }
-    if (transaction.values.controller?.add) {
-      transaction.values.controller.add.forEach((controller) =>
+    if (structure.controller?.add) {
+      structure.controller.add.forEach((controller) =>
         this.controller.current.set(controller, controller)
       );
     }
   }
 
   /**
-   * Get the changes for the controllers.
+   *
+   * @returns a Controller manager
    */
   protected getChangesController(): ControllerManage | undefined {
     if (this.controller.add.size > 0 && this.controller.remove.size > 0) return;

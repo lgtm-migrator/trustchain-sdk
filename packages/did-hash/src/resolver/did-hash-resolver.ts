@@ -8,7 +8,7 @@ import {
   Identifier,
   InitDidManagerConfigValues,
 } from '@trustcerts/did';
-import { DidHashTransaction } from '@trustcerts/observer';
+import { DidHashStructure } from '@trustcerts/gateway';
 import { DidHash } from './did-hash';
 import { DidHashVerifierService } from './hash-verifier-service';
 
@@ -20,13 +20,13 @@ export class DidHashResolver extends DidResolver<DidHashVerifierService> {
 
   public async load(
     id: string,
-    values?: InitDidManagerConfigValues<DidHashTransaction>
+    values?: InitDidManagerConfigValues<DidHashStructure>
   ): Promise<DidHash> {
     if (!id.startsWith('did:trust')) {
       id = Identifier.generate('hash', id);
     }
     const didID = id.split('#')[0];
-    const config = this.setConfig<DidHashTransaction>(values);
+    const config = this.setConfig<DidHashStructure>(values);
     const did = new DidHash(didID);
     await this.loadDid(did, config);
     return did;
@@ -34,7 +34,7 @@ export class DidHashResolver extends DidResolver<DidHashVerifierService> {
 
   public async verifyString(
     value: string,
-    config?: InitDidManagerConfigValues<DidHashTransaction>
+    config?: InitDidManagerConfigValues<DidHashStructure>
   ): Promise<DidHash> {
     const hash = await getHash(value);
     return this.load(hash, config);
@@ -42,7 +42,7 @@ export class DidHashResolver extends DidResolver<DidHashVerifierService> {
 
   public async verifyBuffer(
     value: ArrayBuffer,
-    config?: InitDidManagerConfigValues<DidHashTransaction>
+    config?: InitDidManagerConfigValues<DidHashStructure>
   ): Promise<DidHash> {
     const hash = await getHashFromArrayBuffer(value);
     return this.load(hash, config);
@@ -50,7 +50,7 @@ export class DidHashResolver extends DidResolver<DidHashVerifierService> {
 
   public async verifyFile(
     file: string | File,
-    config?: InitDidManagerConfigValues<DidHashTransaction>
+    config?: InitDidManagerConfigValues<DidHashStructure>
   ): Promise<DidHash> {
     const hash = await getHashFromFile(file);
     return this.load(hash, config);

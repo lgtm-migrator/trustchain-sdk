@@ -1,4 +1,4 @@
-import { DidStructure, DidTransaction } from '@trustcerts/observer';
+import { DidStructure } from '@trustcerts/observer';
 import { DidCachedService } from './cache/did-cached-service';
 import { Did } from './did';
 import { DidManagerConfigValues } from './DidManagerConfigValues';
@@ -10,13 +10,11 @@ export abstract class DidResolver<T extends VerifierService> {
 
   protected async loadDid(
     did: Did,
-    // TODO any is not the best type
-    config: DidManagerConfigValues<DidTransaction>
+    config: DidManagerConfigValues<DidStructure>
   ): Promise<void> {
     if (config.transactions?.length > 0) {
       did.parseTransactions(config.transactions);
     } else {
-      console.log(config.doc);
       if (config.doc) {
         const document = await this.verifier
           .getDidDocument(did.id, config)
@@ -38,7 +36,7 @@ export abstract class DidResolver<T extends VerifierService> {
     DidCachedService.add(did, config.time);
   }
 
-  protected setConfig<T extends DidTransaction>(
+  protected setConfig<T extends DidStructure>(
     values?: InitDidManagerConfigValues<T>
   ): DidManagerConfigValues<T> {
     return {
@@ -51,8 +49,8 @@ export abstract class DidResolver<T extends VerifierService> {
     };
   }
 
-  abstract load(
+  abstract load<T extends DidStructure>(
     id: string,
-    values?: InitDidManagerConfigValues<unknown>
+    values?: InitDidManagerConfigValues<T>
   ): Promise<Did>;
 }

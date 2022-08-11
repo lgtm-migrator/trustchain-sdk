@@ -4,7 +4,6 @@ import {
   DidHashStructure,
   DidHashDocument,
   DidHashStructureAlgorithm,
-  DidHashTransaction,
 } from '@trustcerts/observer';
 
 export class DidHash extends Did {
@@ -23,15 +22,15 @@ export class DidHash extends Did {
     return '^did:trust:[:a-z]*[1-9A-HJ-NP-Za-km-z]{20}';
   }
 
-  parseTransactions(transactions: DidHashTransaction[]): void {
+  parseTransactions(transactions: DidHashStructure[]): void {
     for (const transaction of transactions) {
       this.version++;
       // validate signature of transaction
       // parse it into the existing document
       this.parseTransactionControllers(transaction);
 
-      this.algorithm = transaction.values.algorithm ?? this.algorithm;
-      this.revoked = transaction.values.revoked ?? this.revoked;
+      this.algorithm = transaction.algorithm ?? this.algorithm;
+      this.revoked = transaction.revoked ?? this.revoked;
     }
   }
 
