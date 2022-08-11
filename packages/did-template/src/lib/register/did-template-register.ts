@@ -6,6 +6,9 @@ import { TemplateIssuerService } from './template-issuer-service';
 export class DidTemplateRegister {
   /**
    * creates a fresh did with a unique identifier. Add controller when they are passed.
+   *
+   * @param values
+   * @returns
    */
   public static create(values?: DidCreation): DidTemplate {
     // TODO check if a given id should be allowed

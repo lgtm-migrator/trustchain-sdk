@@ -1,9 +1,8 @@
 import { Did } from '@trustcerts/did';
+import { DidTemplateStructure } from '@trustcerts/gateway';
 import {
   Compression,
   DidTemplateDocument,
-  DidTemplateStructure,
-  DidTemplateTransaction,
   TemplateDocResponse,
 } from '@trustcerts/observer';
 
