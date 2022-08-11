@@ -47,7 +47,6 @@ describe('test signature verify service', () => {
     )[0];
     console.timeEnd('s');
     await cryptoService.init(key);
-    console.log('crypto inited');
   }, 10000);
 
   it('verify file', async () => {

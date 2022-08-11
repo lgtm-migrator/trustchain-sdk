@@ -6,7 +6,6 @@ describe('test crypto-service.ts', () => {
   beforeAll(async () => {
     cryptoService = new CryptoService();
     await cryptoService.init(testKey);
-    console.log(cryptoService);
   }, 10000);
   it('test cryptoService.init', async () => {
     const testCryptoService = new CryptoService();
