@@ -29,6 +29,7 @@ export class TemplateVerifierService extends VerifierService {
 
   /**
    * Resolve a DID document by returning the first valid response of a observer of the network
+   *
    * @param id The DID of the DID document
    * @param config The config for the DID request
    * @param timeout Timeout for each observer that is queried
@@ -61,6 +62,7 @@ export class TemplateVerifierService extends VerifierService {
 
   /**
    * Resolve a DID document's transactions by returning the first valid response of a observer of the network
+   *
    * @param id The DID of the DID document
    * @param validate Whether to validate the response
    * @param time The time of the DID document that shall be queried
@@ -89,6 +91,6 @@ export class TemplateVerifierService extends VerifierService {
         .catch(logger.warn);
       if (res) return Promise.resolve(res);
     }
-    return Promise.reject('no transactions founds');
+    return Promise.reject('no transactions found');
   }
 }
