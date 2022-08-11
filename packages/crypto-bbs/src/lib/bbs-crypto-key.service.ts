@@ -53,7 +53,7 @@ export class BbsCryptoKeyService extends CryptoKeyService {
     return (
       jwk.kty === 'EC' &&
       jwk.crv !== undefined &&
-      ['BLS12381_G1', 'BLS12381_G2'].includes(jwk.crv)
+      ['BLS12381G1', 'Bls12381G2'].includes(jwk.crv)
     );
   }
 }
