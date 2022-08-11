@@ -1,13 +1,13 @@
 import { isBrowser } from '@trustcerts/helpers';
 import { webcrypto } from 'crypto';
 
-declare module 'crypto' {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace webcrypto {
-    const subtle: SubtleCrypto;
-    function getRandomValues(array: Uint8Array): Uint8Array;
-  }
-}
+// declare module 'crypto' {
+//   // eslint-disable-next-line @typescript-eslint/no-namespace
+//   namespace webcrypto {
+//     const subtle: SubtleCrypto;
+//     function getRandomValues(array: Uint8Array): Uint8Array;
+//   }
+// }
 
 /**
  * Define the required objects based on the environment (if browser or nodejs)
