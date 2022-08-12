@@ -77,7 +77,7 @@ describe('vc', () => {
   it('verify revocation JWT', async () => {
     const vc = await createVc();
     const vcJWT = new JWT(vc);
-    const vcJWTPayload = vcJWT.getPayload() as JWTPayloadVC;
+    const vcJWTPayload = vcJWT.getPayload<JWTPayloadVC>();
     const vcVerifierService = new JWTVerifiableCredentialVerifierService();
     const revocationService = new RevocationService();
     await revocationService.init();
@@ -127,7 +127,7 @@ describe('vc', () => {
   it('test revocation list with invalid credential revocation list', async () => {
     const vc = await createVc();
     const vcJWT = new JWT(vc);
-    const vcJWTPayload = vcJWT.getPayload() as JWTPayloadVC;
+    const vcJWTPayload = vcJWT.getPayload<JWTPayloadVC>();
     const revocationService = new RevocationService();
     await revocationService.init();
 
@@ -153,7 +153,7 @@ describe('vc', () => {
   it('test revocation list with invalid index', async () => {
     const vc = await createVc();
     const vcJWT = new JWT(vc);
-    const vcJWTPayload = vcJWT.getPayload() as JWTPayloadVC;
+    const vcJWTPayload = vcJWT.getPayload<JWTPayloadVC>();
     const revocationService = new RevocationService();
     await revocationService.init();
 

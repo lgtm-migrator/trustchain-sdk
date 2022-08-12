@@ -210,14 +210,14 @@ describe('vc', () => {
   //Beispiel, um Zugriff auf Properties der VC/VP zu demonstrieren
   it('access example', async () => {
     const vpJWT = new JWT(vpJWTString);
-    const vpJWTPayload = vpJWT.getPayload() as JWTPayloadVP;
+    const vpJWTPayload = vpJWT.getPayload<JWTPayloadVP>();
     const vp = vpJWTPayload.vp;
 
     logger.debug(vp);
 
     // Zugriff auf erstes Credential innerhalb der VP
     const vcJWT = new JWT(vp.verifiableCredentials[0]);
-    const vcJWTPayload = vcJWT.getPayload() as JWTPayloadVC;
+    const vcJWTPayload = vcJWT.getPayload<JWTPayloadVC>();
     const vc = vcJWTPayload.vc;
 
     logger.debug(vc);

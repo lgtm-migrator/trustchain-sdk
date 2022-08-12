@@ -29,7 +29,7 @@ export class JWTVerifiableCredentialVerifierService {
       await jwtVerify(credential, key);
 
       // Check revocation status
-      const vcPayload = jwt.getPayload() as JWTPayloadVC;
+      const vcPayload = jwt.getPayload<JWTPayloadVC>();
       if (vcPayload.vc.credentialStatus) {
         const revoked = await this.isRevoked(vcPayload.vc.credentialStatus);
         if (revoked) {
@@ -75,7 +75,7 @@ export class JWTVerifiableCredentialVerifierService {
   async verifyPresentation(presentation: string): Promise<boolean> {
     const jwt = new JWT(presentation);
 
-    const jwtPayload = jwt.getPayload() as JWTPayloadVP;
+    const jwtPayload = jwt.getPayload<JWTPayloadVP>();
 
     const kid = jwt.getHeader().kid;
 
