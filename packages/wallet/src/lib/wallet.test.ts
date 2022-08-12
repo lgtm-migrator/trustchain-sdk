@@ -94,7 +94,7 @@ describe('wallet', () => {
     expect(walletService.findKeys(testKeyType, testKeyAlgorithm)).toHaveLength(
       1
     );
-  }, 10000);
+  }, 30000);
 
   it('tidy up', async () => {
     const walletService = new WalletService(config);
