@@ -129,7 +129,6 @@ export abstract class Did {
    * @param structure structure of the element
    */
   protected parseTransactionControllers(structure: DidStructure) {
-    console.log(structure);
     if (structure.controller?.remove) {
       structure.controller.remove.forEach((id) =>
         this.controller.current.delete(id)
