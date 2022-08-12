@@ -2,6 +2,7 @@ import { ConfigService } from '@trustcerts/config';
 import { LocalConfigService } from '@trustcerts/config-local';
 import { CryptoService, defaultCryptoKeyService } from '@trustcerts/crypto';
 import {
+  DidId,
   DidIdIssuerService,
   DidIdRegister,
   DidIdResolver,
@@ -72,6 +73,7 @@ describe('test did', () => {
       testValues.network.gateways,
       cryptoService
     );
+    expect(client.getId()).toEqual(cryptoService.fingerPrint.split('#')[0]);
     await DidIdRegister.save(did, client);
     await new Promise((resolve) =>
       setTimeout(() => {
@@ -104,4 +106,45 @@ describe('test did', () => {
     resolvedNetwork = DidNetworks.resolveNetwork('test:foo');
     expect(resolvedNetwork).toEqual(exampleNetwork);
   });
+
+  it('test DidCachedService', async () => {
+    // TODO: DidCachedService is not used yet by did resolver
+    expect(true).toBeTruthy();
+  }, 7000);
+
+  it('test createByInvite', async () => {
+    // TODO
+  }, 7000);
+
+  it('read invalid did', async () => {
+    // RegExp: ^did:trust:[:a-z]*[1-9A-HJ-NP-Za-km-z]{22}$
+
+    const invalidDIDs = [
+      'invalid',
+      'invalid did',
+      'no:trust:tc:dev:id:aaaaaaaaaaaaaaaaaaaaaa', // not starting with did:trust
+      'did:foo:tc:dev:id:aaaaaaaaaaaaaaaaaaaaaa', // not starting with did:trust
+      'Did:trust:tc:dev:id:aaaaaaaaaaaaaaaaaaaaaa', // did not lower case
+      'did:Trust:tc:dev:id:aaaaaaaaaaaaaaaaaaaaaa', // trust not lower case
+      'did:trust:TC:dev:id:aaaaaaaaaaaaaaaaaaaaaa', // tc not lower case
+      'did:trust:TC:dev:iD:aaaaaaaaaaaaaaaaaaaaaa', // id not lower case
+      'did:trust:tc:dev:id:aaaaaaaaaaaaaaaaaaaaa', // too short (<22)
+      'did:trust:tc:dev:id:aaaaaaaaaaaaaaaaaaaaaaa', // identifier too long (>22)
+      'did:trust:tc:dev:id:aaaaaaaaaaaaaaaaaaaaa0', // invalid chars (not base58)
+      'did:trust:tc:dev:id:aaaaaaaaaaaaaaaaaaaaaO', // invalid chars (not base58)
+      'did:trust:tc:dev:id:aaaaaaaaaaaaaaaaaaaaal', // invalid chars (not base58)
+      'did:trust:tc:dev:id:aaaaaaaaaaaaaaaaaaaaaI', // invalid chars (not base58)
+      'did:trust:tc:dev:id:aaaaaaaaaaaaaaaaaaaaa/', // invalid chars (not base58)
+      'did:trust:tc:dev:id:aaaaaaaaaaaaaaaaaaaaa+', // invalid chars (not base58)
+      'did:trust:tctctctctct:dev:id:aaaaaaaaaaaaaaaaaaaaaa', // namespace part long (>10)
+      'did:trust:tc:devdevdevde:id:aaaaaaaaaaaaaaaaaaaaaa', // namespace part long (>10)
+      'did:trust:tc:dev:idididididi:aaaaaaaaaaaaaaaaaaaaaa', // namespace part long (>10)
+      'did:trust::dev:id:aaaaaaaaaaaaaaaaaaaaaa', // no primary namespace specified
+      'did:trust:tc:dev:foo:aaaaaaaaaaaaaaaaaaaaaa', // did type not 'id'
+    ];
+
+    for (const did of invalidDIDs) {
+      expect(() => new DidId(did)).toThrowError();
+    }
+  }, 7000);
 });

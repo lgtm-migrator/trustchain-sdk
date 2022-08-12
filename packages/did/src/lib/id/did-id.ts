@@ -37,7 +37,7 @@ export class DidId extends Did {
   private role = new Management<DidRoles>();
 
   constructor(public override id: string) {
-    super(id);
+    super(id, 'id', 22);
     Object.values(VerificationRelationshipType).forEach((vrType) => {
       this.verificationRelationships.set(vrType, new Management<string>());
     });

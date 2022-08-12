@@ -7,10 +7,12 @@ import {
 } from '@trustcerts/crypto';
 import { BbsCryptoKeyService } from '@trustcerts/crypto-bbs';
 import {
+  DidCreator,
   DidNetworks,
   Identifier,
   VerificationRelationshipType,
 } from '@trustcerts/did';
+import { exists, remove } from '@trustcerts/helpers';
 import { WalletService } from '@trustcerts/wallet';
 import { readFileSync } from 'fs';
 
@@ -31,7 +33,7 @@ describe('wallet', () => {
     await config.init(testValues.configValues);
   });
 
-  it('add and remove key', async () => {
+  it('add key', async () => {
     const cryptoKeyServices = [
       new RSACryptoKeyService(),
       new ECCryptoKeyService(),
@@ -44,7 +46,7 @@ describe('wallet', () => {
       // Add a key for each verification relationship
       const key = await walletService.addKey(
         Object.values(VerificationRelationshipType),
-        cryptoKeyService.algorithm
+        cryptoKeyService.keyType
       );
 
       // Check if the key is found by its identifier
@@ -52,9 +54,9 @@ describe('wallet', () => {
 
       // Check if the key is found by vrType and signatureType
       Object.values(VerificationRelationshipType).forEach((vrType) => {
-        expect(
-          walletService.findKeys(vrType, cryptoKeyService.algorithm)
-        ).toContain(key);
+        expect(walletService.find(vrType, cryptoKeyService.keyType)).toContain(
+          key
+        );
       });
 
       // Remove the key
@@ -119,4 +121,30 @@ describe('wallet', () => {
     const walletService = new WalletService(config, []);
     await expect(walletService.init()).rejects.toThrowError('no id found');
   }, 15000);
+
+  it('init wallet with new unused invite', async () => {
+    const id = Identifier.generate('id');
+    const secret = 'secret';
+    const name = 'test-did';
+    const didCreator = new DidCreator(testValues.network.gateways, 'dev');
+    const invite = await didCreator.createNewInviteForDid(id, secret, name);
+
+    const temporaryConfigPath = './tmp/cryptoTestFile';
+
+    const newConfig = new LocalConfigService(temporaryConfigPath);
+    await newConfig.init({
+      invite: invite,
+      name: name,
+      keyPairs: [],
+    });
+
+    const walletService = new WalletService(newConfig);
+    await walletService.init();
+    // Expect DID to be created and thus walletService.did to be defined
+    expect(walletService.did.id).toEqual(invite.id);
+
+    if (exists(temporaryConfigPath)) {
+      remove(temporaryConfigPath);
+    }
+  }, 20000);
 });

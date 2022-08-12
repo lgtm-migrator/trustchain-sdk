@@ -11,7 +11,7 @@ export class DidSchema extends Did {
   private ajv: Ajv;
 
   constructor(public override id: string) {
-    super(id);
+    super(id, 'sch', 22);
     // if the passed id value already has a prefix remove it.
     // TODO set correct regexp, normal did should have no type
     // TODO use method from Identifier.method

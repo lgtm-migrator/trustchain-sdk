@@ -19,7 +19,18 @@ export abstract class Did {
 
   protected signatures?: SignatureInfo;
 
-  constructor(public id: string) {
+  constructor(
+    public id: string,
+    protected didType: string,
+    protected identifierMinLength: number,
+    protected identifierMaxLength?: number
+  ) {
+    if (!identifierMaxLength) this.identifierMaxLength = identifierMinLength;
+    if (!new RegExp('^[a-z]{1,10}$').test(didType)) {
+      throw Error(
+        `didType ('${didType}') must be lowercase alphabetic string with length 1-10`
+      );
+    }
     const result = new RegExp(this.getExp()).test(id);
     if (!result) {
       throw Error(
@@ -30,7 +41,15 @@ export abstract class Did {
 
   // will not be overwritten by parent class.
   protected getExp() {
-    return '^did:trust:[:a-z]*[1-9A-HJ-NP-Za-km-z]{22}$';
+    return (
+      '^did:trust:[a-z]{1,10}:[a-z]{0,10}:' +
+      this.didType +
+      ':[1-9A-HJ-NP-Za-km-z]{' +
+      this.identifierMinLength +
+      ',' +
+      this.identifierMaxLength +
+      '}$'
+    );
   }
 
   public getVersion(): number {
