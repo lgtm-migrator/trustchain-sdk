@@ -14,6 +14,10 @@ export class DidTemplate extends Did {
 
   public schemaId!: string;
 
+  constructor(public override id: string) {
+    super(id, 'tmp', 22);
+  }
+
   parseTransactions(transactions: DidTemplateStructure[]): void {
     // this.values.
     for (const transaction of transactions) {
