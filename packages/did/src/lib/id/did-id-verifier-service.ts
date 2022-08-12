@@ -74,7 +74,7 @@ export class DidIdVerifierService extends VerifierService {
     id: string,
     validate = true,
     time: string
-  ): Promise<DidIdTransaction[]> {
+  ): Promise<DidIdStructure[]> {
     this.setEndpoints(id);
     for (const api of this.apis) {
       const res = await api
@@ -87,12 +87,10 @@ export class DidIdVerifierService extends VerifierService {
               await this.validateTransaction(transaction);
             }
           }
-          return Promise.resolve(res.data);
+          return res.data.map((transaction) => transaction.values);
         })
         .catch(logger.warn);
-      if (res) {
-        return Promise.resolve(res);
-      }
+      if (res) return Promise.resolve(res);
     }
     return Promise.reject('no transactions found');
   }

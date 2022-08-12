@@ -8,6 +8,7 @@ import { logger } from '@trustcerts/logger';
 import {
   AxiosError,
   Configuration,
+  DidSchemaStructure,
   DidSchemaTransaction,
   SchemaDocResponse,
   SchemaObserverApi,
@@ -64,7 +65,7 @@ export class SchemaVerifierService extends VerifierService {
     id: string,
     validate = true,
     time: string
-  ): Promise<DidSchemaTransaction[]> {
+  ): Promise<DidSchemaStructure[]> {
     this.setEndpoints(id);
     for (const api of this.apis) {
       const res = await api
@@ -77,7 +78,7 @@ export class SchemaVerifierService extends VerifierService {
               await this.validateTransaction(transaction);
             }
           }
-          return Promise.resolve(res.data);
+          return res.data.map((transaction) => transaction.values);
         })
         .catch(logger.warn);
       if (res) return Promise.resolve(res);

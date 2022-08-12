@@ -1,0 +1,88 @@
+{
+    "invite": {
+        "id": "did:trust:tc:dev:id:XLzBJd69tqEgq7oqqdEsHW",
+        "secret": "client",
+        "endpoint": "https://api.gateway1.dev.trustcerts.de"
+    },
+    "name": "client",
+    "keyPairs": [
+        {
+            "privateKey": {
+                "key_ops": [
+                    "sign"
+                ],
+                "ext": true,
+                "kty": "RSA",
+                "n": "tSfBSwbTYtpH6-sZmhY3P-PFvej7KWKPJUZ0OcMqfCeiemaXK2G3qJXj3xne1EWBV2UGY9jNVh0Zv2z9m7Dosn5E98BzhJH_E5LilTw2cHm1YL-CoBK3_QbIAH0jYdxCRJWCDqJHJl0LgvCjAay-ycYwaHxOtj3X3l8bAeOyhd9Zg-A5H9uSDrEQGAz1ogaMLxlwki-0RZ6jn6KeADbg1K-QdOjg07uVAr9PPbBgn5agzu5HQQywSvbA1H6-QV6Sl1LArl5S9R0F5qq1WxW2nZV6-LJMQoNNlkX8_QaXj2Ge6Rk3xFEs8YNAHmHNPPw_V2InnxD9MkA75xKXgj_zGw",
+                "e": "AQAB",
+                "d": "YT8HH2x5m25L_5REORhF7nEqXKkt8uhqqXrpt3xSWTW5nfVmny4ktkZIfiJYISFyrmSYCo9-owSaJs2uUp6kO_VWtpzEJl1tTaejJLOfEb_0IwyLZbzGsfiq8sA6dzUTCdgsagipIyn9nPvqtWJzRMO0htJ8Oo52THRHfjsqQXxeTTWLeWm-sH_llC9GCShbflZQd0gY--JCcNKY_x6cKtGFj4nzdw_rsL7XDTNhSe2fX6QzXvCfJeOzQ_iacRcv3MpIqd0yL3-8_isEwvCdTrlsd7Z5zj05qhVra62ICbW9jz9diSshohoNUKkZdZ9jaboexIO0rbQftx01SbX84Q",
+                "p": "2QJDiiPbilZt_yzHXxNDLW7UcVJltI9gIr-1gkhHJmXaLVCIVrnwvMhU9WyHubucMntX06fh2ZaHeLr0YxhQXXEmxnSZVAFiGpaxf8wdZ61l2-0NPUtLq68vAvmFYdJCze37w2kGrbR48JRsKhNARJ-FGL_sQPr7Wh8bIhkWJEs",
+                "q": "1bRWtqlbiIlfzRBKDA7WMoaYnVKpHR3zA1ZWxEFSkn7b54adkZh54umpm7itTx4GVzTnt5chQxCnIPuczoMbV6IixOiVu9HjEXUR3O-3tjEF4YgCrvPKL1nxoRAqnM20mrRV6Ivddw7Kyiypmkt4UEEkGLKi0t16AXn7uEbNCnE",
+                "dp": "0InnY6GvwNHr5JMgiJIXNVrTFo9rI0fAx8PY5nkUvqaUMoW4bzdCS_hsBGkmSOssYCq9rK0hUZrhVri6T1w3JoStEXtNOTgXEZwMuNXq0A4G24CC_4sTDcpMcBxe_DE1d3WiQhf0jgrnSbIn-4sCcK-nFLCilZNa5jEMPwlCiN8",
+                "dq": "eJkktkAsn4imv5qJrvRQfILobR_Qv9W-5gs7O9WBO5rLjoSxNxDM9_jU9kPpydQvz9bTTQ_EfYxQRJS5kPD75SBibqyykyOG-LsQMZY2HmLb5sJSgViiqMYhTbtJ0ONlIEjUkj8b46w9VIqPy7r7Uo7wR9_Hcyf5SgwEuaF65IE",
+                "qi": "xEAxyUieo59rLeONwcAYyOq9n_7dW-0zhSZ1bjEjyYe1cCSM7nTop6ANkW48gLf5s6ANwspTcEYLPwhyjUDQKL3RARD9YT-QJvuyu0IJEnSw3bO2Rh0QSk-xtvXbWb1MB8zQsQDqxCJs45HA0CEQ_k0TlRdWxwlM0IMX3NfnBpg",
+                "alg": "RS256"
+            },
+            "publicKey": {
+                "key_ops": [
+                    "verify"
+                ],
+                "ext": true,
+                "kty": "RSA",
+                "n": "tSfBSwbTYtpH6-sZmhY3P-PFvej7KWKPJUZ0OcMqfCeiemaXK2G3qJXj3xne1EWBV2UGY9jNVh0Zv2z9m7Dosn5E98BzhJH_E5LilTw2cHm1YL-CoBK3_QbIAH0jYdxCRJWCDqJHJl0LgvCjAay-ycYwaHxOtj3X3l8bAeOyhd9Zg-A5H9uSDrEQGAz1ogaMLxlwki-0RZ6jn6KeADbg1K-QdOjg07uVAr9PPbBgn5agzu5HQQywSvbA1H6-QV6Sl1LArl5S9R0F5qq1WxW2nZV6-LJMQoNNlkX8_QaXj2Ge6Rk3xFEs8YNAHmHNPPw_V2InnxD9MkA75xKXgj_zGw",
+                "e": "AQAB",
+                "alg": "RS256"
+            },
+            "identifier": "did:trust:tc:dev:id:XLzBJd69tqEgq7oqqdEsHW#2yWNoSfmCxKfdzo8CLYCixiFEUJ7eFBSKaBvvtaYJ6LU",
+            "algorithm": {
+                "name": "RSASSA-PKCS1-v1_5",
+                "modulusLength": 2048,
+                "publicExponent": {
+                    "0": 1,
+                    "1": 0,
+                    "2": 1
+                },
+                "hash": "SHA-256"
+            }
+        },
+        {
+            "privateKey": {
+                "key_ops": [
+                    "sign"
+                ],
+                "ext": true,
+                "kty": "RSA",
+                "n": "mzLGpVjfO_M_4qR5FbHtHvP5y_RTdpU9kDKEZMw0jDHjZk3gt-LL95shbZusS0RikfmtlMD6jlKaUAW6iAXrpbn_d8Z1nWQXHllig_1DW3QfTn_aZgVu56RSuQA5Ms32pbNMvz-cSyJmFt2xkWm3kwWiCi-G3_SZJgOeAEs5UfySAADM9TDhziFvBp0KYYPjGMl7AKzuQhUIw-dI9H3tQU9Y0aOKItnYhP7I0RfqixG6JvPawTmCQ_rGKWhgTHcmeVOaWKqoBO9ID6fdryg69OU_E-Iajt_gTKmYW_Wx0-WJSmW4j1N6q6vJqtXs3iWC8QUDdfc-BpklP74Nfzvk2Q",
+                "e": "AQAB",
+                "d": "lwrVtXpG2CunE0aK6Yheg-9iPxKsYA5i-gGQRCFRStgKvjgw6gX6CCKcZ_ZHuoD1haf_PXSK5RSTRiotHdDVRFc-wC0PrnwI2-qWLGrBsTHUfiuEPCIxi5OrRo1nHYDB-QYFPWQFEkKKJNrhw-mlVZr31v3mP_PnUM3YaeTMBnNLBsJAQV_83l7dZxXGtPawt-MTSzCtDchvu1Qd1dSMFaZzDmmrxnY1-mwTey0145sPyzStjVm-0dxhxFYhO_1JENJLmgd212WO6s2e7MCv4_k5p9Rb9Csmhj4zMNgnNCqnVWzPjH5tUTd37B_up4_lmhjtzNVIyQWffqTbRQFbuQ",
+                "p": "yjPje_3TA46XZ58-Pd3MLNp3WUXPi-QXQprbuJkOA7Cnu5H0ulog_ThNkGN6UEPAeTJp22DyGggHozc7mswHz7fmxNqXzmLnXtZwhOp8Ors3AhUjciqKTt5AZOYVs-C_I_EHzU2ZJJfb22SehVKTQPbBjpJxg6kDP1A8UqUjnA8",
+                "q": "xH1muvPp9-kBZ4oZkmjeW1bozus2re9Jy4Hqn384tWssRXNDfkxIQ2tx3ngAD8_JVEKJ8kRvVaDdXB0lSq7QmAyvHTD_s5BWR91K_aHf-bA7YnA8Ovok5UFXsAhYMXfPeETrr5u9EwbDv6tOKrlbaQXJ5BOR18CgERbpXP0fqJc",
+                "dp": "nCBilvuO8iEooLchjQ10OHHbU5AGyEIu_5uo6ikr3AeMC9WP_E_ZRwwxP7q_17fopuwZNm3todHva8Qa_tRpd6bMxdTvAEn30o-LQ-X2VDb4K2B9BQr5zhnn6MCLo1921t6mIoy3Ib0r4oQXrmPrFW8yVs6WXY2j10Axw7KFA1s",
+                "dq": "Rjg-h1915Of7XYJIAz_A_0l-57u9jclvSPBD5f40SPllF-jKXQ9r39Q9HHEsLHpoi9k_rTnxw9s6YJn14su4ti4KQtdo-kYB36rhCuVXwsbNYi-UBsuwddG1Qa6pvfwARA31YIu6tVr8h7nztGcLmOu9q-mmfEFVsuXKPjYjoz8",
+                "qi": "dpdsK0Bqy6RShZxiM_FDju3mIYqHcv-_U961N4WUpcxW4PJIpZMvsBQSx5ThjJvOUMFSF2TGrXxnpxUqRHVVyDFXZ7TBWFCt06Z5KOhuDLIm_r6QKjMkGxpBpmVdHf-d_urWb2NDZaxUQcHOMxyGnJZVyqUfzLglLSCE-ix9730",
+                "alg": "RS256"
+            },
+            "publicKey": {
+                "key_ops": [
+                    "verify"
+                ],
+                "ext": true,
+                "kty": "RSA",
+                "n": "mzLGpVjfO_M_4qR5FbHtHvP5y_RTdpU9kDKEZMw0jDHjZk3gt-LL95shbZusS0RikfmtlMD6jlKaUAW6iAXrpbn_d8Z1nWQXHllig_1DW3QfTn_aZgVu56RSuQA5Ms32pbNMvz-cSyJmFt2xkWm3kwWiCi-G3_SZJgOeAEs5UfySAADM9TDhziFvBp0KYYPjGMl7AKzuQhUIw-dI9H3tQU9Y0aOKItnYhP7I0RfqixG6JvPawTmCQ_rGKWhgTHcmeVOaWKqoBO9ID6fdryg69OU_E-Iajt_gTKmYW_Wx0-WJSmW4j1N6q6vJqtXs3iWC8QUDdfc-BpklP74Nfzvk2Q",
+                "e": "AQAB",
+                "alg": "RS256"
+            },
+            "identifier": "did:trust:tc:dev:id:XLzBJd69tqEgq7oqqdEsHW#D9kmJ3wsb2vdVuwGh7Y6nM9dPgmnexUfsWdADQb8WZYh",
+            "algorithm": {
+                "name": "RSASSA-PKCS1-v1_5",
+                "modulusLength": 2048,
+                "publicExponent": {
+                    "0": 1,
+                    "1": 0,
+                    "2": 1
+                },
+                "hash": "SHA-256"
+            }
+        }
+    ]
+}

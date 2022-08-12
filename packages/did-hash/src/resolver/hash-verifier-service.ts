@@ -4,6 +4,7 @@ import {
   Network,
   VerifierService,
 } from '@trustcerts/did';
+import { DidSchemaStructure } from '@trustcerts/gateway';
 import { logger } from '@trustcerts/logger';
 import {
   AxiosError,
@@ -90,7 +91,7 @@ export class DidHashVerifierService extends VerifierService {
     id: string,
     validate = true,
     time: string
-  ): Promise<DidSchemaTransaction[]> {
+  ): Promise<DidSchemaStructure[]> {
     this.setEndpoints(id);
     for (const api of this.apis) {
       const res = await api
@@ -103,7 +104,7 @@ export class DidHashVerifierService extends VerifierService {
               await this.validateTransaction(transaction);
             }
           }
-          return res.data;
+          return res.data.map((transaction) => transaction.values);
         })
         .catch(logger.warn);
       if (res) return Promise.resolve(res);

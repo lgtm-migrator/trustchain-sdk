@@ -17,7 +17,7 @@
         "tsConfig": "packages/crypto/tsconfig.lib.json",
         "project": "packages/crypto/package.json",
         "entryFile": "packages/crypto/src/index.ts",
-        "format": ["esm", "umd"],
+        "format": ["esm"],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },

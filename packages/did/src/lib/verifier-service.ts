@@ -64,7 +64,7 @@ export abstract class VerifierService {
   ): Promise<void> {
     const key = await this.getKey(transaction);
     const content: SignatureContent = {
-      value: transaction,
+      value: transaction.values,
       date: transaction.createdAt,
       type: transaction.type,
     };
@@ -121,7 +121,7 @@ export abstract class VerifierService {
     id: string,
     validate: boolean,
     time: string
-  ): Promise<DidTransaction[]>;
+  ): Promise<DidStructure[]>;
 }
 
 export interface SignatureContent {

@@ -17,7 +17,7 @@
         "tsConfig": "packages/wallet/tsconfig.lib.json",
         "project": "packages/wallet/package.json",
         "entryFile": "packages/wallet/src/index.ts",
-        "format": ["esm", "umd"],
+        "format": ["esm"],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },

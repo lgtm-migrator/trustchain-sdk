@@ -11,6 +11,7 @@ import {
   DidTemplateTransaction,
   TemplateDocResponse,
   TemplateObserverApi,
+  DidTemplateStructure,
 } from '@trustcerts/observer';
 
 export class TemplateVerifierService extends VerifierService {
@@ -73,7 +74,7 @@ export class TemplateVerifierService extends VerifierService {
     id: string,
     validate = true,
     time: string
-  ): Promise<DidTemplateTransaction[]> {
+  ): Promise<DidTemplateStructure[]> {
     this.setEndpoints(id);
     for (const api of this.apis) {
       const res = await api
@@ -86,7 +87,7 @@ export class TemplateVerifierService extends VerifierService {
               await this.validateTransaction(transaction);
             }
           }
-          return res.data;
+          return res.data.map((transaction) => transaction.values);
         })
         .catch(logger.warn);
       if (res) return Promise.resolve(res);

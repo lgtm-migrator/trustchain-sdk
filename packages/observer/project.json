@@ -17,7 +17,7 @@
         "tsConfig": "packages/observer/tsconfig.lib.json",
         "project": "packages/observer/package.json",
         "entryFile": "packages/observer/src/index.ts",
-        "format": ["esm", "umd"],
+        "format": ["esm"],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },

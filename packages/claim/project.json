@@ -17,7 +17,7 @@
         "tsConfig": "packages/claim/tsconfig.lib.json",
         "project": "packages/claim/package.json",
         "entryFile": "packages/claim/src/index.ts",
-        "format": ["esm", "umd"],
+        "format": ["esm"],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
