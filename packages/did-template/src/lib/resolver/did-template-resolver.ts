@@ -1,8 +1,5 @@
 import { DidResolver, InitDidManagerConfigValues } from '@trustcerts/did';
-import {
-  DidTemplateStructure,
-  DidTemplateTransaction,
-} from '@trustcerts/observer';
+import { DidTemplateStructure } from '@trustcerts/observer';
 import { DidTemplate } from './did-template';
 import { TemplateVerifierService } from './template-verifier-service';
 

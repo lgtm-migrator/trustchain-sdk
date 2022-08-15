@@ -23,6 +23,10 @@ export class Claim {
 
   /**
    * Sets values based on compression algorithm.
+   *
+   * @param values
+   * @param template
+   * @param host
    */
   constructor(
     public values: ClaimValues,
@@ -47,6 +51,7 @@ export class Claim {
 
   /**
    * returns the template id of the claim.
+   *
    * @returns
    */
   public getTemplateId(): string {
@@ -55,6 +60,7 @@ export class Claim {
 
   /**
    * Generates the qr code of a url.
+   *
    * @param url
    */
   private async getQRCode(url: string): Promise<string> {
@@ -80,6 +86,8 @@ export class Claim {
 
   /**
    * Builds the url of the element.
+   *
+   * @param host
    * @param templateDid
    * @param values
    */
@@ -89,6 +97,7 @@ export class Claim {
 
   /**
    * Returns the url including the host, template reference and values.
+   *
    * @returns
    */
   public getUrl(): string {
@@ -200,6 +209,7 @@ export class Claim {
 
   /**
    * Sets the validation results of the claim
+   *
    * @param hash
    */
   public setValidation(hash: DidHash): void {
@@ -208,6 +218,7 @@ export class Claim {
 
   /**
    * Returns the validation information about the claim.
+   *
    * @returns
    */
   public getValidation(): DidHash | undefined {

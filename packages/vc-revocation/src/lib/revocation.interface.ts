@@ -20,6 +20,6 @@ export interface IRevocationListCredential {
 export interface ICredentialStatus {
   id: string;
   type: string;
-  revocationListIndex: string;
+  revocationListIndex: number;
   revocationListCredential: string;
 }

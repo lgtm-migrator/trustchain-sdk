@@ -7,6 +7,8 @@ import {
 } from '@trustcerts/observer';
 
 export class DidTemplate extends Did {
+  static objectName = 'tmp';
+
   // use setters to change values to detect if there where changes
   public compression!: Compression;
 
@@ -15,7 +17,7 @@ export class DidTemplate extends Did {
   public schemaId!: string;
 
   constructor(public override id: string) {
-    super(id, 'tmp', 22);
+    super(id, DidTemplate.objectName, 22);
   }
 
   parseTransactions(transactions: DidTemplateStructure[]): void {

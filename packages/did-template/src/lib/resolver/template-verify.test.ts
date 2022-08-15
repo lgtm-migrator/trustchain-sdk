@@ -40,7 +40,6 @@ describe('test template service', () => {
 
   beforeAll(async () => {
     DidNetworks.add(testValues.network.namespace, testValues.network);
-    DidNetworks.add('tc:staging', testValues.network);
     Identifier.setNetwork(testValues.network.namespace);
     config = new LocalConfigService(testValues.filePath);
     await config.init(testValues.configValues);

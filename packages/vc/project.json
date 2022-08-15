@@ -17,7 +17,7 @@
         "tsConfig": "packages/vc/tsconfig.lib.json",
         "project": "packages/vc/package.json",
         "entryFile": "packages/vc/src/index.ts",
-        "format": ["esm"],
+        "format": ["esm", "cjs"],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },

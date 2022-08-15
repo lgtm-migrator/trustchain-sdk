@@ -5,10 +5,12 @@ import { SchemaIssuerService } from './schema-issuer-service';
 export class DidSchemaRegister {
   /**
    * creates a fresh did with a unique identifier. Add controller when they are passed.
+   *
+   * @param values
    */
   public static create(values?: DidCreation): DidSchema {
     // TODO check if a given id should be allowed
-    const id = values?.id ?? Identifier.generate('sch');
+    const id = values?.id ?? Identifier.generate(DidSchema.objectName);
     const did = new DidSchema(id);
     values?.controllers?.forEach((controller) => did.addController(controller));
     return did;

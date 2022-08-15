@@ -26,6 +26,8 @@ export interface VerificationRelationship {
 }
 
 export class DidId extends Did {
+  static objectName = 'id';
+
   private verificationMethod = new Management<DidPublicKey>();
   private verificationRelationships = new Map<
     VerificationRelationshipType,
@@ -37,7 +39,7 @@ export class DidId extends Did {
   private role = new Management<DidRoles>();
 
   constructor(public override id: string) {
-    super(id, 'id', 22);
+    super(id, DidId.objectName, 22);
     Object.values(VerificationRelationshipType).forEach((vrType) => {
       this.verificationRelationships.set(vrType, new Management<string>());
     });

@@ -18,7 +18,7 @@
         "tsConfig": "packages/crypto-bbs/tsconfig.lib.json",
         "project": "packages/crypto-bbs/package.json",
         "entryFile": "packages/crypto-bbs/src/index.ts",
-        "format": ["esm"],
+        "format": ["esm", "cjs"],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },

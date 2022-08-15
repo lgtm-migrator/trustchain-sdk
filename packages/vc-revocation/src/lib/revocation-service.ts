@@ -66,6 +66,7 @@ export class RevocationService {
 
   /**
    * Creates a new revocation list credential
+   *
    * @returns A revocation list credential
    */
   private async createNewRevocationListCredential(): Promise<IRevocationListCredential> {
@@ -158,6 +159,7 @@ export class RevocationService {
 
   /**
    * Creates a new unrevoked credential status with the next free index on the revocation list
+   *
    * @returns The credential status
    */
   public async getNewCredentialStatus(): Promise<ICredentialStatus> {
@@ -167,7 +169,7 @@ export class RevocationService {
       id: `${this.revocationListConfig.id}#${index}`,
       type: 'RevocationList2020Status',
       revocationListCredential: this.revocationListConfig.url,
-      revocationListIndex: `${index}`,
+      revocationListIndex: index,
     };
   }
 
@@ -202,6 +204,7 @@ export class RevocationService {
 
   /**
    * Revokes or unrevokes a given credential status
+   *
    * @param credentialStatus The credential status to (un-)revoke
    * @param revoked The revocation status to set it to
    */

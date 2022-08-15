@@ -42,7 +42,7 @@ export class ClaimIssuerService {
     }
     const hash = await ClaimVerifierService.getHash(values, template.id);
     const didHash = await this.didHashRegister.create({
-      id: Identifier.generate('hash', hash),
+      id: Identifier.generate(DidHash.objectName, hash),
       algorithm: 'sha256',
       controllers,
     });
@@ -65,7 +65,7 @@ export class ClaimIssuerService {
       claim.getTemplateId()
     );
     const didHash = await this.didHashResolver
-      .load(Identifier.generate('hash', hash))
+      .load(Identifier.generate(DidHash.objectName, hash))
       .catch(() => {
         throw new Error('hash of claim not found');
       });

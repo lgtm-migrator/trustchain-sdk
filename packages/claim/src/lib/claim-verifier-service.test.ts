@@ -12,8 +12,7 @@ import { WalletService } from '@trustcerts/wallet';
 import { randomBytes } from 'crypto';
 import { readFileSync } from 'fs';
 import { promisify } from 'util';
-import { CompressionType } from '@trustcerts/gateway';
-import { DidSchema, DidSchemaResolver } from '@trustcerts/did-schema';
+import { DidSchema } from '@trustcerts/did-schema';
 import { DidHashResolver } from '@trustcerts/did-hash';
 
 /**

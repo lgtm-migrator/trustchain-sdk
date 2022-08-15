@@ -23,7 +23,7 @@ export class DidHashResolver extends DidResolver<DidHashVerifierService> {
     values?: InitDidManagerConfigValues<DidHashStructure>
   ): Promise<DidHash> {
     if (!id.startsWith('did:trust')) {
-      id = Identifier.generate('hash', id);
+      id = Identifier.generate(DidHash.objectName, id);
     }
     const didID = id.split('#')[0];
     const config = this.setConfig<DidHashStructure>(values);
