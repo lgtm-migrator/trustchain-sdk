@@ -52,7 +52,7 @@ export class DidCreator {
       });
     // wait a bit so the observers have time to sync. Otherwhise only the gateway has the new transaction already passed
     await promisify(setTimeout)(1500);
-    console.log('done');
+
     return {
       id: id,
       secret: secret,

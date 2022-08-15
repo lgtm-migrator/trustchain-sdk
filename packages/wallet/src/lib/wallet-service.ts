@@ -33,26 +33,24 @@ export class WalletService {
    */
   public async init(): Promise<void> {
     if (!this.configService.config.invite) throw Error('no id found');
-    this.did = await this.resolver
-      .load(this.configService.config.invite.id)
-      .catch(async () => {
-        if (!this.configService.config.invite) throw Error('no id found');
-        return DidIdRegister.createByInvite(
-          this.configService.config.invite,
-          this.cryptoKeyServices[0]
-        ).then(
-          async (values) => {
-            // save the key that was used.
-            this.configService.config.keyPairs.push(values.keyPair);
-            await this.configService.saveConfig();
-            return values.did;
-          },
-          (err: Error) => {
-            console.error(err);
-            throw new Error(`Could not create DID by invite: ${err.message}`);
-          }
-        );
-      });
+    const invite = this.configService.config.invite;
+    this.did = await this.resolver.load(invite.id).catch(async () => {
+      return DidIdRegister.createByInvite(
+        invite,
+        this.cryptoKeyServices[0]
+      ).then(
+        async (values) => {
+          // save the key that was used.
+          this.configService.config.keyPairs.push(values.keyPair);
+          await this.configService.saveConfig();
+          return values.did;
+        },
+        (err: Error) => {
+          console.error(err);
+          throw new Error(`Could not create DID by invite: ${err.message}`);
+        }
+      );
+    });
   }
 
   /**
@@ -107,7 +105,14 @@ export class WalletService {
     });
     return foundKeys;
   }
-
+  /**
+   * Gets a key from the wallet, creates one if it does not exist yet
+   *
+   * @param {VerificationRelationshipType} verificationRelationshipType The verification relationship type for which the key shall be used
+   * @param {Algorithm} algorithm The key algorithm
+   * @returns {Promise<DecryptedKeyPair[]>} The key
+   * @memberof WalletService
+   */
   async findOrCreate(
     verificationRelationshipType: VerificationRelationshipType,
     algorithm: Algorithm
@@ -194,9 +199,9 @@ export class WalletService {
     verificationRelationships: VerificationRelationshipType[],
     algorithm: Algorithm
   ): Promise<DecryptedKeyPair> {
-    const newKey = await this.getCryptoServiceByType(algorithm).generateKeyPair(
-      this.did.id
-    );
+    const newKey = await this.getCryptoKeyServiceByType(
+      algorithm
+    ).generateKeyPair(this.did.id);
     // persist in config
     this.configService.config.keyPairs.push(newKey);
     await this.configService.saveConfig();
@@ -211,7 +216,7 @@ export class WalletService {
     return newKey;
   }
 
-  private getCryptoServiceByType(algorithm: Algorithm): CryptoKeyService {
+  private getCryptoKeyServiceByType(algorithm: Algorithm): CryptoKeyService {
     const service = this.cryptoKeyServices.find(
       (service) =>
         JSON.stringify(sortKeys(service.algorithm)) ==

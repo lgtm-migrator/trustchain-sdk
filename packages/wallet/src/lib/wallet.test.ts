@@ -66,6 +66,16 @@ describe('wallet', () => {
       expect(walletService.findKeyByID(key.identifier)).toBeUndefined();
     }
   }, 10000);
+  it('add key with invalid algorithm', async () => {
+    const walletService = new WalletService(config);
+    await walletService.init();
+    await expect(
+      walletService.addKey(
+        [VerificationRelationshipType.assertionMethod],
+        {} as Algorithm
+      )
+    ).rejects.toThrowError('no service found for');
+  }, 10000);
   it('test findOrCreate', async () => {
     const walletService = new WalletService(config);
     await walletService.init();
@@ -106,14 +116,21 @@ describe('wallet', () => {
     const invalidKey = await defaultCryptoKeyService.generateKeyPair(
       walletService.did.id
     );
+    // Push new key with invalid DID to local configService of wallet
+    const invalidKey2 = await defaultCryptoKeyService.generateKeyPair(
+      'invalid did'
+    );
     walletService.configService.config.keyPairs.push(invalidKey);
+    walletService.configService.config.keyPairs.push(invalidKey2);
 
     expect(walletService.findKeyByID(invalidKey.identifier)).toBe(invalidKey);
+    expect(walletService.findKeyByID(invalidKey2.identifier)).toBe(invalidKey2);
 
     // Remove keys from local configSerive of wallet that don't exist in the DID document
     await walletService.tidyUp();
 
     expect(walletService.findKeyByID(invalidKey.identifier)).toBeUndefined();
+    expect(walletService.findKeyByID(invalidKey2.identifier)).toBeUndefined();
   }, 15000);
 
   it('init wallet with invalid config invite', async () => {
@@ -127,9 +144,9 @@ describe('wallet', () => {
     const secret = 'secret';
     const name = 'test-did';
     const didCreator = new DidCreator(testValues.network.gateways, 'dev');
-    const invite = await didCreator.createNewInviteForDid(id, secret, name);
+    const invite = await didCreator.createNewInviteForDid(id, name, secret);
 
-    const temporaryConfigPath = './tmp/cryptoTestFile';
+    const temporaryConfigPath = './tmp/temporaryConfig';
 
     const newConfig = new LocalConfigService(temporaryConfigPath);
     await newConfig.init({
@@ -142,6 +159,32 @@ describe('wallet', () => {
     await walletService.init();
     // Expect DID to be created and thus walletService.did to be defined
     expect(walletService.did.id).toEqual(invite.id);
+
+    if (exists(temporaryConfigPath)) {
+      remove(temporaryConfigPath);
+    }
+  }, 20000);
+
+  it('init wallet with new invalid invite', async () => {
+    const invite = {
+      id: 'invalid',
+      secret: 'invalid',
+      endpoint: testValues.network.gateways[0],
+    };
+
+    const temporaryConfigPath = './tmp/temporaryConfig';
+
+    const newConfig = new LocalConfigService(temporaryConfigPath);
+    await newConfig.init({
+      invite: invite,
+      name: 'invalid',
+      keyPairs: [],
+    });
+
+    const walletService = new WalletService(newConfig);
+    await expect(walletService.init()).rejects.toThrowError(
+      'Could not create DID by invite'
+    );
 
     if (exists(temporaryConfigPath)) {
       remove(temporaryConfigPath);
