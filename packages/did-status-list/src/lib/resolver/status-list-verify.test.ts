@@ -53,7 +53,6 @@ describe('test statuslist service', () => {
     const loadedStatusList = await new DidStatusListResolver().load(
       statusListDid.id
     );
-
     expect(loadedStatusList.encodedList).toEqual(statusListDid.encodedList);
   });
 });

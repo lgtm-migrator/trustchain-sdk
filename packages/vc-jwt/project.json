@@ -45,7 +45,7 @@
         "preset": "angular",
         "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": ["vc-jwt:publish", "vc-jwt:publish"]
+        "postTargets": ["vc-jwt:publish", "vc-jwt:github"]
       }
     },
     "github": {

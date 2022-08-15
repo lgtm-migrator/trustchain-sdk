@@ -45,7 +45,7 @@
         "preset": "angular",
         "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": ["helpers:publish", "helpers:publish"]
+        "postTargets": ["helpers:publish", "helpers:github"]
       }
     },
     "github": {
