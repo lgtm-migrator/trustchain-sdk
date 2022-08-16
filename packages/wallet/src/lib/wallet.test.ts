@@ -1,6 +1,7 @@
 import { ConfigService, Invite } from '@trustcerts/config';
 import { LocalConfigService } from '@trustcerts/config-local';
 import {
+  CryptoKeyService,
   defaultCryptoKeyService,
   ECCryptoKeyService,
   RSACryptoKeyService,
@@ -34,7 +35,7 @@ describe('wallet', () => {
   });
 
   it('add and remove key', async () => {
-    const cryptoKeyServices = [
+    const cryptoKeyServices: CryptoKeyService[] = [
       new RSACryptoKeyService(),
       new ECCryptoKeyService(),
       new BbsCryptoKeyService(),

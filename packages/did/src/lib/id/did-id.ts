@@ -76,7 +76,7 @@ export class DidId extends Did {
 
   removeKey(id: string): void {
     if (!this.hasKey(id)) {
-      throw Error('id not found');
+      throw Error('key not found');
     }
 
     this.verificationMethod.current.delete(this.getFullId(id));
@@ -97,7 +97,7 @@ export class DidId extends Did {
 
   addService(id: string, endpoint: string, type: string): void {
     if (this.hasService(id)) {
-      throw Error('id already used');
+      throw Error('service id already used');
     }
     const service: DidService = {
       id: this.getFullId(id),
@@ -110,7 +110,7 @@ export class DidId extends Did {
 
   removeService(id: string): void {
     if (!this.hasService(id)) {
-      throw Error('id not found');
+      throw Error('service not found');
     }
 
     this.service.current.delete(this.getFullId(id));

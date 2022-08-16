@@ -1,6 +1,13 @@
 import { ConfigService } from '@trustcerts/config';
 import { LocalConfigService } from '@trustcerts/config-local';
-import { CryptoService, defaultCryptoKeyService } from '@trustcerts/crypto';
+import {
+  CryptoKeyService,
+  CryptoService,
+  defaultCryptoKeyService,
+  ECCryptoKeyService,
+  RSACryptoKeyService,
+} from '@trustcerts/crypto';
+import { BbsCryptoKeyService } from '@trustcerts/crypto-bbs';
 import {
   DidId,
   DidIdIssuerService,
@@ -17,11 +24,19 @@ import { readFileSync } from 'fs';
 describe('test did', () => {
   let config: ConfigService;
 
+  let wallet: WalletService;
+
   let cryptoService: CryptoService;
 
   const resolver = new DidIdResolver();
 
   const testValues = JSON.parse(readFileSync('./values.json', 'utf-8'));
+
+  const cryptoKeyServices: CryptoKeyService[] = [
+    new RSACryptoKeyService(),
+    new ECCryptoKeyService(),
+    new BbsCryptoKeyService(),
+  ];
 
   beforeAll(async () => {
     DidNetworks.add(testValues.network.namespace, testValues.network);
@@ -29,7 +44,7 @@ describe('test did', () => {
     config = new LocalConfigService(testValues.filePath);
     await config.init(testValues.configValues);
 
-    const wallet = new WalletService(config);
+    wallet = new WalletService(config);
     await wallet.init();
 
     cryptoService = new CryptoService();
@@ -145,6 +160,135 @@ describe('test did', () => {
 
     for (const did of invalidDIDs) {
       expect(() => new DidId(did)).toThrowError();
+    }
+  }, 7000);
+
+  it('test DidId addKey, getKey, removeKey', async () => {
+    const did = DidIdRegister.create();
+    for (const cryptoKeyService of cryptoKeyServices) {
+      const key = await cryptoKeyService.generateKeyPair(did.id);
+
+      expect(() => did.getKey(key.identifier)).toThrowError('key not found');
+
+      did.addKey(key.identifier, key.publicKey);
+      expect(did.getKey(key.identifier).id).toEqual(key.identifier);
+      expect(
+        did.getChanges().verificationMethod?.add?.map((val) => val.id)
+      ).toContain(key.identifier);
+
+      did.removeKey(key.identifier);
+      expect(() => did.getKey(key.identifier)).toThrowError('key not found');
+      expect(() => did.removeKey(key.identifier)).toThrowError('key not found');
+      expect(did.getChanges().verificationMethod?.remove).toContain(
+        key.identifier
+      );
+    }
+  }, 7000);
+
+  it('test DidId addService, getService, removeService', async () => {
+    const did = DidIdRegister.create();
+
+    const id = 'testService';
+    const fullId = `${did.id}#${id}`;
+    const endpoint = 'testEndpoint';
+    const type = 'testType';
+
+    expect(() => did.getService(id)).toThrowError('service not found');
+
+    did.addService(id, endpoint, type);
+    expect(did.getService(id).id).toEqual(fullId);
+    expect(did.getChanges().service?.add).toContainEqual({
+      id: fullId,
+      endpoint,
+      type,
+    });
+
+    did.removeService(id);
+    expect(() => did.getService(id)).toThrowError('service not found');
+    expect(() => did.removeService(id)).toThrowError('service not found');
+    expect(did.getChanges().service?.remove).toContain(fullId);
+  }, 7000);
+
+  it('test DidId addRole, hasRole, removeRole', async () => {
+    const did = DidIdRegister.create();
+
+    Object.values(DidRoles).forEach((role) => {
+      expect(did.hasRole(role)).toEqual(false);
+
+      did.addRole(role);
+      expect(did.hasRole(role)).toEqual(true);
+      expect(did.getChanges().role?.add).toContain(role);
+
+      did.removeRole(role);
+      expect(did.hasRole(role)).toEqual(false);
+      expect(() => did.removeRole(role)).toThrowError('role not found');
+      expect(did.getChanges().role?.remove).toContain(role);
+    });
+  }, 7000);
+
+  it('test DidId verificationRelationship', async () => {
+    const did = DidIdRegister.create();
+
+    for (const cryptoKeyService of cryptoKeyServices) {
+      const key = await cryptoKeyService.generateKeyPair(did.id);
+
+      expect(() =>
+        did.addVerificationRelationship(
+          key.identifier,
+          VerificationRelationshipType.assertionMethod
+        )
+      ).toThrowError("key doesn't exist in verification method");
+
+      did.addKey(key.identifier, key.publicKey);
+
+      Object.values(VerificationRelationshipType).forEach((vrType) => {
+        expect(did.getVerificationRelationship(key.identifier)).not.toContain(
+          vrType
+        );
+        expect(did.hasVerificationRelationship(key.identifier, vrType)).toEqual(
+          false
+        );
+        expect(did.findByVerificationRelationship(vrType)).not.toContain(
+          key.identifier
+        );
+        expect(() =>
+          did.removeVerificationRelationship(key.identifier, vrType)
+        ).toThrowError('verificationRelationship not found');
+
+        did.addVerificationRelationship(key.identifier, vrType);
+
+        expect(() =>
+          did.addVerificationRelationship(key.identifier, vrType)
+        ).toThrowError('id already used');
+        expect(did.getVerificationRelationship(key.identifier)).toContain(
+          vrType
+        );
+        expect(did.hasVerificationRelationship(key.identifier, vrType)).toEqual(
+          true
+        );
+        expect(did.findByVerificationRelationship(vrType)).toContain(
+          key.identifier
+        );
+        expect(did.getChanges()[vrType]?.add).toContain(key.identifier);
+
+        did.removeVerificationRelationship(key.identifier, vrType);
+
+        expect(did.getVerificationRelationship(key.identifier)).not.toContain(
+          vrType
+        );
+        expect(did.hasVerificationRelationship(key.identifier, vrType)).toEqual(
+          false
+        );
+        expect(did.findByVerificationRelationship(vrType)).not.toContain(
+          key.identifier
+        );
+        expect(() =>
+          did.removeVerificationRelationship(key.identifier, vrType)
+        ).toThrowError('verificationRelationship not found');
+        expect(did.getChanges()[vrType]?.remove).toContain(key.identifier);
+      });
+
+      did.removeKey(key.identifier);
     }
   }, 7000);
 });
