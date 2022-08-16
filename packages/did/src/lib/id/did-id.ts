@@ -117,7 +117,7 @@ export class DidId extends Did {
     this.service.remove.add(this.getFullId(id));
   }
 
-  hasRole(value: string): boolean {
+  hasRole(value: DidRoles): boolean {
     return this.role.current.has(value);
   }
 
@@ -129,7 +129,7 @@ export class DidId extends Did {
     this.role.add.set(value, value);
   }
 
-  removeRole(value: string): void {
+  removeRole(value: DidRoles): void {
     if (!this.hasRole(value)) {
       throw Error('role not found');
     }
@@ -215,8 +215,8 @@ export class DidId extends Did {
 
   removeAllVerificationRelationships(keyId: string): void {
     this.getVerificationRelationship(keyId).forEach(
-      (verificationRelationShipKey) =>
-        this.removeVerificationRelationship(keyId, verificationRelationShipKey)
+      (verificationRelationshipKey) =>
+        this.removeVerificationRelationship(keyId, verificationRelationshipKey)
     );
   }
 

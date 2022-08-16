@@ -175,6 +175,9 @@ describe('test did', () => {
       expect(
         did.getChanges().verificationMethod?.add?.map((val) => val.id)
       ).toContain(key.identifier);
+      expect(() => did.addKey(key.identifier, key.publicKey)).toThrowError(
+        'key already exists'
+      );
 
       did.removeKey(key.identifier);
       expect(() => did.getKey(key.identifier)).toThrowError('key not found');
@@ -202,6 +205,9 @@ describe('test did', () => {
       endpoint,
       type,
     });
+    expect(() => did.addService(id, endpoint, type)).toThrowError(
+      'service id already used'
+    );
 
     did.removeService(id);
     expect(() => did.getService(id)).toThrowError('service not found');
@@ -218,6 +224,7 @@ describe('test did', () => {
       did.addRole(role);
       expect(did.hasRole(role)).toEqual(true);
       expect(did.getChanges().role?.add).toContain(role);
+      expect(() => did.addRole(role)).toThrowError('role already set');
 
       did.removeRole(role);
       expect(did.hasRole(role)).toEqual(false);
