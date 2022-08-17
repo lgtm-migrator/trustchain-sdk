@@ -20,7 +20,7 @@ export class DidSchema extends Did {
     this.ajv = new Ajv({ allErrors: true });
   }
 
-  parseTransactions(transactions: DidSchemaStructure[]): void {
+  async parseTransactions(transactions: DidSchemaStructure[]): Promise<void> {
     for (const transaction of transactions) {
       this.version++;
       // validate signature of transaction
@@ -30,7 +30,7 @@ export class DidSchema extends Did {
       this.schema = transaction.schema ?? this.schema;
     }
   }
-  parseDocument(docResponse: SchemaDocResponse): void {
+  async parseDocument(docResponse: SchemaDocResponse): Promise<void> {
     this.parseDocumentSuper(docResponse);
     this.schema = docResponse.document.value ?? this.schema;
   }

@@ -5,7 +5,7 @@ import {
   IVerifiablePresentationArguments,
   IVerifiablePresentationPayload,
 } from '@trustcerts/vc';
-import { RevocationService } from '@trustcerts/vc-revocation';
+import { RevocationService } from '@trustcerts/did-status-list';
 import { SignJWT } from 'jose';
 
 export class VerifiableCredentialIssuerService {
@@ -172,6 +172,7 @@ export class VerifiableCredentialIssuerService {
 
   /**
    * Returns the corresponding key algorithm of a key for use in the JWT header
+   *
    * @param keyAlgorithm The key algorithm
    * @returns The key algorithm of the key for use in the JWT header
    */

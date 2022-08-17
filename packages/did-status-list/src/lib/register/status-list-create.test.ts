@@ -8,6 +8,7 @@ import {
 } from '@trustcerts/did';
 import {
   DidStatusListRegister,
+  RevocationService,
   StatusListIssuerService,
 } from '@trustcerts/did-status-list';
 import { WalletService } from '@trustcerts/wallet';
@@ -48,8 +49,12 @@ describe('test statuslist service', () => {
     const statusListDid = DidStatusListRegister.create({
       controllers: [config.config.invite.id],
     });
-    await statusListDid.setRevoked(1);
     const res = await DidStatusListRegister.save(statusListDid, client);
+    // create config to work with list
+    const service = RevocationService.create(
+      statusListDid,
+      './tmp/revocationListConfig.json'
+    );
     expect(res).toBeDefined();
   });
 });

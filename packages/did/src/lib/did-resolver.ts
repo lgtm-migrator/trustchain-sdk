@@ -21,14 +21,14 @@ export abstract class DidResolver<T extends VerifierService> {
           .catch((err: Error) => {
             throw new Error(`Could not resolve DID: ${err} (${did.id})`);
           });
-        did.parseDocument(document);
+        await did.parseDocument(document);
       } else {
         config.transactions = await this.verifier
           .getDidTransactions(did.id, config.validateChainOfTrust, config.time)
           .catch((err: Error) => {
             throw new Error(`Could not resolve DID: ${err} (${did.id})`);
           });
-        did.parseTransactions(config.transactions);
+        await did.parseTransactions(config.transactions);
       }
     }
 

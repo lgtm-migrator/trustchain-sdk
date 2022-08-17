@@ -56,7 +56,7 @@ export class Bitstring {
    *
    * @returns
    */
-  async encodeBits() {
+  encodeBits() {
     return base64url.encode(Buffer.from(gzip(this.bits)));
   }
 
@@ -66,7 +66,7 @@ export class Bitstring {
    * @param encoded
    * @returns
    */
-  static async decodeBits(encoded: string) {
+  static decodeBits(encoded: string) {
     return ungzip(base64url.toBuffer(encoded));
   }
 

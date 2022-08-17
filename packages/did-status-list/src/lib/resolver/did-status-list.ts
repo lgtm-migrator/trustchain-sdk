@@ -4,24 +4,29 @@ import {
   DidStatusListDocument,
   StatusListDocResponse,
 } from '@trustcerts/observer';
+import { DidStatusListRegister } from '../register/did-status-list-register';
+import { StatusListIssuerService } from '../register/status-list-issuer-service';
 import { Bitstring } from './bit-string';
 
 export class DidStatusList extends Did {
   static objectName = 'statuslist';
 
   statusPurpose!: StatusPurpose;
-  encodedList!: string;
 
   private list!: Bitstring;
 
-  constructor(public override id: string, private length: number = 1000) {
+  constructor(public override id: string, private length?: number) {
     super(id, DidStatusList.objectName, 22);
-    this.list = new Bitstring({ length: this.length });
+    if (length) {
+      this.list = new Bitstring({ length: this.length });
+    }
     this.statusPurpose = StatusPurpose.revocation;
   }
 
-  parseTransactions(transactions: DidStatusListStructure[]): void {
-    // this.values.
+  async parseTransactions(
+    transactions: DidStatusListStructure[]
+  ): Promise<void> {
+    let encodedList: string | undefined;
     for (const transaction of transactions) {
       this.version++;
       // validate signature of transaction
@@ -31,18 +36,25 @@ export class DidStatusList extends Did {
     const lastTransaction = transactions.at(-1);
     if (lastTransaction) {
       this.statusPurpose = lastTransaction.statusPurpose ?? this.statusPurpose;
-      this.encodedList = lastTransaction.encodedList ?? this.encodedList;
+      encodedList = lastTransaction.encodedList;
     }
-  }
-  parseDocument(docResponse: StatusListDocResponse): void {
-    this.parseDocumentSuper(docResponse);
-    this.statusPurpose = docResponse.document.statusPurpose;
-    this.encodedList = docResponse.document.encodedList;
+    if (!encodedList) throw new Error();
+    this.initBitstring(encodedList);
   }
 
-  async init() {
-    const buffer = await Bitstring.decodeBits(this.encodedList);
+  async parseDocument(docResponse: StatusListDocResponse): Promise<void> {
+    this.parseDocumentSuper(docResponse);
+    this.statusPurpose = docResponse.document.statusPurpose;
+    this.initBitstring(docResponse.document.encodedList);
+  }
+
+  private initBitstring(encodedList: string) {
+    const buffer = Bitstring.decodeBits(encodedList);
     this.list = new Bitstring({ buffer });
+  }
+
+  getLength() {
+    return this.list.length;
   }
 
   getDocument(): DidStatusListDocument {
@@ -51,7 +63,7 @@ export class DidStatusList extends Did {
       id: this.id,
       controller: Array.from(this.controller.current.values()),
       statusPurpose: this.statusPurpose,
-      encodedList: this.encodedList,
+      encodedList: this.list.encodeBits(),
     };
   }
   resetChanges(): void {
@@ -60,9 +72,8 @@ export class DidStatusList extends Did {
 
   async getChanges(): Promise<DidStatusListStructure> {
     const changes = this.getBasicChanges<DidStatusListStructure>();
-    this.encodedList = await this.list.encodeBits();
     changes.statusPurpose = this.statusPurpose;
-    changes.encodedList = this.encodedList;
+    changes.encodedList = await this.list.encodeBits();
     return changes;
   }
 

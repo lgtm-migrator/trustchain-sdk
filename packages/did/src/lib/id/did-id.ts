@@ -311,7 +311,7 @@ export class DidId extends Did {
     });
   }
 
-  parseDocument(docResponse: IdDocResponse): void {
+  async parseDocument(docResponse: IdDocResponse): Promise<void> {
     this.parseDocumentSuper(docResponse);
 
     docResponse.document.service.forEach((service) =>
@@ -335,7 +335,7 @@ export class DidId extends Did {
     this.resetChanges();
   }
 
-  parseTransactions(structures: DidIdStructure[]): void {
+  async parseTransactions(structures: DidIdStructure[]): Promise<void> {
     for (const structure of structures) {
       this.version++;
       // validate signature of transaction
