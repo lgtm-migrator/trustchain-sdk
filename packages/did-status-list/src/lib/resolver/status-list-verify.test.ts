@@ -47,12 +47,22 @@ describe('test statuslist service', () => {
     );
     const statusListDid = DidStatusListRegister.create({
       controllers: [config.config.invite.id],
+      length: 1000,
     });
-    await statusListDid.setRevoked(10);
+    const revokeId = 10;
+    for (let i = 0; i < statusListDid.getLength(); i++) {
+      expect(statusListDid.isRevoked(i)).toEqual(false);
+    }
+    statusListDid.setRevoked(revokeId);
+    for (let i = 0; i < statusListDid.getLength(); i++) {
+      expect(statusListDid.isRevoked(i)).toEqual(i == revokeId);
+    }
     await DidStatusListRegister.save(statusListDid, clientSchema);
     const loadedStatusList = await new DidStatusListResolver().load(
       statusListDid.id
     );
-    expect(loadedStatusList.encodedList).toEqual(statusListDid.encodedList);
-  });
+    for (let i = 0; i < loadedStatusList.getLength(); i++) {
+      expect(loadedStatusList.isRevoked(i)).toEqual(i == revokeId);
+    }
+  }, 10000);
 });

@@ -1,10 +1,13 @@
 import { ICredentialStatus, JWTPayloadVC, JWTPayloadVP } from '@trustcerts/vc';
 import { jwtVerify } from 'jose';
 import { JWT } from './jwt-service';
-import { RevocationService } from '@trustcerts/vc-revocation';
 import { importKey } from '@trustcerts/crypto';
 import { DidIdResolver } from '@trustcerts/did';
 import { logger } from '@trustcerts/logger';
+import {
+  DidStatusListResolver,
+  RevocationService,
+} from '@trustcerts/did-status-list';
 
 export class JWTVerifiableCredentialVerifierService {
   private resolver = new DidIdResolver();
@@ -55,15 +58,8 @@ export class JWTVerifiableCredentialVerifierService {
    * @returns True if the given credential status has been revoked
    */
   async isRevoked(credentialStatus: ICredentialStatus): Promise<boolean> {
-    const revocationService = new RevocationService();
-    await revocationService.init();
-
-    return revocationService.isRevoked(credentialStatus);
-
-    // const revocationList = (await this.docLoader(credentialStatus.revocationListCredential)).document;
-    // const encodedList = revocationList['credentialSubject']['encodedList'];
-    // const decodedList = await decodeList({encodedList: encodedList});
-    // return decodedList.isRevoked(Number(credentialStatus.revocationListIndex));
+    const didStatusListResolver = new DidStatusListResolver();
+    return didStatusListResolver.isRevoked(credentialStatus);
   }
 
   /**

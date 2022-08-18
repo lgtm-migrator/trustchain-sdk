@@ -63,8 +63,8 @@ export interface IVerifiablePresentationPayload {
 export interface ICredentialStatus {
   id: string;
   type: string;
-  revocationListIndex: number;
-  revocationListCredential: string;
+  statusListIndex: number;
+  statusListCredential: string;
 }
 
 export interface IVerifiablePresentationArgumentsBBS {

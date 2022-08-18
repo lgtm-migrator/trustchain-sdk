@@ -15,6 +15,10 @@ import {
   JWTVerifiableCredentialVerifierService,
 } from '@trustcerts/vc-jwt';
 import { JWTPayloadVC, JWTPayloadVP } from '@trustcerts/vc';
+import {
+  DidStatusListRegister,
+  RevocationService,
+} from '@trustcerts/did-status-list';
 // import * as jose from 'jose';
 
 // jest.mock('jose', () => {
@@ -97,7 +101,9 @@ describe('vc', () => {
    * Creates an example JWT-encoded verifiable credential for testing
    * @returns A JWT-encoded verifiable credential with example data
    */
-  async function createVc(): Promise<string> {
+  async function createVc(
+    revocationService?: RevocationService
+  ): Promise<string> {
     if (!config.config.invite) throw Error();
     const vcIssuerService = new VerifiableCredentialIssuerService();
 
@@ -110,7 +116,8 @@ describe('vc', () => {
         issuer: config.config.invite.id,
         // nonce: 'randomVC',
       },
-      cryptoServiceRSA
+      cryptoServiceRSA,
+      revocationService
     );
   }
 
@@ -174,7 +181,15 @@ describe('vc', () => {
   }, 15000);
 
   it('verify revoked vc', async () => {
-    const vc = await createVc();
+    if (!config.config.invite) throw Error();
+    const statusListDid = DidStatusListRegister.create({
+      controllers: [config.config.invite.id],
+    });
+    const revocationService = RevocationService.create(
+      statusListDid,
+      './tmp/revocationListConfig.json'
+    );
+    const vc = await createVc(revocationService);
     const vcVerifierService = new JWTVerifiableCredentialVerifierService();
 
     vcVerifierService.isRevoked = jest.fn().mockReturnValueOnce(true);

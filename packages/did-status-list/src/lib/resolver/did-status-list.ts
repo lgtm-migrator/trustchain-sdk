@@ -93,7 +93,7 @@ export class DidStatusList extends Did {
    * @param position
    * @returns
    */
-  public async isRevoked(position: number) {
+  public isRevoked(position: number) {
     return this.list.get(position);
   }
 }

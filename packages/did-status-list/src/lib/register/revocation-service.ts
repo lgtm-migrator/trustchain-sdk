@@ -72,8 +72,8 @@ export class RevocationService {
     return {
       id: `${this.revocationListConfig.id}#${index}`,
       type: 'StatusList2021Entry',
-      revocationListCredential: this.revocationListConfig.id,
-      revocationListIndex: index,
+      statusListCredential: this.revocationListConfig.id,
+      statusListIndex: index,
     };
   }
 
@@ -88,15 +88,13 @@ export class RevocationService {
     credentialStatus: ICredentialStatus,
     revoked: boolean
   ): Promise<void> {
-    if (
-      credentialStatus.revocationListCredential != this.revocationListConfig.url
-    ) {
+    if (credentialStatus.statusListCredential != this.revocationListConfig.id) {
       // TODO: Handling mehrerer URLs?
       throw Error(
         'Revocation list URL in credentialStatus does not equal this revocation list URL'
       );
     }
-    const index = Number(credentialStatus.revocationListIndex);
+    const index = Number(credentialStatus.statusListIndex);
     // TODO if the index should be flipped but the type is revocation and not suspension, an error should be thrown
     if (index >= this.revocationListConfig.nextIndex) {
       throw Error('index is not used yet');

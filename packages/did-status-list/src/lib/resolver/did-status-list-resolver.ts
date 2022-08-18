@@ -1,7 +1,7 @@
 import { DidResolver, InitDidManagerConfigValues } from '@trustcerts/did';
 import { SchemaIssuerService } from '@trustcerts/did-schema';
 import { DidStatusListStructure } from '@trustcerts/observer';
-import { ICredentialStatus } from '@trustcerts/vc-revocation';
+import { ICredentialStatus } from '../register/revocation.interface';
 import { DidStatusList } from './did-status-list';
 import { StatusListVerifierService } from './status-list-verifier-service';
 
@@ -25,6 +25,6 @@ export class DidStatusListResolver extends DidResolver<StatusListVerifierService
   async isRevoked(credentialStatus: ICredentialStatus): Promise<boolean> {
     // load list
     const did = await this.load(credentialStatus.id);
-    return did.isRevoked(credentialStatus.revocationListIndex);
+    return did.isRevoked(credentialStatus.statusListIndex);
   }
 }
