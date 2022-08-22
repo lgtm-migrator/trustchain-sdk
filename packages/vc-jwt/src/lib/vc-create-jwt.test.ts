@@ -10,6 +10,7 @@ import {
   Identifier,
   VerificationRelationshipType,
 } from '@trustcerts/did';
+import { RevocationService } from '@trustcerts/did-status-list';
 import { logger } from '@trustcerts/logger';
 import { JWT, VerifiableCredentialIssuerService } from '@trustcerts/vc-jwt';
 import { WalletService } from '@trustcerts/wallet';
@@ -78,7 +79,10 @@ describe('vc', () => {
    * Creates an example JWT-encoded verifiable credential for testing
    * @returns A JWT-encoded verifiable credential with example data
    */
-  async function createVc(cryptoService: CryptoService): Promise<string> {
+  async function createVc(
+    cryptoService: CryptoService,
+    revocationService?: RevocationService
+  ): Promise<string> {
     if (!config.config.invite) throw Error();
 
     return await vcIssuerService.createVerifiableCredential(
@@ -90,7 +94,8 @@ describe('vc', () => {
         issuer: config.config.invite.id,
         // nonce: 'randomVC',
       },
-      cryptoService
+      cryptoService,
+      revocationService
     );
   }
 

@@ -12,7 +12,7 @@ export class DidTemplateRegister {
    */
   public static create(values?: DidCreation): DidTemplate {
     // TODO check if a given id should be allowed
-    const id = values?.id ?? Identifier.generate('tmp');
+    const id = values?.id ?? Identifier.generate(DidTemplate.objectName);
     const did = new DidTemplate(id);
     values?.controllers?.forEach((controller) => did.addController(controller));
     return did;

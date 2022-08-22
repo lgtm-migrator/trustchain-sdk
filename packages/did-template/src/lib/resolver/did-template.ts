@@ -7,6 +7,8 @@ import {
 } from '@trustcerts/observer';
 
 export class DidTemplate extends Did {
+  static objectName = 'tmp';
+
   // use setters to change values to detect if there where changes
   public compression!: Compression;
 
@@ -15,10 +17,10 @@ export class DidTemplate extends Did {
   public schemaId!: string;
 
   constructor(public override id: string) {
-    super(id, 'tmp', 22);
+    super(id, DidTemplate.objectName, 22);
   }
 
-  parseTransactions(transactions: DidTemplateStructure[]): void {
+  async parseTransactions(transactions: DidTemplateStructure[]): Promise<void> {
     // this.values.
     for (const transaction of transactions) {
       this.version++;
@@ -31,7 +33,8 @@ export class DidTemplate extends Did {
       this.compression = transaction.compression ?? this.compression;
     }
   }
-  parseDocument(docResponse: TemplateDocResponse): void {
+
+  async parseDocument(docResponse: TemplateDocResponse): Promise<void> {
     this.parseDocumentSuper(docResponse);
     this.schemaId = docResponse.document.schemaId;
     this.template = docResponse.document.template;

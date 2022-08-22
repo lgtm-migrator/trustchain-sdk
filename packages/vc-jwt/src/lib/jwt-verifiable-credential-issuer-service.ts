@@ -5,7 +5,7 @@ import {
   IVerifiablePresentationArguments,
   IVerifiablePresentationPayload,
 } from '@trustcerts/vc';
-import { RevocationService } from '@trustcerts/vc-revocation';
+import { RevocationService } from '@trustcerts/did-status-list';
 import { SignJWT } from 'jose';
 
 export class VerifiableCredentialIssuerService {
@@ -14,13 +14,13 @@ export class VerifiableCredentialIssuerService {
    *
    * @param vcArguments The arguments of the verifiable credential
    * @param cryptoService The Bls12381G2 keypair as JsonWebKeys
-   * @param revokable If true, a credentialStatus property is added to the verifiable credential
+   * @param revocationService If set, a credentialStatus property is added to the verifiable credential using revocationService
    * @returns A JWT-encoded verifiable credential
    */
   async createVerifiableCredential(
     vcArguments: IVerifiableCredentialArguments,
     cryptoService: CryptoService,
-    revokable = true
+    revocationService?: RevocationService
   ): Promise<string> {
     const vcPayload: IVerifiableCredentialPayload = {
       '@context': [
@@ -35,33 +35,10 @@ export class VerifiableCredentialIssuerService {
 
     const issuanceDate = new Date();
 
-    if (revokable) {
-      // // TODO: figure out what credential id needs to be set to
-      // // ("[...] It MUST NOT be the URL for the revocation list.")
-      // // https://w3c-ccg.github.io/vc-status-rl-2020/#revocationlist2020status
-      // const credentialStatusId = "TODO";
-
-      // // TODO: get credential index via API call
-      // const revocationListIndex = "1235";
-
-      // // TODO: set revocation list URL
-      // const revocationListCredential = "did:trust:tc:dev:REVOCATION_LIST_WITH_1234_REVOKED";
-
-      // const credentialStatus: ICredentialStatus = {
-      //     id: credentialStatusId,
-      //     type: "RevocationList2020Status", // "The type property MUST be RevocationList2020Status."
-      //                                     // https://w3c-ccg.github.io/vc-status-rl-2020/#revocationlist2020status
-      //     revocationListIndex: revocationListIndex,
-      //     revocationListCredential: revocationListCredential
-      // };
-
-      // TODO: Als Instanzvariable
-      const revocationService = new RevocationService();
-      await revocationService.init();
-
+    if (revocationService) {
       vcPayload.credentialStatus =
         await revocationService.getNewCredentialStatus();
-      vcPayload['@context'].push('https://w3id.org/vc-revocation-list-2020/v1');
+      vcPayload['@context'].push('https://w3id.org/vc/status-list/2021/v1');
     }
 
     /* Set values according to https://w3c.github.io/vc-data-model/#jwt-encoding
@@ -172,6 +149,7 @@ export class VerifiableCredentialIssuerService {
 
   /**
    * Returns the corresponding key algorithm of a key for use in the JWT header
+   *
    * @param keyAlgorithm The key algorithm
    * @returns The key algorithm of the key for use in the JWT header
    */

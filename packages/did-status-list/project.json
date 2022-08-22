@@ -1,23 +1,23 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/vc-revocation/src",
+  "sourceRoot": "packages/did-status-list/src",
   "targets": {
     "install": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "npm install --prefix packages/vc-revocation"
+        "command": "npm install --prefix packages/did-status-list"
       }
     },
     "build": {
       "executor": "@nrwl/web:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/vc-revocation",
-        "main": "packages/vc-revocation/src/index.ts",
-        "tsConfig": "packages/vc-revocation/tsconfig.lib.json",
-        "project": "packages/vc-revocation/package.json",
-        "entryFile": "packages/vc-revocation/src/index.ts",
-        "format": ["esm"],
+        "outputPath": "dist/packages/did-status-list",
+        "main": "packages/did-status-list/src/index.ts",
+        "tsConfig": "packages/did-status-list/tsconfig.lib.json",
+        "project": "packages/did-status-list/package.json",
+        "entryFile": "packages/did-status-list/src/index.ts",
+        "format": ["esm", "cjs"],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
@@ -25,14 +25,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["packages/vc-revocation/**/*.ts"]
+        "lintFilePatterns": ["packages/did-status-list/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/vc-revocation"],
+      "outputs": ["coverage/packages/did-status-list"],
       "options": {
-        "jestConfig": "packages/vc-revocation/jest.config.ts",
+        "jestConfig": "packages/did-status-list/jest.config.ts",
         "passWithNoTests": true,
         "runInBand": true,
         "codeCoverage": true,
@@ -45,7 +45,7 @@
         "preset": "angular",
         "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": ["vc-revocation:publish", "vc-revocation:github"]
+        "postTargets": ["did-status-list:publish", "did-status-list:github"]
       }
     },
     "github": {

@@ -24,6 +24,7 @@
       "@trustcerts/did": ["packages/did/src/index.ts"],
       "@trustcerts/did-hash": ["packages/did-hash/src/index.ts"],
       "@trustcerts/did-schema": ["packages/did-schema/src/index.ts"],
+      "@trustcerts/did-status-list": ["packages/did-status-list/src/index.ts"],
       "@trustcerts/did-template": ["packages/did-template/src/index.ts"],
       "@trustcerts/gateway": ["packages/gateway/src/index.ts"],
       "@trustcerts/helpers": ["packages/helpers/src/index.ts"],
@@ -33,7 +34,6 @@
       "@trustcerts/vc": ["packages/vc/src/index.ts"],
       "@trustcerts/vc-bbs": ["packages/vc-bbs/src/index.ts"],
       "@trustcerts/vc-jwt": ["packages/vc-jwt/src/index.ts"],
-      "@trustcerts/vc-revocation": ["packages/vc-revocation/src/index.ts"],
       "@trustcerts/wallet": ["packages/wallet/src/index.ts"]
     }
   },

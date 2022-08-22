@@ -9,6 +9,7 @@ import {
 import { Management } from './management';
 
 export abstract class Did {
+  // TODO remove it since it will not be used
   public version = 0;
 
   protected controller = new Management<string>();
@@ -104,9 +105,9 @@ export abstract class Did {
   }
 
   // TODO instead of any pass the didtransaction attribte. Has to be imported in another way since it is an extended class from the open-api spec
-  abstract parseTransactions(transactions: DidStructure[]): void;
+  abstract parseTransactions(transactions: DidStructure[]): Promise<void>;
   // TODO set DocResponse as a parent class
-  abstract parseDocument(document: unknown): void;
+  abstract parseDocument(document: unknown): Promise<void>;
   abstract getDocument(): DidDocument;
   abstract resetChanges(): void;
   // TODO set parent class for changes

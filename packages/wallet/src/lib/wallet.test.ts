@@ -9,6 +9,7 @@ import {
 import { BbsCryptoKeyService } from '@trustcerts/crypto-bbs';
 import {
   DidCreator,
+  DidId,
   DidNetworks,
   Identifier,
   VerificationRelationshipType,
@@ -141,7 +142,7 @@ describe('wallet', () => {
   }, 15000);
 
   it('init wallet with new unused invite', async () => {
-    const id = Identifier.generate('id');
+    const id = Identifier.generate(DidId.objectName);
     const secret = 'secret';
     const name = 'test-did';
     const didCreator = new DidCreator(testValues.network.gateways, 'dev');

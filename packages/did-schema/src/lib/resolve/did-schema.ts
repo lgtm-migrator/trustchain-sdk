@@ -7,18 +7,20 @@ import {
 import Ajv, { AnySchema } from 'ajv';
 
 export class DidSchema extends Did {
+  static objectName = 'sch';
+
   private schema!: string;
   private ajv: Ajv;
 
   constructor(public override id: string) {
-    super(id, 'sch', 22);
+    super(id, DidSchema.objectName, 22);
     // if the passed id value already has a prefix remove it.
     // TODO set correct regexp, normal did should have no type
     // TODO use method from Identifier.method
     this.ajv = new Ajv({ allErrors: true });
   }
 
-  parseTransactions(transactions: DidSchemaStructure[]): void {
+  async parseTransactions(transactions: DidSchemaStructure[]): Promise<void> {
     for (const transaction of transactions) {
       this.version++;
       // validate signature of transaction
@@ -28,7 +30,7 @@ export class DidSchema extends Did {
       this.schema = transaction.schema ?? this.schema;
     }
   }
-  parseDocument(docResponse: SchemaDocResponse): void {
+  async parseDocument(docResponse: SchemaDocResponse): Promise<void> {
     this.parseDocumentSuper(docResponse);
     this.schema = docResponse.document.value ?? this.schema;
   }

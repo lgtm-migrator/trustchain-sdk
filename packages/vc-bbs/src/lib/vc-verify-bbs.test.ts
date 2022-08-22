@@ -23,6 +23,10 @@ import { readFileSync } from 'fs';
 import { BbsVerifiableCredentialIssuerService } from './bbs-verifiable-credential-issuer-service';
 import { BbsVerifiableCredentialVerifierService } from './bbs-verifiable-credential-verifier-service';
 import { purposes, verify } from 'jsonld-signatures';
+import {
+  DidStatusListRegister,
+  RevocationService,
+} from '@trustcerts/did-status-list';
 
 /**
  * Test vc class.
@@ -84,7 +88,9 @@ describe('vc-bbs', () => {
    * Creates an example BBS+ signed verifiable credential for testing
    * @returns A BBS+ signed verifiable credential with example data
    */
-  async function createVcBbs(): Promise<VerifiableCredentialBBS> {
+  async function createVcBbs(
+    revocationService?: RevocationService
+  ): Promise<VerifiableCredentialBBS> {
     if (!config.config.invite) throw new Error();
     const bbsVcIssuerService = new BbsVerifiableCredentialIssuerService();
 
@@ -102,7 +108,8 @@ describe('vc-bbs', () => {
         issuer: config.config.invite.id,
         nonce: 'randomVC',
       },
-      bbsAssertionKey
+      bbsAssertionKey,
+      revocationService
     );
   }
 
@@ -176,7 +183,15 @@ describe('vc-bbs', () => {
   }, 15000);
 
   it('verify BBS revoked vc', async () => {
-    const vc = await createVcBbs();
+    if (!config.config.invite) throw Error();
+    const statusListDid = DidStatusListRegister.create({
+      controllers: [config.config.invite.id],
+    });
+    const revocationService = RevocationService.create(
+      statusListDid,
+      './tmp/revocationListConfig.json'
+    );
+    const vc = await createVcBbs(revocationService);
     const vcVerifierService = new BbsVerifiableCredentialVerifierService();
 
     vcVerifierService.isRevoked = jest.fn().mockReturnValueOnce(true);

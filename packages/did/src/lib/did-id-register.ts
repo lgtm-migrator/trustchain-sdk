@@ -16,10 +16,12 @@ import { promisify } from 'util';
 export class DidIdRegister {
   /**
    * creates a fresh did with a unique identifier. Add controller when they are passed.
+   *
+   * @param values
    */
   public static create(values?: DidCreation): DidId {
     // TODO check if a given id should be allowed
-    const id = values?.id ?? Identifier.generate('id');
+    const id = values?.id ?? Identifier.generate(DidId.objectName);
     const did = new DidId(id);
     values?.controllers?.forEach((controller) => did.addController(controller));
     return did;

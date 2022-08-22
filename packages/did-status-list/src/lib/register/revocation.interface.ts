@@ -1,7 +1,9 @@
 export interface IRevocationListConfig {
+  // unique identifier of the list
   id: string;
-  url: string;
+  // next free index to use when issuing
   nextIndex: number;
+  // length of the list
   length: number;
 }
 
@@ -20,6 +22,6 @@ export interface IRevocationListCredential {
 export interface ICredentialStatus {
   id: string;
   type: string;
-  revocationListIndex: string;
-  revocationListCredential: string;
+  statusListIndex: number;
+  statusListCredential: string;
 }
