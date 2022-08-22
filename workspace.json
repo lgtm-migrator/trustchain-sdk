@@ -19,7 +19,6 @@
     "vc": "packages/vc",
     "vc-bbs": "packages/vc-bbs",
     "vc-jwt": "packages/vc-jwt",
-    "vc-revocation": "packages/vc-revocation",
     "wallet": "packages/wallet"
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"

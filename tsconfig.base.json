@@ -34,7 +34,6 @@
       "@trustcerts/vc": ["packages/vc/src/index.ts"],
       "@trustcerts/vc-bbs": ["packages/vc-bbs/src/index.ts"],
       "@trustcerts/vc-jwt": ["packages/vc-jwt/src/index.ts"],
-      "@trustcerts/vc-revocation": ["packages/vc-revocation/src/index.ts"],
       "@trustcerts/wallet": ["packages/wallet/src/index.ts"]
     }
   },
