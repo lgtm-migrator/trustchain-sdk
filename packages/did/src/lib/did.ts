@@ -9,6 +9,7 @@ import {
 import { Management } from './management';
 
 export abstract class Did {
+  // TODO remove it since it will not be used
   public version = 0;
 
   protected controller = new Management<string>();
