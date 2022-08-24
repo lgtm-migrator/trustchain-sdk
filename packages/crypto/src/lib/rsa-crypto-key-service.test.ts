@@ -1,8 +1,4 @@
-import {
-  DecryptedKeyPair,
-  hashAlgorithm,
-  RSACryptoKeyService,
-} from '@trustcerts/crypto';
+import { RSACryptoKeyService } from '@trustcerts/crypto';
 import { ECTestKey, RSATestKey, RSATestKeyFingerPrint } from './test-values';
 
 // TODO: Refactor RSA & EC cryptoKeyService tests / code reuse?

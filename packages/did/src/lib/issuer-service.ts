@@ -1,6 +1,5 @@
 import { Configuration, BaseAPI } from '@trustcerts/gateway';
 import { CryptoService } from '@trustcerts/crypto';
-import { promisify } from 'util';
 
 /**
  * Service to sign files.

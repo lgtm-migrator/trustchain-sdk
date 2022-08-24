@@ -1,5 +1,4 @@
 import { DidResolver, InitDidManagerConfigValues } from '@trustcerts/did';
-import { SchemaIssuerService } from '@trustcerts/did-schema';
 import { DidStatusListStructure } from '@trustcerts/observer';
 import { ICredentialStatus } from '../register/revocation.interface';
 import { DidStatusList } from './did-status-list';

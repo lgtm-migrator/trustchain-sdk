@@ -4,10 +4,7 @@ import { JWT } from './jwt-service';
 import { importKey } from '@trustcerts/crypto';
 import { DidIdResolver } from '@trustcerts/did';
 import { logger } from '@trustcerts/logger';
-import {
-  DidStatusListResolver,
-  RevocationService,
-} from '@trustcerts/did-status-list';
+import { DidStatusListResolver } from '@trustcerts/did-status-list';
 
 export class JWTVerifiableCredentialVerifierService {
   private resolver = new DidIdResolver();

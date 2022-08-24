@@ -5,7 +5,6 @@ import {
   DidIdStructure,
   IdDocResponse,
   DidIdDocument,
-  DidIdTransaction,
 } from '@trustcerts/observer';
 import { Did } from '../did';
 import { DidRoles } from '../did-roles.dto';

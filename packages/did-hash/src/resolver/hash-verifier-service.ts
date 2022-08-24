@@ -10,9 +10,7 @@ import {
   AxiosError,
   Configuration,
   DidHashDocument,
-  DidHashStructure,
   DidHashTransaction,
-  DidSchemaTransaction,
   HashDocResponse,
   HashObserverApi,
 } from '@trustcerts/observer';

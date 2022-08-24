@@ -4,8 +4,6 @@ import {
   DidStatusListDocument,
   StatusListDocResponse,
 } from '@trustcerts/observer';
-import { DidStatusListRegister } from '../register/did-status-list-register';
-import { StatusListIssuerService } from '../register/status-list-issuer-service';
 import { Bitstring } from './bit-string';
 
 export class DidStatusList extends Did {

@@ -8,8 +8,6 @@ import {
 } from '@trustcerts/did-template';
 import { CompressionType } from '@trustcerts/gateway';
 import { readFileSync } from 'fs';
-import { config } from 'process';
-import { promisify } from 'util';
 import { Claim } from './claim';
 import { ClaimIssuerService } from './claim-issuer-service';
 import { ClaimValues } from './claim-values';

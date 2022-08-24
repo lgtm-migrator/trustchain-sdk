@@ -5,7 +5,6 @@ import {
   exists,
   read,
   remove,
-  isBrowser,
 } from '@trustcerts/helpers';
 
 describe('test helpers.test.ts', () => {

@@ -1,4 +1,4 @@
-import { DecryptedKeyPair, ECCryptoKeyService } from '@trustcerts/crypto';
+import { ECCryptoKeyService } from '@trustcerts/crypto';
 import { ECTestKey, ECTestKeyFingerPrint, RSATestKey } from './test-values';
 
 describe('test ec-crypto-key-service.ts', () => {

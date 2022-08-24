@@ -1,24 +1,17 @@
 import { ClaimIssuerService, ClaimVerifierService } from '@trustcerts/claim';
-import { ConfigService, Invite } from '@trustcerts/config';
+import { ConfigService } from '@trustcerts/config';
 import { LocalConfigService } from '@trustcerts/config-local';
 import { CryptoService, defaultCryptoKeyService } from '@trustcerts/crypto';
 import {
   DidNetworks,
   Identifier,
-  InitDidManagerConfigValues,
   VerificationRelationshipType,
 } from '@trustcerts/did';
-import {
-  DidHash,
-  DidHashResolver,
-  SignatureIssuerService,
-} from '@trustcerts/did-hash';
+import { SignatureIssuerService } from '@trustcerts/did-hash';
 import { createClaim } from './claim-test-helpers';
 import { WalletService } from '@trustcerts/wallet';
 import { randomBytes } from 'crypto';
 import { readFileSync } from 'fs';
-import { promisify } from 'util';
-import { DidHashStructure } from '@trustcerts/gateway';
 
 /**
  * Test claim class.
@@ -123,7 +116,7 @@ describe('claim', () => {
       random: randomBytes(16).toString('hex'),
       name: 'Max Mustermann',
     };
-    config.config.invite = null as any as Invite;
+    config.config.invite = undefined;
     await expect(
       createClaim(value, cryptoService, config)
     ).rejects.toThrowError();

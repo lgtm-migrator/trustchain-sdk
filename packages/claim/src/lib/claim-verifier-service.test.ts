@@ -1,4 +1,4 @@
-import { Claim, ClaimValues, ClaimVerifierService } from '@trustcerts/claim';
+import { ClaimValues, ClaimVerifierService } from '@trustcerts/claim';
 import { ConfigService } from '@trustcerts/config';
 import { LocalConfigService } from '@trustcerts/config-local';
 import { CryptoService, defaultCryptoKeyService } from '@trustcerts/crypto';
@@ -11,7 +11,6 @@ import { createClaim } from './claim-test-helpers';
 import { WalletService } from '@trustcerts/wallet';
 import { randomBytes } from 'crypto';
 import { readFileSync } from 'fs';
-import { promisify } from 'util';
 import { DidSchema } from '@trustcerts/did-schema';
 import { DidHashResolver } from '@trustcerts/did-hash';
 
@@ -52,7 +51,6 @@ describe('claim', () => {
       random: randomBytes(16).toString('hex'),
       name: 'Max Mustermann',
     };
-    const claims: Claim[] = [];
 
     const claim = await createClaim(claimValues, cryptoService, config);
     expect(claim.values).toEqual(claimValues);

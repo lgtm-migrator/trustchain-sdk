@@ -5,7 +5,6 @@ import {
   CryptoService,
   defaultCryptoKeyService,
   RSACryptoKeyService,
-  ECCryptoKeyService,
 } from '@trustcerts/crypto';
 import { BbsCryptoKeyService } from '@trustcerts/crypto-bbs';
 import {

@@ -1,7 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx", "jsdoc"],
+  "plugins": ["@nrwl/nx"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -24,7 +24,7 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nrwl/nx/typescript", "plugin:jsdoc/recommended"]
+      "extends": ["plugin:@nrwl/nx/typescript"]
     },
     {
       "files": ["*.js", "*.jsx"],

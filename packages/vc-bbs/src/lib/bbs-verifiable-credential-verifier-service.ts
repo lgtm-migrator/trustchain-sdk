@@ -8,10 +8,7 @@ import {
   VerifiableCredentialBBS,
 } from '@trustcerts/vc';
 import { logger } from '@trustcerts/logger';
-import {
-  DidStatusListResolver,
-  RevocationService,
-} from '@trustcerts/did-status-list';
+import { DidStatusListResolver } from '@trustcerts/did-status-list';
 
 export class BbsVerifiableCredentialVerifierService {
   private docLoader = new DocumentLoader().getLoader();
