@@ -55,7 +55,7 @@ describe('test template service', () => {
       )
     )[0];
     await cryptoService.init(key);
-  }, 10000);
+  }, 20000);
 
   it('verify', async () => {
     if (!config.config.invite) throw new Error();
@@ -84,5 +84,5 @@ describe('test template service', () => {
     const loadedTemplate = await new DidTemplateResolver().load(templateDid.id);
 
     expect(loadedTemplate.template).toEqual(template);
-  });
+  }, 20000);
 });

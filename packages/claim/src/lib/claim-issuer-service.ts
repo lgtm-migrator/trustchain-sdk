@@ -41,12 +41,12 @@ export class ClaimIssuerService {
       throw Error('input does not match with schema');
     }
     const hash = await ClaimVerifierService.getHash(values, template.id);
-    const didHash = await this.didHashRegister.create({
+    const didHash = this.didHashRegister.create({
       id: Identifier.generate(DidHash.objectName, hash),
       algorithm: 'sha256',
       controllers,
     });
-    this.didHashRegister.save(didHash, signatureIssuer);
+    await this.didHashRegister.save(didHash, signatureIssuer);
     return new Claim(values, template, host);
   }
 
