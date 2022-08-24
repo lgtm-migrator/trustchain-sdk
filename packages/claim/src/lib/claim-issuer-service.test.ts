@@ -59,7 +59,6 @@ describe('claim', () => {
     };
     const claim = await createClaim(val, cryptoService, config);
     expect(claim.values).toEqual(val);
-    await promisify(setTimeout)(2000);
     const service = new ClaimVerifierService('localhost');
     const claimLoaded = await service.get(
       claim.getUrl().split('/').slice(1).join('/')
@@ -75,14 +74,12 @@ describe('claim', () => {
       name: 'Max Mustermann',
     };
     const claim = await createClaim(value, cryptoService, config);
-    await promisify(setTimeout)(2000);
     const claimIssuer = new ClaimIssuerService();
     const signatureIssuer = new SignatureIssuerService(
       testValues.network.gateways,
       cryptoService
     );
     await claimIssuer.revoke(claim, signatureIssuer);
-    await promisify(setTimeout)(2000);
     const service = new ClaimVerifierService('localhost');
     const claimLoaded = await service.get(
       claim.getUrl().split('/').slice(1).join('/')
@@ -109,7 +106,6 @@ describe('claim', () => {
       name: 'Max Mustermann',
     };
     const claim = await createClaim(value, cryptoService, config);
-    await promisify(setTimeout)(2000);
     const claimIssuer = new ClaimIssuerService();
     const signatureIssuer = new SignatureIssuerService(
       testValues.network.gateways,

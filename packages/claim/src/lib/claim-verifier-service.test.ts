@@ -56,7 +56,6 @@ describe('claim', () => {
 
     const claim = await createClaim(claimValues, cryptoService, config);
     expect(claim.values).toEqual(claimValues);
-    await promisify(setTimeout)(2000);
     const service = new ClaimVerifierService('localhost');
     const claimLoaded = await service.get(
       claim.getUrl().split('/').slice(1).join('/')
@@ -77,7 +76,6 @@ describe('claim', () => {
     const claim = await createClaim(claimValues, cryptoService, config);
 
     expect(claim.values).toEqual(claimValues);
-    await promisify(setTimeout)(2000);
 
     // Mock DidSchema.getSchema() so the schema validation will fail
     jest.spyOn(DidSchema.prototype, 'getSchema').mockReturnValueOnce(
@@ -105,7 +103,6 @@ describe('claim', () => {
     const claim = await createClaim(claimValues, cryptoService, config);
 
     expect(claim.values).toEqual(claimValues);
-    await promisify(setTimeout)(2000);
 
     // Mock DidHashResolver.load() so the claim hash verification will fail
     jest

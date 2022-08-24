@@ -63,8 +63,6 @@ describe('test signature verify service', () => {
       config.config.invite.id,
     ]);
     await didhashRegister.save(did, issuer);
-    // wait some time since the observer has to be synced.
-    await new Promise((res) => setTimeout(res, 2000));
     const loadedDid = await resolver.verifyFile(testFile);
     expect(loadedDid.id).toEqual(did.id);
   }, 10000);
@@ -83,8 +81,6 @@ describe('test signature verify service', () => {
       config.config.invite.id,
     ]);
     await didhashRegister.save(did, issuer);
-    // wait some time since the observer has to be synced.
-    await new Promise((res) => setTimeout(res, 2000));
     const loadedDid = await resolver.verifyBuffer(buffer);
     expect(loadedDid.id).toEqual(did.id);
   }, 10000);
@@ -104,8 +100,6 @@ describe('test signature verify service', () => {
       config.config.invite.id,
     ]);
     await didhashRegister.save(did, issuer);
-    // wait some time since the observer has to be synced.
-    await new Promise((res) => setTimeout(res, 2000));
     const loadedDid = await resolver.verifyString(signature);
     expect(loadedDid.id).toEqual(did.id);
   });
@@ -125,15 +119,11 @@ describe('test signature verify service', () => {
       config.config.invite.id,
     ]);
     await didhashRegister.save(did, issuer);
-    // wait some time since the observer has to be synced.
-    await new Promise((res) => setTimeout(res, 2000));
     let loadedDid = await resolver.load(did.id);
 
     expect(loadedDid.revoked).toBeUndefined();
     loadedDid.revoked = new Date().toISOString();
     await didhashRegister.save(loadedDid, issuer);
-
-    await new Promise((res) => setTimeout(res, 2000));
     loadedDid = await resolver.load(did.id);
     expect(loadedDid.revoked).toBeDefined();
     // expect(loadedDid.revoked! > loadedDid.).toBeTruthy();

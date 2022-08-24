@@ -68,11 +68,6 @@ describe('test did', () => {
       cryptoService
     );
     await DidIdRegister.save(did, client);
-    await new Promise((resolve) =>
-      setTimeout(() => {
-        resolve(true);
-      }, 2000)
-    );
     const resolver = new DidIdResolver();
     const did1 = await resolver.load(did.id);
     expect(did.getDocument()).toEqual(did1.getDocument());
@@ -90,11 +85,6 @@ describe('test did', () => {
     );
     expect(client.getId()).toEqual(cryptoService.fingerPrint.split('#')[0]);
     await DidIdRegister.save(did, client);
-    await new Promise((resolve) =>
-      setTimeout(() => {
-        resolve(true);
-      }, 2000)
-    );
     const did1 = await resolver.load(did.id, { doc: false });
     expect(did.getDocument()).toEqual(did1.getDocument());
     const did2 = await resolver.load(did.id, { doc: true });

@@ -98,13 +98,13 @@ describe('vc-bbs', () => {
       testValues.network.gateways,
       cryptoServiceRSA
     );
-    revocationService.persistRevocations(client);
-    // wait for observers to be synced
-    await new Promise((res) => setTimeout(res, 2000));
+    await revocationService.persistRevocations(client);
   }, 20000);
 
   /**
    * Creates an example BBS+ signed verifiable credential for testing
+   *
+   * @param revokable
    * @returns A BBS+ signed verifiable credential with example data
    */
   async function createVcBbs(
@@ -134,6 +134,7 @@ describe('vc-bbs', () => {
 
   /**
    * Creates an example BBS+ signed verifiable presentation for testing
+   *
    * @returns A BBS+ signed verifiable presentation with example data
    */
   async function createVpBbs() {

@@ -63,8 +63,6 @@ describe('test signature service', () => {
       config.config.invite.id,
     ]);
     await didhashRegister.save(did, issuer);
-    // wait some time since the observer has to be synced.
-    await new Promise((res) => setTimeout(res, 2000));
     const loadedDid = await resolver.load(did.id);
     expect(loadedDid.id).toEqual(did.id);
   }, 7000);
@@ -84,8 +82,6 @@ describe('test signature service', () => {
       config.config.invite.id,
     ]);
     await didhashRegister.save(did, issuer);
-    // wait some time since the observer has to be synced.
-    await new Promise((res) => setTimeout(res, 2000));
     const loadedDid = await resolver.load(did.id);
     expect(loadedDid.id).toEqual(did.id);
     await didhashRegister
@@ -109,8 +105,6 @@ describe('test signature service', () => {
       config.config.invite.id,
     ]);
     await didhashRegister.save(did, issuer);
-    // wait some time since the observer has to be synced.
-    await new Promise((res) => setTimeout(res, 2000));
     const loadedDid = await resolver.load(did.id);
     expect(loadedDid.id).toEqual(did.id);
   });
@@ -129,8 +123,6 @@ describe('test signature service', () => {
       config.config.invite.id,
     ]);
     await didhashRegister.save(did, issuer);
-    // wait some time since the observer has to be synced.
-    await new Promise((res) => setTimeout(res, 2000));
     const loadedDid = await resolver.load(did.id);
     expect(loadedDid.id).toEqual(did.id);
   });

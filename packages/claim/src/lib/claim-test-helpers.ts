@@ -26,6 +26,12 @@ const schema = {
 
 const testValues = JSON.parse(readFileSync('./values.json', 'utf-8'));
 
+/**
+ *
+ * @param val
+ * @param cryptoService
+ * @param config
+ */
 export async function createClaim(
   val: ClaimValues,
   cryptoService: CryptoService,
@@ -57,7 +63,6 @@ export async function createClaim(
     type: CompressionType.JSON,
   };
   await DidTemplateRegister.save(templateDid, client);
-  await promisify(setTimeout)(1000);
   const claimIssuer = new ClaimIssuerService();
   const signatureIssuer = new SignatureIssuerService(
     testValues.network.gateways,

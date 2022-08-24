@@ -48,8 +48,8 @@ export class SchemaIssuerService extends IssuerService {
       identifier: this.cryptoService.fingerPrint,
     });
 
-    return await this.api.gatewaySchemaControllerCreate(transaction).then(
-      (res) => res.data,
+    return this.api.gatewaySchemaControllerCreate(transaction).then(
+      (res) => this.delay().then(() => res.data),
       (err: AxiosError) => {
         if (err.response) {
           return Promise.reject(err.response.data);

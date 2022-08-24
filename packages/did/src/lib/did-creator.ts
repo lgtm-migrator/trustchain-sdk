@@ -40,7 +40,7 @@ export class DidCreator {
       force: true,
     };
 
-    const InviteRequest = await this.api
+    await this.api
       .gatewayDidControllerInvite(inviteValues)
       .then((res) => res.data)
       .catch((err: AxiosError) => {
@@ -51,7 +51,7 @@ export class DidCreator {
         }
       });
     // wait a bit so the observers have time to sync. Otherwhise only the gateway has the new transaction already passed
-    await promisify(setTimeout)(1500);
+    await promisify(setTimeout)(500);
 
     return {
       id: id,

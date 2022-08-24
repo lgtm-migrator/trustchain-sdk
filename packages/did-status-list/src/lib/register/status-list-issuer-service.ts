@@ -48,8 +48,8 @@ export class StatusListIssuerService extends IssuerService {
       ),
       identifier: this.cryptoService.fingerPrint,
     });
-    return await this.api.gatewayStatusListControllerCreate(transaction).then(
-      (res) => res.data,
+    return this.api.gatewayStatusListControllerCreate(transaction).then(
+      (res) => this.delay().then(() => res.data),
       (err: AxiosError) => {
         if (err.response) {
           return Promise.reject(err.response.data);

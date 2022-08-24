@@ -107,9 +107,7 @@ describe('vc', () => {
       testValues.network.gateways,
       cryptoServiceRSA
     );
-    revocationService.persistRevocations(client);
-    // wait for observers to be synced
-    await new Promise((res) => setTimeout(res, 2000));
+    await revocationService.persistRevocations(client);
   }, 10000);
 
   beforeEach(() => {
@@ -118,6 +116,8 @@ describe('vc', () => {
 
   /**
    * Creates an example JWT-encoded verifiable credential for testing
+   *
+   * @param revokable
    * @returns A JWT-encoded verifiable credential with example data
    */
   async function createVc(revokable = true): Promise<string> {
@@ -140,6 +140,7 @@ describe('vc', () => {
 
   /**
    * Creates an example JWT-encoded verifiable presentation for testing
+   *
    * @returns A JWT-encoded verifiable presentation with example data
    */
   async function createVp(): Promise<string> {
