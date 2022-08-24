@@ -36,7 +36,7 @@ export class RevocationService {
    * @param did
    */
   constructor(
-    private revocationListConfigPath = './tmp/revocationListConfig.json',
+    private revocationListConfigPath: string,
     public did: DidStatusList
   ) {
     this.revocationListConfig = JSON.parse(read(this.revocationListConfigPath));

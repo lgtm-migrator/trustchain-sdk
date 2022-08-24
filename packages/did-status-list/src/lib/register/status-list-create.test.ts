@@ -161,4 +161,30 @@ describe('test statuslist service', () => {
       revocationService.getNewCredentialStatus()
     ).rejects.toThrowError('The revocation list is full!');
   });
+
+  it('invalid revocation', async () => {
+    const revocationServicePath = './tmp/revocationListConfig.json';
+    const statusListLength = 10;
+    const revocationService = await createRevocationService(
+      revocationServicePath,
+      statusListLength
+    );
+    let credentialStatus = await revocationService.getNewCredentialStatus();
+
+    // Expect next free index not to be used yet
+    credentialStatus.statusListIndex += 1;
+    await expect(
+      revocationService.setRevoked(credentialStatus, true)
+    ).rejects.toThrowError('index is not used yet');
+
+    credentialStatus = await revocationService.getNewCredentialStatus();
+
+    // Expect next free index not to be used yet
+    credentialStatus.statusListCredential = 'invalid credential';
+    await expect(
+      revocationService.setRevoked(credentialStatus, true)
+    ).rejects.toThrowError(
+      'Revocation list URL in credentialStatus does not equal this revocation list URL'
+    );
+  });
 });
