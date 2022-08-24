@@ -107,7 +107,7 @@ export class RevocationService {
    *
    * @param client
    */
-  async persistRevocations(client: StatusListIssuerService) {
+  async persistStatusList(client: StatusListIssuerService) {
     return await DidStatusListRegister.save(this.did, client);
   }
 }

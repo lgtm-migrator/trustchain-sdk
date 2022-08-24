@@ -98,7 +98,7 @@ describe('vc-bbs', () => {
       testValues.network.gateways,
       cryptoServiceRSA
     );
-    await revocationService.persistRevocations(client);
+    await revocationService.persistStatusList(client);
   }, 20000);
 
   /**

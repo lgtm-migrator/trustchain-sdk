@@ -107,7 +107,7 @@ describe('vc', () => {
       testValues.network.gateways,
       cryptoServiceRSA
     );
-    await revocationService.persistRevocations(client);
+    await revocationService.persistStatusList(client);
   }, 10000);
 
   beforeEach(() => {
@@ -199,6 +199,15 @@ describe('vc', () => {
   }, 15000);
 
   it('verify revoked vc', async () => {
+    const vc = await createVc();
+    const vcVerifierService = new JWTVerifiableCredentialVerifierService();
+
+    vcVerifierService.isRevoked = jest.fn().mockReturnValueOnce(true);
+
+    expect(await vcVerifierService.verifyCredential(vc)).toEqual(false);
+  }, 15000);
+
+  it('revocationService with JWT', async () => {
     const vc = await createVc();
     const vcVerifierService = new JWTVerifiableCredentialVerifierService();
 
