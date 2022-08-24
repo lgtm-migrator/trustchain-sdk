@@ -81,5 +81,5 @@ describe('test template service', () => {
     };
     const res = await DidTemplateRegister.save(templateDid, client);
     expect(res).toBeDefined();
-  });
+  }, 20000);
 });
