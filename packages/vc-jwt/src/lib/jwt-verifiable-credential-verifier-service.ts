@@ -58,8 +58,10 @@ export class JWTVerifiableCredentialVerifierService {
    * @returns True if the given credential status has been revoked
    */
   async isRevoked(credentialStatus: ICredentialStatus): Promise<boolean> {
-    const didStatusListResolver = new DidStatusListResolver();
-    return didStatusListResolver.isRevoked(credentialStatus);
+    const didStatusListResolver = await new DidStatusListResolver().load(
+      credentialStatus.id
+    );
+    return didStatusListResolver.isRevoked(credentialStatus.statusListIndex);
   }
 
   /**
