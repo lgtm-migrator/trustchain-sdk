@@ -192,4 +192,14 @@ describe('wallet', () => {
       remove(temporaryConfigPath);
     }
   }, 20000);
+
+  it('createModificationKeyByInvite without invite', async () => {
+    console.log(config);
+    const walletService = new WalletService(config);
+    await walletService.init();
+    config.config.invite = undefined;
+    await expect(() =>
+      walletService.createModificationKeyByInvite()
+    ).toThrowError('no invite present');
+  }, 20000);
 });

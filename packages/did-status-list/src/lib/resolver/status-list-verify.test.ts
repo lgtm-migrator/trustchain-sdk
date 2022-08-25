@@ -39,7 +39,7 @@ describe('test statuslist service', () => {
     await cryptoService.init(key);
   }, 10000);
 
-  it('verify', async () => {
+  it('verify and read', async () => {
     if (!config.config.invite) throw new Error();
     const clientSchema = new StatusListIssuerService(
       testValues.network.gateways,
@@ -49,6 +49,7 @@ describe('test statuslist service', () => {
       controllers: [config.config.invite.id],
       length: 1000,
     });
+
     const revokeId = 10;
     for (let i = 0; i < statusListDid.getLength(); i++) {
       expect(statusListDid.isRevoked(i)).toEqual(false);
@@ -58,11 +59,20 @@ describe('test statuslist service', () => {
       expect(statusListDid.isRevoked(i)).toEqual(i == revokeId);
     }
     await DidStatusListRegister.save(statusListDid, clientSchema);
-    const loadedStatusList = await new DidStatusListResolver().load(
-      statusListDid.id
+
+    // Read DID doc from ledger and expect to get original DID document
+    const loadedStatusListByTransactions =
+      await new DidStatusListResolver().load(statusListDid.id, { doc: false });
+    const loadedStatusListByDoc = await new DidStatusListResolver().load(
+      statusListDid.id,
+      { doc: true }
     );
-    for (let i = 0; i < loadedStatusList.getLength(); i++) {
-      expect(loadedStatusList.isRevoked(i)).toEqual(i == revokeId);
-    }
-  }, 10000);
+
+    expect(loadedStatusListByTransactions.getDocument()).toEqual(
+      statusListDid.getDocument()
+    );
+    expect(loadedStatusListByDoc.getDocument()).toEqual(
+      statusListDid.getDocument()
+    );
+  }, 100000);
 });
