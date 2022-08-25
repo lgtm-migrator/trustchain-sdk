@@ -136,8 +136,10 @@ describe('wallet', () => {
   }, 15000);
 
   it('init wallet with invalid config invite', async () => {
-    config.config.invite = undefined;
-    const walletService = new WalletService(config, []);
+    const tempConfig = new LocalConfigService(testValues.filePath);
+    await tempConfig.init(testValues.configValues);
+    tempConfig.config.invite = undefined;
+    const walletService = new WalletService(tempConfig, []);
     await expect(walletService.init()).rejects.toThrowError('no id found');
   }, 15000);
 
@@ -194,10 +196,14 @@ describe('wallet', () => {
   }, 20000);
 
   it('createModificationKeyByInvite without invite', async () => {
-    console.log(config);
-    const walletService = new WalletService(config);
+    const tempConfig = new LocalConfigService(testValues.filePath);
+    await tempConfig.init(testValues.configValues);
+
+    const walletService = new WalletService(tempConfig);
     await walletService.init();
-    config.config.invite = undefined;
+
+    tempConfig.config.invite = undefined;
+
     await expect(() =>
       walletService.createModificationKeyByInvite()
     ).toThrowError('no invite present');
