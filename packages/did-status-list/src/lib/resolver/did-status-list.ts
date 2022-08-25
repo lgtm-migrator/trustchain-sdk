@@ -57,7 +57,7 @@ export class DidStatusList extends Did {
 
   getDocument(): DidStatusListDocument {
     return {
-      '@context': this.context,
+      '@context': this['@context'],
       id: this.id,
       controller: Array.from(this.controller.current.values()),
       statusPurpose: this.statusPurpose,

@@ -1,10 +1,10 @@
 import {
   ControllerManage,
-  DidDocument,
   DidDocumentMetaData,
   DidStructure,
   DocResponse,
   SignatureInfo,
+  DidDocument,
 } from '@trustcerts/observer';
 import { Management } from './management';
 
@@ -14,7 +14,7 @@ export abstract class Did {
 
   protected controller = new Management<string>();
 
-  protected context = ['https://www.w3.org/ns/did/v1'];
+  protected '@context' = ['https://www.w3.org/ns/did/v1'];
 
   protected metadata?: DidDocumentMetaData;
 
