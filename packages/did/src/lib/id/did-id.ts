@@ -388,27 +388,27 @@ export class DidId extends Did {
   }
 
   getDocument(): DidIdDocument {
-    const didDoc: Partial<DidIdDocument> = {
-      '@context': this.context,
+    const relationships: any = {};
+    // Add all vrTypes from Enum VerificationRelationshipType (should also be present in blockchain / IDidIdDocument)
+    Object.values(VerificationRelationshipType).forEach((vrType) => {
+      const vrTypeManagement = this.verificationRelationships.get(vrType);
+      if (vrTypeManagement) {
+        // always true
+        relationships[vrType] = Array.from(vrTypeManagement.current.values());
+      }
+    });
+    const didDoc: DidIdDocument = {
       id: this.id,
+      '@context': this['@context'],
       controller: Array.from(this.controller.current.values()),
       verificationMethod: Array.from(this.verificationMethod.current.values()),
       service: Array.from(this.service.current.values()),
       //authentication: Array.from(this.verificationRelationships.get(VerificationRelationshipType.authentication).current.values()),
       //assertionMethod: Array.from(this.verificationRelationships.get(VerificationRelationshipType.assertionMethod).current.values()),
       role: Array.from(this.role.current.values()),
+      ...relationships,
     };
 
-    // TODO move them before initing the didDoc to remove the Partial call
-    // Add all vrTypes from Enum VerificationRelationshipType (should also be present in blockchain / IDidIdDocument)
-    Object.values(VerificationRelationshipType).forEach((vrType) => {
-      const vrTypeManagement = this.verificationRelationships.get(vrType);
-      if (vrTypeManagement) {
-        // always true
-        didDoc[vrType] = Array.from(vrTypeManagement.current.values());
-      }
-    });
-
-    return didDoc as DidIdDocument;
+    return didDoc;
   }
 }

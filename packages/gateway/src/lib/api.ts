@@ -272,6 +272,12 @@ export interface DidPublicKey {
      */
     'id': string;
     /**
+     * encoded key value
+     * @type {PublicKeyJwkDto}
+     * @memberof DidPublicKey
+     */
+    'publicKeyJwk': PublicKeyJwkDto;
+    /**
      * controller of the key
      * @type {string}
      * @memberof DidPublicKey
@@ -283,12 +289,6 @@ export interface DidPublicKey {
      * @memberof DidPublicKey
      */
     'type': DidPublicKeyType;
-    /**
-     * encoded key value
-     * @type {PublicKeyJwkDto}
-     * @memberof DidPublicKey
-     */
-    'publicKeyJwk': PublicKeyJwkDto;
 }
 /**
  * 
@@ -411,13 +411,13 @@ export interface DidStatusListStructure {
      * @type {string}
      * @memberof DidStatusListStructure
      */
-    'encodedList': string;
+    'encodedList'?: string;
     /**
      * 
      * @type {StatusPurpose}
      * @memberof DidStatusListStructure
      */
-    'statusPurpose': StatusPurpose;
+    'statusPurpose'?: StatusPurpose;
 }
 /**
  * 

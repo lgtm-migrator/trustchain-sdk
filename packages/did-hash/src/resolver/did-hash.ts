@@ -46,7 +46,7 @@ export class DidHash extends Did {
 
   getDocument(): DidHashDocument {
     return {
-      '@context': this.context,
+      '@context': this['@context'],
       id: this.id,
       controller: Array.from(this.controller.current.values()),
       algorithm: this.algorithm,

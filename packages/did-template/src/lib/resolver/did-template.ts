@@ -43,7 +43,7 @@ export class DidTemplate extends Did {
 
   getDocument(): DidTemplateDocument {
     return {
-      '@context': this.context,
+      '@context': this['@context'],
       id: this.id,
       controller: Array.from(this.controller.current.values()),
       compression: this.compression,

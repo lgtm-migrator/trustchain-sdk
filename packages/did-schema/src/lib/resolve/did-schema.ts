@@ -41,7 +41,7 @@ export class DidSchema extends Did {
 
   getDocument(): DidSchemaDocument {
     return {
-      '@context': this.context,
+      '@context': this['@context'],
       id: this.id,
       controller: Array.from(this.controller.current.values()),
       value: this.schema,
