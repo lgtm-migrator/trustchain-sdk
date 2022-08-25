@@ -10,27 +10,25 @@ export abstract class DidResolver<T extends VerifierService> {
 
   protected async loadDid(
     did: Did,
-    // TODO any is not the best type
     config: DidManagerConfigValues<DidStructure>
   ): Promise<void> {
     if (config.transactions?.length > 0) {
       did.parseTransactions(config.transactions);
     } else {
-      console.log(config.doc);
       if (config.doc) {
         const document = await this.verifier
           .getDidDocument(did.id, config)
           .catch((err: Error) => {
             throw new Error(`Could not resolve DID: ${err} (${did.id})`);
           });
-        did.parseDocument(document);
+        await did.parseDocument(document);
       } else {
         config.transactions = await this.verifier
           .getDidTransactions(did.id, config.validateChainOfTrust, config.time)
           .catch((err: Error) => {
             throw new Error(`Could not resolve DID: ${err} (${did.id})`);
           });
-        did.parseTransactions(config.transactions);
+        await did.parseTransactions(config.transactions);
       }
     }
 
@@ -51,8 +49,8 @@ export abstract class DidResolver<T extends VerifierService> {
     };
   }
 
-  abstract load(
+  abstract load<T extends DidStructure>(
     id: string,
-    values?: InitDidManagerConfigValues<unknown>
+    values?: InitDidManagerConfigValues<T>
   ): Promise<Did>;
 }

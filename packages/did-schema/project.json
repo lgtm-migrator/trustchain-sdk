@@ -17,7 +17,7 @@
         "tsConfig": "packages/did-schema/tsconfig.lib.json",
         "project": "packages/did-schema/package.json",
         "entryFile": "packages/did-schema/src/index.ts",
-        "format": ["esm", "umd"],
+        "format": ["esm", "cjs"],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
@@ -45,10 +45,17 @@
         "preset": "angular",
         "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": ["did-schema:deploy"]
+        "postTargets": ["did-schema:publish", "did-schema:github"]
       }
     },
-    "deploy": {
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "${tag}",
+        "notes": "${notes}"
+      }
+    },
+    "publish": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
         "access": "public"

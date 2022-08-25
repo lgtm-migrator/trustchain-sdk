@@ -11,7 +11,8 @@ export abstract class IssuerService {
 
   constructor(
     gateways: string[],
-    protected readonly cryptoService: CryptoService
+    protected readonly cryptoService: CryptoService,
+    private defaultDelay = 1000
   ) {
     // TODO check if keypair exists and init the crypto service with it
     this.apiConfiguration = new Configuration({
@@ -24,5 +25,12 @@ export abstract class IssuerService {
    */
   public getId(): string {
     return this.cryptoService.fingerPrint.split('#')[0];
+  }
+
+  /**
+   * Wait some time to give the network time to sync the transactions. Since the issuer only receives a positive signal from a gateway it is not guranteed that the observers have already persisted the information.
+   */
+  protected async delay() {
+    await new Promise((res) => setTimeout(res, this.defaultDelay));
   }
 }

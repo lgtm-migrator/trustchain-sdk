@@ -17,7 +17,7 @@
         "tsConfig": "packages/vc/tsconfig.lib.json",
         "project": "packages/vc/package.json",
         "entryFile": "packages/vc/src/index.ts",
-        "format": ["esm", "umd"],
+        "format": ["esm", "cjs"],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
@@ -45,10 +45,17 @@
         "preset": "angular",
         "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": ["vc:deploy"]
+        "postTargets": ["vc:publish", "vc:github"]
       }
     },
-    "deploy": {
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "${tag}",
+        "notes": "${notes}"
+      }
+    },
+    "publish": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
         "access": "public"

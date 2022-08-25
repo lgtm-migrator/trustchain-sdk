@@ -8,6 +8,7 @@ import { logger } from '@trustcerts/logger';
 import {
   AxiosError,
   Configuration,
+  DidSchemaStructure,
   DidSchemaTransaction,
   SchemaDocResponse,
   SchemaObserverApi,
@@ -53,6 +54,7 @@ export class SchemaVerifierService extends VerifierService {
 
   /**
    * Resolve a DID document's transactions by returning the first valid response of a observer of the network
+   *
    * @param id The DID of the DID document
    * @param validate Whether to validate the response
    * @param time The time of the DID document that shall be queried
@@ -63,7 +65,7 @@ export class SchemaVerifierService extends VerifierService {
     id: string,
     validate = true,
     time: string
-  ): Promise<DidSchemaTransaction[]> {
+  ): Promise<DidSchemaStructure[]> {
     this.setEndpoints(id);
     for (const api of this.apis) {
       const res = await api
@@ -76,11 +78,11 @@ export class SchemaVerifierService extends VerifierService {
               await this.validateTransaction(transaction);
             }
           }
-          return Promise.resolve(res.data);
+          return res.data.map((transaction) => transaction.values);
         })
         .catch(logger.warn);
       if (res) return Promise.resolve(res);
     }
-    return Promise.reject('no transactions founds');
+    return Promise.reject('no transactions found');
   }
 }

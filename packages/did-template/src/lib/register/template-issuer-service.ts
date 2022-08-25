@@ -49,7 +49,7 @@ export class TemplateIssuerService extends IssuerService {
       identifier: this.cryptoService.fingerPrint,
     });
     return await this.api.gatewayTemplateControllerCreate(transaction).then(
-      (res) => res.data,
+      (res) => this.delay().then(() => res.data),
       (err: AxiosError) => {
         if (err.response) {
           return Promise.reject(err.response.data);

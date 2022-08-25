@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [11.0.8](https://github.com/trustcerts/trustchain-sdk/compare/helpers-11.0.7...helpers-11.0.8) (2022-08-15)
+
+
+### Bug Fixes
+
+* add jsdoc rules ([3099359](https://github.com/trustcerts/trustchain-sdk/commit/3099359775efa0d7604d024280801781620bc9f6))
+* change structure handling ([38976a4](https://github.com/trustcerts/trustchain-sdk/commit/38976a4ad8543ca3bfc7eec7e25313516fed1609))
+* publish 0.0.10 ([7487d22](https://github.com/trustcerts/trustchain-sdk/commit/7487d224c999a767b732b904809b6777f4edd12a))
+* release new version ([e18b106](https://github.com/trustcerts/trustchain-sdk/commit/e18b1069def0cd78a73cdee4715bf58cfd9237b8))
+* tests and remove umd ([7c79170](https://github.com/trustcerts/trustchain-sdk/commit/7c791706195ace7c83cb0e51e5a16191495aab7f))
+* update release ([3c1784f](https://github.com/trustcerts/trustchain-sdk/commit/3c1784fafea9a5e681b9f19e56b386e7f47ec55a))
+
+
+
 ## [11.0.7](https://github.com/trustcerts/trustchain-sdk/compare/helpers-11.0.6...helpers-11.0.7) (2022-07-11)
 
 

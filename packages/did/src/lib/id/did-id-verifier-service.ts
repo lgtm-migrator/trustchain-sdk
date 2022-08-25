@@ -28,6 +28,7 @@ export class DidIdVerifierService extends VerifierService {
 
   /**
    * Resolve a DID document by returning the first valid response of a observer of the network
+   *
    * @param id The DID of the DID document
    * @param config The config for the DID request
    * @param timeout Timeout for each observer that is queried
@@ -35,7 +36,7 @@ export class DidIdVerifierService extends VerifierService {
    */
   async getDidDocument(
     id: string,
-    config: DidManagerConfigValues<DidIdStructure>
+    config: DidManagerConfigValues<DidIdTransaction>
   ): Promise<IdDocResponse> {
     this.setEndpoints(id);
     for (const api of this.apis) {
@@ -62,6 +63,7 @@ export class DidIdVerifierService extends VerifierService {
 
   /**
    * Resolve a DID document's transactions by returning the first valid response of a observer of the network
+   *
    * @param id The DID of the DID document
    * @param validate Whether to validate the response
    * @param time The time of the DID document that shall be queried
@@ -72,7 +74,7 @@ export class DidIdVerifierService extends VerifierService {
     id: string,
     validate = true,
     time: string
-  ): Promise<DidIdTransaction[]> {
+  ): Promise<DidIdStructure[]> {
     this.setEndpoints(id);
     for (const api of this.apis) {
       const res = await api
@@ -85,13 +87,11 @@ export class DidIdVerifierService extends VerifierService {
               await this.validateTransaction(transaction);
             }
           }
-          return Promise.resolve(res.data);
+          return res.data.map((transaction) => transaction.values);
         })
         .catch(logger.warn);
-      if (res) {
-        return Promise.resolve(res);
-      }
+      if (res) return Promise.resolve(res);
     }
-    return Promise.reject('no transactions founds');
+    return Promise.reject('no transactions found');
   }
 }

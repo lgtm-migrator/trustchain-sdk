@@ -11,6 +11,7 @@ import {
   DidTemplateTransaction,
   TemplateDocResponse,
   TemplateObserverApi,
+  DidTemplateStructure,
 } from '@trustcerts/observer';
 
 export class TemplateVerifierService extends VerifierService {
@@ -29,6 +30,7 @@ export class TemplateVerifierService extends VerifierService {
 
   /**
    * Resolve a DID document by returning the first valid response of a observer of the network
+   *
    * @param id The DID of the DID document
    * @param config The config for the DID request
    * @param timeout Timeout for each observer that is queried
@@ -61,6 +63,7 @@ export class TemplateVerifierService extends VerifierService {
 
   /**
    * Resolve a DID document's transactions by returning the first valid response of a observer of the network
+   *
    * @param id The DID of the DID document
    * @param validate Whether to validate the response
    * @param time The time of the DID document that shall be queried
@@ -71,7 +74,7 @@ export class TemplateVerifierService extends VerifierService {
     id: string,
     validate = true,
     time: string
-  ): Promise<DidTemplateTransaction[]> {
+  ): Promise<DidTemplateStructure[]> {
     this.setEndpoints(id);
     for (const api of this.apis) {
       const res = await api
@@ -84,11 +87,11 @@ export class TemplateVerifierService extends VerifierService {
               await this.validateTransaction(transaction);
             }
           }
-          return res.data;
+          return res.data.map((transaction) => transaction.values);
         })
         .catch(logger.warn);
       if (res) return Promise.resolve(res);
     }
-    return Promise.reject('no transactions founds');
+    return Promise.reject('no transactions found');
   }
 }

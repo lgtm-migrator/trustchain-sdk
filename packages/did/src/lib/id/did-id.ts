@@ -25,6 +25,8 @@ export interface VerificationRelationship {
 }
 
 export class DidId extends Did {
+  static objectName = 'id';
+
   private verificationMethod = new Management<DidPublicKey>();
   private verificationRelationships = new Map<
     VerificationRelationshipType,
@@ -36,7 +38,7 @@ export class DidId extends Did {
   private role = new Management<DidRoles>();
 
   constructor(public override id: string) {
-    super(id);
+    super(id, DidId.objectName, 22);
     Object.values(VerificationRelationshipType).forEach((vrType) => {
       this.verificationRelationships.set(vrType, new Management<string>());
     });
@@ -75,7 +77,7 @@ export class DidId extends Did {
 
   removeKey(id: string): void {
     if (!this.hasKey(id)) {
-      throw Error('id not found');
+      throw Error('key not found');
     }
 
     this.verificationMethod.current.delete(this.getFullId(id));
@@ -96,7 +98,7 @@ export class DidId extends Did {
 
   addService(id: string, endpoint: string, type: string): void {
     if (this.hasService(id)) {
-      throw Error('id already used');
+      throw Error('service id already used');
     }
     const service: DidService = {
       id: this.getFullId(id),
@@ -109,14 +111,14 @@ export class DidId extends Did {
 
   removeService(id: string): void {
     if (!this.hasService(id)) {
-      throw Error('id not found');
+      throw Error('service not found');
     }
 
     this.service.current.delete(this.getFullId(id));
     this.service.remove.add(this.getFullId(id));
   }
 
-  hasRole(value: string): boolean {
+  hasRole(value: DidRoles): boolean {
     return this.role.current.has(value);
   }
 
@@ -128,7 +130,7 @@ export class DidId extends Did {
     this.role.add.set(value, value);
   }
 
-  removeRole(value: string): void {
+  removeRole(value: DidRoles): void {
     if (!this.hasRole(value)) {
       throw Error('role not found');
     }
@@ -161,6 +163,8 @@ export class DidId extends Did {
   // TOOD set correct response type
   /**
    * Return all relationships of a key
+   *
+   * @param id
    */
   getVerificationRelationship(id: string): VerificationRelationshipType[] {
     return Object.values(VerificationRelationshipType).filter(
@@ -212,8 +216,8 @@ export class DidId extends Did {
 
   removeAllVerificationRelationships(keyId: string): void {
     this.getVerificationRelationship(keyId).forEach(
-      (verificationRelationShipKey) =>
-        this.removeVerificationRelationship(keyId, verificationRelationShipKey)
+      (verificationRelationshipKey) =>
+        this.removeVerificationRelationship(keyId, verificationRelationshipKey)
     );
   }
 
@@ -306,7 +310,7 @@ export class DidId extends Did {
     });
   }
 
-  parseDocument(docResponse: IdDocResponse): void {
+  async parseDocument(docResponse: IdDocResponse): Promise<void> {
     this.parseDocumentSuper(docResponse);
 
     docResponse.document.service.forEach((service) =>
@@ -330,31 +334,31 @@ export class DidId extends Did {
     this.resetChanges();
   }
 
-  parseTransactions(transactions: DidIdStructure[]): void {
-    for (const transaction of transactions) {
+  async parseTransactions(structures: DidIdStructure[]): Promise<void> {
+    for (const structure of structures) {
       this.version++;
       // validate signature of transaction
       // parse it into the existing document
-      this.parseTransactionControllers(transaction);
+      this.parseTransactionControllers(structure);
 
-      if (transaction.service?.remove) {
-        transaction.service.remove.forEach((id) =>
+      if (structure.service?.remove) {
+        structure.service.remove.forEach((id) =>
           this.service.current.delete(id)
         );
       }
-      if (transaction.service?.add) {
-        transaction.service.add.forEach((service) =>
+      if (structure.service?.add) {
+        structure.service.add.forEach((service) =>
           this.service.current.set(service.id, service)
         );
       }
 
-      if (transaction.verificationMethod?.remove) {
-        transaction.verificationMethod.remove.forEach((id) =>
+      if (structure.verificationMethod?.remove) {
+        structure.verificationMethod.remove.forEach((id) =>
           this.verificationMethod.current.delete(id)
         );
       }
-      if (transaction.verificationMethod?.add) {
-        transaction.verificationMethod.add.forEach((verificationMethod) =>
+      if (structure.verificationMethod?.add) {
+        structure.verificationMethod.add.forEach((verificationMethod) =>
           this.verificationMethod.current.set(
             verificationMethod.id,
             verificationMethod
@@ -363,21 +367,19 @@ export class DidId extends Did {
       }
 
       Object.values(VerificationRelationshipType).forEach((vrType) => {
-        transaction[vrType]?.remove?.forEach((id) => {
+        structure[vrType]?.remove?.forEach((id) => {
           this.verificationRelationships.get(vrType)?.current.delete(id);
         });
-        transaction[vrType]?.add?.forEach((id) => {
+        structure[vrType]?.add?.forEach((id) => {
           this.verificationRelationships.get(vrType)?.current.set(id, id);
         });
       });
 
-      if (transaction.role?.remove) {
-        transaction.role.remove.forEach((role) =>
-          this.role.current.delete(role)
-        );
+      if (structure.role?.remove) {
+        structure.role.remove.forEach((role) => this.role.current.delete(role));
       }
-      if (transaction.role?.add) {
-        transaction.role.add.forEach((role) =>
+      if (structure.role?.add) {
+        structure.role.add.forEach((role) =>
           // TODO fix this unknown transformation
           this.role.current.set(role, role as unknown as DidRoles)
         );

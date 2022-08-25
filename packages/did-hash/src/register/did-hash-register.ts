@@ -19,10 +19,12 @@ export class DidHashRegister {
 
   /**
    * creates a fresh did with a unique identifier. Add controller when they are passed.
+   *
+   * @param values
    */
   public create(values: DidHashCreation): DidHash {
     // TODO check if a given id should be allowed
-    const id = values?.id ?? Identifier.generate('hash');
+    const id = values?.id ?? Identifier.generate(DidHash.objectName);
     const did = new DidHash(id);
     values.controllers?.forEach((controller) => did.addController(controller));
     did.algorithm = values.algorithm;
@@ -43,12 +45,14 @@ export class DidHashRegister {
   /**
    * Signs a file
    *
+   * @param filePath
+   * @param controllers
    * @returns {Promise<void>}
    */
   async signFile(filePath: string, controllers: string[]): Promise<DidHash> {
     const hash = await getHashFromFile(filePath);
     return this.create({
-      id: Identifier.generate('hash', hash),
+      id: Identifier.generate(DidHash.objectName, hash),
       algorithm: 'sha256',
       controllers,
     });
@@ -57,6 +61,8 @@ export class DidHashRegister {
   /**
    * Signs a buffer
    *
+   * @param buffer
+   * @param controllers
    * @returns {Promise<void>}
    */
   async signBuffer(
@@ -65,7 +71,7 @@ export class DidHashRegister {
   ): Promise<DidHash> {
     const hash = await getHashFromArrayBuffer(buffer);
     return this.create({
-      id: Identifier.generate('hash', hash),
+      id: Identifier.generate(DidHash.objectName, hash),
       algorithm: 'sha256',
       controllers,
     });
@@ -73,12 +79,14 @@ export class DidHashRegister {
 
   /**
    * Signs a string.
+   *
    * @param value
+   * @param controllers
    */
   async signString(value: string, controllers: string[]): Promise<DidHash> {
     const hash = await getHash(value);
     return this.create({
-      id: Identifier.generate('hash', hash),
+      id: Identifier.generate(DidHash.objectName, hash),
       algorithm: 'sha256',
       controllers,
     });
@@ -87,6 +95,8 @@ export class DidHashRegister {
   /**
    * Revokes a file
    *
+   * @param filePath
+   * @param date
    * @returns {Promise<void>}
    */
   async revokeFile(
@@ -100,6 +110,8 @@ export class DidHashRegister {
   /**
    * Revokes a buffer
    *
+   * @param buffer
+   * @param date
    * @returns {Promise<void>}
    */
   async revokeBuffer(
@@ -112,7 +124,9 @@ export class DidHashRegister {
 
   /**
    * Revokes a string.
+   *
    * @param value
+   * @param date
    */
   async revokeString(
     value: string,
@@ -124,12 +138,14 @@ export class DidHashRegister {
 
   /**
    * Revokes a string
+   *
    * @param hash
+   * @param date
    * @private
    */
   private async revoke(hash: string, date: string) {
     const did = await this.didSignatrueResolver.load(
-      Identifier.generate('hash', hash)
+      Identifier.generate(DidHash.objectName, hash)
     );
     did.revoked = date;
     return did;

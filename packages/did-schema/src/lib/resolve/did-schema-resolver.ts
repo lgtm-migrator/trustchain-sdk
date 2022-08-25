@@ -1,5 +1,5 @@
 import { DidResolver, InitDidManagerConfigValues } from '@trustcerts/did';
-import { DidSchemaStructure } from '@trustcerts/observer';
+import { DidSchemaStructure } from '@trustcerts/gateway';
 import { DidSchema } from './did-schema';
 import { SchemaVerifierService } from './schema-verifier-service';
 

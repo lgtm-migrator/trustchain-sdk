@@ -2,6 +2,7 @@ import {
   DidHashRegister,
   DidHashResolver,
   SignatureIssuerService,
+  DidHash,
 } from '@trustcerts/did-hash';
 import { DidTemplate } from '@trustcerts/did-template';
 import { DidSchemaResolver } from '@trustcerts/did-schema';
@@ -21,6 +22,12 @@ export class ClaimIssuerService {
   public ajv = new Ajv();
   /**
    * create a claim.
+   *
+   * @param template
+   * @param values
+   * @param host
+   * @param signatureIssuer
+   * @param controllers
    */
   async create(
     template: DidTemplate,
@@ -34,17 +41,18 @@ export class ClaimIssuerService {
       throw Error('input does not match with schema');
     }
     const hash = await ClaimVerifierService.getHash(values, template.id);
-    const didHash = await this.didHashRegister.create({
-      id: Identifier.generate('hash', hash),
+    const didHash = this.didHashRegister.create({
+      id: Identifier.generate(DidHash.objectName, hash),
       algorithm: 'sha256',
       controllers,
     });
-    this.didHashRegister.save(didHash, signatureIssuer);
+    await this.didHashRegister.save(didHash, signatureIssuer);
     return new Claim(values, template, host);
   }
 
   /**
    * revokes a claim.
+   *
    * @param claim
    * @param signatureIssuer
    */
@@ -57,7 +65,7 @@ export class ClaimIssuerService {
       claim.getTemplateId()
     );
     const didHash = await this.didHashResolver
-      .load(Identifier.generate('hash', hash))
+      .load(Identifier.generate(DidHash.objectName, hash))
       .catch(() => {
         throw new Error('hash of claim not found');
       });

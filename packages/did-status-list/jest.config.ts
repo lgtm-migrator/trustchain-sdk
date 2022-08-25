@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'vc-revocation',
+  displayName: 'did-status-list',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -10,7 +10,6 @@ export default {
   transform: {
     '^.+\\.[tj]s$': 'ts-jest',
   },
-  roots: ['./', '../tests/src/vc-revocation'],
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/packages/vc-revocation',
+  coverageDirectory: '../../coverage/packages/did-status-list',
 };

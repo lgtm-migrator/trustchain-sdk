@@ -1,7 +1,7 @@
 import { ClaimValues } from './claim-values';
 import { Compress, JsonCompressor, Proto } from './compress';
 import { DidTemplateResolver } from '@trustcerts/did-template';
-import { DidHashResolver } from '@trustcerts/did-hash';
+import { DidHash, DidHashResolver } from '@trustcerts/did-hash';
 import { CompressionType } from '@trustcerts/observer';
 import { DidSchemaResolver } from '@trustcerts/did-schema';
 import { Claim } from './claim';
@@ -21,6 +21,7 @@ export class ClaimVerifierService {
 
   /**
    * Builds a claim object based on the given url and the template engine and verifier endpoints.
+   *
    * @param url
    * @param templateEngine
    * @param verifier
@@ -55,7 +56,7 @@ export class ClaimVerifierService {
     // verify
     const hashValue = await ClaimVerifierService.getHash(values, did);
     const hash = await this.didHashResolver
-      .load(Identifier.generate('hash', hashValue))
+      .load(Identifier.generate(DidHash.objectName, hashValue))
       .catch(() => {
         throw Error('failed to verify');
       });
@@ -66,7 +67,9 @@ export class ClaimVerifierService {
 
   /**
    * Calculates the hash of the values.
+   *
    * @param values
+   * @param templateDid
    */
   public static async getHash(
     values: ClaimValues,

@@ -12,22 +12,22 @@ import {
   DocumentLoader,
 } from '@trustcerts/vc';
 
-import { RevocationService } from '@trustcerts/vc-revocation';
 import { DecryptedKeyPair } from '@trustcerts/crypto';
 import { logger } from '@trustcerts/logger';
+import { RevocationService } from '@trustcerts/did-status-list';
 export class BbsVerifiableCredentialIssuerService {
   /**
    * Creates a verifiable credential signed with a BBS+ signature.
    *
    * @param vcArguments The arguments of the verifiable credential
    * @param keyPair The Bls12381G2 keypair as JsonWebKeys
-   * @param revokable If true, a credentialStatus property is added to the verifiable credential
+   * @param revocationService If set, a credentialStatus property is added to the verifiable credential using revocationService
    * @returns A BBS+ signed verifiable credential
    */
   async createBBSVerifiableCredential(
     vcArguments: IVerifiableCredentialArguments,
     keyPair: DecryptedKeyPair,
-    revokable = true
+    revocationService?: RevocationService
   ): Promise<VerifiableCredentialBBS> {
     const issuanceDate = new Date();
 
@@ -58,31 +58,11 @@ export class BbsVerifiableCredentialIssuerService {
       id: vcArguments.id,
     };
 
-    if (revokable) {
-      // // TODO: figure out what credential id needs to be set to
-      // // ("[...] It MUST NOT be the URL for the revocation list.")
-      // // https://w3c-ccg.github.io/vc-status-rl-2020/#revocationlist2020status
-      // const credentialStatusId = "TODO";
-
-      // // TODO: get credential index via API call
-      // const revocationListIndex = "1235";
-
-      // // TODO: set revocation list URL
-      // const revocationListCredential = "did:trust:tc:dev:REVOCATION_LIST_WITH_1234_REVOKED";
-
-      // const credentialStatus: ICredentialStatus = {
-      //     id: credentialStatusId,
-      //     type: "RevocationList2020Status", // "The type property MUST be RevocationList2020Status."
-      //                                     // https://w3c-ccg.github.io/vc-status-rl-2020/#revocationlist2020status
-      //     revocationListIndex: revocationListIndex,
-      //     revocationListCredential: revocationListCredential
-      // };
-
-      const revocationService = new RevocationService();
-      await revocationService.init();
-
+    if (revocationService) {
       vc.credentialStatus = await revocationService.getNewCredentialStatus();
-      vc['@context']?.push('https://w3id.org/vc-revocation-list-2020/v1');
+      if (vc['@context']) {
+        vc['@context'].push('https://w3id.org/vc/status-list/2021/v1');
+      }
     }
 
     // TODO: Warum sind diese 3 Zeilen auskommentiert? Warum hat das Interface kein expirationDate?

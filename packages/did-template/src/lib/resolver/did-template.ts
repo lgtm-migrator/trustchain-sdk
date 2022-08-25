@@ -1,12 +1,14 @@
 import { Did } from '@trustcerts/did';
+import { DidTemplateStructure } from '@trustcerts/gateway';
 import {
   Compression,
   DidTemplateDocument,
-  DidTemplateStructure,
   TemplateDocResponse,
 } from '@trustcerts/observer';
 
 export class DidTemplate extends Did {
+  static objectName = 'tmp';
+
   // use setters to change values to detect if there where changes
   public compression!: Compression;
 
@@ -14,7 +16,11 @@ export class DidTemplate extends Did {
 
   public schemaId!: string;
 
-  parseTransactions(transactions: DidTemplateStructure[]): void {
+  constructor(public override id: string) {
+    super(id, DidTemplate.objectName, 22);
+  }
+
+  async parseTransactions(transactions: DidTemplateStructure[]): Promise<void> {
     // this.values.
     for (const transaction of transactions) {
       this.version++;
@@ -27,7 +33,8 @@ export class DidTemplate extends Did {
       this.compression = transaction.compression ?? this.compression;
     }
   }
-  parseDocument(docResponse: TemplateDocResponse): void {
+
+  async parseDocument(docResponse: TemplateDocResponse): Promise<void> {
     this.parseDocumentSuper(docResponse);
     this.schemaId = docResponse.document.schemaId;
     this.template = docResponse.document.template;

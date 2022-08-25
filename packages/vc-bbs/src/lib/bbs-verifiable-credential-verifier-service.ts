@@ -7,8 +7,8 @@ import {
   IVerifiablePresentationBBS,
   VerifiableCredentialBBS,
 } from '@trustcerts/vc';
-import { RevocationService } from '@trustcerts/vc-revocation';
 import { logger } from '@trustcerts/logger';
+import { DidStatusListResolver } from '@trustcerts/did-status-list';
 
 export class BbsVerifiableCredentialVerifierService {
   private docLoader = new DocumentLoader().getLoader();
@@ -54,15 +54,10 @@ export class BbsVerifiableCredentialVerifierService {
    * @returns True if the given credential status has been revoked
    */
   async isRevoked(credentialStatus: ICredentialStatus): Promise<boolean> {
-    const revocationService = new RevocationService();
-    await revocationService.init();
-
-    return revocationService.isRevoked(credentialStatus);
-
-    // const revocationList = (await this.docLoader(credentialStatus.revocationListCredential)).document;
-    // const encodedList = revocationList['credentialSubject']['encodedList'];
-    // const decodedList = await decodeList({encodedList: encodedList});
-    // return decodedList.isRevoked(Number(credentialStatus.revocationListIndex));
+    const didStatusListResolver = await new DidStatusListResolver().load(
+      credentialStatus.id
+    );
+    return didStatusListResolver.isRevoked(credentialStatus.statusListIndex);
   }
 
   /**

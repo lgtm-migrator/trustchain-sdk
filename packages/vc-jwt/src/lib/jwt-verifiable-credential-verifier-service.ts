@@ -1,10 +1,10 @@
 import { ICredentialStatus, JWTPayloadVC, JWTPayloadVP } from '@trustcerts/vc';
 import { jwtVerify } from 'jose';
 import { JWT } from './jwt-service';
-import { RevocationService } from '@trustcerts/vc-revocation';
 import { importKey } from '@trustcerts/crypto';
 import { DidIdResolver } from '@trustcerts/did';
 import { logger } from '@trustcerts/logger';
+import { DidStatusListResolver } from '@trustcerts/did-status-list';
 
 export class JWTVerifiableCredentialVerifierService {
   private resolver = new DidIdResolver();
@@ -29,7 +29,7 @@ export class JWTVerifiableCredentialVerifierService {
       await jwtVerify(credential, key);
 
       // Check revocation status
-      const vcPayload = jwt.getPayload() as JWTPayloadVC;
+      const vcPayload = jwt.getPayload<JWTPayloadVC>();
       if (vcPayload.vc.credentialStatus) {
         const revoked = await this.isRevoked(vcPayload.vc.credentialStatus);
         if (revoked) {
@@ -55,15 +55,10 @@ export class JWTVerifiableCredentialVerifierService {
    * @returns True if the given credential status has been revoked
    */
   async isRevoked(credentialStatus: ICredentialStatus): Promise<boolean> {
-    const revocationService = new RevocationService();
-    await revocationService.init();
-
-    return revocationService.isRevoked(credentialStatus);
-
-    // const revocationList = (await this.docLoader(credentialStatus.revocationListCredential)).document;
-    // const encodedList = revocationList['credentialSubject']['encodedList'];
-    // const decodedList = await decodeList({encodedList: encodedList});
-    // return decodedList.isRevoked(Number(credentialStatus.revocationListIndex));
+    const didStatusListResolver = await new DidStatusListResolver().load(
+      credentialStatus.id
+    );
+    return didStatusListResolver.isRevoked(credentialStatus.statusListIndex);
   }
 
   /**
@@ -75,7 +70,7 @@ export class JWTVerifiableCredentialVerifierService {
   async verifyPresentation(presentation: string): Promise<boolean> {
     const jwt = new JWT(presentation);
 
-    const jwtPayload = jwt.getPayload() as JWTPayloadVP;
+    const jwtPayload = jwt.getPayload<JWTPayloadVP>();
 
     const kid = jwt.getHeader().kid;
 

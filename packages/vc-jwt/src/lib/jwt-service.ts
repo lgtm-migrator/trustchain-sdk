@@ -31,8 +31,8 @@ export class JWT {
   /**
    * @returns The payload of the JWT
    */
-  public getPayload(): JWTPayload {
-    return this.payload;
+  public getPayload<T extends JWTPayload>(): T {
+    return this.payload as T;
   }
 
   /**

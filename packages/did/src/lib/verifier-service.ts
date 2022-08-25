@@ -1,4 +1,5 @@
 import { importKey, sortKeys, verifySignature } from '@trustcerts/crypto';
+import { DidIdStructure } from '@trustcerts/gateway';
 import {
   BaseAPI,
   DidIdTransaction,
@@ -14,9 +15,14 @@ export abstract class VerifierService {
 
   protected timeout = 2000;
 
+  /**
+   *
+   * @param document
+   * @param config
+   */
   protected async validateDoc(
     document: DocResponse,
-    config: DidManagerConfigValues<DidStructure>
+    config: DidManagerConfigValues<DidIdStructure>
   ) {
     //TODO implement validation of a document with recursive approach
     // TODO validate if signatureinfo is better than signaturedto to store more information
@@ -49,37 +55,34 @@ export abstract class VerifierService {
 
   /**
    * Validates the signature of a given transaction.
+   *
    * @param transaction
    * @private
    */
   protected async validateTransaction(
     transaction: DidTransaction
   ): Promise<void> {
-    await this.getKey(transaction).then((key: JsonWebKey) => {
-      const value = JSON.stringify(
-        sortKeys({
-          value: transaction.values,
-          date: transaction.createdAt,
-        })
-      );
-      importKey(key, 'jwk', ['verify']).then((key) => {
-        verifySignature(
-          value,
-          transaction.signature.values[0].signature,
-          key
-        ).then((valid) => {
-          if (!valid) {
-            throw Error('signature is wrong');
-          }
-        });
-      });
-    });
+    const key = await this.getKey(transaction);
+    const content: SignatureContent = {
+      value: transaction.values,
+      date: transaction.createdAt,
+      type: transaction.type,
+    };
+    const importedKey = await importKey(key, 'jwk', ['verify']);
+    const valid = await verifySignature(
+      JSON.stringify(sortKeys(content)),
+      transaction.signature.values[0].signature,
+      importedKey
+    );
+    if (!valid) {
+      throw Error('signature is wrong');
+    }
   }
 
   private async getKey(transaction: DidIdTransaction): Promise<JsonWebKey> {
     if (
       transaction.signature.values[0].identifier.split('#')[0] ===
-      transaction.values.id
+      transaction.id
     ) {
       // TODO instead of searching for self certified, use the genesis block.
       if (
@@ -118,7 +121,7 @@ export abstract class VerifierService {
     id: string,
     validate: boolean,
     time: string
-  ): Promise<DidTransaction[]>;
+  ): Promise<DidStructure[]>;
 }
 
 export interface SignatureContent {

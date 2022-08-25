@@ -9,6 +9,7 @@ import {
 import { Management } from './management';
 
 export abstract class Did {
+  // TODO remove it since it will not be used
   public version = 0;
 
   protected controller = new Management<string>();
@@ -19,7 +20,18 @@ export abstract class Did {
 
   protected signatures?: SignatureInfo;
 
-  constructor(public id: string) {
+  constructor(
+    public id: string,
+    protected didType: string,
+    protected identifierMinLength: number,
+    protected identifierMaxLength?: number
+  ) {
+    if (!identifierMaxLength) this.identifierMaxLength = identifierMinLength;
+    if (!new RegExp('^[a-z]{1,10}$').test(didType)) {
+      throw Error(
+        `didType ('${didType}') must be lowercase alphabetic string with length 1-10`
+      );
+    }
     const result = new RegExp(this.getExp()).test(id);
     if (!result) {
       throw Error(
@@ -30,7 +42,15 @@ export abstract class Did {
 
   // will not be overwritten by parent class.
   protected getExp() {
-    return '^did:trust:[:a-z]*[1-9A-HJ-NP-Za-km-z]{22}$';
+    return (
+      '^did:trust:[a-z]{1,10}:[a-z]{0,10}:' +
+      this.didType +
+      ':[1-9A-HJ-NP-Za-km-z]{' +
+      this.identifierMinLength +
+      ',' +
+      this.identifierMaxLength +
+      '}$'
+    );
   }
 
   public getVersion(): number {
@@ -85,9 +105,9 @@ export abstract class Did {
   }
 
   // TODO instead of any pass the didtransaction attribte. Has to be imported in another way since it is an extended class from the open-api spec
-  abstract parseTransactions(transactions: DidStructure[]): void;
+  abstract parseTransactions(transactions: DidStructure[]): Promise<void>;
   // TODO set DocResponse as a parent class
-  abstract parseDocument(document: unknown): void;
+  abstract parseDocument(document: unknown): Promise<void>;
   abstract getDocument(): DidDocument;
   abstract resetChanges(): void;
   // TODO set parent class for changes
@@ -124,23 +144,26 @@ export abstract class Did {
   }
 
   /**
-   * parse the controllers
+   * parse the controllers of a structure
+   *
+   * @param structure structure of the element
    */
-  protected parseTransactionControllers(transaction: DidStructure) {
-    if (transaction.controller?.remove) {
-      transaction.controller.remove.forEach((id) =>
+  protected parseTransactionControllers(structure: DidStructure) {
+    if (structure.controller?.remove) {
+      structure.controller.remove.forEach((id) =>
         this.controller.current.delete(id)
       );
     }
-    if (transaction.controller?.add) {
-      transaction.controller.add.forEach((controller) =>
+    if (structure.controller?.add) {
+      structure.controller.add.forEach((controller) =>
         this.controller.current.set(controller, controller)
       );
     }
   }
 
   /**
-   * Get the changes for the controllers.
+   *
+   * @returns a Controller manager
    */
   protected getChangesController(): ControllerManage | undefined {
     if (this.controller.add.size > 0 && this.controller.remove.size > 0) return;

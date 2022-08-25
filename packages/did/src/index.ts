@@ -9,6 +9,7 @@ export * from './lib/cache/did-cached-service';
 export * from './lib/id/did-id';
 export * from './lib/id/did-id-resolver';
 export * from './lib/did-creation';
+export * from './lib/did-creator';
 export * from './lib/DidManagerConfigValues';
 export * from './lib/InitDidManagerConfigValues';
 export * from './lib/did-issuer-service';

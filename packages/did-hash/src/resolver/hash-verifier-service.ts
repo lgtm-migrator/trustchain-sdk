@@ -4,13 +4,13 @@ import {
   Network,
   VerifierService,
 } from '@trustcerts/did';
+import { DidSchemaStructure } from '@trustcerts/gateway';
 import { logger } from '@trustcerts/logger';
 import {
   AxiosError,
   Configuration,
   DidHashDocument,
-  DidHashStructure,
-  DidSchemaTransaction,
+  DidHashTransaction,
   HashDocResponse,
   HashObserverApi,
 } from '@trustcerts/observer';
@@ -31,7 +31,7 @@ export class DidHashVerifierService extends VerifierService {
 
   public async verify(
     checksum: string,
-    config: DidManagerConfigValues<DidHashStructure>
+    config: DidManagerConfigValues<DidHashTransaction>
   ): Promise<DidHashDocument> {
     return (await this.getDidDocument(checksum, config)).document;
     // TODO check if the validation is done in the getDidDocument function
@@ -55,7 +55,7 @@ export class DidHashVerifierService extends VerifierService {
 
   async getDidDocument(
     id: string,
-    config: DidManagerConfigValues<DidHashStructure>
+    config: DidManagerConfigValues<DidHashTransaction>
   ): Promise<HashDocResponse> {
     this.setEndpoints(id);
     for (const api of this.apis) {
@@ -78,6 +78,7 @@ export class DidHashVerifierService extends VerifierService {
   }
   /**
    * Resolve a DID document's transactions by returning the first valid response of a observer of the network
+   *
    * @param id The DID of the DID document
    * @param validate Whether to validate the response
    * @param time The time of the DID document that shall be queried
@@ -88,7 +89,7 @@ export class DidHashVerifierService extends VerifierService {
     id: string,
     validate = true,
     time: string
-  ): Promise<DidSchemaTransaction[]> {
+  ): Promise<DidSchemaStructure[]> {
     this.setEndpoints(id);
     for (const api of this.apis) {
       const res = await api
@@ -101,11 +102,11 @@ export class DidHashVerifierService extends VerifierService {
               await this.validateTransaction(transaction);
             }
           }
-          return res.data;
+          return res.data.map((transaction) => transaction.values);
         })
         .catch(logger.warn);
       if (res) return Promise.resolve(res);
     }
-    return Promise.reject('no transactions founds');
+    return Promise.reject('no transactions found');
   }
 }

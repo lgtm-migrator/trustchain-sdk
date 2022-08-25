@@ -17,7 +17,7 @@
         "tsConfig": "packages/vc-jwt/tsconfig.lib.json",
         "project": "packages/vc-jwt/package.json",
         "entryFile": "packages/vc-jwt/src/index.ts",
-        "format": ["esm", "umd"],
+        "format": ["esm", "cjs"],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
@@ -45,10 +45,17 @@
         "preset": "angular",
         "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": ["vc-jwt:deploy"]
+        "postTargets": ["vc-jwt:publish", "vc-jwt:github"]
       }
     },
-    "deploy": {
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "${tag}",
+        "notes": "${notes}"
+      }
+    },
+    "publish": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
         "access": "public"

@@ -8,7 +8,7 @@ import {
   Identifier,
   InitDidManagerConfigValues,
 } from '@trustcerts/did';
-import { DidHashStructure } from '@trustcerts/observer';
+import { DidHashStructure } from '@trustcerts/gateway';
 import { DidHash } from './did-hash';
 import { DidHashVerifierService } from './hash-verifier-service';
 
@@ -23,7 +23,7 @@ export class DidHashResolver extends DidResolver<DidHashVerifierService> {
     values?: InitDidManagerConfigValues<DidHashStructure>
   ): Promise<DidHash> {
     if (!id.startsWith('did:trust')) {
-      id = Identifier.generate('hash', id);
+      id = Identifier.generate(DidHash.objectName, id);
     }
     const didID = id.split('#')[0];
     const config = this.setConfig<DidHashStructure>(values);

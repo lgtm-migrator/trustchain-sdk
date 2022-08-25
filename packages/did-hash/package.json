@@ -1,6 +1,6 @@
 {
   "name": "@trustcerts/did-hash",
-  "version": "11.0.9",
+  "version": "11.0.16",
   "repository": "https://github.com/trustcerts/trustchain-sdk",
   "devDependencies": {
     "@types/node": "^17.0.23"

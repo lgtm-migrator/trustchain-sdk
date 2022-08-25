@@ -18,7 +18,7 @@
         "tsConfig": "packages/crypto-bbs/tsconfig.lib.json",
         "project": "packages/crypto-bbs/package.json",
         "entryFile": "packages/crypto-bbs/src/index.ts",
-        "format": ["esm", "umd"],
+        "format": ["esm", "cjs"],
         "buildableProjectDepsInPackageJsonType": "dependencies"
       }
     },
@@ -46,10 +46,17 @@
         "preset": "angular",
         "trackDeps": true,
         "commitMessageFormat": "fix(${projectName}): release version ${version}",
-        "postTargets": ["crypto-bbs:deploy"]
+        "postTargets": ["crypto-bbs:publish", "crypto-bbs:github"]
       }
     },
-    "deploy": {
+    "github": {
+      "executor": "@jscutlery/semver:github",
+      "options": {
+        "tag": "${tag}",
+        "notes": "${notes}"
+      }
+    },
+    "publish": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
         "access": "public"
