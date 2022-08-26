@@ -91,17 +91,12 @@ describe('test statuslist service', () => {
   }, 10000);
 
   it('test invalid did', async () => {
+    const invalidDid = `${testValues.network.namespace}tc:dev:statuslist:123456789a123456789a12`;
     await expect(
-      new DidStatusListResolver().load(
-        'did:trust:tc:dev:statuslist:123456789a123456789a12',
-        { doc: false }
-      )
+      new DidStatusListResolver().load(invalidDid, { doc: false })
     ).rejects.toThrowError('no transactions found');
     await expect(
-      new DidStatusListResolver().load(
-        'did:trust:tc:dev:statuslist:123456789a123456789a12',
-        { doc: true }
-      )
+      new DidStatusListResolver().load(invalidDid, { doc: true })
     ).rejects.toThrowError('no did doc found');
   }, 10000);
 });
