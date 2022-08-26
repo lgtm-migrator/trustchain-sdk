@@ -53,7 +53,7 @@ export class StatusListVerifierService extends VerifierService {
               (err) => logger.warn(err)
             ),
           (err: AxiosError) => {
-            logger.log(err);
+            err.response ? logger.warn(err.response.data) : logger.warn(err);
           }
         );
       if (res) return Promise.resolve(res);
@@ -67,12 +67,11 @@ export class StatusListVerifierService extends VerifierService {
    * @param id The DID of the DID document
    * @param validate Whether to validate the response
    * @param time The time of the DID document that shall be queried
-   * @param timeout Timeout for each observer that is queried
    * @returns The DID document's transactions
    */
   async getDidTransactions(
     id: string,
-    validate = true,
+    validate: boolean,
     time: string
   ): Promise<DidStatusListStructure[]> {
     this.setEndpoints(id);
@@ -89,7 +88,9 @@ export class StatusListVerifierService extends VerifierService {
           }
           return res.data.map((transaction) => transaction.values);
         })
-        .catch(logger.warn);
+        .catch((err: AxiosError) => {
+          err.response ? logger.warn(err.response.data) : logger.warn(err);
+        });
       if (res) return Promise.resolve(res);
     }
     return Promise.reject('no transactions found');

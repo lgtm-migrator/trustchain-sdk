@@ -98,9 +98,7 @@ describe('test statuslist service', () => {
 
     // Expect status list resolver to return credential as not revoked yet
     expect(
-      (await new DidStatusListResolver().load(credentialStatus.id)).isRevoked(
-        credentialStatus.statusListIndex
-      )
+      await new DidStatusListResolver().isRevoked(credentialStatus)
     ).toEqual(false);
 
     // Persist status list
@@ -108,9 +106,7 @@ describe('test statuslist service', () => {
 
     // Expect status list resolver to return credential as revoked now
     expect(
-      (await new DidStatusListResolver().load(credentialStatus.id)).isRevoked(
-        credentialStatus.statusListIndex
-      )
+      await new DidStatusListResolver().isRevoked(credentialStatus)
     ).toEqual(true);
   }, 20000);
 

@@ -87,7 +87,7 @@ export class DidHashVerifierService extends VerifierService {
    */
   async getDidTransactions(
     id: string,
-    validate = true,
+    validate: boolean,
     time: string
   ): Promise<DidSchemaStructure[]> {
     this.setEndpoints(id);

@@ -124,7 +124,7 @@ export class WalletService {
         VerificationRelationshipType.modification
       ) {
         // no chance to self control the did, add a new key via an invite
-        keys.push(await this.createModificationKeyByInvite());
+        keys.push(await this.createModificationKeyByInvite(algorithm));
       } else {
         keys.push(
           await this.createAndPersistKey(
@@ -137,22 +137,25 @@ export class WalletService {
     return keys;
   }
 
-  createModificationKeyByInvite(): Promise<DecryptedKeyPair> {
+  createModificationKeyByInvite(
+    algorithm: Algorithm
+  ): Promise<DecryptedKeyPair> {
     // set modification key by invite
     const invite = this.configService.config.invite;
     if (!invite) {
       throw new Error('no invite present');
     }
-    return DidIdRegister.createByInvite(invite, this.cryptoKeyServices[0]).then(
-      async (values) => {
-        // save the key that way used.
-        this.configService.config.keyPairs.push(values.keyPair);
-        await this.configService.saveConfig();
-        //update the did in the wallet
-        this.did = values.did;
-        return values.keyPair;
-      }
-    );
+    return DidIdRegister.createByInvite(
+      invite,
+      this.getCryptoKeyServiceByType(algorithm)
+    ).then(async (values) => {
+      // save the key that way used.
+      this.configService.config.keyPairs.push(values.keyPair);
+      await this.configService.saveConfig();
+      //update the did in the wallet
+      this.did = values.did;
+      return values.keyPair;
+    });
   }
 
   /**
@@ -183,6 +186,7 @@ export class WalletService {
     );
     // if there is no key with such specification add it to the did
     const key = await this.addKey([verificationRelationshipType], algorithm);
+    console.log(this.did);
     // add new created assertion key to did
     await DidIdRegister.save(this.did, didIdIssuerService);
     return key;

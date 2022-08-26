@@ -46,12 +46,12 @@ export class DidIdRegister {
     const configuration = new Configuration({
       basePath: invite.endpoint,
     });
+    console.log(inviteValues);
     const api = new DidGatewayApi(configuration);
     await api
       .gatewayDidControllerCreate(inviteValues)
       .catch((err: AxiosError) => {
         if (err.response) {
-          console.log();
           throw Error(JSON.stringify(err.response.data));
         } else {
           throw Error('error');

@@ -45,9 +45,10 @@ describe('test statuslist service', () => {
       testValues.network.gateways,
       cryptoService
     );
+    const statusListLength = 1000;
     const statusListDid = DidStatusListRegister.create({
       controllers: [config.config.invite.id],
-      length: 1000,
+      length: statusListLength,
     });
 
     const revokeId = 10;
@@ -74,5 +75,33 @@ describe('test statuslist service', () => {
     expect(loadedStatusListByDoc.getDocument()).toEqual(
       statusListDid.getDocument()
     );
-  }, 100000);
+  }, 10000);
+
+  it('test out of range', async () => {
+    if (!config.config.invite) throw new Error();
+    const statusListLength = 1000;
+    const statusListDid = DidStatusListRegister.create({
+      controllers: [config.config.invite.id],
+      length: statusListLength,
+    });
+
+    expect(() => statusListDid.isRevoked(statusListLength)).toThrowError(
+      'is out of range'
+    );
+  }, 10000);
+
+  it('test invalid did', async () => {
+    await expect(
+      new DidStatusListResolver().load(
+        'did:trust:tc:dev:statuslist:123456789a123456789a12',
+        { doc: false }
+      )
+    ).rejects.toThrowError('no transactions found');
+    await expect(
+      new DidStatusListResolver().load(
+        'did:trust:tc:dev:statuslist:123456789a123456789a12',
+        { doc: true }
+      )
+    ).rejects.toThrowError('no did doc found');
+  }, 10000);
 });
