@@ -150,7 +150,6 @@ describe('wallet', () => {
       rsaCryptoKeyService,
     ]);
     await walletService.init();
-    // findOrCreate for each verification relationship
     const vrType = VerificationRelationshipType.assertionMethod;
     // first make sure there are no keys yet, so findOrCreate has to create the key
     const keys = walletService.findKeys(vrType, bbsCryptoKeyService.algorithm);
@@ -283,6 +282,14 @@ describe('wallet', () => {
     const bbsCryptoKeyService = new BbsCryptoKeyService();
     const walletService = new WalletService(config, [bbsCryptoKeyService]);
     await walletService.init();
+
+    // Clear wallet of any keys first
+    while (walletService.listKeys().length > 0) {
+      const key = walletService.listKeys()[0];
+      await walletService.removeKeyByID(key.identifier);
+    }
+
+    // Try to add a key
     const vrType = VerificationRelationshipType.assertionMethod;
     await expect(() =>
       walletService.findOrCreate(vrType, bbsCryptoKeyService.algorithm)

@@ -62,8 +62,12 @@ describe('test signature verify service', () => {
       config.config.invite.id,
     ]);
     await didhashRegister.save(did, issuer);
-    const loadedDid = await resolver.verifyFile(testFile);
-    expect(loadedDid.id).toEqual(did.id);
+    const loadedDidByTransactions = await resolver.verifyFile(testFile, {
+      doc: false,
+    });
+    expect(loadedDidByTransactions.getDocument()).toEqual(did.getDocument());
+    const loadedDidByDoc = await resolver.verifyFile(testFile, { doc: true });
+    expect(loadedDidByDoc.getDocument()).toEqual(did.getDocument());
   }, 10000);
 
   it('verify buffer', async () => {
@@ -80,8 +84,12 @@ describe('test signature verify service', () => {
       config.config.invite.id,
     ]);
     await didhashRegister.save(did, issuer);
-    const loadedDid = await resolver.verifyBuffer(buffer);
-    expect(loadedDid.id).toEqual(did.id);
+    const loadedDidByTransactions = await resolver.verifyBuffer(buffer, {
+      doc: false,
+    });
+    expect(loadedDidByTransactions.getDocument()).toEqual(did.getDocument());
+    const loadedDidByDoc = await resolver.verifyBuffer(buffer, { doc: true });
+    expect(loadedDidByDoc.getDocument()).toEqual(did.getDocument());
   }, 10000);
 
   it('verify string', async () => {
@@ -99,8 +107,14 @@ describe('test signature verify service', () => {
       config.config.invite.id,
     ]);
     await didhashRegister.save(did, issuer);
-    const loadedDid = await resolver.verifyString(signature);
-    expect(loadedDid.id).toEqual(did.id);
+    const loadedDidByTransactions = await resolver.verifyString(signature, {
+      doc: false,
+    });
+    expect(loadedDidByTransactions.getDocument()).toEqual(did.getDocument());
+    const loadedDidByDoc = await resolver.verifyString(signature, {
+      doc: true,
+    });
+    expect(loadedDidByDoc.getDocument()).toEqual(did.getDocument());
   });
 
   it('revoke string', async () => {
