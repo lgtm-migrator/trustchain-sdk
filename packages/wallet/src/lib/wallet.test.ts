@@ -78,43 +78,61 @@ describe('wallet', () => {
       )
     ).rejects.toThrowError('no service found for');
   }, 10000);
-  it('test findOrCreate', async () => {
-    const cryptoKeyServices: CryptoKeyService[] = [
-      new RSACryptoKeyService(),
-      new ECCryptoKeyService(),
-      new BbsCryptoKeyService(),
-    ];
-    const walletService = new WalletService(config, cryptoKeyServices);
+
+  it('test findOrCreateRSA', async () => {
+    const cryptoKeyService = new RSACryptoKeyService();
+    const walletService = new WalletService(config, [cryptoKeyService]);
     await walletService.init();
     // findOrCreate for each verification relationship
     for (const vrType of Object.values(VerificationRelationshipType)) {
       // findOrCreate for each algorithm
-      for (const cryptoKeyService of cryptoKeyServices) {
-        console.log(vrType);
-        console.log(cryptoKeyService);
-        if (
-          vrType == 'authentication' &&
-          cryptoKeyService.algorithm.name != 'RSASSA-PKCS1-v1_5'
-        )
-          continue;
-        // first make sure there are no keys yet, so findOrCreate has to create the key
-        const keys = walletService.findKeys(vrType, cryptoKeyService.algorithm);
-        for (const key of keys) {
-          walletService.removeKeyByID(key.identifier);
-        }
+      // first make sure there are no keys yet, so findOrCreate has to create the key
+      const keys = walletService.findKeys(vrType, cryptoKeyService.algorithm);
+      for (const key of keys) {
+        walletService.removeKeyByID(key.identifier);
+      }
+
+      // expect no key to be found
+      expect(
+        walletService.findKeys(vrType, cryptoKeyService.algorithm)
+      ).toHaveLength(0);
+
+      await walletService.findOrCreate(vrType, cryptoKeyService.algorithm);
+
+      // expect that exactly one key was found (because it was created)
+      expect(
+        walletService.findKeys(vrType, cryptoKeyService.algorithm)
+      ).toHaveLength(1);
+
+      // call findOrCreate again and expect that still exactly one key was found (because it was found and not created again)
+      await walletService.findOrCreate(vrType, cryptoKeyService.algorithm);
+      expect(
+        walletService.findKeys(vrType, cryptoKeyService.algorithm)
+      ).toHaveLength(1);
+    }
+  }, 30000);
+
+  it('test findOrCreateEC', async () => {
+    const cryptoKeyService = new ECCryptoKeyService();
+    const walletService = new WalletService(config, [cryptoKeyService]);
+    await walletService.init();
+    // findOrCreate for each verification relationship
+    for (const vrType of Object.values(VerificationRelationshipType)) {
+      // findOrCreate for each algorithm
+      // first make sure there are no keys yet, so findOrCreate has to create the key
+      const keys = walletService.findKeys(vrType, cryptoKeyService.algorithm);
+      for (const key of keys) {
+        walletService.removeKeyByID(key.identifier);
 
         // expect no key to be found
         expect(
           walletService.findKeys(vrType, cryptoKeyService.algorithm)
         ).toHaveLength(0);
-
         await walletService.findOrCreate(vrType, cryptoKeyService.algorithm);
-
         // expect that exactly one key was found (because it was created)
         expect(
           walletService.findKeys(vrType, cryptoKeyService.algorithm)
         ).toHaveLength(1);
-
         // call findOrCreate again and expect that still exactly one key was found (because it was found and not created again)
         await walletService.findOrCreate(vrType, cryptoKeyService.algorithm);
         expect(
@@ -122,6 +140,41 @@ describe('wallet', () => {
         ).toHaveLength(1);
       }
     }
+  }, 30000);
+
+  it('test findOrCreateBBS', async () => {
+    const rsaCryptoKeyService = new RSACryptoKeyService();
+    const bbscryptoKeyService = new BbsCryptoKeyService();
+    const walletService = new WalletService(config, [
+      bbscryptoKeyService,
+      rsaCryptoKeyService,
+    ]);
+    await walletService.init();
+    // findOrCreate for each verification relationship
+    const vrType = VerificationRelationshipType.assertionMethod;
+    // first make sure there are no keys yet, so findOrCreate has to create the key
+    const keys = walletService.findKeys(vrType, bbscryptoKeyService.algorithm);
+    for (const key of keys) {
+      walletService.removeKeyByID(key.identifier);
+    }
+
+    // expect no key to be found
+    expect(
+      walletService.findKeys(vrType, bbscryptoKeyService.algorithm)
+    ).toHaveLength(0);
+
+    await walletService.findOrCreate(vrType, bbscryptoKeyService.algorithm);
+
+    // expect that exactly one key was found (because it was created)
+    expect(
+      walletService.findKeys(vrType, bbscryptoKeyService.algorithm)
+    ).toHaveLength(1);
+
+    // call findOrCreate again and expect that still exactly one key was found (because it was found and not created again)
+    await walletService.findOrCreate(vrType, bbscryptoKeyService.algorithm);
+    expect(
+      walletService.findKeys(vrType, bbscryptoKeyService.algorithm)
+    ).toHaveLength(1);
   }, 30000);
 
   it('tidy up', async () => {

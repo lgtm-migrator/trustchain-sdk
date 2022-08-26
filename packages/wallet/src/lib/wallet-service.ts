@@ -37,7 +37,7 @@ export class WalletService {
     this.did = await this.resolver.load(invite.id).catch(async () => {
       return DidIdRegister.createByInvite(
         invite,
-        this.cryptoKeyServices[0]
+        this.getModificationKeyService()
       ).then(
         async (values) => {
           // save the key that was used.
@@ -46,7 +46,6 @@ export class WalletService {
           return values.did;
         },
         (err: Error) => {
-          console.error(err);
           throw new Error(`Could not create DID by invite: ${err.message}`);
         }
       );
@@ -175,7 +174,7 @@ export class WalletService {
     const modificationKey = (
       await this.findOrCreate(
         VerificationRelationshipType.modification,
-        this.cryptoKeyServices[0].algorithm
+        this.getModificationKeyService().algorithm
       )
     )[0];
     // init crypto key
@@ -186,7 +185,6 @@ export class WalletService {
     );
     // if there is no key with such specification add it to the did
     const key = await this.addKey([verificationRelationshipType], algorithm);
-    console.log(this.did);
     // add new created assertion key to did
     await DidIdRegister.save(this.did, didIdIssuerService);
     return key;
@@ -286,5 +284,16 @@ export class WalletService {
         return Promise.reject(`DID not found: ${err.message}`);
       }
     );
+  }
+
+  /**
+   * Gets a service that is able to be used for modification keys. BBS for example is not allowed to be used.
+   */
+  private getModificationKeyService(): CryptoKeyService {
+    const service = this.cryptoKeyServices.find(
+      (keyService) => keyService.canModify
+    );
+    if (!service) throw new Error(`no serivce registered to modify the did`);
+    return service;
   }
 }

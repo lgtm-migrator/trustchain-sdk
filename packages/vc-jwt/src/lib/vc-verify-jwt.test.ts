@@ -20,19 +20,6 @@ import {
   RevocationService,
   StatusListIssuerService,
 } from '@trustcerts/did-status-list';
-// import * as jose from 'jose';
-
-// jest.mock('jose', () => {
-//   const originalModule = jest.requireActual('jose');
-//   return {
-//     __esModule: true,
-//     ...originalModule,
-//     jwtVerify: jest.fn((jwt: string, key: jose.KeyLike) => {
-//       console.log('got a JWT!');
-//       throw new Error('JWT verify error');
-//     }),
-//   };
-// });
 
 /**
  * Test vc class.

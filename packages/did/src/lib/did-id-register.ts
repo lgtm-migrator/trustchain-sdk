@@ -46,7 +46,6 @@ export class DidIdRegister {
     const configuration = new Configuration({
       basePath: invite.endpoint,
     });
-    console.log(inviteValues);
     const api = new DidGatewayApi(configuration);
     await api
       .gatewayDidControllerCreate(inviteValues)

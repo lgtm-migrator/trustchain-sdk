@@ -19,6 +19,7 @@ export class BbsCryptoKeyService extends CryptoKeyService {
     }
   ) {
     super();
+    this.canModify = false;
   }
 
   async generateKeyPair(

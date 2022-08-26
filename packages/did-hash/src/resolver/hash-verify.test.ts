@@ -45,7 +45,6 @@ describe('test signature verify service', () => {
         defaultCryptoKeyService.algorithm
       )
     )[0];
-    console.timeEnd('s');
     await cryptoService.init(key);
   }, 10000);
 
