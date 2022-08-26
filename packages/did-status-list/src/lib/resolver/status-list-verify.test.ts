@@ -91,7 +91,7 @@ describe('test statuslist service', () => {
   }, 10000);
 
   it('test invalid did', async () => {
-    const invalidDid = `${testValues.network.namespace}tc:dev:statuslist:123456789a123456789a12`;
+    const invalidDid = `did:trust:${testValues.network.namespace}:statuslist:123456789a123456789a12`;
     await expect(
       new DidStatusListResolver().load(invalidDid, { doc: false })
     ).rejects.toThrowError('no transactions found');
