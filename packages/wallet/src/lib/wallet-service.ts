@@ -37,7 +37,7 @@ export class WalletService {
     this.did = await this.resolver.load(invite.id).catch(async () => {
       return DidIdRegister.createByInvite(
         invite,
-        this.getModificationKeyService()
+        this.getModificationCryptoKeyService()
       ).then(
         async (values) => {
           // save the key that was used.
@@ -174,7 +174,7 @@ export class WalletService {
     const modificationKey = (
       await this.findOrCreate(
         VerificationRelationshipType.modification,
-        this.getModificationKeyService().algorithm
+        this.getModificationCryptoKeyService().algorithm
       )
     )[0];
     // init crypto key
@@ -289,11 +289,11 @@ export class WalletService {
   /**
    * Gets a service that is able to be used for modification keys. BBS for example is not allowed to be used.
    */
-  private getModificationKeyService(): CryptoKeyService {
+  private getModificationCryptoKeyService(): CryptoKeyService {
     const service = this.cryptoKeyServices.find(
       (keyService) => keyService.canModify
     );
-    if (!service) throw new Error(`no serivce registered to modify the did`);
+    if (!service) throw new Error(`no service registered to modify the did`);
     return service;
   }
 }
