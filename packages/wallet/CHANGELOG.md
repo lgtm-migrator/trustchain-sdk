@@ -2,6 +2,41 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [11.1.0](https://github.com/trustcerts/trustchain-sdk/compare/wallet-11.0.4...wallet-11.1.0) (2022-08-31)
+
+
+### Bug Fixes
+
+* add code-coverage ([c09ac50](https://github.com/trustcerts/trustchain-sdk/commit/c09ac504a72a364455819ac738e6ebe994e417e4))
+* add jsdoc rules ([3099359](https://github.com/trustcerts/trustchain-sdk/commit/3099359775efa0d7604d024280801781620bc9f6))
+* add status-list package ([298ee71](https://github.com/trustcerts/trustchain-sdk/commit/298ee7185ae9cbb7f5bf7fdbb6327f84195741b2))
+* change structure handling ([38976a4](https://github.com/trustcerts/trustchain-sdk/commit/38976a4ad8543ca3bfc7eec7e25313516fed1609))
+* eslint warnings ([3bb9825](https://github.com/trustcerts/trustchain-sdk/commit/3bb982562bbc35386f73489e11c4a7985abfecb5))
+* fix broken commit ([011ffb3](https://github.com/trustcerts/trustchain-sdk/commit/011ffb353d5c798dda7c42e18f896887e510465f))
+* fix wallet test ([2da9ca5](https://github.com/trustcerts/trustchain-sdk/commit/2da9ca5a76fbba86ba51a4edf0cc49f174713a81))
+* fix wallet tests ([2d5999c](https://github.com/trustcerts/trustchain-sdk/commit/2d5999c29624c564ea73fc8e6f67d5a5efde046d))
+* fix walletService, add tests ([02fd0a6](https://github.com/trustcerts/trustchain-sdk/commit/02fd0a6d16336f4aa9a787c53fccd6549d8560dd))
+* improve compare function ([2395afd](https://github.com/trustcerts/trustchain-sdk/commit/2395afd93db0fa7c1a7089bb0c0ba078f4a902d7))
+* increase length of wallet key ([cc65672](https://github.com/trustcerts/trustchain-sdk/commit/cc6567226514e9f8b974caf7df0a5b7498d7e171))
+* move bbs to own package ([156a036](https://github.com/trustcerts/trustchain-sdk/commit/156a036802da502e3ba0bdb65c8056ce69e5b1ea))
+* publish 0.0.10 ([7487d22](https://github.com/trustcerts/trustchain-sdk/commit/7487d224c999a767b732b904809b6777f4edd12a))
+* release new version ([e18b106](https://github.com/trustcerts/trustchain-sdk/commit/e18b1069def0cd78a73cdee4715bf58cfd9237b8))
+* set generic type for crypto keys ([8e2504b](https://github.com/trustcerts/trustchain-sdk/commit/8e2504b37748bc9f385fa347d8c1d1da32d6ed62))
+* split wallet tests ([d2892f4](https://github.com/trustcerts/trustchain-sdk/commit/d2892f4fcb626d3ba7a44e57c81b240842072791))
+* tests and remove umd ([7c79170](https://github.com/trustcerts/trustchain-sdk/commit/7c791706195ace7c83cb0e51e5a16191495aab7f))
+* update nx ([39451f4](https://github.com/trustcerts/trustchain-sdk/commit/39451f49a7522c82b731e1f4dff124847c95e911))
+* update packages ([a98329c](https://github.com/trustcerts/trustchain-sdk/commit/a98329cfcf49f4e94b5076c5c0ea9574b37d6f7d))
+* update release ([3c1784f](https://github.com/trustcerts/trustchain-sdk/commit/3c1784fafea9a5e681b9f19e56b386e7f47ec55a))
+* **wallet:** release version 11.0.5 ([a472987](https://github.com/trustcerts/trustchain-sdk/commit/a472987b37cb639a6b67c2d938de22b7f7c3a61e))
+* **wallet:** release version 11.0.6 ([d9e1dad](https://github.com/trustcerts/trustchain-sdk/commit/d9e1dad9cc1408be61b8d97bc96d15010fa6e15b))
+
+
+### Features
+
+* improve key import ([ad8ddc4](https://github.com/trustcerts/trustchain-sdk/commit/ad8ddc473024c710c24e64eac3c0d08b4a127326))
+
+
+
 ## [11.0.6](https://github.com/trustcerts/trustchain-sdk/compare/wallet-11.0.5...wallet-11.0.6) (2022-07-11)
 
 ### Dependency Updates
