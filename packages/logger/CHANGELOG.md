@@ -2,6 +2,30 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [11.1.0](https://github.com/trustcerts/trustchain-sdk/compare/logger-11.0.4...logger-11.1.0) (2022-08-31)
+
+
+### Bug Fixes
+
+* add code-coverage ([c09ac50](https://github.com/trustcerts/trustchain-sdk/commit/c09ac504a72a364455819ac738e6ebe994e417e4))
+* add jsdoc rules ([3099359](https://github.com/trustcerts/trustchain-sdk/commit/3099359775efa0d7604d024280801781620bc9f6))
+* add status-list package ([298ee71](https://github.com/trustcerts/trustchain-sdk/commit/298ee7185ae9cbb7f5bf7fdbb6327f84195741b2))
+* change structure handling ([38976a4](https://github.com/trustcerts/trustchain-sdk/commit/38976a4ad8543ca3bfc7eec7e25313516fed1609))
+* **crypto:** release version 11.0.7 ([b35f69d](https://github.com/trustcerts/trustchain-sdk/commit/b35f69d0ed43c0e1c98681969691378b4186f205))
+* **logger:** release version 11.0.5 ([aced79b](https://github.com/trustcerts/trustchain-sdk/commit/aced79b6cb1819a22f12f84d786241f9c2d016d7))
+* **logger:** release version 11.0.6 ([9fbd224](https://github.com/trustcerts/trustchain-sdk/commit/9fbd2243272d6ae5151b3d46851d9b62d024ef3a))
+* **logger:** release version 11.0.7 ([9905940](https://github.com/trustcerts/trustchain-sdk/commit/990594066f8b01c87a7bc50396194a9dde9a5733))
+* **logger:** release version 11.0.8 ([5ba6fb4](https://github.com/trustcerts/trustchain-sdk/commit/5ba6fb4ce44e5ee1f79d7979917c461e9e0cac61))
+* move bbs to own package ([156a036](https://github.com/trustcerts/trustchain-sdk/commit/156a036802da502e3ba0bdb65c8056ce69e5b1ea))
+* publish 0.0.10 ([7487d22](https://github.com/trustcerts/trustchain-sdk/commit/7487d224c999a767b732b904809b6777f4edd12a))
+* release new version ([e18b106](https://github.com/trustcerts/trustchain-sdk/commit/e18b1069def0cd78a73cdee4715bf58cfd9237b8))
+* tests and remove umd ([7c79170](https://github.com/trustcerts/trustchain-sdk/commit/7c791706195ace7c83cb0e51e5a16191495aab7f))
+* update locks ([794319a](https://github.com/trustcerts/trustchain-sdk/commit/794319a8a9a9cbea351c066345ea6b987d7a90b2))
+* update nx ([39451f4](https://github.com/trustcerts/trustchain-sdk/commit/39451f49a7522c82b731e1f4dff124847c95e911))
+* update release ([3c1784f](https://github.com/trustcerts/trustchain-sdk/commit/3c1784fafea9a5e681b9f19e56b386e7f47ec55a))
+
+
+
 ## [11.0.8](https://github.com/trustcerts/trustchain-sdk/compare/logger-11.0.7...logger-11.0.8) (2022-08-15)
 
 
