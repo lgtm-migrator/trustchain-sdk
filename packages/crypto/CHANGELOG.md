@@ -2,6 +2,10 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [11.5.0](https://github.com/trustcerts/trustchain-sdk/compare/crypto-11.4.0...crypto-11.5.0) (2022-08-31)
+
+
+
 # [11.4.0](https://github.com/trustcerts/trustchain-sdk/compare/crypto-11.3.0...crypto-11.4.0) (2022-08-31)
 
 
