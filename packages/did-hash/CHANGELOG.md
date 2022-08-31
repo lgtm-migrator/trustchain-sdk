@@ -2,6 +2,35 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [11.1.0](https://github.com/trustcerts/trustchain-sdk/compare/did-hash-11.0.4...did-hash-11.1.0) (2022-08-31)
+
+
+### Bug Fixes
+
+* add code-coverage ([c09ac50](https://github.com/trustcerts/trustchain-sdk/commit/c09ac504a72a364455819ac738e6ebe994e417e4))
+* add delay to persist function ([cb89cc3](https://github.com/trustcerts/trustchain-sdk/commit/cb89cc3ed4ada80b52d1831655fe2ee6773f1cb3))
+* add jsdoc rules ([3099359](https://github.com/trustcerts/trustchain-sdk/commit/3099359775efa0d7604d024280801781620bc9f6))
+* add revocation service ([11e73ac](https://github.com/trustcerts/trustchain-sdk/commit/11e73ac2fb00f3f0dd1dded9aed3adcc3eb2ec85))
+* add status-list package ([298ee71](https://github.com/trustcerts/trustchain-sdk/commit/298ee7185ae9cbb7f5bf7fdbb6327f84195741b2))
+* assembling dids via transactions ([9ac7f96](https://github.com/trustcerts/trustchain-sdk/commit/9ac7f96548742dde6fc2f1f53cc75a6329672595))
+* change structure handling ([38976a4](https://github.com/trustcerts/trustchain-sdk/commit/38976a4ad8543ca3bfc7eec7e25313516fed1609))
+* **did-hash:** release version 11.0.5 ([7f67bfe](https://github.com/trustcerts/trustchain-sdk/commit/7f67bfedc6d65548af164e118344616d52282c4b))
+* **did-hash:** release version 11.0.6 ([9446da7](https://github.com/trustcerts/trustchain-sdk/commit/9446da7530013c6eb83b8ca7b5879bc60976fa14))
+* eslint warnings ([3bb9825](https://github.com/trustcerts/trustchain-sdk/commit/3bb982562bbc35386f73489e11c4a7985abfecb5))
+* move bbs to own package ([156a036](https://github.com/trustcerts/trustchain-sdk/commit/156a036802da502e3ba0bdb65c8056ce69e5b1ea))
+* publish 0.0.10 ([7487d22](https://github.com/trustcerts/trustchain-sdk/commit/7487d224c999a767b732b904809b6777f4edd12a))
+* release new version ([e18b106](https://github.com/trustcerts/trustchain-sdk/commit/e18b1069def0cd78a73cdee4715bf58cfd9237b8))
+* set generic type for crypto keys ([8e2504b](https://github.com/trustcerts/trustchain-sdk/commit/8e2504b37748bc9f385fa347d8c1d1da32d6ed62))
+* split wallet tests ([d2892f4](https://github.com/trustcerts/trustchain-sdk/commit/d2892f4fcb626d3ba7a44e57c81b240842072791))
+* tests ([237d820](https://github.com/trustcerts/trustchain-sdk/commit/237d820378885bda1c3ac1cf1d30d19cb84b0cfb))
+* tests ([45e7f19](https://github.com/trustcerts/trustchain-sdk/commit/45e7f1989cf993b296d55169b205c83d379bad9a))
+* tests and remove umd ([7c79170](https://github.com/trustcerts/trustchain-sdk/commit/7c791706195ace7c83cb0e51e5a16191495aab7f))
+* update bc endpoints ([7646918](https://github.com/trustcerts/trustchain-sdk/commit/7646918f420e1716f86580295ff7a6b28af2e47e))
+* update nx ([39451f4](https://github.com/trustcerts/trustchain-sdk/commit/39451f49a7522c82b731e1f4dff124847c95e911))
+* update release ([3c1784f](https://github.com/trustcerts/trustchain-sdk/commit/3c1784fafea9a5e681b9f19e56b386e7f47ec55a))
+
+
+
 ## [11.0.6](https://github.com/trustcerts/trustchain-sdk/compare/did-hash-11.0.5...did-hash-11.0.6) (2022-07-11)
 
 ### Dependency Updates
