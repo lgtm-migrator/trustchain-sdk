@@ -1,4 +1,4 @@
-export class DecryptedKeyPair<T extends Algorithm = Algorithm> {
+export class DecryptedKeyPair {
   privateKey!: JsonWebKey;
 
   publicKey!: JsonWebKey;
@@ -7,6 +7,4 @@ export class DecryptedKeyPair<T extends Algorithm = Algorithm> {
    * unique identifier for the public key, in most cases the fingerprint.
    */
   identifier!: string;
-
-  algorithm!: T;
 }

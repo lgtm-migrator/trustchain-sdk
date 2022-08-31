@@ -4,6 +4,7 @@ import {
   CryptoService,
   DecryptedKeyPair,
   defaultCryptoKeyService,
+  getAlgorithmFromJWK,
   sortKeys,
 } from '@trustcerts/crypto';
 import {
@@ -97,8 +98,7 @@ export class WalletService {
     );
     const foundKeys = this.configService.config.keyPairs.filter((keyPair) => {
       return (
-        JSON.stringify(sortKeys(keyPair.algorithm)) ===
-          JSON.stringify(sortKeys(algorithm)) &&
+        getAlgorithmFromJWK(keyPair.privateKey).name === algorithm.name &&
         allowedIds.includes(keyPair.identifier)
       );
     });

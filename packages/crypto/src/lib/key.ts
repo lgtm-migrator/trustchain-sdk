@@ -1,25 +1,51 @@
-import { defaultAlgorithm } from './sign';
-import { subtle } from './values';
+import { hashAlgorithm, subtle } from './values';
+
+/**
+ * Gets the algorithm of RSA and EC keys. BBS not supported since it's not part of the webcrypto api
+ */
+export function getAlgorithmFromJWK(jwk: JsonWebKey): Algorithm {
+  // TODO import more RSA algorithms, not only the name but also with different modules Length
+  if (jwk.kty === 'RSA') {
+    return {
+      name: 'RSASSA-PKCS1-v1_5',
+      modulusLength: 2048,
+      publicExponent: new Uint8Array([1, 0, 1]),
+      // this one is based on alg
+      hash: hashAlgorithm,
+    } as RsaHashedKeyGenParams;
+  }
+  if (jwk.kty === 'EC' && jwk.crv === 'P-256') {
+    return {
+      name: 'ECDSA',
+      namedCurve: 'P-256',
+    } as EcKeyGenParams;
+  }
+  if (jwk.kty === 'EC' && jwk.crv === 'Bls12381G2') {
+    return {
+      name: 'ECDSA',
+      namedCurve: 'Bls12381G2',
+    } as EcKeyGenParams; // do not set bbs since the class is in the bbs package
+  }
+  throw Error(`key not known`);
+}
 
 /**
  * Imports the crypto key object from a json web key.
  * @param keyValue
  * @param format
- * @param algorithm
  * @param keyUsages
  * @private
  */
 export function importKey(
   keyValue: JsonWebKey,
   format: 'jwk',
-  keyUsages: KeyUsage[],
-  algorithm: Algorithm = defaultAlgorithm
+  keyUsages: KeyUsage[]
 ): Promise<CryptoKey> {
   // TODO map keyValue field to find out the correct algorithm
   return subtle.importKey(
     format,
     keyValue,
-    algorithm,
+    getAlgorithmFromJWK(keyValue),
     true,
     keyUsages
   ) as Promise<CryptoKey>;

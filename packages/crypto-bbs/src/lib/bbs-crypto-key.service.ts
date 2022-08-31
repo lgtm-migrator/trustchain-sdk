@@ -22,16 +22,13 @@ export class BbsCryptoKeyService extends CryptoKeyService {
     this.canModify = false;
   }
 
-  async generateKeyPair(
-    id: string
-  ): Promise<DecryptedKeyPair<BBSKeyGenParams>> {
+  async generateKeyPair(id: string): Promise<DecryptedKeyPair> {
     const bbsKeyPair = await Bls12381G2KeyPair.generate();
     if (!bbsKeyPair.privateKeyJwk) throw Error();
     return {
       privateKey: bbsKeyPair.privateKeyJwk,
       publicKey: bbsKeyPair.publicKeyJwk,
       identifier: `${id}#${await this.getFingerPrint(bbsKeyPair.publicKeyJwk)}`,
-      algorithm: this.algorithm,
     };
   }
 
