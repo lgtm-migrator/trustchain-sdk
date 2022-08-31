@@ -2,6 +2,85 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# 0.1.0 (2022-08-31)
+
+
+### Bug Fixes
+
+* add axios as dep ([4a1aad2](https://github.com/trustcerts/trustchain-sdk/commit/4a1aad23160d9d4bcc532887ddca2213091b0da8))
+* add build format ([91c74b4](https://github.com/trustcerts/trustchain-sdk/commit/91c74b4babf9eccb84d1cb8cfc34e5f3b66161d0))
+* add code-coverage ([c09ac50](https://github.com/trustcerts/trustchain-sdk/commit/c09ac504a72a364455819ac738e6ebe994e417e4))
+* add commonjs ([5240528](https://github.com/trustcerts/trustchain-sdk/commit/524052843f65dfe479612e94c61b18881d5d00c6))
+* add delay to persist function ([cb89cc3](https://github.com/trustcerts/trustchain-sdk/commit/cb89cc3ed4ada80b52d1831655fe2ee6773f1cb3))
+* add install script ([c2a3944](https://github.com/trustcerts/trustchain-sdk/commit/c2a39446372734508a742acdf0a0826a61594583))
+* add jsdoc rules ([3099359](https://github.com/trustcerts/trustchain-sdk/commit/3099359775efa0d7604d024280801781620bc9f6))
+* add module ([842e4c4](https://github.com/trustcerts/trustchain-sdk/commit/842e4c4780e3b499893ed5ea3dac8e00cabbf396))
+* add non-null assertion ([2878122](https://github.com/trustcerts/trustchain-sdk/commit/2878122b0baeb07bfa2b6f3b0b249314e5f0dff6))
+* add rollup as builder ([3036e48](https://github.com/trustcerts/trustchain-sdk/commit/3036e48dd882262ec6ba6eae5e7f9e4f75b0d347))
+* add status-list package ([298ee71](https://github.com/trustcerts/trustchain-sdk/commit/298ee7185ae9cbb7f5bf7fdbb6327f84195741b2))
+* change build ([946c102](https://github.com/trustcerts/trustchain-sdk/commit/946c10276013e3bc9b4896710c743cddbd5f1216))
+* change compiler to commonjs ([998de89](https://github.com/trustcerts/trustchain-sdk/commit/998de89e00ebe9a684678fdde5fafc2dc045a07c))
+* change structure handling ([38976a4](https://github.com/trustcerts/trustchain-sdk/commit/38976a4ad8543ca3bfc7eec7e25313516fed1609))
+* eslint warnings ([3bb9825](https://github.com/trustcerts/trustchain-sdk/commit/3bb982562bbc35386f73489e11c4a7985abfecb5))
+* fix isRevoked ([b3412f4](https://github.com/trustcerts/trustchain-sdk/commit/b3412f4f811f1c5e70c40868afb4b75483b5f110))
+* fix revocation stuff ([f60f96e](https://github.com/trustcerts/trustchain-sdk/commit/f60f96edc0cb2ebe1346d88afc213638239f0bf5))
+* fix tests ([a75855e](https://github.com/trustcerts/trustchain-sdk/commit/a75855eb17323137ca3c6e0a583ada1463c8c0cc))
+* **gateway:** release version 0.0.1 ([da41e37](https://github.com/trustcerts/trustchain-sdk/commit/da41e37a6ae7c14b801f5317d576952c89902b4c))
+* **gateway:** release version 0.0.2 ([71993f2](https://github.com/trustcerts/trustchain-sdk/commit/71993f24441145a663ff11d102e8481eb39d6c85))
+* **logger:** release version 0.0.3 ([93b3981](https://github.com/trustcerts/trustchain-sdk/commit/93b398113eb64f64e5b6fd7c156efd14ab672f4a))
+* **logger:** release version 2.0.0 ([8f4ab55](https://github.com/trustcerts/trustchain-sdk/commit/8f4ab5518897a2c97590121fc538da042dcbc680))
+* **logger:** release version 4.0.0 ([8b28dd0](https://github.com/trustcerts/trustchain-sdk/commit/8b28dd058ed3c0b86b04d092464b0957088b5eed))
+* move bbs to own package ([156a036](https://github.com/trustcerts/trustchain-sdk/commit/156a036802da502e3ba0bdb65c8056ce69e5b1ea))
+* **observer:** release version 1.0.0 ([2573054](https://github.com/trustcerts/trustchain-sdk/commit/25730545fa5b43ee2beee02d7ca1a5eb42ac672a))
+* **observer:** release version 3.0.0 ([9a4cb9f](https://github.com/trustcerts/trustchain-sdk/commit/9a4cb9f31103e1a8b0f6b6077a34ca6296dd2bb9))
+* publish 0.0.10 ([7487d22](https://github.com/trustcerts/trustchain-sdk/commit/7487d224c999a767b732b904809b6777f4edd12a))
+* release new version ([e18b106](https://github.com/trustcerts/trustchain-sdk/commit/e18b1069def0cd78a73cdee4715bf58cfd9237b8))
+* remove type in package.json ([1875178](https://github.com/trustcerts/trustchain-sdk/commit/1875178e69aadeaaf085065f9915d6286c233f20))
+* reset ([a67973d](https://github.com/trustcerts/trustchain-sdk/commit/a67973d59665be43bee691925d40fe3fc2c35d25))
+* run test in brand to avoid parallel wallet creation ([2798bd2](https://github.com/trustcerts/trustchain-sdk/commit/2798bd2cb74f2919224c3ac3186959ea405e9394))
+* set commonjs in tsconfig ([566d23f](https://github.com/trustcerts/trustchain-sdk/commit/566d23f6496a08b935fef0e89558b4497d435626))
+* set correct repo url ([6742f9d](https://github.com/trustcerts/trustchain-sdk/commit/6742f9dcc6001f417f65e95345b6ac60da958b4f))
+* set force in ci ([6bad69e](https://github.com/trustcerts/trustchain-sdk/commit/6bad69e0ad601374508952f05e691f258db44dfc))
+* set generic type for crypto keys ([8e2504b](https://github.com/trustcerts/trustchain-sdk/commit/8e2504b37748bc9f385fa347d8c1d1da32d6ed62))
+* set github in actions ([124dbae](https://github.com/trustcerts/trustchain-sdk/commit/124dbaeba73aaf032baff2e23a45978921b6fae4))
+* set module ([75a259c](https://github.com/trustcerts/trustchain-sdk/commit/75a259c3d0ba58c1ec2181aa469bb873bddff47a))
+* set v11 ([2433889](https://github.com/trustcerts/trustchain-sdk/commit/2433889e2e73b0d21216490b96cb10f2ab515c27))
+* set version ([cb9fc0f](https://github.com/trustcerts/trustchain-sdk/commit/cb9fc0f8331f546e74d1eb9322442864158f993f))
+* tests ([32d47e7](https://github.com/trustcerts/trustchain-sdk/commit/32d47e74a40d98f6d3f1b4ed8114ffe79ce2217d))
+* tests and remove umd ([7c79170](https://github.com/trustcerts/trustchain-sdk/commit/7c791706195ace7c83cb0e51e5a16191495aab7f))
+* update nx ([39451f4](https://github.com/trustcerts/trustchain-sdk/commit/39451f49a7522c82b731e1f4dff124847c95e911))
+* update release ([3c1784f](https://github.com/trustcerts/trustchain-sdk/commit/3c1784fafea9a5e681b9f19e56b386e7f47ec55a))
+* update version ([6834ac7](https://github.com/trustcerts/trustchain-sdk/commit/6834ac70cf172b68f3b60976c689b18fdd44e34e))
+* **vc-bbs:** release version 0.0.1 ([76154ac](https://github.com/trustcerts/trustchain-sdk/commit/76154acb8637d7877dc10b73482ac844d09f67b2))
+* **vc-bbs:** release version 0.0.1 ([ed3ae75](https://github.com/trustcerts/trustchain-sdk/commit/ed3ae7578beab27d1befb1ecb42d1c6f9d59c76b))
+* **vc-bbs:** release version 0.0.10 ([e508062](https://github.com/trustcerts/trustchain-sdk/commit/e5080622c55a7532ad067320fc23942edef33950))
+* **vc-bbs:** release version 0.0.11 ([9eea1e1](https://github.com/trustcerts/trustchain-sdk/commit/9eea1e1bdc4743a0f4471c357f1a0dc65c078655))
+* **vc-bbs:** release version 0.0.12 ([4604b60](https://github.com/trustcerts/trustchain-sdk/commit/4604b6093430a8a55a70760158303574f3439852))
+* **vc-bbs:** release version 0.0.2 ([5e1f767](https://github.com/trustcerts/trustchain-sdk/commit/5e1f76742c25473ca81404a0c45b5ee9427665d9))
+* **vc-bbs:** release version 0.0.2 ([6f59884](https://github.com/trustcerts/trustchain-sdk/commit/6f598843ef2f8e3a80c8671c26fa8fe8e2bdd084))
+* **vc-bbs:** release version 0.0.3 ([518c26e](https://github.com/trustcerts/trustchain-sdk/commit/518c26e7bb0aa33982efcfa47a509b171b48eac7))
+* **vc-bbs:** release version 0.0.3 ([973d6cf](https://github.com/trustcerts/trustchain-sdk/commit/973d6cfa2ea8b9148e907f06b944eaa7deb3c572))
+* **vc-bbs:** release version 0.0.4 ([cb7b99e](https://github.com/trustcerts/trustchain-sdk/commit/cb7b99e3aedf4cd1e33a1f0dd8adb6b0b83449e7))
+* **vc-bbs:** release version 0.0.5 ([f83e3a3](https://github.com/trustcerts/trustchain-sdk/commit/f83e3a355891d0ee5fe6450ecbb49f2ed5affb2d))
+* **vc-bbs:** release version 0.0.6 ([1c08def](https://github.com/trustcerts/trustchain-sdk/commit/1c08def5d920465661c29aedae461a472b789f2a))
+* **vc-bbs:** release version 0.0.7 ([e1856fd](https://github.com/trustcerts/trustchain-sdk/commit/e1856fdef5881db736320eb39dea550dbaab37b9))
+* **vc-bbs:** release version 0.0.8 ([593d3a7](https://github.com/trustcerts/trustchain-sdk/commit/593d3a798a355d0f659fc6bdf0d940516fa49503))
+* **vc-bbs:** release version 0.0.9 ([f36ac15](https://github.com/trustcerts/trustchain-sdk/commit/f36ac1556549dd890e3ffa687fdf8d6814ea5306))
+* **vc-bbs:** release version 0.1.0 ([47d4365](https://github.com/trustcerts/trustchain-sdk/commit/47d4365b3089ca795316ddb6b30bb6c7fb2457dd))
+* **vc-bbs:** release version 0.1.1 ([9735435](https://github.com/trustcerts/trustchain-sdk/commit/97354357c56e5e563c3f7b0969e1957c96d98e22))
+* **vc-bbs:** release version 11.0.5 ([28ed617](https://github.com/trustcerts/trustchain-sdk/commit/28ed617648e16eab535864baa132d1bf25da1e35))
+* **vc-bbs:** release version 11.0.6 ([2200ee2](https://github.com/trustcerts/trustchain-sdk/commit/2200ee2e970c14218c05ae505d8b76164b33607b))
+* **vc-bbs:** release version 11.1.0 ([b16a4e0](https://github.com/trustcerts/trustchain-sdk/commit/b16a4e065e99a88e82a64a9c1c5da1ef9eb64cd7))
+
+
+### Features
+
+* set correct repo ([1d13e6a](https://github.com/trustcerts/trustchain-sdk/commit/1d13e6ac920de9d8e5053b2cc9bde3559821b957))
+* set v8 ([9ab84b9](https://github.com/trustcerts/trustchain-sdk/commit/9ab84b94225b5cc146ce898e34c31192fbc254c3))
+* update nx ([e1da525](https://github.com/trustcerts/trustchain-sdk/commit/e1da525ef3f9dfddffb35511e1e36badae30ab72))
+
+
+
 # [11.1.0](https://github.com/trustcerts/trustchain-sdk/compare/vc-bbs-11.0.4...vc-bbs-11.1.0) (2022-08-31)
 
 

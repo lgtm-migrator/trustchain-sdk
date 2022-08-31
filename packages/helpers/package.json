@@ -1,6 +1,6 @@
 {
   "name": "@trustcerts/helpers",
-  "version": "11.3.0",
+  "version": "0.1.0",
   "repository": "https://github.com/trustcerts/trustchain-sdk",
   "dependencies": {
     "bs58": "^5.0.0"
