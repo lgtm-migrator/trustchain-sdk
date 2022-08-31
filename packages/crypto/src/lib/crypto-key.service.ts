@@ -5,6 +5,11 @@ export abstract class CryptoKeyService {
   abstract algorithm: Algorithm;
 
   /**
+   * Informs the user if this one can be used for modification.
+   */
+  canModify = true;
+
+  /**
    * Generates a new keyair
    * @param id
    */

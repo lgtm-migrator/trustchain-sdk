@@ -4,6 +4,7 @@ import {
   CryptoService,
   DecryptedKeyPair,
   defaultCryptoKeyService,
+  getAlgorithmFromJWK,
   sortKeys,
 } from '@trustcerts/crypto';
 import {
@@ -37,7 +38,7 @@ export class WalletService {
     this.did = await this.resolver.load(invite.id).catch(async () => {
       return DidIdRegister.createByInvite(
         invite,
-        this.cryptoKeyServices[0]
+        this.getModificationCryptoKeyService()
       ).then(
         async (values) => {
           // save the key that was used.
@@ -46,7 +47,6 @@ export class WalletService {
           return values.did;
         },
         (err: Error) => {
-          console.error(err);
           throw new Error(`Could not create DID by invite: ${err.message}`);
         }
       );
@@ -96,13 +96,13 @@ export class WalletService {
     const allowedIds = this.did.findByVerificationRelationship(
       verificationRelationshipType
     );
-    const foundKeys = this.configService.config.keyPairs.filter((keyPair) => {
-      return (
-        JSON.stringify(sortKeys(keyPair.algorithm)) ===
+    const foundKeys = this.configService.config.keyPairs.filter(
+      (keyPair) =>
+        // not the best to compare algorithms
+        JSON.stringify(sortKeys(getAlgorithmFromJWK(keyPair.privateKey))) ===
           JSON.stringify(sortKeys(algorithm)) &&
         allowedIds.includes(keyPair.identifier)
-      );
-    });
+    );
     return foundKeys;
   }
   /**
@@ -124,7 +124,7 @@ export class WalletService {
         VerificationRelationshipType.modification
       ) {
         // no chance to self control the did, add a new key via an invite
-        keys.push(await this.createModificationKeyByInvite());
+        keys.push(await this.createModificationKeyByInvite(algorithm));
       } else {
         keys.push(
           await this.createAndPersistKey(
@@ -137,22 +137,25 @@ export class WalletService {
     return keys;
   }
 
-  createModificationKeyByInvite(): Promise<DecryptedKeyPair> {
+  createModificationKeyByInvite(
+    algorithm: Algorithm
+  ): Promise<DecryptedKeyPair> {
     // set modification key by invite
     const invite = this.configService.config.invite;
     if (!invite) {
       throw new Error('no invite present');
     }
-    return DidIdRegister.createByInvite(invite, this.cryptoKeyServices[0]).then(
-      async (values) => {
-        // save the key that way used.
-        this.configService.config.keyPairs.push(values.keyPair);
-        await this.configService.saveConfig();
-        //update the did in the wallet
-        this.did = values.did;
-        return values.keyPair;
-      }
-    );
+    return DidIdRegister.createByInvite(
+      invite,
+      this.getCryptoKeyServiceByType(algorithm)
+    ).then(async (values) => {
+      // save the key that way used.
+      this.configService.config.keyPairs.push(values.keyPair);
+      await this.configService.saveConfig();
+      //update the did in the wallet
+      this.did = values.did;
+      return values.keyPair;
+    });
   }
 
   /**
@@ -172,7 +175,7 @@ export class WalletService {
     const modificationKey = (
       await this.findOrCreate(
         VerificationRelationshipType.modification,
-        this.cryptoKeyServices[0].algorithm
+        this.getModificationCryptoKeyService().algorithm
       )
     )[0];
     // init crypto key
@@ -282,5 +285,16 @@ export class WalletService {
         return Promise.reject(`DID not found: ${err.message}`);
       }
     );
+  }
+
+  /**
+   * Gets a service that is able to be used for modification keys. BBS for example is not allowed to be used.
+   */
+  private getModificationCryptoKeyService(): CryptoKeyService {
+    const service = this.cryptoKeyServices.find(
+      (keyService) => keyService.canModify
+    );
+    if (!service) throw new Error(`no service registered to modify the did`);
+    return service;
   }
 }

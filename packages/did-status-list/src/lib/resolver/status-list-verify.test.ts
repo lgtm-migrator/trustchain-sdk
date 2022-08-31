@@ -39,16 +39,18 @@ describe('test statuslist service', () => {
     await cryptoService.init(key);
   }, 10000);
 
-  it('verify', async () => {
+  it('verify and read', async () => {
     if (!config.config.invite) throw new Error();
     const clientSchema = new StatusListIssuerService(
       testValues.network.gateways,
       cryptoService
     );
+    const statusListLength = 1000;
     const statusListDid = DidStatusListRegister.create({
       controllers: [config.config.invite.id],
-      length: 1000,
+      length: statusListLength,
     });
+
     const revokeId = 10;
     for (let i = 0; i < statusListDid.getLength(); i++) {
       expect(statusListDid.isRevoked(i)).toEqual(false);
@@ -58,11 +60,43 @@ describe('test statuslist service', () => {
       expect(statusListDid.isRevoked(i)).toEqual(i == revokeId);
     }
     await DidStatusListRegister.save(statusListDid, clientSchema);
-    const loadedStatusList = await new DidStatusListResolver().load(
-      statusListDid.id
+
+    // Read DID doc from ledger and expect to get original DID document
+    const loadedStatusListByTransactions =
+      await new DidStatusListResolver().load(statusListDid.id, { doc: false });
+    const loadedStatusListByDoc = await new DidStatusListResolver().load(
+      statusListDid.id,
+      { doc: true }
     );
-    for (let i = 0; i < loadedStatusList.getLength(); i++) {
-      expect(loadedStatusList.isRevoked(i)).toEqual(i == revokeId);
-    }
+
+    expect(loadedStatusListByTransactions.getDocument()).toEqual(
+      statusListDid.getDocument()
+    );
+    expect(loadedStatusListByDoc.getDocument()).toEqual(
+      statusListDid.getDocument()
+    );
+  }, 10000);
+
+  it('test out of range', async () => {
+    if (!config.config.invite) throw new Error();
+    const statusListLength = 1000;
+    const statusListDid = DidStatusListRegister.create({
+      controllers: [config.config.invite.id],
+      length: statusListLength,
+    });
+
+    expect(() => statusListDid.isRevoked(statusListLength)).toThrowError(
+      'is out of range'
+    );
+  }, 10000);
+
+  it('test invalid did', async () => {
+    const invalidDid = `did:trust:${testValues.network.namespace}:statuslist:123456789a123456789a12`;
+    await expect(
+      new DidStatusListResolver().load(invalidDid, { doc: false })
+    ).rejects.toThrowError('no transactions found');
+    await expect(
+      new DidStatusListResolver().load(invalidDid, { doc: true })
+    ).rejects.toThrowError('no did doc found');
   }, 10000);
 });

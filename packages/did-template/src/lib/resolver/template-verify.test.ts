@@ -81,8 +81,14 @@ describe('test template service', () => {
       type: CompressionType.JSON,
     };
     await DidTemplateRegister.save(templateDid, client);
-    const loadedTemplate = await new DidTemplateResolver().load(templateDid.id);
-
-    expect(loadedTemplate.template).toEqual(template);
+    const resolver = new DidTemplateResolver();
+    const loadedTemplateByTransactions = await resolver.load(templateDid.id, {
+      doc: false,
+    });
+    expect(loadedTemplateByTransactions.template).toEqual(template);
+    const loadedTemplateByDoc = await resolver.load(templateDid.id, {
+      doc: true,
+    });
+    expect(loadedTemplateByDoc.template).toEqual(template);
   }, 20000);
 });

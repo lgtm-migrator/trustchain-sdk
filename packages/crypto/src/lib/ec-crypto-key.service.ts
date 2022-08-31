@@ -14,7 +14,7 @@ export class ECCryptoKeyService extends CryptoKeyService {
     super();
   }
 
-  async generateKeyPair(id: string): Promise<DecryptedKeyPair<EcKeyGenParams>> {
+  async generateKeyPair(id: string): Promise<DecryptedKeyPair> {
     const keys = await subtle.generateKey(this.algorithm, true, [
       'sign',
       'verify',
@@ -23,7 +23,6 @@ export class ECCryptoKeyService extends CryptoKeyService {
       privateKey: await exportKey(keys.privateKey),
       publicKey: await exportKey(keys.publicKey),
       identifier: `${id}#${await this.getFingerPrint(keys.publicKey)}`,
-      algorithm: this.algorithm,
     };
   }
 

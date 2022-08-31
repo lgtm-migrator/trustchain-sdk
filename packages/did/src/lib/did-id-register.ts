@@ -36,7 +36,7 @@ export class DidIdRegister {
     }
     // generate first key pair
     const newKey = await cryptoKeyService.generateKeyPair(invite.id);
-    // set first keypair to manipularte did
+    // set first keypair to manipulate did
     const inviteValues: CreateDidIdDto = {
       identifier: invite.id,
       publicKey: newKey.publicKey,

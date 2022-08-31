@@ -23,18 +23,8 @@ export class CryptoService {
    */
   public async init(keyPair: DecryptedKeyPair): Promise<void> {
     this.keyPair = {
-      privateKey: await importKey(
-        keyPair.privateKey,
-        'jwk',
-        ['sign'],
-        keyPair.algorithm
-      ),
-      publicKey: await importKey(
-        keyPair.publicKey,
-        'jwk',
-        ['verify'],
-        keyPair.algorithm
-      ),
+      privateKey: await importKey(keyPair.privateKey, 'jwk', ['sign']),
+      publicKey: await importKey(keyPair.publicKey, 'jwk', ['verify']),
     };
     this.fingerPrint = keyPair.identifier;
   }

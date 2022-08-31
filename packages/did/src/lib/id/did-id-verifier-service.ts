@@ -72,7 +72,7 @@ export class DidIdVerifierService extends VerifierService {
    */
   async getDidTransactions(
     id: string,
-    validate = true,
+    validate: boolean,
     time: string
   ): Promise<DidIdStructure[]> {
     this.setEndpoints(id);

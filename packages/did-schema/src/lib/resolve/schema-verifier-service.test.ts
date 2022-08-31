@@ -56,7 +56,13 @@ describe('test schema verifier service', () => {
     expect(res).toBeDefined();
 
     const resolver = new DidSchemaResolver();
-    const resolvedId = await resolver.load(did.id);
-    expect(resolvedId.getSchema()).toEqual(JSON.stringify(schema));
+    const resolvedIdByTransactions = await resolver.load(did.id, {
+      doc: false,
+    });
+    expect(resolvedIdByTransactions.getSchema()).toEqual(
+      JSON.stringify(schema)
+    );
+    const resolvedIdByDoc = await resolver.load(did.id, { doc: true });
+    expect(resolvedIdByDoc.getSchema()).toEqual(JSON.stringify(schema));
   }, 7000);
 });

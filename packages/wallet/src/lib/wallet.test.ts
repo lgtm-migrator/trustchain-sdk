@@ -78,36 +78,102 @@ describe('wallet', () => {
       )
     ).rejects.toThrowError('no service found for');
   }, 10000);
-  it('test findOrCreate', async () => {
-    const walletService = new WalletService(config);
+
+  it('test findOrCreateRSA', async () => {
+    const cryptoKeyService = new RSACryptoKeyService();
+    const walletService = new WalletService(config, [cryptoKeyService]);
     await walletService.init();
+    // findOrCreate for each verification relationship
+    for (const vrType of Object.values(VerificationRelationshipType)) {
+      // findOrCreate for each algorithm
+      // first make sure there are no keys yet, so findOrCreate has to create the key
+      const keys = walletService.findKeys(vrType, cryptoKeyService.algorithm);
+      for (const key of keys) {
+        walletService.removeKeyByID(key.identifier);
+      }
 
-    const testKeyType = VerificationRelationshipType.assertionMethod;
-    const testKeyAlgorithm = defaultCryptoKeyService.algorithm;
+      // expect no key to be found
+      expect(
+        walletService.findKeys(vrType, cryptoKeyService.algorithm)
+      ).toHaveLength(0);
 
+      await walletService.findOrCreate(vrType, cryptoKeyService.algorithm);
+
+      // expect that exactly one key was found (because it was created)
+      expect(
+        walletService.findKeys(vrType, cryptoKeyService.algorithm)
+      ).toHaveLength(1);
+
+      // call findOrCreate again and expect that still exactly one key was found (because it was found and not created again)
+      await walletService.findOrCreate(vrType, cryptoKeyService.algorithm);
+      expect(
+        walletService.findKeys(vrType, cryptoKeyService.algorithm)
+      ).toHaveLength(1);
+    }
+  }, 30000);
+
+  it('test findOrCreateEC', async () => {
+    const cryptoKeyService = new ECCryptoKeyService();
+    const walletService = new WalletService(config, [cryptoKeyService]);
+    await walletService.init();
+    // findOrCreate for each verification relationship
+    for (const vrType of Object.values(VerificationRelationshipType)) {
+      // findOrCreate for each algorithm
+      // first make sure there are no keys yet, so findOrCreate has to create the key
+      const keys = walletService.findKeys(vrType, cryptoKeyService.algorithm);
+      for (const key of keys) {
+        walletService.removeKeyByID(key.identifier);
+
+        // expect no key to be found
+        expect(
+          walletService.findKeys(vrType, cryptoKeyService.algorithm)
+        ).toHaveLength(0);
+        await walletService.findOrCreate(vrType, cryptoKeyService.algorithm);
+        // expect that exactly one key was found (because it was created)
+        expect(
+          walletService.findKeys(vrType, cryptoKeyService.algorithm)
+        ).toHaveLength(1);
+        // call findOrCreate again and expect that still exactly one key was found (because it was found and not created again)
+        await walletService.findOrCreate(vrType, cryptoKeyService.algorithm);
+        expect(
+          walletService.findKeys(vrType, cryptoKeyService.algorithm)
+        ).toHaveLength(1);
+      }
+    }
+  }, 30000);
+
+  it('test findOrCreateBBS', async () => {
+    const rsaCryptoKeyService = new RSACryptoKeyService();
+    const bbsCryptoKeyService = new BbsCryptoKeyService();
+    const walletService = new WalletService(config, [
+      bbsCryptoKeyService,
+      rsaCryptoKeyService,
+    ]);
+    await walletService.init();
+    const vrType = VerificationRelationshipType.assertionMethod;
     // first make sure there are no keys yet, so findOrCreate has to create the key
-    const keys = walletService.findKeys(testKeyType, testKeyAlgorithm);
+    const keys = walletService.findKeys(vrType, bbsCryptoKeyService.algorithm);
     for (const key of keys) {
       walletService.removeKeyByID(key.identifier);
     }
 
     // expect no key to be found
-    expect(walletService.findKeys(testKeyType, testKeyAlgorithm)).toHaveLength(
-      0
-    );
+    expect(
+      walletService.findKeys(vrType, bbsCryptoKeyService.algorithm)
+    ).toHaveLength(0);
 
-    await walletService.findOrCreate(testKeyType, testKeyAlgorithm);
+    await walletService.findOrCreate(vrType, bbsCryptoKeyService.algorithm);
 
     // expect that exactly one key was found (because it was created)
-    expect(walletService.findKeys(testKeyType, testKeyAlgorithm)).toHaveLength(
-      1
-    );
+    expect(
+      walletService.findKeys(vrType, bbsCryptoKeyService.algorithm)
+    ).toHaveLength(1);
 
     // call findOrCreate again and expect that still exactly one key was found (because it was found and not created again)
-    await walletService.findOrCreate(testKeyType, testKeyAlgorithm);
-    expect(walletService.findKeys(testKeyType, testKeyAlgorithm)).toHaveLength(
-      1
-    );
+    await walletService.findOrCreate(vrType, bbsCryptoKeyService.algorithm);
+    expect(
+      walletService.findKeys(vrType, bbsCryptoKeyService.algorithm)
+    ).toHaveLength(1);
   }, 30000);
 
   it('tidy up', async () => {
@@ -136,8 +202,10 @@ describe('wallet', () => {
   }, 15000);
 
   it('init wallet with invalid config invite', async () => {
-    config.config.invite = undefined;
-    const walletService = new WalletService(config, []);
+    const tempConfig = new LocalConfigService(testValues.filePath);
+    await tempConfig.init(testValues.configValues);
+    tempConfig.config.invite = undefined;
+    const walletService = new WalletService(tempConfig, []);
     await expect(walletService.init()).rejects.toThrowError('no id found');
   }, 15000);
 
@@ -192,4 +260,39 @@ describe('wallet', () => {
       remove(temporaryConfigPath);
     }
   }, 20000);
+
+  it('createModificationKeyByInvite without invite', async () => {
+    const tempConfig = new LocalConfigService(testValues.filePath);
+    await tempConfig.init(testValues.configValues);
+
+    const walletService = new WalletService(tempConfig);
+    await walletService.init();
+
+    tempConfig.config.invite = undefined;
+
+    await expect(() =>
+      walletService.createModificationKeyByInvite(
+        defaultCryptoKeyService.algorithm
+      )
+    ).toThrowError('no invite present');
+  }, 20000);
+
+  it('add a key without suitable modification key', async () => {
+    // init wallet with only a bbs crypto key service (no RSA/EC)
+    const bbsCryptoKeyService = new BbsCryptoKeyService();
+    const walletService = new WalletService(config, [bbsCryptoKeyService]);
+    await walletService.init();
+
+    // Clear wallet of any keys first
+    while (walletService.listKeys().length > 0) {
+      const key = walletService.listKeys()[0];
+      await walletService.removeKeyByID(key.identifier);
+    }
+
+    // Try to add a key
+    const vrType = VerificationRelationshipType.assertionMethod;
+    await expect(() =>
+      walletService.findOrCreate(vrType, bbsCryptoKeyService.algorithm)
+    ).rejects.toThrow('no service registered to modify the did');
+  }, 30000);
 });

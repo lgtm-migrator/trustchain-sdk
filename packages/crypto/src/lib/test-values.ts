@@ -1,9 +1,7 @@
-import { defaultCryptoKeyService, hashAlgorithm } from '..';
 import { DecryptedKeyPair } from './decrypted-key-pair';
 
-export const testKey: DecryptedKeyPair<RsaHashedKeyGenParams> = {
+export const testKey: DecryptedKeyPair = {
   identifier: 'testKey',
-  algorithm: defaultCryptoKeyService.algorithm,
   privateKey: {
     key_ops: ['sign'],
     ext: true,
@@ -36,7 +34,7 @@ export const differentContentSignature =
 export const hashContent = 'Content to be hashed';
 export const hashContentHash = '9ZmsGxYnoHgZsaHhGeusbhkR6YjMeYRk2HN2NZUM28DX';
 
-export const RSATestKey: DecryptedKeyPair<RsaHashedKeyGenParams> = {
+export const RSATestKey: DecryptedKeyPair = {
   privateKey: {
     key_ops: ['sign'],
     ext: true,
@@ -60,17 +58,11 @@ export const RSATestKey: DecryptedKeyPair<RsaHashedKeyGenParams> = {
     alg: 'RS256',
   },
   identifier: 'testKey#3HhobuvkEoemuVQnTCa5jz1k1KPajifg98DEVSGZ1vC4',
-  algorithm: {
-    name: 'RSASSA-PKCS1-v1_5',
-    modulusLength: 2048,
-    publicExponent: new Uint8Array([1, 0, 1]),
-    hash: hashAlgorithm,
-  },
 };
 
 export const RSATestKeyFingerPrint =
   '3HhobuvkEoemuVQnTCa5jz1k1KPajifg98DEVSGZ1vC4';
-export const ECTestKey: DecryptedKeyPair<EcKeyGenParams> = {
+export const ECTestKey: DecryptedKeyPair = {
   privateKey: {
     key_ops: ['sign'],
     ext: true,
@@ -89,7 +81,6 @@ export const ECTestKey: DecryptedKeyPair<EcKeyGenParams> = {
     crv: 'P-256',
   },
   identifier: 'testKey#3jC2Vq3YpUBe3uGdUCHAnYz1iZFAKHTXmhs7Ev1QPCpP',
-  algorithm: { name: 'ECDSA', namedCurve: 'P-256' },
 };
 export const ECTestKeyFingerPrint =
   '3jC2Vq3YpUBe3uGdUCHAnYz1iZFAKHTXmhs7Ev1QPCpP';

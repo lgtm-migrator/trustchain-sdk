@@ -54,10 +54,7 @@ export class BbsVerifiableCredentialVerifierService {
    * @returns True if the given credential status has been revoked
    */
   async isRevoked(credentialStatus: ICredentialStatus): Promise<boolean> {
-    const didStatusListResolver = await new DidStatusListResolver().load(
-      credentialStatus.id
-    );
-    return didStatusListResolver.isRevoked(credentialStatus.statusListIndex);
+    return await new DidStatusListResolver().isRevoked(credentialStatus);
   }
 
   /**

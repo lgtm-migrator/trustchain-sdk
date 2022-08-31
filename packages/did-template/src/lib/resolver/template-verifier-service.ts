@@ -53,7 +53,7 @@ export class TemplateVerifierService extends VerifierService {
               (err) => logger.warn(err)
             ),
           (err: AxiosError) => {
-            logger.log(err);
+            err.response ? logger.warn(err.response.data) : logger.warn(err);
           }
         );
       if (res) return Promise.resolve(res);
@@ -72,7 +72,7 @@ export class TemplateVerifierService extends VerifierService {
    */
   async getDidTransactions(
     id: string,
-    validate = true,
+    validate: boolean,
     time: string
   ): Promise<DidTemplateStructure[]> {
     this.setEndpoints(id);
