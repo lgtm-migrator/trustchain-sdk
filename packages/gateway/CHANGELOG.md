@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [11.3.0](https://github.com/trustcerts/trustchain-sdk/compare/gateway-11.2.0...gateway-11.3.0) (2022-08-31)
+
+
+### Bug Fixes
+
+* update packages ([a98329c](https://github.com/trustcerts/trustchain-sdk/commit/a98329cfcf49f4e94b5076c5c0ea9574b37d6f7d))
+
+
+
 # [11.2.0](https://github.com/trustcerts/trustchain-sdk/compare/gateway-11.1.0...gateway-11.2.0) (2022-08-31)
 
 
