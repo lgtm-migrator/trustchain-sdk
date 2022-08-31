@@ -2,6 +2,33 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [11.1.0](https://github.com/trustcerts/trustchain-sdk/compare/observer-11.0.4...observer-11.1.0) (2022-08-31)
+
+
+### Bug Fixes
+
+* add code-coverage ([c09ac50](https://github.com/trustcerts/trustchain-sdk/commit/c09ac504a72a364455819ac738e6ebe994e417e4))
+* add import flag ([f4fb56b](https://github.com/trustcerts/trustchain-sdk/commit/f4fb56b09edc6285df928a5a88ee6e7eaaaee558))
+* add jsdoc rules ([3099359](https://github.com/trustcerts/trustchain-sdk/commit/3099359775efa0d7604d024280801781620bc9f6))
+* add status-list package ([298ee71](https://github.com/trustcerts/trustchain-sdk/commit/298ee7185ae9cbb7f5bf7fdbb6327f84195741b2))
+* assembling dids via transactions ([9ac7f96](https://github.com/trustcerts/trustchain-sdk/commit/9ac7f96548742dde6fc2f1f53cc75a6329672595))
+* change structure handling ([38976a4](https://github.com/trustcerts/trustchain-sdk/commit/38976a4ad8543ca3bfc7eec7e25313516fed1609))
+* **crypto:** release version 11.0.7 ([b35f69d](https://github.com/trustcerts/trustchain-sdk/commit/b35f69d0ed43c0e1c98681969691378b4186f205))
+* move bbs to own package ([156a036](https://github.com/trustcerts/trustchain-sdk/commit/156a036802da502e3ba0bdb65c8056ce69e5b1ea))
+* **observer:** release version 11.0.5 ([8b17bcf](https://github.com/trustcerts/trustchain-sdk/commit/8b17bcf3eabe9c8e7e59feed69357e30e66be0dd))
+* **observer:** release version 11.0.6 ([5d46da3](https://github.com/trustcerts/trustchain-sdk/commit/5d46da39e1cc1b2cf949faf3bebe002c716406eb))
+* **observer:** release version 11.0.7 ([cbe6c44](https://github.com/trustcerts/trustchain-sdk/commit/cbe6c443b609b4c44a1b34ee6dc8ed2a87cebecd))
+* publish 0.0.10 ([7487d22](https://github.com/trustcerts/trustchain-sdk/commit/7487d224c999a767b732b904809b6777f4edd12a))
+* release new version ([e18b106](https://github.com/trustcerts/trustchain-sdk/commit/e18b1069def0cd78a73cdee4715bf58cfd9237b8))
+* tests and remove umd ([7c79170](https://github.com/trustcerts/trustchain-sdk/commit/7c791706195ace7c83cb0e51e5a16191495aab7f))
+* update api ([da009ae](https://github.com/trustcerts/trustchain-sdk/commit/da009ae95a17886d3c5ed338f914560c02510408))
+* update bc endpoints ([7646918](https://github.com/trustcerts/trustchain-sdk/commit/7646918f420e1716f86580295ff7a6b28af2e47e))
+* update locks ([794319a](https://github.com/trustcerts/trustchain-sdk/commit/794319a8a9a9cbea351c066345ea6b987d7a90b2))
+* update nx ([39451f4](https://github.com/trustcerts/trustchain-sdk/commit/39451f49a7522c82b731e1f4dff124847c95e911))
+* update release ([3c1784f](https://github.com/trustcerts/trustchain-sdk/commit/3c1784fafea9a5e681b9f19e56b386e7f47ec55a))
+
+
+
 ## [11.0.7](https://github.com/trustcerts/trustchain-sdk/compare/observer-11.0.6...observer-11.0.7) (2022-07-11)
 
 
