@@ -2,6 +2,40 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [11.1.0](https://github.com/trustcerts/trustchain-sdk/compare/did-11.0.4...did-11.1.0) (2022-08-31)
+
+
+### Bug Fixes
+
+* add code-coverage ([c09ac50](https://github.com/trustcerts/trustchain-sdk/commit/c09ac504a72a364455819ac738e6ebe994e417e4))
+* add debug information ([2540348](https://github.com/trustcerts/trustchain-sdk/commit/2540348305ac180f2322cafb6be2785008cd47d4))
+* add delay to persist function ([cb89cc3](https://github.com/trustcerts/trustchain-sdk/commit/cb89cc3ed4ada80b52d1831655fe2ee6773f1cb3))
+* add import flag ([f4fb56b](https://github.com/trustcerts/trustchain-sdk/commit/f4fb56b09edc6285df928a5a88ee6e7eaaaee558))
+* add jsdoc rules ([3099359](https://github.com/trustcerts/trustchain-sdk/commit/3099359775efa0d7604d024280801781620bc9f6))
+* add revocation service ([11e73ac](https://github.com/trustcerts/trustchain-sdk/commit/11e73ac2fb00f3f0dd1dded9aed3adcc3eb2ec85))
+* add some time before loading own did ([bbf88f0](https://github.com/trustcerts/trustchain-sdk/commit/bbf88f0cd0f5a96ba232e4c6b08616e5c295e90f))
+* add status-list package ([298ee71](https://github.com/trustcerts/trustchain-sdk/commit/298ee7185ae9cbb7f5bf7fdbb6327f84195741b2))
+* add todo ([96469c6](https://github.com/trustcerts/trustchain-sdk/commit/96469c6784cac1da8f7482bf7f5b7314f3935bf3))
+* assembling dids via transactions ([9ac7f96](https://github.com/trustcerts/trustchain-sdk/commit/9ac7f96548742dde6fc2f1f53cc75a6329672595))
+* change structure handling ([38976a4](https://github.com/trustcerts/trustchain-sdk/commit/38976a4ad8543ca3bfc7eec7e25313516fed1609))
+* **did:** release version 11.0.5 ([7bbe6ba](https://github.com/trustcerts/trustchain-sdk/commit/7bbe6ba3a83623439dd083bf34fbfec102101629))
+* **did:** release version 11.0.6 ([403f6be](https://github.com/trustcerts/trustchain-sdk/commit/403f6bea0444015c6351e923dcb8d9a3b8741693))
+* eslint warnings ([3bb9825](https://github.com/trustcerts/trustchain-sdk/commit/3bb982562bbc35386f73489e11c4a7985abfecb5))
+* fix wallet test ([2da9ca5](https://github.com/trustcerts/trustchain-sdk/commit/2da9ca5a76fbba86ba51a4edf0cc49f174713a81))
+* move bbs to own package ([156a036](https://github.com/trustcerts/trustchain-sdk/commit/156a036802da502e3ba0bdb65c8056ce69e5b1ea))
+* project json ([45a9abf](https://github.com/trustcerts/trustchain-sdk/commit/45a9abf8f476c02e27d38ac5cecd24f92b774759))
+* publish 0.0.10 ([7487d22](https://github.com/trustcerts/trustchain-sdk/commit/7487d224c999a767b732b904809b6777f4edd12a))
+* release new version ([e18b106](https://github.com/trustcerts/trustchain-sdk/commit/e18b1069def0cd78a73cdee4715bf58cfd9237b8))
+* remove logging ([4d45319](https://github.com/trustcerts/trustchain-sdk/commit/4d45319ec8bbb6264c809fd32dea1e80aced2f6e))
+* split wallet tests ([d2892f4](https://github.com/trustcerts/trustchain-sdk/commit/d2892f4fcb626d3ba7a44e57c81b240842072791))
+* tests ([237d820](https://github.com/trustcerts/trustchain-sdk/commit/237d820378885bda1c3ac1cf1d30d19cb84b0cfb))
+* tests and remove umd ([7c79170](https://github.com/trustcerts/trustchain-sdk/commit/7c791706195ace7c83cb0e51e5a16191495aab7f))
+* update bc endpoints ([7646918](https://github.com/trustcerts/trustchain-sdk/commit/7646918f420e1716f86580295ff7a6b28af2e47e))
+* update nx ([39451f4](https://github.com/trustcerts/trustchain-sdk/commit/39451f49a7522c82b731e1f4dff124847c95e911))
+* update release ([3c1784f](https://github.com/trustcerts/trustchain-sdk/commit/3c1784fafea9a5e681b9f19e56b386e7f47ec55a))
+
+
+
 ## [11.0.6](https://github.com/trustcerts/trustchain-sdk/compare/did-11.0.5...did-11.0.6) (2022-07-11)
 
 ### Dependency Updates
