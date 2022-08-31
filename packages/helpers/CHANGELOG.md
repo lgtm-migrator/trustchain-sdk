@@ -2,6 +2,15 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [12.0.1](https://github.com/trustcerts/trustchain-sdk/compare/helpers-12.0.0...helpers-12.0.1) (2022-08-31)
+
+
+### Bug Fixes
+
+* update nx ([cedd332](https://github.com/trustcerts/trustchain-sdk/commit/cedd332caf5e1dd7f07f39e53639273f749e6352))
+
+
+
 # [12.0.0](https://github.com/trustcerts/trustchain-sdk/compare/helpers-11.3.0...helpers-12.0.0) (2022-08-31)
 
 
