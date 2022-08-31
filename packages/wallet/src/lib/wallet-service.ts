@@ -96,12 +96,13 @@ export class WalletService {
     const allowedIds = this.did.findByVerificationRelationship(
       verificationRelationshipType
     );
-    const foundKeys = this.configService.config.keyPairs.filter((keyPair) => {
-      return (
-        getAlgorithmFromJWK(keyPair.privateKey).name === algorithm.name &&
+    const foundKeys = this.configService.config.keyPairs.filter(
+      (keyPair) =>
+        // not the best to compare algorithms
+        JSON.stringify(sortKeys(getAlgorithmFromJWK(keyPair.privateKey))) ===
+          JSON.stringify(sortKeys(algorithm)) &&
         allowedIds.includes(keyPair.identifier)
-      );
-    });
+    );
     return foundKeys;
   }
   /**
