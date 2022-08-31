@@ -89,6 +89,12 @@ export class WalletService {
     this.did.removeAllVerificationRelationships(keyId);
   }
 
+  // TODO make it possible to pass both arguments or just one of them. But one must at least be passed
+  /**
+   * Returns all keys that have a specific verification relationship and are based on the given algorithm.
+   * @param verificationRelationshipType
+   * @param algorithm
+   */
   findKeys(
     verificationRelationshipType: VerificationRelationshipType,
     algorithm: Algorithm
@@ -105,6 +111,7 @@ export class WalletService {
     );
     return foundKeys;
   }
+
   /**
    * Gets a key from the wallet, creates one if it does not exist yet
    *
