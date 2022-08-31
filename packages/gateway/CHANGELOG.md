@@ -2,6 +2,31 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [11.1.0](https://github.com/trustcerts/trustchain-sdk/compare/gateway-11.0.4...gateway-11.1.0) (2022-08-31)
+
+
+### Bug Fixes
+
+* add code-coverage ([c09ac50](https://github.com/trustcerts/trustchain-sdk/commit/c09ac504a72a364455819ac738e6ebe994e417e4))
+* add jsdoc rules ([3099359](https://github.com/trustcerts/trustchain-sdk/commit/3099359775efa0d7604d024280801781620bc9f6))
+* add status-list package ([298ee71](https://github.com/trustcerts/trustchain-sdk/commit/298ee7185ae9cbb7f5bf7fdbb6327f84195741b2))
+* change structure handling ([38976a4](https://github.com/trustcerts/trustchain-sdk/commit/38976a4ad8543ca3bfc7eec7e25313516fed1609))
+* **gateway:** release version 11.0.5 ([f6e9269](https://github.com/trustcerts/trustchain-sdk/commit/f6e926971228f20a763ee0ae9866d0c6421a4072))
+* **gateway:** release version 11.0.6 ([b6b86d8](https://github.com/trustcerts/trustchain-sdk/commit/b6b86d8523d230fb506365fb32ee1e9f0a9fe4d2))
+* **gateway:** release version 11.0.7 ([a7a67d9](https://github.com/trustcerts/trustchain-sdk/commit/a7a67d9a7f725a3b17d818bec1e1d21db7953abf))
+* **gateway:** release version 11.0.8 ([134ca2a](https://github.com/trustcerts/trustchain-sdk/commit/134ca2a8d449f653203e04d4b16cf44cd787acff))
+* move bbs to own package ([156a036](https://github.com/trustcerts/trustchain-sdk/commit/156a036802da502e3ba0bdb65c8056ce69e5b1ea))
+* publish 0.0.10 ([7487d22](https://github.com/trustcerts/trustchain-sdk/commit/7487d224c999a767b732b904809b6777f4edd12a))
+* release new version ([e18b106](https://github.com/trustcerts/trustchain-sdk/commit/e18b1069def0cd78a73cdee4715bf58cfd9237b8))
+* tests and remove umd ([7c79170](https://github.com/trustcerts/trustchain-sdk/commit/7c791706195ace7c83cb0e51e5a16191495aab7f))
+* update api ([da009ae](https://github.com/trustcerts/trustchain-sdk/commit/da009ae95a17886d3c5ed338f914560c02510408))
+* update bc endpoints ([7646918](https://github.com/trustcerts/trustchain-sdk/commit/7646918f420e1716f86580295ff7a6b28af2e47e))
+* update locks ([794319a](https://github.com/trustcerts/trustchain-sdk/commit/794319a8a9a9cbea351c066345ea6b987d7a90b2))
+* update nx ([39451f4](https://github.com/trustcerts/trustchain-sdk/commit/39451f49a7522c82b731e1f4dff124847c95e911))
+* update release ([3c1784f](https://github.com/trustcerts/trustchain-sdk/commit/3c1784fafea9a5e681b9f19e56b386e7f47ec55a))
+
+
+
 ## [11.0.8](https://github.com/trustcerts/trustchain-sdk/compare/gateway-11.0.7...gateway-11.0.8) (2022-08-15)
 
 
