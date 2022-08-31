@@ -2,6 +2,21 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [12.0.0](https://github.com/trustcerts/trustchain-sdk/compare/gateway-11.3.0...gateway-12.0.0) (2022-08-31)
+
+
+### Bug Fixes
+
+* **gateway:** release version 0.1.0 ([5b87ccd](https://github.com/trustcerts/trustchain-sdk/commit/5b87ccdaa440cf0c784e247bc5099bddb65ca430))
+* **helpers:** release version 0.2.0 ([5c2cdca](https://github.com/trustcerts/trustchain-sdk/commit/5c2cdca0ed452d41368d7e2906ddd18ca58c7026))
+* **logger:** release version 0.3.0 ([0c2df89](https://github.com/trustcerts/trustchain-sdk/commit/0c2df8912126700ee523fb21d787e549683c8935))
+
+
+
+# [0.4.0](https://github.com/trustcerts/trustchain-sdk/compare/v0.3.0...v0.4.0) (2022-08-31)
+
+
+
 # [0.3.0](https://github.com/trustcerts/trustchain-sdk/compare/v0.2.0...v0.3.0) (2022-08-31)
 
 
