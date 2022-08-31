@@ -2,6 +2,33 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [11.1.0](https://github.com/trustcerts/trustchain-sdk/compare/claim-11.0.4...claim-11.1.0) (2022-08-31)
+
+
+### Bug Fixes
+
+* add code-coverage ([c09ac50](https://github.com/trustcerts/trustchain-sdk/commit/c09ac504a72a364455819ac738e6ebe994e417e4))
+* add delay to persist function ([cb89cc3](https://github.com/trustcerts/trustchain-sdk/commit/cb89cc3ed4ada80b52d1831655fe2ee6773f1cb3))
+* add jsdoc rules ([3099359](https://github.com/trustcerts/trustchain-sdk/commit/3099359775efa0d7604d024280801781620bc9f6))
+* add status-list package ([298ee71](https://github.com/trustcerts/trustchain-sdk/commit/298ee7185ae9cbb7f5bf7fdbb6327f84195741b2))
+* change structure handling ([38976a4](https://github.com/trustcerts/trustchain-sdk/commit/38976a4ad8543ca3bfc7eec7e25313516fed1609))
+* **claim:** release version 11.0.5 ([9e1f49c](https://github.com/trustcerts/trustchain-sdk/commit/9e1f49c4562bd0e001009058ff4b909320229204))
+* **claim:** release version 11.0.6 ([1dc4267](https://github.com/trustcerts/trustchain-sdk/commit/1dc426780174c02ba54c47f488d3bd41449608f3))
+* eslint warnings ([3bb9825](https://github.com/trustcerts/trustchain-sdk/commit/3bb982562bbc35386f73489e11c4a7985abfecb5))
+* fix claim issuer service await & verify test ([12ce5b0](https://github.com/trustcerts/trustchain-sdk/commit/12ce5b05126618a585335208f5bc2dd47ea71c92))
+* increase timeout for claim.test.ts ([6f08b4b](https://github.com/trustcerts/trustchain-sdk/commit/6f08b4b06e552d33a93d7ea7214309b44fd23a08))
+* move bbs to own package ([156a036](https://github.com/trustcerts/trustchain-sdk/commit/156a036802da502e3ba0bdb65c8056ce69e5b1ea))
+* project json ([45a9abf](https://github.com/trustcerts/trustchain-sdk/commit/45a9abf8f476c02e27d38ac5cecd24f92b774759))
+* publish 0.0.10 ([7487d22](https://github.com/trustcerts/trustchain-sdk/commit/7487d224c999a767b732b904809b6777f4edd12a))
+* release new version ([e18b106](https://github.com/trustcerts/trustchain-sdk/commit/e18b1069def0cd78a73cdee4715bf58cfd9237b8))
+* set generic type for crypto keys ([8e2504b](https://github.com/trustcerts/trustchain-sdk/commit/8e2504b37748bc9f385fa347d8c1d1da32d6ed62))
+* set github in actions ([124dbae](https://github.com/trustcerts/trustchain-sdk/commit/124dbaeba73aaf032baff2e23a45978921b6fae4))
+* tests and remove umd ([7c79170](https://github.com/trustcerts/trustchain-sdk/commit/7c791706195ace7c83cb0e51e5a16191495aab7f))
+* update nx ([39451f4](https://github.com/trustcerts/trustchain-sdk/commit/39451f49a7522c82b731e1f4dff124847c95e911))
+* update release ([3c1784f](https://github.com/trustcerts/trustchain-sdk/commit/3c1784fafea9a5e681b9f19e56b386e7f47ec55a))
+
+
+
 ## [11.0.6](https://github.com/trustcerts/trustchain-sdk/compare/claim-11.0.5...claim-11.0.6) (2022-07-11)
 
 ### Dependency Updates
