@@ -28,11 +28,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Tag last-release
         shell: bash
-        run: git tag -f last-release
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-          force: true
-          tags: true
+        run: |
+          git tag -f last-release
+          git push origin last-release --force
