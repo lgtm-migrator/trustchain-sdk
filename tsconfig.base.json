@@ -26,6 +26,9 @@
       "@trustcerts/did-schema": ["packages/did-schema/src/index.ts"],
       "@trustcerts/did-status-list": ["packages/did-status-list/src/index.ts"],
       "@trustcerts/did-template": ["packages/did-template/src/index.ts"],
+      "@trustcerts/did-visual-representation": [
+        "packages/did-visual-representation/src/index.ts"
+      ],
       "@trustcerts/gateway": ["packages/gateway/src/index.ts"],
       "@trustcerts/helpers": ["packages/helpers/src/index.ts"],
       "@trustcerts/logger": ["packages/logger/src/index.ts"],

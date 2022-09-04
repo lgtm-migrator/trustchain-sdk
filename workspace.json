@@ -11,6 +11,7 @@
     "did-schema": "packages/did-schema",
     "did-status-list": "packages/did-status-list",
     "did-template": "packages/did-template",
+    "did-visual-representation": "packages/did-visual-representation",
     "gateway": "packages/gateway",
     "helpers": "packages/helpers",
     "logger": "packages/logger",

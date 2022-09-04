@@ -25,6 +25,6 @@ export class DidTemplateRegister {
     const value = did.getChanges();
     did.version++;
     did.resetChanges();
-    return client.persistTemplate(value);
+    return client.persist(value);
   }
 }

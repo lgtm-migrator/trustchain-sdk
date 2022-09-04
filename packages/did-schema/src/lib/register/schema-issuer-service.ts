@@ -18,7 +18,7 @@ export class SchemaIssuerService extends IssuerService {
     this.api = new SchemaGatewayApi(this.apiConfiguration);
   }
 
-  async persistSchema(value: DidSchemaStructure): Promise<SchemaResponse> {
+  async persist(value: DidSchemaStructure): Promise<SchemaResponse> {
     // TODO outsource this to the issuer service since the transaction schema of dids are equal
     const transaction: SchemaTransactionDto = {
       version: 1,

@@ -1,5 +1,6 @@
 import { Configuration, BaseAPI } from '@trustcerts/gateway';
 import { CryptoService } from '@trustcerts/crypto';
+import { DidStructure } from '@trustcerts/observer';
 
 /**
  * Service to sign files.
@@ -19,6 +20,13 @@ export abstract class IssuerService {
       basePath: gateways[0],
     });
   }
+
+  // TODO set PersistedResponse as response
+  /**
+   * Persists the transaction for a did object
+   * @param value
+   */
+  abstract persist(value: DidStructure): Promise<any>;
 
   /**
    * Returns the identifier of the user.

@@ -23,6 +23,6 @@ export class DidSchemaRegister {
     const value = did.getChanges();
     did.version++;
     did.resetChanges();
-    return client.persistSchema(value);
+    return client.persist(value);
   }
 }

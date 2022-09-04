@@ -17,7 +17,7 @@ export class DidIdIssuerService extends IssuerService {
     this.api = new DidGatewayApi(this.apiConfiguration);
   }
 
-  async persistDid(value: DidIdStructure): Promise<void> {
+  async persist(value: DidIdStructure): Promise<void> {
     const transaction: DidIdTransactionDto = {
       version: 1,
       body: {

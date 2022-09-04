@@ -72,6 +72,6 @@ export class DidIdRegister {
     // const document = did.getDocument();
     did.version++;
     did.resetChanges();
-    return client.persistDid(value);
+    return client.persist(value);
   }
 }

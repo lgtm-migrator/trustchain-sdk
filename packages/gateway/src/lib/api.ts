@@ -459,6 +459,31 @@ export interface DidTemplateStructure {
 /**
  * 
  * @export
+ * @interface DidVisualRepresentationStructure
+ */
+export interface DidVisualRepresentationStructure {
+    /**
+     * unique identifier of a visualrepresentation
+     * @type {string}
+     * @memberof DidVisualRepresentationStructure
+     */
+    'id': string;
+    /**
+     * Did that controls this did.
+     * @type {ControllerManage}
+     * @memberof DidVisualRepresentationStructure
+     */
+    'controller'?: ControllerManage;
+    /**
+     * Presentation that should be connected with the did.
+     * @type {PresentationMange}
+     * @memberof DidVisualRepresentationStructure
+     */
+    'presentation'?: PresentationMange;
+}
+/**
+ * 
+ * @export
  * @interface HashDidTransactionDto
  */
 export interface HashDidTransactionDto {
@@ -672,6 +697,64 @@ export interface PersistedTransactionMetaData {
      */
     'persisted': string;
 }
+/**
+ * 
+ * @export
+ * @interface Presentation
+ */
+export interface Presentation {
+    /**
+     * unique identifier of a presentation
+     * @type {string}
+     * @memberof Presentation
+     */
+    'id': string;
+    /**
+     * 
+     * @type {PresentationType}
+     * @memberof Presentation
+     */
+    'type': PresentationType;
+    /**
+     * value of the presentation
+     * @type {string}
+     * @memberof Presentation
+     */
+    'value': string;
+}
+/**
+ * 
+ * @export
+ * @interface PresentationMange
+ */
+export interface PresentationMange {
+    /**
+     * List of presentations that should be added to the did document.
+     * @type {Array<Presentation>}
+     * @memberof PresentationMange
+     */
+    'add'?: Array<Presentation>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof PresentationMange
+     */
+    'remove'?: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const PresentationType = {
+    pdf: 'pdf',
+    html: 'html'
+} as const;
+
+export type PresentationType = typeof PresentationType[keyof typeof PresentationType];
+
+
 /**
  * 
  * @export
@@ -1134,7 +1217,8 @@ export const TransactionType = {
     Did: 'Did',
     Schema: 'Schema',
     Template: 'Template',
-    StatusList: 'StatusList'
+    StatusList: 'StatusList',
+    VisualRepresentation: 'VisualRepresentation'
 } as const;
 
 export type TransactionType = typeof TransactionType[keyof typeof TransactionType];
@@ -1177,6 +1261,87 @@ export interface VerificationRelationshipManage {
      * @memberof VerificationRelationshipManage
      */
     'remove'?: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface VisualRepresentationResponse
+ */
+export interface VisualRepresentationResponse {
+    /**
+     * additional metadata to the transaction
+     * @type {PersistedTransaction}
+     * @memberof VisualRepresentationResponse
+     */
+    'metaData': PersistedTransaction;
+    /**
+     * transaction that was persisted.
+     * @type {VisualRepresentationTransactionDto}
+     * @memberof VisualRepresentationResponse
+     */
+    'transaction': VisualRepresentationTransactionDto;
+}
+/**
+ * 
+ * @export
+ * @interface VisualRepresentationTransactionBody
+ */
+export interface VisualRepresentationTransactionBody {
+    /**
+     * Version number of the transaction.
+     * @type {number}
+     * @memberof VisualRepresentationTransactionBody
+     */
+    'version': number;
+    /**
+     * timestamp when transaction was created.
+     * @type {string}
+     * @memberof VisualRepresentationTransactionBody
+     */
+    'date': string;
+    /**
+     * unique identifier of a visualrepresentation
+     * @type {DidVisualRepresentationStructure}
+     * @memberof VisualRepresentationTransactionBody
+     */
+    'value': DidVisualRepresentationStructure;
+    /**
+     * 
+     * @type {TransactionType}
+     * @memberof VisualRepresentationTransactionBody
+     */
+    'type': TransactionType;
+}
+/**
+ * 
+ * @export
+ * @interface VisualRepresentationTransactionDto
+ */
+export interface VisualRepresentationTransactionDto {
+    /**
+     * Version number of the base transaction.
+     * @type {number}
+     * @memberof VisualRepresentationTransactionDto
+     */
+    'version': number;
+    /**
+     * 
+     * @type {VisualRepresentationTransactionBody}
+     * @memberof VisualRepresentationTransactionDto
+     */
+    'body': VisualRepresentationTransactionBody;
+    /**
+     * 
+     * @type {TransactionMetadata}
+     * @memberof VisualRepresentationTransactionDto
+     */
+    'metadata': TransactionMetadata;
+    /**
+     * 
+     * @type {SignatureInfo}
+     * @memberof VisualRepresentationTransactionDto
+     */
+    'signature': SignatureInfo;
 }
 
 /**
@@ -2312,6 +2477,113 @@ export class TemplateGatewayApi extends BaseAPI {
      */
     public gatewayTemplateControllerCreate(templateTransactionDto: TemplateTransactionDto, options?: AxiosRequestConfig) {
         return TemplateGatewayApiFp(this.configuration).gatewayTemplateControllerCreate(templateTransactionDto, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * VisualRepresentationGatewayApi - axios parameter creator
+ * @export
+ */
+export const VisualRepresentationGatewayApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Adds new visualrepresentation to the chain.
+         * @param {VisualRepresentationTransactionDto} visualRepresentationTransactionDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        gatewayVisualRepresentationControllerCreate: async (visualRepresentationTransactionDto: VisualRepresentationTransactionDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'visualRepresentationTransactionDto' is not null or undefined
+            assertParamExists('gatewayVisualRepresentationControllerCreate', 'visualRepresentationTransactionDto', visualRepresentationTransactionDto)
+            const localVarPath = `/visualrepresentation`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(visualRepresentationTransactionDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * VisualRepresentationGatewayApi - functional programming interface
+ * @export
+ */
+export const VisualRepresentationGatewayApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = VisualRepresentationGatewayApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Adds new visualrepresentation to the chain.
+         * @param {VisualRepresentationTransactionDto} visualRepresentationTransactionDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async gatewayVisualRepresentationControllerCreate(visualRepresentationTransactionDto: VisualRepresentationTransactionDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VisualRepresentationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.gatewayVisualRepresentationControllerCreate(visualRepresentationTransactionDto, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * VisualRepresentationGatewayApi - factory interface
+ * @export
+ */
+export const VisualRepresentationGatewayApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = VisualRepresentationGatewayApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Adds new visualrepresentation to the chain.
+         * @param {VisualRepresentationTransactionDto} visualRepresentationTransactionDto 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        gatewayVisualRepresentationControllerCreate(visualRepresentationTransactionDto: VisualRepresentationTransactionDto, options?: any): AxiosPromise<VisualRepresentationResponse> {
+            return localVarFp.gatewayVisualRepresentationControllerCreate(visualRepresentationTransactionDto, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * VisualRepresentationGatewayApi - object-oriented interface
+ * @export
+ * @class VisualRepresentationGatewayApi
+ * @extends {BaseAPI}
+ */
+export class VisualRepresentationGatewayApi extends BaseAPI {
+    /**
+     * 
+     * @summary Adds new visualrepresentation to the chain.
+     * @param {VisualRepresentationTransactionDto} visualRepresentationTransactionDto 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof VisualRepresentationGatewayApi
+     */
+    public gatewayVisualRepresentationControllerCreate(visualRepresentationTransactionDto: VisualRepresentationTransactionDto, options?: AxiosRequestConfig) {
+        return VisualRepresentationGatewayApiFp(this.configuration).gatewayVisualRepresentationControllerCreate(visualRepresentationTransactionDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

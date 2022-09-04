@@ -20,7 +20,7 @@ export class SignatureIssuerService extends IssuerService {
     this.api = new HashGatewayApi(this.apiConfiguration);
   }
 
-  async persistHash(
+  async persist(
     value: DidHashStructure,
     date = new Date().toISOString()
   ): Promise<HashResponse> {

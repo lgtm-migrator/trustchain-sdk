@@ -34,6 +34,6 @@ export class DidStatusListRegister {
     const value = await did.getChanges();
     did.version++;
     did.resetChanges();
-    return client.persistStatusList(value);
+    return client.persist(value);
   }
 }

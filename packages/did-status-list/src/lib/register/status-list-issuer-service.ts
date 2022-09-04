@@ -18,9 +18,7 @@ export class StatusListIssuerService extends IssuerService {
     this.api = new StatuslistGatewayApi(this.apiConfiguration);
   }
 
-  async persistStatusList(
-    value: DidStatusListStructure
-  ): Promise<StatusListResponse> {
+  async persist(value: DidStatusListStructure): Promise<StatusListResponse> {
     const transaction: StatusListTransactionDto = {
       version: 1,
       metadata: {

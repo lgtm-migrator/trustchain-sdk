@@ -39,7 +39,7 @@ export class DidHashRegister {
     const value = did.getChanges();
     did.version++;
     did.resetChanges();
-    return client.persistHash(value, date);
+    return client.persist(value, date);
   }
 
   /**
