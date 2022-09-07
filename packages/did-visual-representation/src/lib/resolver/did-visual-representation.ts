@@ -55,13 +55,13 @@ export class DidVisualRepresentation extends Did {
     return presentation;
   }
 
-  addPresentation(id: string, value: string, type: PresentationType): void {
+  addPresentation(id: string, link: string, type: PresentationType): void {
     if (this.hasPresentation(id)) {
       throw Error('value id already used');
     }
     const presentation: Presentation = {
       id: this.getFullId(id),
-      value,
+      link,
       type,
     };
     this.presentation.current.set(presentation.id, presentation);
@@ -84,7 +84,7 @@ export class DidVisualRepresentation extends Did {
     docResponse.document.presentation.forEach((presentation) =>
       this.addPresentation(
         presentation.id,
-        presentation.value,
+        presentation.link,
         presentation.type
       )
     );

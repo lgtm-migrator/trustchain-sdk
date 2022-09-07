@@ -48,12 +48,9 @@ describe('test VisualRepresentation service', () => {
       controllers: [config.config.invite.id],
     });
     const presiId = 'presi';
-    const value = '<h1>{{ hello }}</h1>';
+    const value = 'http://example.com';
     representationDid.addPresentation(presiId, value, PresentationType.html);
-    const res = await DidVisualRepresentationRegister.save(
-      representationDid,
-      client
-    );
+    await DidVisualRepresentationRegister.save(representationDid, client);
     const resolver = new DidVisualRepresentationResolver();
     const loadedVisualRepresentationByTransactions = await resolver.load(
       representationDid.id,
@@ -62,11 +59,11 @@ describe('test VisualRepresentation service', () => {
       }
     );
     expect(
-      loadedVisualRepresentationByTransactions.getPresentation(presiId).value
+      loadedVisualRepresentationByTransactions.getPresentation(presiId).link
     ).toEqual(value);
     const loadedTemplateByDoc = await resolver.load(representationDid.id, {
       doc: true,
     });
-    expect(loadedTemplateByDoc.getPresentation(presiId).value).toEqual(value);
+    expect(loadedTemplateByDoc.getPresentation(presiId).link).toEqual(value);
   }, 20000);
 });

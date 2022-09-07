@@ -49,7 +49,7 @@ describe('test visual representation service', () => {
     });
     representationDid.addPresentation(
       'presi',
-      '<h1>{{ hello }}</h1>',
+      'http://example.com',
       PresentationType.html
     );
     const res = await DidVisualRepresentationRegister.save(

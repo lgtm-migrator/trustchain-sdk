@@ -716,11 +716,11 @@ export interface Presentation {
      */
     'type': PresentationType;
     /**
-     * value of the presentation
+     * resolvable link to request the content
      * @type {string}
      * @memberof Presentation
      */
-    'value': string;
+    'link': string;
 }
 /**
  * 
