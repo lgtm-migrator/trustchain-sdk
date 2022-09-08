@@ -1,4 +1,4 @@
-export interface IRevocationListConfig {
+export interface IStatusListConfig {
   // unique identifier of the list
   id: string;
   // next free index to use when issuing
@@ -7,7 +7,7 @@ export interface IRevocationListConfig {
   length: number;
 }
 
-export interface IRevocationListCredential {
+export interface IStatusListCredential {
   '@context': string[];
   id: string;
   type: string[];

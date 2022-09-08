@@ -25,7 +25,7 @@ import { BbsVerifiableCredentialVerifierService } from './bbs-verifiable-credent
 import { purposes, verify } from 'jsonld-signatures';
 import {
   DidStatusListRegister,
-  RevocationService,
+  StatusListService,
   StatusListIssuerService,
 } from '@trustcerts/did-status-list';
 
@@ -40,7 +40,7 @@ describe('vc-bbs', () => {
 
   let cryptoServiceRSA: CryptoService;
 
-  let revocationService: RevocationService;
+  let revocationService: StatusListService;
 
   let walletService: WalletService;
 
@@ -90,7 +90,7 @@ describe('vc-bbs', () => {
     const statusListDid = DidStatusListRegister.create({
       controllers: [config.config.invite.id],
     });
-    revocationService = RevocationService.create(
+    revocationService = StatusListService.create(
       statusListDid,
       './tmp/revocationListConfig.json'
     );

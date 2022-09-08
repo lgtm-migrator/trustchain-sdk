@@ -13,15 +13,19 @@ import {
   VerificationRelationshipType,
 } from '@trustcerts/did';
 import { logger } from '@trustcerts/logger';
-import { VerifiableCredentialBBS } from '@trustcerts/vc';
+import {
+  createVC,
+  IVerifiableCredentialArguments,
+  VerifiableCredentialBBS,
+} from '@trustcerts/vc';
+import { BbsSignService } from '@trustcerts/vc-bbs';
 import { WalletService } from '@trustcerts/wallet';
 import { readFileSync } from 'fs';
-import { BbsVerifiableCredentialIssuerService } from './bbs-verifiable-credential-issuer-service';
 
 /**
  * Test vc class.
  */
-describe('vc-bbs', () => {
+describe('vc', () => {
   let config: ConfigService;
 
   let bbsAssertionKey: DecryptedKeyPair;
@@ -30,6 +34,7 @@ describe('vc-bbs', () => {
   let cryptoServiceRSA: CryptoService;
 
   let walletService: WalletService;
+  let payload!: IVerifiableCredentialArguments;
 
   beforeAll(async () => {
     const testValues = JSON.parse(readFileSync('./values.json', 'utf-8'));
@@ -72,65 +77,35 @@ describe('vc-bbs', () => {
     if (rsaKey !== undefined) {
       await cryptoServiceRSA.init(rsaKey);
     }
-  }, 40000);
 
-  /**
-   * Creates an example BBS+ signed verifiable credential for testing
-   * @returns A BBS+ signed verifiable credential with example data
-   */
-  async function createVcBbs(): Promise<VerifiableCredentialBBS> {
     if (!config.config.invite) throw new Error();
-    const bbsVcIssuerService = new BbsVerifiableCredentialIssuerService();
-
-    return await bbsVcIssuerService.createBBSVerifiableCredential(
-      {
-        '@context': ['https://w3id.org/citizenship/v1'],
-        type: ['PermanentResidentCard'],
-        credentialSubject: {
-          type: ['PermanentResident', 'Person'],
-          id: 'did:max:mustermann',
-          givenName: 'Max',
-          familyName: 'Mustermann',
-        },
-        id: 'unique_id',
-        issuer: config.config.invite.id,
-        nonce: 'randomVC',
+    payload = {
+      '@context': [
+        'https://www.w3.org/2018/credentials/v1',
+        'https://w3id.org/citizenship/v1',
+      ],
+      type: ['VerifiableCredential', 'PermanentResidentCard'],
+      credentialSubject: {
+        type: ['PermanentResident', 'Person'],
+        id: 'did:max:mustermann',
+        givenName: 'Max',
+        familyName: 'Mustermann',
       },
-      bbsAssertionKey
-    );
-  }
-
-  /**
-   * Creates an example BBS+ signed verifiable presentation for testing
-   * @returns A BBS+ signed verifiable presentation with example data
-   */
-  async function createVpBbs() {
-    const vcIssuerService = new BbsVerifiableCredentialIssuerService();
-    const vc1 = await createVcBbs();
-    const vc2 = await createVcBbs();
-    return await vcIssuerService.createVerifiablePresentation(
-      {
-        '@context': [],
-        type: [],
-        verifiableCredential: [vc1, vc2],
-        domain: 'domain',
-        challenge: 'challenge',
-        holder: 'did:max:mustermann',
-      },
-      bbsAuthenticationKey
-    );
-  }
+      id: 'unique_id',
+      issuer: config.config.invite.id,
+    };
+  }, 40000);
 
   // BBS+
   it('create BBS vc', async () => {
-    const vc = await createVcBbs();
-    logger.info(vc);
+    const vc = await createVC(payload, new BbsSignService(bbsAssertionKey));
+    logger.debug(vc);
     expect(vc).toBeDefined();
   }, 15000);
 
   it('create BBS vp', async () => {
-    const vp = await createVpBbs();
-    logger.debug(JSON.stringify(vp, null, 4));
-    expect(vp).toBeDefined();
+    // const vp = await createVpBbs();
+    // logger.debug(JSON.stringify(vp, null, 4));
+    // expect(vp).toBeDefined();
   }, 15000);
 });

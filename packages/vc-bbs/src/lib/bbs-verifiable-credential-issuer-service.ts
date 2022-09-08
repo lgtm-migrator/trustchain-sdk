@@ -14,7 +14,7 @@ import {
 
 import { DecryptedKeyPair } from '@trustcerts/crypto';
 import { logger } from '@trustcerts/logger';
-import { RevocationService } from '@trustcerts/did-status-list';
+import { StatusListService } from '@trustcerts/did-status-list';
 export class BbsVerifiableCredentialIssuerService {
   /**
    * Creates a verifiable credential signed with a BBS+ signature.
@@ -27,7 +27,7 @@ export class BbsVerifiableCredentialIssuerService {
   async createBBSVerifiableCredential(
     vcArguments: IVerifiableCredentialArguments,
     keyPair: DecryptedKeyPair,
-    revocationService?: RevocationService
+    revocationService?: StatusListService
   ): Promise<VerifiableCredentialBBS> {
     const issuanceDate = new Date();
 
@@ -69,6 +69,7 @@ export class BbsVerifiableCredentialIssuerService {
     // if (vcArguments.expirationDate !== undefined) {
     //     vc['expirationDate'] = vcArguments.expirationDate;
     // }
+    logger.info(vc);
 
     const signedCredential: VerifiableCredentialBBS = await sign(vc, {
       suite: new BbsBlsSignature2020({ key: bbsKeyPair }),

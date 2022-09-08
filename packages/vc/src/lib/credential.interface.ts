@@ -1,5 +1,7 @@
 //https://app.quicktype.io/
 
+import { VerifiableCredentialProof } from './create';
+
 export interface IVerifiableCredentialArguments {
   '@context': string[];
   type: string[];
@@ -89,13 +91,9 @@ export interface VerifiableCredentialBBS {
   proof: VerifiableCredentialBBSProof;
 }
 
-export interface VerifiableCredentialBBSProof {
+export class VerifiableCredentialBBSProof extends VerifiableCredentialProof {
   '@context'?: string | string[];
-  type: ProofType;
-  created: string;
-  verificationMethod: string;
-  proofPurpose: ProofPurpose;
-  proofValue: string;
+  proofValue!: string;
 }
 
 export interface BBSVerificationResult {
