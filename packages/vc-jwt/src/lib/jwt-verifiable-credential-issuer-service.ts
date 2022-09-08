@@ -5,7 +5,7 @@ import {
   IVerifiablePresentationArguments,
   IVerifiablePresentationPayload,
 } from '@trustcerts/vc';
-import { RevocationService } from '@trustcerts/did-status-list';
+import { StatusListService } from '@trustcerts/did-status-list';
 import { SignJWT } from 'jose';
 
 export class VerifiableCredentialIssuerService {
@@ -20,7 +20,7 @@ export class VerifiableCredentialIssuerService {
   async createVerifiableCredential(
     vcArguments: IVerifiableCredentialArguments,
     cryptoService: CryptoService,
-    revocationService?: RevocationService
+    revocationService?: StatusListService
   ): Promise<string> {
     const vcPayload: IVerifiableCredentialPayload = {
       '@context': [
