@@ -5,7 +5,7 @@ import { render } from 'mustache';
 import { PDFButton, PDFDocument, PDFFont, PDFTextField } from 'pdf-lib';
 import { toDataURL } from 'qrcode';
 import { ClaimValues } from './claim-values';
-import { Compress, JsonCompressor, Proto } from './compress';
+import { Compress, JsonCompressor } from './compress';
 
 /**
  * Class object to handle a claim
@@ -33,15 +33,7 @@ export class Claim {
     private template: DidTemplate,
     host: string
   ) {
-    let compressor: Compress;
-    if (
-      template.compression.type === CompressionType.PROTO &&
-      template.compression.value
-    ) {
-      compressor = new Proto(JSON.parse(template.compression.value));
-    } else {
-      compressor = new JsonCompressor();
-    }
+    const compressor: Compress = new JsonCompressor();
     this.url = this.setUrl(
       host,
       template.id,

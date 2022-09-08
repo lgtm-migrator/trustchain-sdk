@@ -1,14 +1,7 @@
-import { JsonWebKey } from '@mattrglobal/bls12381-key-pair/lib/types';
-import {
-  BbsBlsSignature2020,
-  Bls12381G2KeyPair,
-} from '@mattrglobal/jsonld-signatures-bbs';
 import { DecryptedKeyPair } from '@trustcerts/crypto';
 import {
   DocumentLoader,
   ISignService,
-  ProofPurpose,
-  ProofType,
   ProofValues,
   VerifiableCredential,
   VerifiableCredentialProof,

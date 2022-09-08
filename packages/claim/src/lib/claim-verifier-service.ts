@@ -1,5 +1,5 @@
 import { ClaimValues } from './claim-values';
-import { Compress, JsonCompressor, Proto } from './compress';
+import { Compress, JsonCompressor } from './compress';
 import { DidTemplateResolver } from '@trustcerts/did-template';
 import { DidHash, DidHashResolver } from '@trustcerts/did-hash';
 import { CompressionType } from '@trustcerts/observer';
@@ -32,15 +32,7 @@ export class ClaimVerifierService {
     const data = url.split('#');
     const did = data[0];
     const template = await this.didTemplateResolver.load(did);
-    let compressor: Compress;
-    if (
-      template.compression.type === CompressionType.PROTO &&
-      template.compression.value
-    ) {
-      compressor = new Proto(JSON.parse(template.compression.value));
-    } else {
-      compressor = new JsonCompressor();
-    }
+    const compressor: Compress = new JsonCompressor();
 
     const values: ClaimValues = compressor.decompress<ClaimValues>(
       decodeURIComponent(data[1])
