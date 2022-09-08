@@ -13,12 +13,8 @@ import {
   VerificationRelationshipType,
 } from '@trustcerts/did';
 import { logger } from '@trustcerts/logger';
-import {
-  createVC,
-  IVerifiableCredentialArguments,
-  VerifiableCredentialBBS,
-} from '@trustcerts/vc';
-import { BbsSignService } from '@trustcerts/vc-bbs';
+import { createVC, IVerifiableCredentialArguments } from '@trustcerts/vc';
+import { JwsSignService } from '@trustcerts/vc-jwt';
 import { WalletService } from '@trustcerts/wallet';
 import { readFileSync } from 'fs';
 
@@ -27,9 +23,6 @@ import { readFileSync } from 'fs';
  */
 describe('vc', () => {
   let config: ConfigService;
-
-  let bbsAssertionKey: DecryptedKeyPair;
-  let bbsAuthenticationKey: DecryptedKeyPair;
 
   let cryptoServiceRSA: CryptoService;
 
@@ -54,19 +47,6 @@ describe('vc', () => {
     await walletService.init();
 
     cryptoServiceRSA = new CryptoService();
-
-    bbsAssertionKey = (
-      await walletService.findOrCreate(
-        VerificationRelationshipType.assertionMethod,
-        bbsCryptoKeyService.algorithm
-      )
-    )[0];
-    bbsAuthenticationKey = (
-      await walletService.findOrCreate(
-        VerificationRelationshipType.authentication,
-        bbsCryptoKeyService.algorithm
-      )
-    )[0];
 
     const rsaKey = (
       await walletService.findOrCreate(
@@ -98,8 +78,11 @@ describe('vc', () => {
 
   // BBS+
   it('create BBS vc', async () => {
-    const vc = await createVC(payload, new BbsSignService(bbsAssertionKey));
-    logger.debug(vc);
+    const vc = await createVC(
+      payload,
+      new JwsSignService(null as any as DecryptedKeyPair)
+    );
+    logger.info(vc);
     expect(vc).toBeDefined();
   }, 15000);
 
