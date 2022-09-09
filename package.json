@@ -5,8 +5,7 @@
   "scripts": {
     "prepare": "husky install",
     "nx": "nx",
-    "release:ci": "nx affected --base=last-release --target=version --parallel=1",
-    "install:ci": "nx affected --base=last-release --target=install"
+    "release:ci": "nx affected --base=last-release --target=version --parallel=1"
   },
   "dependencies": {
     "@digitalbazaar/ed25519-signature-2020": "^5.0.0",

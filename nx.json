@@ -25,28 +25,6 @@
       }
     }
   },
-  "targetDependencies": {
-    "version": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      },
-      {
-        "target": "version",
-        "projects": "dependencies"
-      }
-    ],
-    "build": [
-      {
-        "target": "install",
-        "projects": "dependencies"
-      },
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ]
-  },
   "generators": {
     "@nrwl/js:library": {
       "buildable": true,
@@ -59,7 +37,7 @@
       "dependsOn": ["^build", "^version"]
     },
     "build": {
-      "dependsOn": ["^install", "^build"]
+      "dependsOn": ["^build"]
     }
   }
 }
