@@ -1,15 +1,15 @@
-module.exports = {
-  displayName: 'tests',
+/* eslint-disable */
+export default {
+  displayName: 'vc',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
     },
   },
-  testEnvironment: 'node',
   transform: {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/packages/tests',
+  coverageDirectory: '../../coverage/packages/vc',
 };

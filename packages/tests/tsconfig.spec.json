@@ -9,6 +9,6 @@
     "**/*.test.ts",
     "**/*.spec.ts",
     "**/*.d.ts",
-    "../declare_modules.d.ts"
+    "../../declare_modules.d.ts"
   ]
 }

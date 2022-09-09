@@ -77,7 +77,7 @@ describe('vc', () => {
   }, 40000);
 
   // BBS+
-  it('create BBS vc', async () => {
+  it('create JWS vc', async () => {
     const vc = await createVC(
       payload,
       new JwsSignService(null as any as DecryptedKeyPair)

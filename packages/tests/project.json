@@ -4,13 +4,20 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/tests/**/*.ts"
-        ]
+        "lintFilePatterns": ["packages/tests/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/tests"],
+      "options": {
+        "jestConfig": "packages/tests/jest.config.ts",
+        "passWithNoTests": true,
+        "runInBand": true,
+        "codeCoverage": true,
+        "coverageReporters": ["lcov"]
       }
     }
   },
