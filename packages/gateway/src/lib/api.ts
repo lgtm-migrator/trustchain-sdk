@@ -92,11 +92,102 @@ export interface CreateDidIdDto {
      */
     'secret': string;
     /**
-     * Value of the public key as a json web key.
-     * @type {PublicKeyJwkDto}
+     * 
+     * @type {CreateDidIdDtoPublicKey}
      * @memberof CreateDidIdDto
      */
-    'publicKey': PublicKeyJwkDto;
+    'publicKey': CreateDidIdDtoPublicKey;
+}
+/**
+ * Value of the public key as a json web key.
+ * @export
+ * @interface CreateDidIdDtoPublicKey
+ */
+export interface CreateDidIdDtoPublicKey {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDidIdDtoPublicKey
+     */
+    'kty'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDidIdDtoPublicKey
+     */
+    'n'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDidIdDtoPublicKey
+     */
+    'e'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDidIdDtoPublicKey
+     */
+    'alg'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDidIdDtoPublicKey
+     */
+    'crv'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDidIdDtoPublicKey
+     */
+    'd'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDidIdDtoPublicKey
+     */
+    'dp'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDidIdDtoPublicKey
+     */
+    'dq'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDidIdDtoPublicKey
+     */
+    'k'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDidIdDtoPublicKey
+     */
+    'p'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDidIdDtoPublicKey
+     */
+    'q'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDidIdDtoPublicKey
+     */
+    'qi'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDidIdDtoPublicKey
+     */
+    'x'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateDidIdDtoPublicKey
+     */
+    'y'?: string;
 }
 /**
  * 
@@ -111,11 +202,11 @@ export interface DidHashStructure {
      */
     'id': string;
     /**
-     * Did that controls this did.
-     * @type {ControllerManage}
+     * 
+     * @type {DidHashStructureController}
      * @memberof DidHashStructure
      */
-    'controller'?: ControllerManage;
+    'controller'?: DidHashStructureController;
     /**
      * Used algorithm for the hash.
      * @type {string}
@@ -137,6 +228,25 @@ export const DidHashStructureAlgorithm = {
 export type DidHashStructureAlgorithm = typeof DidHashStructureAlgorithm[keyof typeof DidHashStructureAlgorithm];
 
 /**
+ * Did that controls this did.
+ * @export
+ * @interface DidHashStructureController
+ */
+export interface DidHashStructureController {
+    /**
+     * id that should be added to the controller list.
+     * @type {Array<string>}
+     * @memberof DidHashStructureController
+     */
+    'add'?: Array<string>;
+    /**
+     * id that should be removed from the controller list.
+     * @type {Array<string>}
+     * @memberof DidHashStructureController
+     */
+    'remove'?: Array<string>;
+}
+/**
  * 
  * @export
  * @interface DidIdStructure
@@ -149,11 +259,11 @@ export interface DidIdStructure {
      */
     'id': string;
     /**
-     * Did that controls this did.
-     * @type {ControllerManage}
+     * 
+     * @type {DidHashStructureController}
      * @memberof DidIdStructure
      */
-    'controller'?: ControllerManage;
+    'controller'?: DidHashStructureController;
     /**
      * 
      * @type {RoleManage}
@@ -222,11 +332,72 @@ export interface DidIdTransactionBody {
      */
     'type': TransactionType;
     /**
-     * elements of the did document
-     * @type {DidIdStructure}
+     * 
+     * @type {DidIdTransactionBodyValue}
      * @memberof DidIdTransactionBody
      */
-    'value': DidIdStructure;
+    'value': DidIdTransactionBodyValue;
+}
+/**
+ * elements of the did document
+ * @export
+ * @interface DidIdTransactionBodyValue
+ */
+export interface DidIdTransactionBodyValue {
+    /**
+     * unique identifier of a did
+     * @type {string}
+     * @memberof DidIdTransactionBodyValue
+     */
+    'id': string;
+    /**
+     * 
+     * @type {DidHashStructureController}
+     * @memberof DidIdTransactionBodyValue
+     */
+    'controller'?: DidHashStructureController;
+    /**
+     * 
+     * @type {RoleManage}
+     * @memberof DidIdTransactionBodyValue
+     */
+    'role'?: RoleManage;
+    /**
+     * 
+     * @type {VerificationMethod}
+     * @memberof DidIdTransactionBodyValue
+     */
+    'verificationMethod'?: VerificationMethod;
+    /**
+     * 
+     * @type {ServiceMange}
+     * @memberof DidIdTransactionBodyValue
+     */
+    'service'?: ServiceMange;
+    /**
+     * 
+     * @type {VerificationRelationshipManage}
+     * @memberof DidIdTransactionBodyValue
+     */
+    'authentication'?: VerificationRelationshipManage;
+    /**
+     * 
+     * @type {VerificationRelationshipManage}
+     * @memberof DidIdTransactionBodyValue
+     */
+    'assertionMethod'?: VerificationRelationshipManage;
+    /**
+     * 
+     * @type {VerificationRelationshipManage}
+     * @memberof DidIdTransactionBodyValue
+     */
+    'keyAgreement'?: VerificationRelationshipManage;
+    /**
+     * 
+     * @type {VerificationRelationshipManage}
+     * @memberof DidIdTransactionBodyValue
+     */
+    'modification'?: VerificationRelationshipManage;
 }
 /**
  * 
@@ -272,11 +443,11 @@ export interface DidPublicKey {
      */
     'id': string;
     /**
-     * encoded key value
-     * @type {PublicKeyJwkDto}
+     * 
+     * @type {DidPublicKeyPublicKeyJwk}
      * @memberof DidPublicKey
      */
-    'publicKeyJwk': PublicKeyJwkDto;
+    'publicKeyJwk': DidPublicKeyPublicKeyJwk;
     /**
      * controller of the key
      * @type {string}
@@ -289,6 +460,97 @@ export interface DidPublicKey {
      * @memberof DidPublicKey
      */
     'type': DidPublicKeyType;
+}
+/**
+ * encoded key value
+ * @export
+ * @interface DidPublicKeyPublicKeyJwk
+ */
+export interface DidPublicKeyPublicKeyJwk {
+    /**
+     * 
+     * @type {string}
+     * @memberof DidPublicKeyPublicKeyJwk
+     */
+    'kty'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DidPublicKeyPublicKeyJwk
+     */
+    'n'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DidPublicKeyPublicKeyJwk
+     */
+    'e'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DidPublicKeyPublicKeyJwk
+     */
+    'alg'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DidPublicKeyPublicKeyJwk
+     */
+    'crv'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DidPublicKeyPublicKeyJwk
+     */
+    'd'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DidPublicKeyPublicKeyJwk
+     */
+    'dp'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DidPublicKeyPublicKeyJwk
+     */
+    'dq'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DidPublicKeyPublicKeyJwk
+     */
+    'k'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DidPublicKeyPublicKeyJwk
+     */
+    'p'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DidPublicKeyPublicKeyJwk
+     */
+    'q'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DidPublicKeyPublicKeyJwk
+     */
+    'qi'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DidPublicKeyPublicKeyJwk
+     */
+    'x'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DidPublicKeyPublicKeyJwk
+     */
+    'y'?: string;
 }
 /**
  * 
@@ -310,11 +572,11 @@ export type DidPublicKeyType = typeof DidPublicKeyType[keyof typeof DidPublicKey
  */
 export interface DidResponse {
     /**
-     * additional metadata to the transaction
-     * @type {PersistedTransaction}
+     * 
+     * @type {HashResponseMetaData}
      * @memberof DidResponse
      */
-    'metaData': PersistedTransaction;
+    'metaData': HashResponseMetaData;
     /**
      * 
      * @type {DidIdTransactionDto}
@@ -351,11 +613,11 @@ export interface DidSchemaStructure {
      */
     'id': string;
     /**
-     * Did that controls this did.
-     * @type {ControllerManage}
+     * 
+     * @type {DidHashStructureController}
      * @memberof DidSchemaStructure
      */
-    'controller'?: ControllerManage;
+    'controller'?: DidHashStructureController;
     /**
      * json schema to validate the data that should be parsed into the
      * @type {string}
@@ -401,11 +663,11 @@ export interface DidStatusListStructure {
      */
     'id': string;
     /**
-     * Did that controls this did.
-     * @type {ControllerManage}
+     * 
+     * @type {DidHashStructureController}
      * @memberof DidStatusListStructure
      */
-    'controller'?: ControllerManage;
+    'controller'?: DidHashStructureController;
     /**
      * enocded bitstring
      * @type {string}
@@ -432,11 +694,11 @@ export interface DidTemplateStructure {
      */
     'id': string;
     /**
-     * Did that controls this did.
-     * @type {ControllerManage}
+     * 
+     * @type {DidHashStructureController}
      * @memberof DidTemplateStructure
      */
-    'controller'?: ControllerManage;
+    'controller'?: DidHashStructureController;
     /**
      * template that should be used.
      * @type {string}
@@ -469,17 +731,36 @@ export interface DidVisualRepresentationStructure {
      */
     'id': string;
     /**
-     * Did that controls this did.
-     * @type {ControllerManage}
+     * 
+     * @type {DidHashStructureController}
      * @memberof DidVisualRepresentationStructure
      */
-    'controller'?: ControllerManage;
+    'controller'?: DidHashStructureController;
     /**
-     * Presentation that should be connected with the did.
-     * @type {PresentationMange}
+     * 
+     * @type {DidVisualRepresentationStructurePresentation}
      * @memberof DidVisualRepresentationStructure
      */
-    'presentation'?: PresentationMange;
+    'presentation'?: DidVisualRepresentationStructurePresentation;
+}
+/**
+ * Presentation that should be connected with the did.
+ * @export
+ * @interface DidVisualRepresentationStructurePresentation
+ */
+export interface DidVisualRepresentationStructurePresentation {
+    /**
+     * List of presentations that should be added to the did document.
+     * @type {Array<Presentation>}
+     * @memberof DidVisualRepresentationStructurePresentation
+     */
+    'add'?: Array<Presentation>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof DidVisualRepresentationStructurePresentation
+     */
+    'remove'?: Array<string>;
 }
 /**
  * 
@@ -519,17 +800,67 @@ export interface HashDidTransactionDto {
  */
 export interface HashResponse {
     /**
-     * additional metadata to the transaction
-     * @type {PersistedTransaction}
+     * 
+     * @type {HashResponseMetaData}
      * @memberof HashResponse
      */
-    'metaData': PersistedTransaction;
+    'metaData': HashResponseMetaData;
     /**
-     * transaction that was persisted.
-     * @type {HashDidTransactionDto}
+     * 
+     * @type {HashResponseTransaction}
      * @memberof HashResponse
      */
-    'transaction': HashDidTransactionDto;
+    'transaction': HashResponseTransaction;
+}
+/**
+ * additional metadata to the transaction
+ * @export
+ * @interface HashResponseMetaData
+ */
+export interface HashResponseMetaData {
+    /**
+     * 
+     * @type {PersistedTransactionMetaData}
+     * @memberof HashResponseMetaData
+     */
+    'transaction': PersistedTransactionMetaData;
+    /**
+     * 
+     * @type {PersistedBlock}
+     * @memberof HashResponseMetaData
+     */
+    'block': PersistedBlock;
+}
+/**
+ * transaction that was persisted.
+ * @export
+ * @interface HashResponseTransaction
+ */
+export interface HashResponseTransaction {
+    /**
+     * Version number of the base transaction.
+     * @type {number}
+     * @memberof HashResponseTransaction
+     */
+    'version': number;
+    /**
+     * 
+     * @type {HashTransactionBody}
+     * @memberof HashResponseTransaction
+     */
+    'body': HashTransactionBody;
+    /**
+     * 
+     * @type {TransactionMetadata}
+     * @memberof HashResponseTransaction
+     */
+    'metadata': TransactionMetadata;
+    /**
+     * 
+     * @type {SignatureInfo}
+     * @memberof HashResponseTransaction
+     */
+    'signature': SignatureInfo;
 }
 /**
  * 
@@ -556,12 +887,50 @@ export interface HashTransactionBody {
      */
     'type': TransactionType;
     /**
-     * elements of the did document
-     * @type {DidHashStructure}
+     * 
+     * @type {HashTransactionBodyValue}
      * @memberof HashTransactionBody
      */
-    'value': DidHashStructure;
+    'value': HashTransactionBodyValue;
 }
+/**
+ * elements of the did document
+ * @export
+ * @interface HashTransactionBodyValue
+ */
+export interface HashTransactionBodyValue {
+    /**
+     * unique identifier of a did
+     * @type {string}
+     * @memberof HashTransactionBodyValue
+     */
+    'id': string;
+    /**
+     * 
+     * @type {DidHashStructureController}
+     * @memberof HashTransactionBodyValue
+     */
+    'controller'?: DidHashStructureController;
+    /**
+     * Used algorithm for the hash.
+     * @type {string}
+     * @memberof HashTransactionBodyValue
+     */
+    'algorithm'?: HashTransactionBodyValueAlgorithm;
+    /**
+     * if set to a date it will revoke the hash
+     * @type {string}
+     * @memberof HashTransactionBodyValue
+     */
+    'revoked'?: string;
+}
+
+export const HashTransactionBodyValueAlgorithm = {
+    sha256: 'sha256'
+} as const;
+
+export type HashTransactionBodyValueAlgorithm = typeof HashTransactionBodyValueAlgorithm[keyof typeof HashTransactionBodyValueAlgorithm];
+
 /**
  * 
  * @export
@@ -872,17 +1241,48 @@ export interface RoleManage {
  */
 export interface SchemaResponse {
     /**
-     * additional metadata to the transaction
-     * @type {PersistedTransaction}
+     * 
+     * @type {HashResponseMetaData}
      * @memberof SchemaResponse
      */
-    'metaData': PersistedTransaction;
+    'metaData': HashResponseMetaData;
     /**
-     * transaction that was persisted.
-     * @type {SchemaTransactionDto}
+     * 
+     * @type {SchemaResponseTransaction}
      * @memberof SchemaResponse
      */
-    'transaction': SchemaTransactionDto;
+    'transaction': SchemaResponseTransaction;
+}
+/**
+ * transaction that was persisted.
+ * @export
+ * @interface SchemaResponseTransaction
+ */
+export interface SchemaResponseTransaction {
+    /**
+     * Version number of the base transaction.
+     * @type {number}
+     * @memberof SchemaResponseTransaction
+     */
+    'version': number;
+    /**
+     * 
+     * @type {SchemaTransactionBody}
+     * @memberof SchemaResponseTransaction
+     */
+    'body': SchemaTransactionBody;
+    /**
+     * 
+     * @type {TransactionMetadata}
+     * @memberof SchemaResponseTransaction
+     */
+    'metadata': TransactionMetadata;
+    /**
+     * 
+     * @type {SignatureInfo}
+     * @memberof SchemaResponseTransaction
+     */
+    'signature': SignatureInfo;
 }
 /**
  * 
@@ -1024,17 +1424,48 @@ export type SignatureType = typeof SignatureType[keyof typeof SignatureType];
  */
 export interface StatusListResponse {
     /**
-     * additional metadata to the transaction
-     * @type {PersistedTransaction}
+     * 
+     * @type {HashResponseMetaData}
      * @memberof StatusListResponse
      */
-    'metaData': PersistedTransaction;
+    'metaData': HashResponseMetaData;
     /**
-     * transaction that was persisted.
-     * @type {StatusListTransactionDto}
+     * 
+     * @type {StatusListResponseTransaction}
      * @memberof StatusListResponse
      */
-    'transaction': StatusListTransactionDto;
+    'transaction': StatusListResponseTransaction;
+}
+/**
+ * transaction that was persisted.
+ * @export
+ * @interface StatusListResponseTransaction
+ */
+export interface StatusListResponseTransaction {
+    /**
+     * Version number of the base transaction.
+     * @type {number}
+     * @memberof StatusListResponseTransaction
+     */
+    'version': number;
+    /**
+     * 
+     * @type {StatusListTransactionBody}
+     * @memberof StatusListResponseTransaction
+     */
+    'body': StatusListTransactionBody;
+    /**
+     * 
+     * @type {TransactionMetadata}
+     * @memberof StatusListResponseTransaction
+     */
+    'metadata': TransactionMetadata;
+    /**
+     * 
+     * @type {SignatureInfo}
+     * @memberof StatusListResponseTransaction
+     */
+    'signature': SignatureInfo;
 }
 /**
  * 
@@ -1119,17 +1550,48 @@ export type StatusPurpose = typeof StatusPurpose[keyof typeof StatusPurpose];
  */
 export interface TemplateResponse {
     /**
-     * additional metadata to the transaction
-     * @type {PersistedTransaction}
+     * 
+     * @type {HashResponseMetaData}
      * @memberof TemplateResponse
      */
-    'metaData': PersistedTransaction;
+    'metaData': HashResponseMetaData;
     /**
-     * transaction that was persisted.
-     * @type {TemplateTransactionDto}
+     * 
+     * @type {TemplateResponseTransaction}
      * @memberof TemplateResponse
      */
-    'transaction': TemplateTransactionDto;
+    'transaction': TemplateResponseTransaction;
+}
+/**
+ * transaction that was persisted.
+ * @export
+ * @interface TemplateResponseTransaction
+ */
+export interface TemplateResponseTransaction {
+    /**
+     * Version number of the base transaction.
+     * @type {number}
+     * @memberof TemplateResponseTransaction
+     */
+    'version': number;
+    /**
+     * 
+     * @type {TemplateTransactionBody}
+     * @memberof TemplateResponseTransaction
+     */
+    'body': TemplateTransactionBody;
+    /**
+     * 
+     * @type {TransactionMetadata}
+     * @memberof TemplateResponseTransaction
+     */
+    'metadata': TransactionMetadata;
+    /**
+     * 
+     * @type {SignatureInfo}
+     * @memberof TemplateResponseTransaction
+     */
+    'signature': SignatureInfo;
 }
 /**
  * 
@@ -1269,17 +1731,48 @@ export interface VerificationRelationshipManage {
  */
 export interface VisualRepresentationResponse {
     /**
-     * additional metadata to the transaction
-     * @type {PersistedTransaction}
+     * 
+     * @type {HashResponseMetaData}
      * @memberof VisualRepresentationResponse
      */
-    'metaData': PersistedTransaction;
+    'metaData': HashResponseMetaData;
     /**
-     * transaction that was persisted.
-     * @type {VisualRepresentationTransactionDto}
+     * 
+     * @type {VisualRepresentationResponseTransaction}
      * @memberof VisualRepresentationResponse
      */
-    'transaction': VisualRepresentationTransactionDto;
+    'transaction': VisualRepresentationResponseTransaction;
+}
+/**
+ * transaction that was persisted.
+ * @export
+ * @interface VisualRepresentationResponseTransaction
+ */
+export interface VisualRepresentationResponseTransaction {
+    /**
+     * Version number of the base transaction.
+     * @type {number}
+     * @memberof VisualRepresentationResponseTransaction
+     */
+    'version': number;
+    /**
+     * 
+     * @type {VisualRepresentationTransactionBody}
+     * @memberof VisualRepresentationResponseTransaction
+     */
+    'body': VisualRepresentationTransactionBody;
+    /**
+     * 
+     * @type {TransactionMetadata}
+     * @memberof VisualRepresentationResponseTransaction
+     */
+    'metadata': TransactionMetadata;
+    /**
+     * 
+     * @type {SignatureInfo}
+     * @memberof VisualRepresentationResponseTransaction
+     */
+    'signature': SignatureInfo;
 }
 /**
  * 
@@ -1300,17 +1793,42 @@ export interface VisualRepresentationTransactionBody {
      */
     'date': string;
     /**
-     * unique identifier of a visualrepresentation
-     * @type {DidVisualRepresentationStructure}
+     * 
+     * @type {VisualRepresentationTransactionBodyValue}
      * @memberof VisualRepresentationTransactionBody
      */
-    'value': DidVisualRepresentationStructure;
+    'value': VisualRepresentationTransactionBodyValue;
     /**
      * 
      * @type {TransactionType}
      * @memberof VisualRepresentationTransactionBody
      */
     'type': TransactionType;
+}
+/**
+ * unique identifier of a visualrepresentation
+ * @export
+ * @interface VisualRepresentationTransactionBodyValue
+ */
+export interface VisualRepresentationTransactionBodyValue {
+    /**
+     * unique identifier of a visualrepresentation
+     * @type {string}
+     * @memberof VisualRepresentationTransactionBodyValue
+     */
+    'id': string;
+    /**
+     * 
+     * @type {DidHashStructureController}
+     * @memberof VisualRepresentationTransactionBodyValue
+     */
+    'controller'?: DidHashStructureController;
+    /**
+     * 
+     * @type {DidVisualRepresentationStructurePresentation}
+     * @memberof VisualRepresentationTransactionBodyValue
+     */
+    'presentation'?: DidVisualRepresentationStructurePresentation;
 }
 /**
  * 
