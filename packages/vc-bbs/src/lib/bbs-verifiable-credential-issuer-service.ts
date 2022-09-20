@@ -21,13 +21,13 @@ export class BbsVerifiableCredentialIssuerService {
    *
    * @param vcArguments The arguments of the verifiable credential
    * @param keyPair The Bls12381G2 keypair as JsonWebKeys
-   * @param revocationService If set, a credentialStatus property is added to the verifiable credential using revocationService
+   * @param statusListService If set, a credentialStatus property is added to the verifiable credential using statusListService
    * @returns A BBS+ signed verifiable credential
    */
   async createBBSVerifiableCredential(
     vcArguments: IVerifiableCredentialArguments,
     keyPair: DecryptedKeyPair,
-    revocationService?: StatusListService
+    statusListService?: StatusListService
   ): Promise<VerifiableCredentialBBS> {
     const issuanceDate = new Date();
 
@@ -58,8 +58,8 @@ export class BbsVerifiableCredentialIssuerService {
       id: vcArguments.id,
     };
 
-    if (revocationService) {
-      vc.credentialStatus = await revocationService.getNewCredentialStatus();
+    if (statusListService) {
+      vc.credentialStatus = await statusListService.getNewCredentialStatus();
       if (vc['@context']) {
         vc['@context'].push('https://w3id.org/vc/status-list/2021/v1');
       }
@@ -69,7 +69,6 @@ export class BbsVerifiableCredentialIssuerService {
     // if (vcArguments.expirationDate !== undefined) {
     //     vc['expirationDate'] = vcArguments.expirationDate;
     // }
-    logger.info(vc);
 
     const signedCredential: VerifiableCredentialBBS = await sign(vc, {
       suite: new BbsBlsSignature2020({ key: bbsKeyPair }),

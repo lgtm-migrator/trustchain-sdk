@@ -10,7 +10,7 @@ import {
   Identifier,
   VerificationRelationshipType,
 } from '@trustcerts/did';
-import { RevocationService } from '@trustcerts/did-status-list';
+import { StatusListService } from '@trustcerts/did-status-list';
 import { logger } from '@trustcerts/logger';
 import { JWT, VerifiableCredentialIssuerService } from '@trustcerts/vc-jwt';
 import { WalletService } from '@trustcerts/wallet';
@@ -81,7 +81,7 @@ describe('vc', () => {
    */
   async function createVc(
     cryptoService: CryptoService,
-    revocationService?: RevocationService
+    statusListService?: StatusListService
   ): Promise<string> {
     if (!config.config.invite) throw Error();
 
@@ -95,7 +95,7 @@ describe('vc', () => {
         // nonce: 'randomVC',
       },
       cryptoService,
-      revocationService
+      statusListService
     );
   }
 

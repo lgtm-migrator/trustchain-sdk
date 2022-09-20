@@ -81,7 +81,7 @@ describe('vc', () => {
    */
   async function createVc(
     cryptoService: CryptoService,
-    revocationService?: StatusListService
+    statusListService?: StatusListService
   ): Promise<string> {
     if (!config.config.invite) throw Error();
 
@@ -95,7 +95,7 @@ describe('vc', () => {
         // nonce: 'randomVC',
       },
       cryptoService,
-      revocationService
+      statusListService
     );
   }
 

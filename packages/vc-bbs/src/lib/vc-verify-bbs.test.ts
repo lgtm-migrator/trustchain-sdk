@@ -40,7 +40,7 @@ describe('vc-bbs', () => {
 
   let cryptoServiceRSA: CryptoService;
 
-  let revocationService: StatusListService;
+  let statusListService: StatusListService;
 
   let walletService: WalletService;
 
@@ -90,7 +90,7 @@ describe('vc-bbs', () => {
     const statusListDid = DidStatusListRegister.create({
       controllers: [config.config.invite.id],
     });
-    revocationService = StatusListService.create(
+    statusListService = StatusListService.create(
       statusListDid,
       './tmp/revocationListConfig.json'
     );
@@ -98,7 +98,7 @@ describe('vc-bbs', () => {
       testValues.network.gateways,
       cryptoServiceRSA
     );
-    await revocationService.persistStatusList(client);
+    await statusListService.persistStatusList(client);
   }, 20000);
 
   /**
@@ -128,7 +128,7 @@ describe('vc-bbs', () => {
         nonce: 'randomVC',
       },
       bbsAssertionKey,
-      revokable ? revocationService : undefined
+      revokable ? statusListService : undefined
     );
   }
 

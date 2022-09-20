@@ -9,7 +9,7 @@ import {
 import {
   DidStatusListRegister,
   DidStatusListResolver,
-  RevocationService,
+  StatusListService,
   StatusListIssuerService,
 } from '@trustcerts/did-status-list';
 import { WalletService } from '@trustcerts/wallet';
@@ -41,10 +41,10 @@ describe('test statuslist service', () => {
     await cryptoService.init(key);
   }, 10000);
 
-  async function createRevocationService(
-    revocationServicePath: string,
+  async function createStatusListService(
+    statusListServicePath: string,
     statusListLength?: number
-  ): Promise<RevocationService> {
+  ): Promise<StatusListService> {
     if (!config.config.invite) throw new Error();
     const client = new StatusListIssuerService(
       testValues.network.gateways,
@@ -55,7 +55,7 @@ describe('test statuslist service', () => {
       length: statusListLength,
     });
     await DidStatusListRegister.save(statusListDid, client);
-    return RevocationService.create(statusListDid, revocationServicePath);
+    return StatusListService.create(statusListDid, statusListServicePath);
   }
 
   it('create', async () => {
@@ -72,18 +72,18 @@ describe('test statuslist service', () => {
   });
 
   it('load', async () => {
-    const revocationServicePath = './tmp/revocationListConfig.json';
-    await createRevocationService(revocationServicePath);
-    const revocationService = await RevocationService.load(
-      revocationServicePath
+    const statusListServicePath = './tmp/revocationListConfig.json';
+    await createStatusListService(statusListServicePath);
+    const statusListService = await StatusListService.load(
+      statusListServicePath
     );
-    expect(revocationService.did).toBeDefined();
+    expect(statusListService.did).toBeDefined();
   });
 
   it('persist', async () => {
-    const revocationServicePath = './tmp/revocationListConfig.json';
-    const revocationService = await createRevocationService(
-      revocationServicePath
+    const statusListServicePath = './tmp/revocationListConfig.json';
+    const statusListService = await createStatusListService(
+      statusListServicePath
     );
     const client = new StatusListIssuerService(
       testValues.network.gateways,
@@ -91,10 +91,10 @@ describe('test statuslist service', () => {
     );
 
     // Create new credential status
-    const credentialStatus = await revocationService.getNewCredentialStatus();
+    const credentialStatus = await statusListService.getNewCredentialStatus();
 
     // Revoke credential
-    await revocationService.setRevoked(credentialStatus, true);
+    await statusListService.setRevoked(credentialStatus, true);
 
     // Expect status list resolver to return credential as not revoked yet
     expect(
@@ -102,7 +102,7 @@ describe('test statuslist service', () => {
     ).toEqual(false);
 
     // Persist status list
-    await revocationService.persistStatusList(client);
+    await statusListService.persistStatusList(client);
 
     // Expect status list resolver to return credential as revoked now
     expect(
@@ -111,74 +111,74 @@ describe('test statuslist service', () => {
   }, 20000);
 
   it('revoke credentialStatus', async () => {
-    const revocationServicePath = './tmp/revocationListConfig.json';
-    const revocationService = await createRevocationService(
-      revocationServicePath
+    const statusListServicePath = './tmp/revocationListConfig.json';
+    const statusListService = await createStatusListService(
+      statusListServicePath
     );
-    const credentialStatus = await revocationService.getNewCredentialStatus();
+    const credentialStatus = await statusListService.getNewCredentialStatus();
     expect(credentialStatus.id).toBeDefined();
 
     // Expect credential not to be revoked
     expect(
-      revocationService.did.isRevoked(credentialStatus.statusListIndex)
+      statusListService.did.isRevoked(credentialStatus.statusListIndex)
     ).toEqual(false);
 
     // Revoke credential
-    await revocationService.setRevoked(credentialStatus, true);
+    await statusListService.setRevoked(credentialStatus, true);
     // Expect credential to be revoked
     expect(
-      revocationService.did.isRevoked(credentialStatus.statusListIndex)
+      statusListService.did.isRevoked(credentialStatus.statusListIndex)
     ).toEqual(true);
 
     // Unrevoke credential
-    await revocationService.setRevoked(credentialStatus, false);
+    await statusListService.setRevoked(credentialStatus, false);
     // Expect credential not to be revoked
     expect(
-      revocationService.did.isRevoked(credentialStatus.statusListIndex)
+      statusListService.did.isRevoked(credentialStatus.statusListIndex)
     ).toEqual(false);
   });
 
   it('maximum size', async () => {
-    const revocationServicePath = './tmp/revocationListConfig.json';
+    const statusListServicePath = './tmp/revocationListConfig.json';
     const statusListLength = 10;
-    const revocationService = await createRevocationService(
-      revocationServicePath,
+    const statusListService = await createStatusListService(
+      statusListServicePath,
       statusListLength
     );
 
     // create maximum number of credential status
     for (let i = 0; i < statusListLength; i++) {
-      const credentialStatus = await revocationService.getNewCredentialStatus();
+      const credentialStatus = await statusListService.getNewCredentialStatus();
       expect(credentialStatus.id).toBeDefined();
     }
 
     // expect list to be full now
     await expect(
-      revocationService.getNewCredentialStatus()
+      statusListService.getNewCredentialStatus()
     ).rejects.toThrowError('The revocation list is full!');
   });
 
   it('invalid revocation', async () => {
-    const revocationServicePath = './tmp/revocationListConfig.json';
+    const statusListServicePath = './tmp/revocationListConfig.json';
     const statusListLength = 10;
-    const revocationService = await createRevocationService(
-      revocationServicePath,
+    const statusListService = await createStatusListService(
+      statusListServicePath,
       statusListLength
     );
-    let credentialStatus = await revocationService.getNewCredentialStatus();
+    let credentialStatus = await statusListService.getNewCredentialStatus();
 
     // Expect next free index not to be used yet
     credentialStatus.statusListIndex += 1;
     await expect(
-      revocationService.setRevoked(credentialStatus, true)
+      statusListService.setRevoked(credentialStatus, true)
     ).rejects.toThrowError('index is not used yet');
 
-    credentialStatus = await revocationService.getNewCredentialStatus();
+    credentialStatus = await statusListService.getNewCredentialStatus();
 
     // Expect next free index not to be used yet
     credentialStatus.statusListCredential = 'invalid credential';
     await expect(
-      revocationService.setRevoked(credentialStatus, true)
+      statusListService.setRevoked(credentialStatus, true)
     ).rejects.toThrowError(
       'Revocation list URL in credentialStatus does not equal this revocation list URL'
     );

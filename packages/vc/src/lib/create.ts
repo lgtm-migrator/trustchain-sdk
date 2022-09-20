@@ -62,13 +62,13 @@ export interface IStatusListService {
 export async function createVC<ProofType extends VerifiableCredentialProof>(
   vcPayload: IVerifiableCredentialArguments,
   proofService: ISignService<ProofType>,
-  revocationService?: IStatusListService
+  statusListService?: IStatusListService
 ): Promise<VerifiableCredential<ProofType>> {
   const issuanceDate = new Date().toISOString();
 
   const vc: ProofValues = { ...vcPayload, issuanceDate };
-  if (revocationService) {
-    vc.credentialStatus = await revocationService.getNewCredentialStatus();
+  if (statusListService) {
+    vc.credentialStatus = await statusListService.getNewCredentialStatus();
     vcPayload['@context'].push('https://w3id.org/vc/status-list/2021/v1');
   }
   return proofService.sign(vc);

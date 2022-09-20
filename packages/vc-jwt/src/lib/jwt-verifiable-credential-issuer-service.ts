@@ -14,13 +14,13 @@ export class VerifiableCredentialIssuerService {
    *
    * @param vcArguments The arguments of the verifiable credential
    * @param cryptoService The Bls12381G2 keypair as JsonWebKeys
-   * @param revocationService If set, a credentialStatus property is added to the verifiable credential using revocationService
+   * @param statusListService If set, a credentialStatus property is added to the verifiable credential using statusListService
    * @returns A JWT-encoded verifiable credential
    */
   async createVerifiableCredential(
     vcArguments: IVerifiableCredentialArguments,
     cryptoService: CryptoService,
-    revocationService?: StatusListService
+    statusListService?: StatusListService
   ): Promise<string> {
     const vcPayload: IVerifiableCredentialPayload = {
       '@context': [
@@ -35,9 +35,9 @@ export class VerifiableCredentialIssuerService {
 
     const issuanceDate = new Date();
 
-    if (revocationService) {
+    if (statusListService) {
       vcPayload.credentialStatus =
-        await revocationService.getNewCredentialStatus();
+        await statusListService.getNewCredentialStatus();
       vcPayload['@context'].push('https://w3id.org/vc/status-list/2021/v1');
     }
 
