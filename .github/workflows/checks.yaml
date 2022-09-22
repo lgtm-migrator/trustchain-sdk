@@ -49,7 +49,7 @@ jobs:
           client_secret: client
           network_size: small
 
-      - uses: trustcerts/nrwl-nx-action
+      - uses: trustcerts/nrwl-nx-action@v2.1.3
         with:
           targets: build,lint
           all: 'true'
@@ -60,7 +60,7 @@ jobs:
       - name: set experimental features
         run: export NODE_OPTIONS=--experimental-vm-modules
 
-      - uses: trustcerts/nrwl-nx-action
+      - uses: trustcerts/nrwl-nx-action@v2.1.3
         with:
           targets: test
           all: 'true'
